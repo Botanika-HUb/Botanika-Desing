@@ -18,6 +18,12 @@ import {
  */
 const TTL = 180; // segundos
 
+// Versão da chave de cache. O Data Cache da Vercel PERSISTE entre deploys, então
+// um bug de cálculo continua servindo valores errados após o fix até o TTL virar.
+// Bumpar esta versão invalida na hora: as chaves mudam e o novo deploy recalcula.
+// (v2 = correção da subcontagem por truncamento de 1000 pedidos — set/2026.)
+const CACHE_VERSION = "v2-percoupon";
+
 type PeriodOpts = { since?: string | null; until?: string | null };
 const periodKey = (o: PeriodOpts) => `${o.since ?? "0"}_${o.until ?? "0"}`;
 
@@ -53,7 +59,7 @@ export function cachedBrandAnalytics(
 ): Promise<BrandAnalytics> {
   return unstable_cache(
     () => getBrandAnalytics(conn, creatorsByCode, opts),
-    ["shopify", "analytics", brandId, periodKey(opts), creatorsSignature(creatorsByCode)],
+    ["shopify", CACHE_VERSION, "analytics", brandId, periodKey(opts), creatorsSignature(creatorsByCode)],
     { revalidate: TTL, tags: [shopifyTag(brandId)] },
   )();
 }
@@ -66,7 +72,7 @@ export function cachedCreatorSales(
 ): Promise<CreatorSales> {
   return unstable_cache(
     () => getCreatorSales(conn, code, opts),
-    ["shopify", "creator-sales", brandId, code.toUpperCase(), periodKey(opts)],
+    ["shopify", CACHE_VERSION, "creator-sales", brandId, code.toUpperCase(), periodKey(opts)],
     { revalidate: TTL, tags: [shopifyTag(brandId)] },
   )();
 }
@@ -79,7 +85,7 @@ export function cachedOrders(
 ): Promise<OrderStats> {
   return unstable_cache(
     () => getOrdersByDiscountCode(conn, code, opts),
-    ["shopify", "orders", brandId, code.toUpperCase(), periodKey(opts)],
+    ["shopify", CACHE_VERSION, "orders", brandId, code.toUpperCase(), periodKey(opts)],
     { revalidate: TTL, tags: [shopifyTag(brandId)] },
   )();
 }
