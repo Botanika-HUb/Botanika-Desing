@@ -107,6 +107,15 @@ export async function createDiscountCode(
         items: { all: true },
       },
       appliesOncePerCustomer: false,
+      // Combina com os outros descontos (kit/escada/campanha automática e frete).
+      // Sem isto, o cupom da creator é RECUSADO quando o carrinho já tem um
+      // desconto automático (ex.: kit de 2 produtos) — o padrão do Shopify é
+      // não-combinar. Deixamos empilhar, conforme a política de comissão.
+      combinesWith: {
+        orderDiscounts: true,
+        productDiscounts: true,
+        shippingDiscounts: true,
+      },
     },
   };
 
@@ -456,6 +465,9 @@ function buildBasicInput(code: string, title: string, cfg: CouponConfig) {
     customerSelection: { all: true },
     customerGets: { value, items },
     appliesOncePerCustomer: cfg.oncePerCustomer,
+    // Empilha com kit/escada/campanha automática e frete (senão o Shopify
+    // recusa o cupom quando já há desconto automático no carrinho).
+    combinesWith: { orderDiscounts: true, productDiscounts: true, shippingDiscounts: true },
   };
   if (cfg.minSubtotal != null && cfg.minSubtotal > 0) {
     input.minimumRequirement = {
@@ -476,6 +488,7 @@ function buildFreeShippingInput(code: string, title: string, cfg: CouponConfig) 
     customerSelection: { all: true },
     destination: { all: true },
     appliesOncePerCustomer: cfg.oncePerCustomer,
+    combinesWith: { orderDiscounts: true, productDiscounts: true, shippingDiscounts: true },
   };
   if (cfg.minSubtotal != null && cfg.minSubtotal > 0) {
     input.minimumRequirement = {
