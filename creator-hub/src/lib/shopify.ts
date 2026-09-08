@@ -954,6 +954,10 @@ export type BrandAnalytics = {
   trackedOrders: number; // pedidos com cupom (todos)
   trackedPaidOrders: number; // pedidos com cupom pagos
   trackedSales: number; // valor dos PRODUTOS em pedidos PAGOS com cupom
+  // true se a varredura de ALGUM cupom atingiu o teto por-cupom (praticamente
+  // nunca). NÃO confundir com o antigo teto global de 1000 pedidos da loja,
+  // que subcontava creators em meses com muitos pedidos.
+  truncated: boolean;
   topInfluencers: Array<{
     code: string;
     name: string;
@@ -983,10 +987,15 @@ export async function getBrandAnalytics(
   creatorsByCode: Record<string, { name: string; rate: number }>,
   opts: { maxOrders?: number; since?: string | null; until?: string | null } = {},
 ): Promise<BrandAnalytics> {
-  const maxOrders = opts.maxOrders ?? 1000;
-  const q = (sinceFilter(opts.since) + untilFilter(opts.until)).trim();
+  // Teto POR CUPOM (não por loja). Um único creator não passa disso num
+  // período. Isto substitui a varredura antiga "loja inteira, teto global de
+  // 1000 pedidos, mais novos primeiro", que descartava os pedidos mais
+  // antigos do período e subcontava a comissão de todo creator com venda no
+  // começo do mês (bug de pagamento).
+  const perCouponCap = opts.maxOrders ?? 5000;
+  const dateFilter = sinceFilter(opts.since) + untilFilter(opts.until);
   const query = `
-    query brandOrders($first: Int!, $after: String, $q: String) {
+    query couponOrders($q: String!, $first: Int!, $after: String) {
       orders(first: $first, after: $after, query: $q, sortKey: CREATED_AT, reverse: true) {
         pageInfo { hasNextPage endCursor }
         nodes {
@@ -1027,58 +1036,70 @@ export async function getBrandAnalytics(
   let trackedOrders = 0;
   let trackedPaidOrders = 0;
   let trackedSales = 0; // produtos, pagos
-  let after: string | null = null;
+  let truncated = false;
 
-  while (ordersScanned < maxOrders) {
-    const data: {
-      orders: {
-        pageInfo: { hasNextPage: boolean; endCursor: string | null };
-        nodes: OrderNode[];
-      };
-    } = await shopifyGraphQL(conn, query, { first: 100, after, q });
+  // Varre uma vez por cupom de creator. Cada pedido é atribuído ao PRIMEIRO
+  // cupom rastreado da sua lista discountCodes (mesma regra de antes); ao
+  // varrer por cupom, só contamos o pedido quando o cupom atual é esse
+  // "primary" — assim um pedido com 2+ cupons de creators conta UMA vez só,
+  // independentemente da ordem em que varremos os cupons.
+  const codes = Object.keys(creatorsByCode);
+  for (const code of codes) {
+    const q = `discount_code:${code}` + dateFilter;
+    let after: string | null = null;
+    let scannedForCode = 0;
 
-    for (const o of data.orders.nodes) {
-      ordersScanned += 1;
-      const codes = (o.discountCodes || []).map((c) => c.toUpperCase());
-      const tracked = codes.filter((c) => creatorsByCode[c]);
-      if (tracked.length === 0) continue;
+    while (scannedForCode < perCouponCap) {
+      const data: {
+        orders: {
+          pageInfo: { hasNextPage: boolean; endCursor: string | null };
+          nodes: OrderNode[];
+        };
+      } = await shopifyGraphQL(conn, query, { q, first: 100, after });
 
-      const primary = tracked[0];
-      const subtotal = parseFloat(o.currentSubtotalPriceSet.shopMoney.amount || "0");
-      const paid = isPaidStatus(o.displayFinancialStatus);
-      trackedOrders += 1;
+      for (const o of data.orders.nodes) {
+        scannedForCode += 1;
+        ordersScanned += 1;
 
-      const s = salesByCode.get(primary) || {
-        orders: 0,
-        paidOrders: 0,
-        sales: 0,
-        paidSales: 0,
-      };
-      s.orders += 1;
-      s.sales += subtotal;
-      if (paid) {
-        s.paidOrders += 1;
-        s.paidSales += subtotal;
-        trackedPaidOrders += 1;
-        trackedSales += subtotal;
-      }
-      salesByCode.set(primary, s);
+        const orderCodes = (o.discountCodes || []).map((c) => c.toUpperCase());
+        const tracked = orderCodes.filter((c) => creatorsByCode[c]);
+        // Só conta se ESTE cupom é o primeiro rastreado do pedido (dedupe).
+        if (tracked[0] !== code) continue;
 
-      // Produtos: só pedidos pagos.
-      if (paid) {
-        for (const li of o.lineItems.nodes) {
-          const rev = parseFloat(li.discountedTotalSet?.shopMoney?.amount || "0");
-          const p = products.get(li.title) || { quantity: 0, revenue: 0 };
-          p.quantity += li.quantity;
-          p.revenue += rev;
-          products.set(li.title, p);
+        const subtotal = parseFloat(o.currentSubtotalPriceSet.shopMoney.amount || "0");
+        const paid = isPaidStatus(o.displayFinancialStatus);
+        trackedOrders += 1;
+
+        const s = salesByCode.get(code) || {
+          orders: 0,
+          paidOrders: 0,
+          sales: 0,
+          paidSales: 0,
+        };
+        s.orders += 1;
+        s.sales += subtotal;
+        if (paid) {
+          s.paidOrders += 1;
+          s.paidSales += subtotal;
+          trackedPaidOrders += 1;
+          trackedSales += subtotal;
+          // Produtos: só pedidos pagos.
+          for (const li of o.lineItems.nodes) {
+            const rev = parseFloat(li.discountedTotalSet?.shopMoney?.amount || "0");
+            const p = products.get(li.title) || { quantity: 0, revenue: 0 };
+            p.quantity += li.quantity;
+            p.revenue += rev;
+            products.set(li.title, p);
+          }
         }
+        salesByCode.set(code, s);
       }
-    }
 
-    if (!data.orders.pageInfo.hasNextPage) break;
-    after = data.orders.pageInfo.endCursor;
-    if (!after) break;
+      if (!data.orders.pageInfo.hasNextPage) break;
+      after = data.orders.pageInfo.endCursor;
+      if (!after) break;
+    }
+    if (scannedForCode >= perCouponCap) truncated = true;
   }
 
   const topInfluencers = [...salesByCode.entries()]
@@ -1106,6 +1127,7 @@ export async function getBrandAnalytics(
     trackedOrders,
     trackedPaidOrders,
     trackedSales,
+    truncated,
     topInfluencers,
     topProducts,
     salesByCode: salesByCodeObj,

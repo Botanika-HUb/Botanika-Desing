@@ -45,7 +45,7 @@ export async function buildCommissionReport(
     string,
     { orders: number; paidOrders: number; sales: number; paidSales: number }
   > = {};
-  let ordersScanned = 0;
+  let truncated = false;
   let error: string | null = null;
 
   if (connected && approved.length > 0) {
@@ -61,7 +61,7 @@ export async function buildCommissionReport(
     try {
       const a = await cachedBrandAnalytics(brand.id, conn, creatorsByCode, opts);
       salesByCode = a.salesByCode;
-      ordersScanned = a.ordersScanned;
+      truncated = a.truncated;
     } catch (e) {
       error = e instanceof Error ? e.message : "Erro ao carregar as vendas.";
     }
@@ -95,7 +95,7 @@ export async function buildCommissionReport(
     totalOrders: rows.reduce((a, b) => a + b.orders, 0),
     totalPaidOrders: rows.reduce((a, b) => a + b.paidOrders, 0),
     connected,
-    truncated: ordersScanned >= 1000,
+    truncated,
     error,
   };
 }
