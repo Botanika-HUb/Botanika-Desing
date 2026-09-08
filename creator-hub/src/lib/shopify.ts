@@ -737,7 +737,10 @@ export async function getOrdersByDiscountCode(
   code: string,
   opts: { since?: string | null; until?: string | null; maxOrders?: number } = {},
 ): Promise<OrderStats> {
-  const maxOrders = opts.maxOrders ?? 1000;
+  // Teto de segurança alto: a paginação para sozinha quando acaba (hasNextPage
+  // false). O teto só evita varredura infinita — não deve truncar volumes reais
+  // de um cupom (inclui período "desde sempre" usado no cálculo de saque).
+  const maxOrders = opts.maxOrders ?? 20000;
   const q = `discount_code:${code}` + sinceFilter(opts.since) + untilFilter(opts.until);
   // Obs: NÃO pedimos dados do cliente (customer{}), pois isso exigiria o scope
   // `read_customers` (dados protegidos, com aprovação da Shopify). Para vendas e
@@ -844,7 +847,10 @@ export async function getCreatorSales(
   code: string,
   opts: { since?: string | null; until?: string | null; maxOrders?: number } = {},
 ): Promise<CreatorSales> {
-  const maxOrders = opts.maxOrders ?? 1000;
+  // Teto de segurança alto: a paginação para sozinha quando acaba (hasNextPage
+  // false). O teto só evita varredura infinita — não deve truncar volumes reais
+  // de um cupom (inclui período "desde sempre" usado no cálculo de saque).
+  const maxOrders = opts.maxOrders ?? 20000;
   const q = `discount_code:${code}` + sinceFilter(opts.since) + untilFilter(opts.until);
   const query = `
     query creatorSales($q: String!, $first: Int!, $after: String) {
