@@ -68,6 +68,22 @@ lugar onde a vitrine pode prometer o que a loja não entrega.
 - **RECOMPRA10:** só funciona para quem já tem pedido anterior. Não pode ser anunciado como cupom
   aberto — cliente novo tenta, é recusado, e abandona.
 
+### Comunicar o que existe e ninguém está comunicando
+- **As escadas de 15% (5+ itens) e 20% (8+ itens) são novas da semana** e não estão na mensagem
+  oficial, que fala em "seguir a mecânica que já temos atualmente". É o maior gancho de ticket da
+  campanha. O tema precisa mostrar os degraus.
+- **"Os 100 primeiros pedidos" não é contagem, é horário** (segunda 14/09 até 23h59). Comunicar como
+  contagem gera reclamação de quem comprar na terça.
+- **RECOMPRA10 é cupom e exige login** com o e-mail que tem pedido anterior. O código precisa
+  aparecer na copy, junto com a instrução de entrar na conta.
+
+### Contradição comercial a resolver antes da abertura
+- **PALPITE12 (12%, classe PEDIDO) segue ativo e acumula com as escadas.** Cliente novo com
+  PALPITE12 + escada de 20% paga 0,88 × 0,80 = **29,6% off**; cliente da base com RECOMPRA10 +
+  escada de 20% paga 0,90 × 0,80 = **28,0%**. O cliente novo leva vantagem sobre o fiel, enquanto a
+  campanha vende os 10% como privilégio da base. Manter os cupons abertos foi decisão tomada — esta
+  consequência não estava na mesa quando foi tomada.
+
 ### Não acumula (se a copy disser que acumula, está errado)
 - RECOMPRA10 **não** soma com cupom de influenciadora (os dois são classe PRODUTO — a Shopify
   aceita um cupom por classe). É intencional, está no plano oficial.
@@ -90,7 +106,9 @@ lugar onde a vitrine pode prometer o que a loja não entrega.
 | VICTORIA, JULIACOLARES e FESTEVES não acumulavam com a escada | **Corrigido em 12/09.** Os três agora combinam com desconto de produto, conforme o plano oficial. Históricos preservados (566, 70 e 20 usos). |
 | "Cupom de quantidade exclusivo para cliente" | **Resolvido.** Segue a tabela atual, como o briefing manda. Nenhuma tabela nova criada. |
 | Escada por produto + escada de volume: soma ou pega a melhor? | **Em aberto.** Sem teste. Enquanto não for verificado num carrinho real, não anunciar percentual somado. |
-| Cupom **ANAAMARAL** | Aplica em produtos específicos, não na coleção `[CUPONS] Todos os Produtos` como os outros 20. Pode dar 5% em menos produtos do que a influenciadora anuncia. Não foi alterado — precisa de decisão. |
+| Cupom **ANAAMARAL** | **Corrigido em 12/09.** Estava aplicando só no Hair Botanika (1 produto de 12); passou para a coleção `[CUPONS] Todos os Produtos`, igual aos outros 20. Os 2 usos foram preservados. |
+| "4 suplementos participantes" (Compre 4, leve 5) | Na configuração **qualquer produto conta**, inclusive kits. Não existe lista de participantes. Ou a copy tira "participantes", ou alguém define a lista e a mecânica é reconfigurada. |
+| Acesso antecipado 23/09 com 5% OFF | **Nada configurado.** É pós-semana. Vai precisar de um segmento de quem comprou entre 14 e 19/09 + cupom com "combina com" tudo desligado. |
 
 ## 5. Reversão — dia 20/09 a loja volta sozinha
 
