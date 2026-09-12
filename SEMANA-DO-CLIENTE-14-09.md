@@ -27,9 +27,26 @@ troca: **se o código vazar, funciona para cliente novo também** — com a esca
 Por isso o código não pode aparecer em criativo público, só no disparo segmentado, e vale olhar a
 contagem de uso na segunda e na terça.
 
-**PALPITE12 encerrado em definitivo** em 14/09 00h01 (`DiscountCodeNode/1554738020584`), renomeado
-para não ser reativado por engano. Código de cupom é único na Shopify, então não dá para recriá-lo
-programado como foi feito com os bumps.
+### Cupons abertos pausados (12/09)
+
+Todos acumulavam com as escadas e entregavam o mesmo desconto (ou mais) que a condição exclusiva da
+base, esvaziando o argumento da campanha. Nenhum foi apagado; os históricos estão preservados.
+
+| Cupom | ID | Usos | Fim |
+|---|---|---|---|
+| PALPITE12 (12%) | `1554738020584` | 3 | **encerrado em 12/09**, em definitivo |
+| BRASIL10 (10%) | `1554185879784` | 0 | 14/09 00h01 |
+| VOLTEI10 (10%) | `1552191848680` | 9 | 14/09 00h01 |
+| RECUPERA10 (10%) | `1566943281384` | 5 | 14/09 00h01 |
+
+⚠️ **RECUPERA10 pode estar plugado em automação de carrinho abandonado.** Se estiver, o fluxo de
+recuperação fica sem oferta a partir de segunda. **RECUPERA10ZAP** e **RECUPERA10MAIL** seguem ativos,
+também dão 10% e estão com "combina com" tudo desligado — não criam a brecha dos 28%. Trocar a
+automação para um desses resolve. Conferir no ActiveCampaign antes de segunda.
+
+⚠️ **Código de cupom é único na Shopify — nenhum desses volta sozinho.** Diferente dos bumps, não dá
+para recriá-los programados. Se BRASIL10, VOLTEI10 e RECUPERA10 tiverem que voltar depois da campanha,
+é edição manual: abrir cada um e apagar a data de término.
 
 ## 2. Limite de 25 descontos automáticos — e o que foi feito
 
@@ -86,12 +103,11 @@ lugar onde a vitrine pode prometer o que a loja não entrega.
 - **RECOMPRA10 é cupom e exige login** com o e-mail que tem pedido anterior. O código precisa
   aparecer na copy, junto com a instrução de entrar na conta.
 
-### Contradição comercial — parcialmente resolvida
-- **PALPITE12 foi encerrado** em 14/09 00h01, o que tira o cliente novo da frente do cliente fiel.
-- **Continua em aberto:** BRASIL10, VOLTEI10 e RECUPERA10 (10% cada, classe PEDIDO, acumulam com as
-  escadas) empatam em 0,90 × 0,80 = **28% off** com a condição da base. A campanha vende os 10% de
-  recompra como exclusivo de quem já comprou, e três cupons abertos entregam o mesmo. Pendente de
-  decisão.
+### Contradição comercial — resolvida
+PALPITE12, BRASIL10, VOLTEI10 e RECUPERA10 foram pausados (ver seção 2). Durante a campanha, nenhum
+cupom aberto empata ou supera a condição da base. Os que continuam no ar — JOINGLE, ELAINE, LUCCA
+(5%), BOTANIKA (5%, não acumula com nada), ALUNO10, ALUNONOVA15, VOLTA5, VOLTA10, RECUPERA10ZAP e
+RECUPERA10MAIL — ficam abaixo dos 28% da recompra e não criam conflito.
 
 ### Tema: de onde vem o número na tela
 O seletor de potes da página de produto é **por produto** (2 un 5%, 3 un 10%). As escadas de 15% e 20%
