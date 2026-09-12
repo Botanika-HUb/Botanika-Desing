@@ -50,8 +50,10 @@ lugar onde a vitrine pode prometer o que a loja não entrega.
 - **"Leve o 2º com 10% off" para Hair → Vitamina C, Creatina → Whey e Vit C/Ômega → TetraVit D.**
   Esses três bumps estão desligados na semana. Qualquer bloco de cross-sell que os mostre precisa
   sair no dia 14 e voltar no dia 20.
-- **5% no PIX.** Não está configurado e não é configurável na Shopify não-Plus. Enquanto o Vitor
-  não definir o gateway, isso não pode aparecer em lugar nenhum — site, criativo, CRM, WhatsApp.
+- **5% no PIX — CANCELADO.** Decisão de 12/09: sai da campanha, não vai mais existir. Tem que ser
+  removido de **todos** os canais: site, criativos, CRM, WhatsApp, influenciadoras, lives. O plano
+  oficial em PDF ainda menciona os 5% do PIX e o acúmulo deles com os 10% de recompra — **essa parte
+  do documento está vencida**.
 - **Qualquer percentual somado do tipo "até 25%".** A soma da escada por produto com a escada de
   volume não foi testada. Só anunciar número que tenha sido visto num carrinho real.
 
@@ -71,6 +73,9 @@ lugar onde a vitrine pode prometer o que a loja não entrega.
   aceita um cupom por classe). É intencional, está no plano oficial.
 - RECOMPRA10 **não** soma com PALPITE12, BRASIL10, VOLTEI10, JOINGLE nem BOTANIKA (classe PEDIDO,
   bloqueados por `pedido = NÃO`).
+- **Cupom de influenciadora agora acumula com a escada** (corrigido em 12/09, conforme o plano
+  oficial). Consequência de margem: cliente com 8 itens e cupom de influenciadora paga
+  0,80 × 0,95 = **24% off**. É o que o plano manda, mas o número é esse.
 - **BOTANIKA** está com "combina com" tudo desligado: quem usa BOTANIKA perde a escada e o frete
   da semana. Estado pré-existente. As LPs anunciam esse cupom — vale revisar a copy.
 
@@ -78,13 +83,14 @@ lugar onde a vitrine pode prometer o que a loja não entrega.
 
 ## 4. Pendências
 
-| Item | Depende de |
+| Item | Situação |
 |---|---|
-| 5% no PIX — só via gateway, não é possível na Shopify | **Vitor.** Sem resposta até a abertura, sai de toda a copy. |
-| Brinde dos 200 primeiros (Manual + Guia da Imunidade) | **Sem dono.** Não é desconto; é entrega de conteúdo pós-compra. |
-| VICTORIA, JULIACOLARES e FESTEVES não acumulam com a escada, contra o plano oficial | Decisão do time. Conserto é editar o campo "combina com", sem apagar nem recriar. |
-| Escada por produto + escada de volume: soma ou pega a melhor? | Teste em carrinho real (5 unidades do mesmo produto). |
-| "Cupom de quantidade exclusivo para cliente" — é a tabela atual ou uma nova? | **Vitor.** Seguimos com a tabela atual. |
+| 5% no PIX | **Cancelado em 12/09.** Não entra na campanha. Retirar de toda a copy. |
+| Brinde dos 200 primeiros (Manual + Guia da Imunidade) | **Resolvido.** Entrega via ActiveCampaign, fora da Shopify. |
+| VICTORIA, JULIACOLARES e FESTEVES não acumulavam com a escada | **Corrigido em 12/09.** Os três agora combinam com desconto de produto, conforme o plano oficial. Históricos preservados (566, 70 e 20 usos). |
+| "Cupom de quantidade exclusivo para cliente" | **Resolvido.** Segue a tabela atual, como o briefing manda. Nenhuma tabela nova criada. |
+| Escada por produto + escada de volume: soma ou pega a melhor? | **Em aberto.** Sem teste. Enquanto não for verificado num carrinho real, não anunciar percentual somado. |
+| Cupom **ANAAMARAL** | Aplica em produtos específicos, não na coleção `[CUPONS] Todos os Produtos` como os outros 20. Pode dar 5% em menos produtos do que a influenciadora anuncia. Não foi alterado — precisa de decisão. |
 
 ## 5. Reversão — dia 20/09 a loja volta sozinha
 
