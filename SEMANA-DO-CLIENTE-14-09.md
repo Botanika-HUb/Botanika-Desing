@@ -65,6 +65,10 @@ em 20/09 00h00**, sem data de fim. A volta é automática — ninguém precisa r
 Continuam ativos e intocados: **Whey → Creatina**, **Tri[Mg] → TetraVit D**, **Sleep → Tri[Mg]**,
 as 16 escadas por produto, os cupons de influenciadora e os cupons abertos.
 
+⚠️ **Não sobrou vaga.** Durante a campanha a loja volta a 25/25 automáticos: 16 escadas por produto +
+3 bumps + Upsell.com + 2 escadas de volume + 3 da campanha. Qualquer desconto automático novo durante
+a semana (relâmpago, kit, coleção) exige pausar outro antes. Cupom não entra nessa cota.
+
 ---
 
 ## 3. ⚠️ REGRAS PARA A ALTERAÇÃO DO TEMA
