@@ -18,9 +18,18 @@ Configurado em 12/09. Tudo **programado**, com data de fim. Nada depende de algu
 
 **RECOMPRA10** é classe PRODUTO (aplicado sobre a coleção `[CUPONS] Todos os Produtos`, não sobre
 "todos os produtos" — se fosse "todos os produtos" a Shopify o classificaria como classe PEDIDO e o
-bloqueio contra o cupom de influenciadora deixaria de existir). Restrito ao segmento
-`Clientes que compraram pelo menos uma vez` (`Segment/539907522792`). Sem limite de uso,
-sem "uma vez por cliente".
+bloqueio contra o cupom de influenciadora deixaria de existir). Sem limite de uso, sem
+"uma vez por cliente".
+
+**Aberto a qualquer cliente** (decisão de 12/09). A restrição por segmento foi removida porque exigia
+que a pessoa estivesse logada com o e-mail da compra anterior, o que gerava recusa no carrinho. Em
+troca: **se o código vazar, funciona para cliente novo também** — com a escada de 20% chega a 28% off.
+Por isso o código não pode aparecer em criativo público, só no disparo segmentado, e vale olhar a
+contagem de uso na segunda e na terça.
+
+**PALPITE12 encerrado em definitivo** em 14/09 00h01 (`DiscountCodeNode/1554738020584`), renomeado
+para não ser reativado por engano. Código de cupom é único na Shopify, então não dá para recriá-lo
+programado como foi feito com os bumps.
 
 ## 2. Limite de 25 descontos automáticos — e o que foi feito
 
@@ -77,12 +86,23 @@ lugar onde a vitrine pode prometer o que a loja não entrega.
 - **RECOMPRA10 é cupom e exige login** com o e-mail que tem pedido anterior. O código precisa
   aparecer na copy, junto com a instrução de entrar na conta.
 
-### Contradição comercial a resolver antes da abertura
-- **PALPITE12 (12%, classe PEDIDO) segue ativo e acumula com as escadas.** Cliente novo com
-  PALPITE12 + escada de 20% paga 0,88 × 0,80 = **29,6% off**; cliente da base com RECOMPRA10 +
-  escada de 20% paga 0,90 × 0,80 = **28,0%**. O cliente novo leva vantagem sobre o fiel, enquanto a
-  campanha vende os 10% como privilégio da base. Manter os cupons abertos foi decisão tomada — esta
-  consequência não estava na mesa quando foi tomada.
+### Contradição comercial — parcialmente resolvida
+- **PALPITE12 foi encerrado** em 14/09 00h01, o que tira o cliente novo da frente do cliente fiel.
+- **Continua em aberto:** BRASIL10, VOLTEI10 e RECUPERA10 (10% cada, classe PEDIDO, acumulam com as
+  escadas) empatam em 0,90 × 0,80 = **28% off** com a condição da base. A campanha vende os 10% de
+  recompra como exclusivo de quem já comprou, e três cupons abertos entregam o mesmo. Pendente de
+  decisão.
+
+### Tema: de onde vem o número na tela
+O seletor de potes da página de produto é **por produto** (2 un 5%, 3 un 10%). As escadas de 15% e 20%
+são **por carrinho** (5+ e 8+ itens de qualquer produto). Quem leva 3 Hair + 2 Creatina tem 5 itens e
+entra em 15% — e o tema hoje não conta isso em lugar nenhum.
+
+**Regra:** o percentual e o preço exibidos têm que vir do cálculo real do carrinho da Shopify, nunca
+de tabela fixa no JavaScript do tema. Enquanto não soubermos se a escada por produto soma com a de
+volume, qualquer conta hardcoded pode mostrar um número que o checkout não confirma. A barra de
+progresso ("faltam 2 itens para 15% OFF") pode ser tabela fixa, porque só conta itens. O desconto
+exibido, não.
 
 ### Não acumula (se a copy disser que acumula, está errado)
 - RECOMPRA10 **não** soma com cupom de influenciadora (os dois são classe PRODUTO — a Shopify
