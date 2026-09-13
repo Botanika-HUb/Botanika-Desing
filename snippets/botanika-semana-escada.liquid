@@ -4,7 +4,11 @@
   Usado pelo hero da home e pela seção avulsa.
 
   IMPORTANTE: estes são os DEGRAUS (quantidade → percentual),
-  não preços. O preço com desconto nunca é calculado no tema —
+  não preços. A escada comunicada é a normal da loja — 5% em 2 e
+  10% em 3 unidades do MESMO produto. Os 15%/20% por volume
+  continuam ativos na Shopify, mas por decisão do time não são
+  comunicados: quem juntar itens recebe a mais sem ter sido
+  prometido, que é o lado seguro do erro. O preço com desconto nunca é calculado no tema —
   quem calcula é a Shopify, no carrinho. Ver a nota obrigatória
   ao final: "o melhor desconto é aplicado automaticamente".
 
@@ -22,15 +26,10 @@
     <span class="sc-step__qty">3 unidades</span>
     <span class="sc-step__hint">do mesmo produto</span>
   </div>
-  <div class="sc-step">
-    <span class="sc-step__pct">15%</span>
-    <span class="sc-step__qty">5 itens</span>
-    <span class="sc-step__hint">de qualquer produto</span>
-  </div>
-  <div class="sc-step sc-step--peak">
-    <span class="sc-step__pct">20%</span>
-    <span class="sc-step__qty">8 itens</span>
-    <span class="sc-step__hint">de qualquer produto</span>
+  <div class="sc-step sc-step--peak sc-step--gift">
+    <span class="sc-step__pct">GRÁTIS</span>
+    <span class="sc-step__qty">Compre 4, leve 5</span>
+    <span class="sc-step__hint">a 5ª Super Vitamina C é brinde</span>
   </div>
 </div>
 <p class="sc-note{% if on_dark %} sc-note--dark{% endif %}">

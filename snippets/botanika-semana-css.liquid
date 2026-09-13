@@ -93,7 +93,7 @@
 
   /* ===== Cartão de degrau (a escada) ===== */
   .sc-steps { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); }
-  @media (min-width: 800px) { .sc-steps { grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 800px) { .sc-steps { grid-template-columns: repeat(3, 1fr); } }
 
   .sc-step {
     position: relative; border-radius: var(--sc-radius); padding: 20px 16px 18px;
@@ -109,6 +109,8 @@
   .sc-step--peak .sc-step__pct,
   .sc-step--peak .sc-step__qty { color: var(--sc-white); }
   .sc-step--peak .sc-step__hint { color: rgba(255,255,255,.88); }
+  /* O card do brinde herda o destaque do --peak, só troca o rótulo. */
+  .sc-step--gift::after { content: "BRINDE" !important; }
   .sc-step--peak::after {
     content: "MAIOR DESCONTO"; position: absolute; top: -10px; left: 50%; translate: -50% 0;
     background: var(--sc-ink); color: var(--sc-y-300);

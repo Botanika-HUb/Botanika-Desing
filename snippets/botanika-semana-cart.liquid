@@ -10,10 +10,11 @@
   linha, via discount_allocations. Se a Shopify não aplicou, o
   bloco não afirma que aplicou — ele apenas instrui.
 
-  Motivo: o desconto da semana depende da quantidade no carrinho
-  (5%/10% por produto, 15% em 5+ itens, 20% em 8+). Não existe
-  número correto para escrever fora do carrinho, e mesmo dentro
-  dele quem manda é a Shopify.
+  A barra agora mede o BRINDE (4 itens → a 5ª Super Vitamina C
+  sai de graça), não os degraus de volume. Os 15%/20% por volume
+  continuam ativos na Shopify, mas o time decidiu não comunicá-los:
+  quem juntar itens recebe a mais sem ter sido prometido — o lado
+  seguro do erro. Nunca o contrário.
 
   Uso: {% render 'botanika-semana-cart' %}
   ============================================================
@@ -21,29 +22,12 @@
 {%- liquid
   assign qty = cart.item_count
 
-  assign t1 = 5
-  assign t2 = 8
-
-  assign next_qty = 0
-  assign next_pct = ''
-  assign now_pct = ''
-
-  if qty >= t2
-    assign now_pct = '20%'
-  elsif qty >= t1
-    assign now_pct = '15%'
-    assign next_qty = t2 | minus: qty
-    assign next_pct = '20%'
-  else
-    assign next_qty = t1 | minus: qty
-    assign next_pct = '15%'
-  endif
-
-  assign pct_fill = qty | times: 100 | divided_by: t2
+  # Meta única: 4 itens liberam o brinde (Compre 4, leve 5).
+  assign gift_goal = 4
+  assign pct_fill = qty | times: 100 | divided_by: gift_goal
   if pct_fill > 100
     assign pct_fill = 100
   endif
-  assign pct_t1 = t1 | times: 100.0 | divided_by: t2
 
   assign gift_handle = settings.sc_gift_handle | default: 'super-vitamina-c'
   assign gift_product = all_products[gift_handle]
@@ -66,35 +50,31 @@
     endfor
   endif
 
-  assign gift_missing = 4 | minus: qty
+  assign gift_missing = gift_goal | minus: qty
 -%}
 
 {%- if qty > 0 -%}
-  {%- comment -%} ---------- Progresso da escada ---------- {%- endcomment -%}
+  {%- comment -%} ---------- Progresso do brinde ---------- {%- endcomment -%}
   <div class="sc-prog">
     <div class="sc-prog__top">
       <span class="sc-prog__msg">
-        {%- if next_qty > 0 -%}
-          {%- if next_qty == 1 -%}
-            Falta <b>1 item</b> para <b>{{ next_pct }} OFF</b>
+        {%- if gift_missing > 0 -%}
+          {%- if gift_missing == 1 -%}
+            Falta <b>1 item</b> para ganhar a <b>Super Vitamina C</b>
           {%- else -%}
-            Faltam <b>{{ next_qty }} itens</b> para <b>{{ next_pct }} OFF</b>
+            Faltam <b>{{ gift_missing }} itens</b> para ganhar a <b>Super Vitamina C</b>
           {%- endif -%}
         {%- else -%}
-          Você chegou no maior desconto da semana 🎉
+          Você liberou o brinde da semana 🎉
         {%- endif -%}
       </span>
-      {%- if now_pct != blank -%}
-        <span class="sc-prog__now">{{ now_pct }} liberado</span>
-      {%- endif -%}
+      <span class="sc-prog__now">{{ qty }} de {{ gift_goal }}</span>
     </div>
-    <div class="sc-prog__track" role="progressbar" aria-valuenow="{{ qty }}" aria-valuemin="0" aria-valuemax="{{ t2 }}" aria-label="Progresso do desconto por quantidade">
+    <div class="sc-prog__track" role="progressbar" aria-valuenow="{{ qty }}" aria-valuemin="0" aria-valuemax="{{ gift_goal }}" aria-label="Progresso para o brinde">
       <div class="sc-prog__fill" style="width: {{ pct_fill }}%"></div>
-      <span class="sc-prog__notch" style="left: {{ pct_t1 }}%"></span>
     </div>
     <div class="sc-prog__ticks">
-      <span class="sc-prog__tick{% if qty >= t1 %} is-on{% endif %}" style="left: {{ pct_t1 }}%">5 itens · 15%</span>
-      <span class="sc-prog__tick sc-prog__tick--end{% if qty >= t2 %} is-on{% endif %}" style="left: 100%">8 itens · 20%</span>
+      <span class="sc-prog__tick sc-prog__tick--end{% if qty >= gift_goal %} is-on{% endif %}" style="left: 100%">4 itens · brinde</span>
     </div>
   </div>
 
