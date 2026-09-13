@@ -10,7 +10,7 @@
 {
   "current": {
     "motion_enabled": true,
-    "popup_enabled": true,
+    "popup_enabled": false,
     "popup_text": "Cadastre seu e-mail e ganhe um cupom de boas-vindas com 5% de desconto na sua primeira compra.",
     "popup_coupon": "BOTANIKA",
     "cart_gift_enabled": true,
