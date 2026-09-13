@@ -53,7 +53,8 @@
             "line_4": "Compre 4: adicione 1 Super Vitamina C e ela sai por R$ 0,00",
             "line_5": "O melhor desconto é aplicado automaticamente no carrinho",
             "bg_color": "#323c91",
-            "text_color": "#ffffff"
+            "text_color": "#ffffff",
+            "line_2_ladder_only": true
           },
           "blocks": {}
         },

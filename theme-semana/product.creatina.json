@@ -48,7 +48,8 @@
             "line_2": "2 unidades deste produto: 5% OFF · 3 unidades: 10% OFF",
             "line_3": "5 itens no carrinho, de qualquer produto: 15% OFF · 8 itens: 20% OFF",
             "line_4": "Compre 4: adicione 1 Super Vitamina C e ela sai por R$ 0,00",
-            "line_5": "O melhor desconto é aplicado automaticamente no carrinho"
+            "line_5": "O melhor desconto é aplicado automaticamente no carrinho",
+            "line_2_ladder_only": true
           },
           "blocks": {}
         },

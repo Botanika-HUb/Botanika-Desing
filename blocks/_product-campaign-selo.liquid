@@ -17,6 +17,12 @@
   Nenhum preço é recalculado aqui. A faixa comunica degraus e
   condições; o valor com desconto só aparece no carrinho, vindo
   da Shopify.
+
+  A linha 2 comunica a ESCADA POR PRODUTO (5% em 2un, 10% em 3un),
+  que não existe para todos os produtos — os kits não têm. Com
+  "line_2_ladder_only" ligado, essa linha some nos produtos fora da
+  lista de snippets/botanika-escada-handles.liquid, para a faixa não
+  prometer um desconto que o checkout não vai aplicar.
   ============================================================
 {%- endcomment -%}
 {%- liquid
@@ -42,6 +48,25 @@
       endif
     endfor
   endif
+
+  # Este produto tem escada própria (5% em 2un / 10% em 3un)?
+  capture cs_ladder
+    render 'botanika-escada-handles'
+  endcapture
+  assign cs_list = ',' | append: cs_ladder | append: ','
+  assign cs_key = ',' | append: product.handle | append: ','
+  assign cs_has_ladder = false
+  if cs_list contains cs_key
+    assign cs_has_ladder = true
+  endif
+
+  assign show_line_2 = false
+  if bs.line_2 != blank
+    assign show_line_2 = true
+    if bs.line_2_ladder_only and cs_has_ladder == false
+      assign show_line_2 = false
+    endif
+  endif
 -%}
 {%- if bs.show and match -%}
   {%- if bs.style == 'campanha' -%}
@@ -50,9 +75,9 @@
         {%- if bs.icon != blank -%}<span class="sc-pdp__ic" aria-hidden="true">{{ bs.icon }}</span>{%- endif -%}
         <span>{{ bs.text }}</span>
       </div>
-      {%- if bs.line_2 != blank or bs.line_3 != blank or bs.line_4 != blank or bs.line_5 != blank -%}
+      {%- if show_line_2 or bs.line_3 != blank or bs.line_4 != blank or bs.line_5 != blank -%}
         <ul class="sc-pdp__list">
-          {%- if bs.line_2 != blank -%}<li><span aria-hidden="true">▸</span><span>{{ bs.line_2 }}</span></li>{%- endif -%}
+          {%- if show_line_2 -%}<li><span aria-hidden="true">▸</span><span>{{ bs.line_2 }}</span></li>{%- endif -%}
           {%- if bs.line_3 != blank -%}<li><span aria-hidden="true">▸</span><span>{{ bs.line_3 }}</span></li>{%- endif -%}
           {%- if bs.line_4 != blank -%}<li><span aria-hidden="true">▸</span><span>{{ bs.line_4 }}</span></li>{%- endif -%}
           {%- if bs.line_5 != blank -%}<li><span aria-hidden="true">▸</span><span>{{ bs.line_5 }}</span></li>{%- endif -%}
@@ -96,6 +121,7 @@
     { "type": "text", "id": "icon", "label": "Ícone (emoji)", "default": "🛡️" },
     { "type": "text", "id": "text", "label": "Título", "default": "Semana da Imunidade — 8% OFF neste produto" },
     { "type": "text", "id": "line_2", "label": "Linha 2 (só no estilo Campanha)" },
+    { "type": "checkbox", "id": "line_2_ladder_only", "label": "Linha 2 só onde há escada por produto", "info": "Ligado, a linha 2 some nos produtos sem [ESCADA] própria (os kits). Use quando a linha 2 falar de 5% em 2un / 10% em 3un.", "default": false },
     { "type": "text", "id": "line_3", "label": "Linha 3 (só no estilo Campanha)" },
     { "type": "text", "id": "line_4", "label": "Linha 4 (só no estilo Campanha)" },
     { "type": "text", "id": "line_5", "label": "Linha 5 (só no estilo Campanha)" },

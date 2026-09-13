@@ -28,7 +28,9 @@ assign free_ship = fst | times: 100
   da escada por produto, e para os kits voltam a "preço regular". Nada a fazer.
 {%- endcomment -%}
 {%- liquid
-  assign qc_ladder = 'tetravit-d,super-omega-3-coq10,hair-botanika,super-vitamina-c,tri-mg-complex,whey-balance-chocolate,whey-balance-sem-sabor,sleep-inositol,creatina-l-carnitina'
+  capture qc_ladder
+    render 'botanika-escada-handles'
+  endcapture
   assign qc_key = ',' | append: product.handle | append: ','
   assign qc_list = ',' | append: qc_ladder | append: ','
   assign qc_has_ladder = false
@@ -71,6 +73,48 @@ data-free-ship="{{ free_ship }}"
 <fieldset class="qty2__fs">
 <legend class="qty2__legend"><span>{{ bs.legend_label }}</span> <b class="qty2__legend-val"></b></legend>
 <div class="qty2__grid">
+{%- comment -%}
+  Pré-passe. Um card de quantidade só existe se ele BATE o card menor.
+  Sem isso, fora da janela do volume o card de 5un empata com o de 3un (os dois
+  caem nos 10% da escada por produto) e ficaria anunciando "menor preço" e
+  "maior desconto da semana" num empate — e nos kits os três cards empatariam
+  a preço regular. Avalia na ordem dos tiers (1, 2, 3), que é a ordem crescente
+  de quantidade usada nos templates.
+{%- endcomment -%}
+{%- liquid
+  assign qc_keep = ','
+  assign qc_best = -1
+  for i in (1..3)
+    case i
+    when 1
+      assign qi_on = bs.tier1_enabled
+      assign qi_q = bs.tier1_quantity
+    when 2
+      assign qi_on = bs.tier2_enabled
+      assign qi_q = bs.tier2_quantity
+    when 3
+      assign qi_on = bs.tier3_enabled
+      assign qi_q = bs.tier3_quantity
+    endcase
+    if qi_on
+      if qc_vol and qi_q >= 8
+        assign qi_eff = 20
+      elsif qc_vol and qi_q >= 5
+        assign qi_eff = 15
+      elsif qc_has_ladder and qi_q >= 3
+        assign qi_eff = 10
+      elsif qc_has_ladder and qi_q >= 2
+        assign qi_eff = 5
+      else
+        assign qi_eff = 0
+      endif
+      if qc_best < 0 or qi_eff > qc_best
+        assign qc_keep = qc_keep | append: i | append: ','
+        assign qc_best = qi_eff
+      endif
+    endif
+  endfor
+-%}
 {%- assign order = '3,2,1' | split: ',' -%}
 {%- assign active_done = false -%}
 {%- for n in order -%}
@@ -104,8 +148,13 @@ assign bonus = bs.tier3_bonus
 assign setimg = bs.tier3_image
 assign enabled = bs.tier3_enabled
 endcase
+assign qc_nkey = ',' | append: n | append: ','
+assign qc_show = false
+if enabled and qc_keep contains qc_nkey
+assign qc_show = true
+endif
 -%}
-{%- if enabled -%}
+{%- if qc_show -%}
 {%- liquid
 # Imagem pela QUANTIDADE, não pelo índice do tier. Os metafields guardam
 # 1, 2 e 3 potes; como os tiers agora valem 2, 3 e 5, casar por índice mostraria
@@ -153,6 +202,8 @@ endunless
 {%- elsif setimg != blank -%}{{ setimg | image_url: width: 260 | image_tag: loading: 'lazy', class: 'qty2__img' }}
 {%- elsif product.featured_image -%}{{ product.featured_image | image_url: width: 260 | image_tag: loading: 'lazy', class: 'qty2__img' }}
 {%- else -%}{{ 'product-1' | placeholder_svg_tag: 'qty2__img' }}{%- endif -%}
+{%- comment -%}Só existe foto de 1, 2 e 3 potes. Acima disso a imagem repete a de 3, então o número vai explícito para não passar quantidade errada.{%- endcomment -%}
+{%- if q > 3 -%}<span class="qty2__xn" aria-hidden="true">×{{ q }}</span>{%- endif -%}
 </div>
 <div class="qty2__b">
 <div class="qty2__t"><span class="qty2__q">{{ title }}</span><span class="qty2__per" data-perunit>{% if show_currency %}{{ c_unit | money_with_currency }}{% else %}{{ c_unit | money }}{% endif %}/pote</span></div>
@@ -203,7 +254,8 @@ display:block;
 .qty2__opt.is-active .qty2__check{border-color:var(--q-blue);background:var(--q-blue);}
 .qty2__check::after{content:"";width:6px;height:12px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg) scale(0);margin-top:-2px;transition:.18s;}
 .qty2__opt.is-active .qty2__check::after{transform:rotate(45deg) scale(1);}
-.qty2__jar{width:62px;height:62px;display:grid;place-items:center;}
+.qty2__jar{width:62px;height:62px;display:grid;place-items:center;position:relative;}
+.qty2__xn{position:absolute;right:-4px;bottom:-4px;background:#C2410C;color:#fff;font-size:11px;font-weight:800;line-height:1;padding:3px 6px;border-radius:999px;border:2px solid #fff;letter-spacing:.01em;}
 .qty2__img{width:100%;height:100%;object-fit:contain;}
 .qty2__b{min-width:0;}
 .qty2__t{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;}

@@ -1,0 +1,25 @@
+{%- comment -%}
+  ============================================================
+  Fonte única: handles que têm ESCADA PRÓPRIA por produto
+  ([ESCADA] <produto> — 5% em 2un / 10% em 3un), ativas sem
+  data de fim na Shopify.
+
+  Os KITS não estão aqui de propósito: a [ESCADA] Kit Imunidade
+  expirou em 22/08/2026 e não foi retomada, e os outros dois kits
+  nunca tiveram escada. Card de kit em 2 ou 3 unidades TEM que
+  aparecer a preço regular — anunciar 5%/10% ali seria preço que
+  o checkout não cobra.
+
+  Usado por:
+    · blocks/_product-quantity-cards.liquid  (calcula o % do card)
+    · blocks/_product-campaign-selo.liquid   (mostra ou não a linha da escada)
+
+  Uso:
+    {%- capture lista -%}{%- render 'botanika-escada-handles' -%}{%- endcapture -%}
+
+  Se um kit ganhar escada própria um dia, acrescente o handle aqui
+  e os dois blocos passam a considerar — não há segunda lista.
+  ============================================================
+{%- endcomment -%}
+{%- assign _h = 'tetravit-d,super-omega-3-coq10,hair-botanika,super-vitamina-c,tri-mg-complex,whey-balance-chocolate,whey-balance-sem-sabor,sleep-inositol,creatina-l-carnitina' -%}
+{{- _h -}}
