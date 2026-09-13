@@ -26,10 +26,22 @@
         <span class="sc-eyebrow">{{ st.eyebrow }}</span>
       {%- endif -%}
 
-      <h1 class="sc-title">
-        {{ st.heading }}
-        {%- if st.heading_accent != blank -%}<em>{{ st.heading_accent }}</em>{%- endif -%}
-      </h1>
+      {%- comment -%}
+        Na home o hero é o título da página (h1). Em qualquer outra página —
+        PDP, por exemplo — o h1 já é o nome do produto, então aqui vira h2
+        para não competir na hierarquia.
+      {%- endcomment -%}
+      {%- if request.page_type == 'index' -%}
+        <h1 class="sc-title">
+          {{ st.heading }}
+          {%- if st.heading_accent != blank -%}<em>{{ st.heading_accent }}</em>{%- endif -%}
+        </h1>
+      {%- else -%}
+        <h2 class="sc-title">
+          {{ st.heading }}
+          {%- if st.heading_accent != blank -%}<em>{{ st.heading_accent }}</em>{%- endif -%}
+        </h2>
+      {%- endif -%}
 
       {%- if st.subheading != blank -%}
         <p class="sc-sub">{{ st.subheading }}</p>

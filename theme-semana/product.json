@@ -1001,12 +1001,28 @@
         "padding_bottom": 0,
         "reset_spacing": false
       }
+    },
+    "semana_hero_pdp": {
+      "type": "semana-hero",
+      "settings": {
+        "show": true,
+        "eyebrow": "14 A 19 DE SETEMBRO",
+        "heading": "Semana do",
+        "heading_accent": "Cliente",
+        "subheading": "Quanto mais itens no carrinho, maior o desconto. Com 4 suplementos, a 5ª Super Vitamina C sai de graça.",
+        "show_steps": true,
+        "cta_text": "Ver todos os suplementos",
+        "cta_link": "/collections/suplementos",
+        "footnote": "Frete grátis · Brinde · Condição especial para clientes",
+        "min_height": 440
+      }
     }
   },
   "order": [
     "pdp_promo",
     "breadcrumb",
     "main",
+    "semana_hero_pdp",
     "botanika_objecao",
     "botanika_medical_authority",
     "pdp_ugc",
