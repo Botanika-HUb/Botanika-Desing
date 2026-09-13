@@ -439,11 +439,9 @@
     "featured_collection_TCP844": {
       "type": "featured-collection",
       "custom_css": [
-        ".product-item__wrapper { border: 2px solid #F97316; border-radius: 18px; padding: 12px; background: #fff; box-shadow: 0 14px 32px -18px rgba(194,65,12,.5); }",
-        ".product-item__inner { border-radius: 12px; overflow: hidden; }",
-        ".product__add-cart { background: linear-gradient(100deg,#E2560E 0%,#F97316 45%,#FBBF24 100%); color: #fff; border-color: transparent; font-weight: 800; }",
-        ".product__add-cart:hover { filter: brightness(1.06); }",
-        ".card-product-price .price, .price-regular .price { color: #E2560E; }"
+        ".product-item__wrapper {border: 2px solid #F97316; border-radius: 18px; padding: 12px; background: #fff;}",
+        ".product__add-cart {background: #F97316; color: #fff; border-color: #F97316;}",
+        ".card-product-price .price {color: #E2560E;}"
       ],
       "name": "t:names.featured_collection",
       "settings": {
