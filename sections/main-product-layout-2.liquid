@@ -285,7 +285,7 @@
     <script type="application/json" class="productVariantsQty">
       [
         {%- for variant in product.variants -%}
-          {%- assign op = variant.option1 | replace: '"', '\"' -%}
+          {%- assign op = variant.option1 | replace: '"', '\\"' -%}
           {%- liquid
               assign id = '"id":' | append: variant.id
               assign option = '"option":"' | append: op | append: '"'
@@ -667,6 +667,9 @@
       "type": "_product-quantity-cards"
     },
     {
+      "type": "_product-order-bump"
+    },
+    {
       "type": "_product-countdown-bar"
     },
     {
@@ -692,6 +695,9 @@
     },
     {
       "type": "_product-stock-countdown"
+    },
+    {
+      "type": "botanika-whey-switch"
     }
   ]
 }

@@ -210,3 +210,18 @@ A janela do volume está fixa no código como epoch (`1789354860` a `1789873200`
 > Se um dia os kits ganharem escada própria, basta acrescentar o handle em
 > `qc_ladder`, dentro do bloco. Sem isso, card de kit em 2 ou 3 unidades **tem**
 > que aparecer como preço regular — era exatamente o que estava errado antes.
+
+### 5.3 Onde ficam os arquivos do tema no repo
+
+O repo **espelha os caminhos da Shopify**: `blocks/`, `sections/`, `snippets/`,
+`templates/`, `config/`, `assets/`, `layout/`. É daí que os arquivos sobem para o
+tema, e é onde se edita.
+
+Existia também uma pasta `theme-semana/` com cópias achatadas dos mesmos arquivos.
+Em **sete** deles as duas versões tinham divergido, e a cópia publicada era sempre
+a de `theme-semana/` — quem abrisse o caminho espelhado estaria editando arquivo
+morto. A pasta foi consolidada nos caminhos espelhados (cada arquivo conferido
+contra o tema antes de mover) e removida.
+
+**Regra:** um arquivo do tema mora num lugar só, no caminho igual ao da Shopify.
+Não recriar pasta paralela.

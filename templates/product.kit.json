@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "breadcrumb": {
@@ -11,8 +20,8 @@
     "pdp_promo": {
       "type": "pdp-promo-banner",
       "settings": {
-        "image_desktop": "shopify://shop_images/bannerdisplaysemana.png",
-        "image_mobile": "shopify://shop_images/semanamobile.png",
+        "image_desktop": "shopify://shop_images/bannerdisplaysemana_35570a0e-0e62-49f5-9691-5ad2297b3ee1.png",
+        "image_mobile": "shopify://shop_images/novodisplaymobile.png",
         "image_alt": "Quanto mais você compra, mais você ganha",
         "image_link": ""
       }
@@ -35,12 +44,20 @@
         "campaign_selo_Im1x9k": {
           "type": "_product-campaign-selo",
           "settings": {
-            "show": false,
-            "handles": "tetravit-d,super-omega-3-coq10,super-vitamina-c",
-            "icon": "🛡️",
-            "text": "Semana da Imunidade — 8% OFF neste produto",
+            "show": true,
+            "handles": "whey-balance-chocolate,creatina-l-carnitina",
+            "icon": "🍊",
+            "text": "Semana do Cliente · até 20% OFF",
             "bg_color": "#323c91",
-            "text_color": "#ffffff"
+            "text_color": "#ffffff",
+            "style": "campanha",
+            "all_products": true,
+            "exclude_handles": "",
+            "line_2": "2 unidades deste produto: 5% OFF · 3 unidades: 10% OFF",
+            "line_3": "5 itens no carrinho, de qualquer produto: 15% OFF · 8 itens: 20% OFF",
+            "line_4": "Compre 4: adicione 1 Super Vitamina C e ela sai por R$ 0,00",
+            "line_5": "O melhor desconto é aplicado automaticamente no carrinho",
+            "line_2_ladder_only": true
           },
           "blocks": {}
         },
@@ -83,7 +100,8 @@
             "timer_style": "default",
             "content": "🔥 Corra! A promoção acaba em:"
           },
-          "blocks": {}
+          "blocks": {},
+          "disabled": true
         },
         "variant_picker_tcCihG": {
           "type": "_product-variant-picker",
@@ -112,12 +130,51 @@
           },
           "blocks": {}
         },
+        "product_quantity_cards_8t79eF": {
+          "type": "_product-quantity-cards",
+          "name": "Quantity discount cards",
+          "settings": {
+            "sp_enabled": true,
+            "sp_rating": "4.9",
+            "sp_text": "+2 mil clientes recompraram",
+            "legend_label": "Escolha sua opção:",
+            "installments": 3,
+            "color_active": "#F97316",
+            "color_badge1": "#2d6b22",
+            "tier1_enabled": true,
+            "tier1_title": "2 KITS",
+            "tier1_quantity": 2,
+            "tier1_discount": 5,
+            "tier1_subtitle": "Leve 2 e economize",
+            "tier1_badge1": "Mais vendido",
+            "tier1_message": "",
+            "tier2_enabled": true,
+            "tier2_image": "",
+            "tier2_title": "3 KITS",
+            "tier2_quantity": 3,
+            "tier2_discount": 10,
+            "tier2_subtitle": "Leve 3 — melhor preço por kit",
+            "tier2_badge1": "",
+            "tier2_message": "",
+            "tier3_enabled": true,
+            "tier3_image": "",
+            "tier3_title": "5 KITS",
+            "tier3_quantity": 5,
+            "tier3_discount": 15,
+            "tier3_subtitle": "Leve 5 — maior desconto da semana",
+            "tier3_badge1": "Menor preço",
+            "tier3_message": "",
+            "tier3_bonus": "",
+            "free_shipping_threshold": 199.9
+          },
+          "blocks": {}
+        },
         "countdown_bar_Cd0f1a": {
           "type": "_product-countdown-bar",
           "settings": {
-            "show": true,
-            "message": "⏳ Preço promocional termina em",
-            "bg_color": "#323c91",
+            "show": false,
+            "message": "⏳ Semana do Cliente termina em",
+            "bg_color": "#E2560E",
             "text_color": "#ffffff"
           },
           "blocks": {}
@@ -132,6 +189,37 @@
           },
           "blocks": {}
         },
+        "depoimentos_prod_Dp1x": {
+          "type": "_product-depoimentos",
+          "settings": {
+            "heading": "O que dizem nossos clientes",
+            "subheading": "Histórias reais de quem já faz parte da Botanika.",
+            "show_stars": true,
+            "p1": "shopify://shop_images/IMG_6444.jpg",
+            "n1": "",
+            "c1": "",
+            "p2": "shopify://shop_images/IMG_6446.jpg",
+            "n2": "",
+            "c2": "",
+            "p3": "shopify://shop_images/IMG_6452.jpg",
+            "n3": "",
+            "c3": "",
+            "p4": "shopify://shop_images/IMG_6448.jpg",
+            "n4": "",
+            "c4": "",
+            "p5": "shopify://shop_images/IMG_6449.jpg",
+            "n5": "",
+            "c5": "",
+            "p6": "shopify://shop_images/IMG_6445.jpg",
+            "n6": "",
+            "c6": "",
+            "n7": "",
+            "c7": "",
+            "n8": "",
+            "c8": ""
+          },
+          "blocks": {}
+        },
         "trust_triggers_Bt1x9k": {
           "type": "_product-trust-triggers",
           "settings": {
@@ -143,20 +231,22 @@
             "guarantee_sub": "Seu dinheiro de volta em até 7 dias",
             "show_secure": false,
             "secure_title": "Compra 100% segura",
-            "secure_sub": "Pagamento criptografado"
+            "secure_sub": "Pagamento criptografado",
+            "freeship_title": "Frete grátis acima de R$199,90",
+            "freeship_sub": "Durante a Semana do Cliente, para todo o Brasil"
           },
           "blocks": {}
         },
         "shipping_estimate_Fr3t9x": {
           "type": "_product-shipping-estimate",
           "settings": {
-            "enable_calc": true,
+            "enable_calc": false,
             "title": "Calcule o frete e o prazo",
             "subtitle": "Digite seu CEP para ver o valor e o prazo de entrega",
             "placeholder": "00000-000",
             "button_text": "Calcular",
             "cep_link": "",
-            "footnote": "Valores estimados. O frete final é confirmado no checkout.",
+            "footnote": "Durante a Semana do Cliente, frete grátis acima de R$ 199,90. O frete final é confirmado no checkout.",
             "msg_invalid": "Digite um CEP válido (8 dígitos).",
             "msg_none": "Não encontramos frete para este CEP.",
             "p0_label": "SP – Grande São Paulo",
@@ -245,7 +335,7 @@
             "discount_content_icon": "none",
             "discount_content": "",
             "return_content_icon": "free_shipping",
-            "return_content": "<p><strong>Frete grátis acima de R$349 reais</strong></p>"
+            "return_content": "<p><strong>Frete grátis acima de R$199,90</strong></p>"
           },
           "blocks": {}
         },
@@ -258,9 +348,8 @@
           },
           "blocks": {}
         },
-        "meucorreios_shipping_calculator_LJV9xr": {
-          "type": "shopify://apps/meucorreios-frete-e-rastreio/blocks/shipping-calculator/019ab058-06d3-70e3-ad91-4f10a7e1925e",
-          "disabled": true,
+        "meucorreios_frete_e_rastreio_shipping_calculator_JQkwYG": {
+          "type": "shopify://apps/meucorreios/blocks/shipping-calculator/019ab058-06d3-70e3-ad91-4f10a7e1925e",
           "settings": {
             "show_title": true,
             "title_text": "Frete e prazo de entrega",
@@ -293,8 +382,10 @@
         "variant_picker_tcCihG",
         "product_addons_YRaprz",
         "stock_countdown_JNK9zi",
+        "product_quantity_cards_8t79eF",
         "countdown_bar_Cd0f1a",
         "buy_buttons_LcQGtR",
+        "depoimentos_prod_Dp1x",
         "trust_triggers_Bt1x9k",
         "shipping_estimate_Fr3t9x",
         "complementary_products_Wip9YG",
@@ -304,7 +395,7 @@
         "product_meta_kiKPhW",
         "delivery_return_iJHeMD",
         "trust_badge_qKXhpg",
-        "meucorreios_shipping_calculator_LJV9xr"
+        "meucorreios_frete_e_rastreio_shipping_calculator_JQkwYG"
       ],
       "settings": {
         "section_width": "container",
@@ -325,71 +416,106 @@
         "reset_spacing": false
       }
     },
-    "pdp_depoimentos": {
-      "type": "pdp-depoimentos",
+    "pdp_ugc": {
+      "type": "ugc-photos",
       "blocks": {
-        "d1": {
-          "type": "depoimento",
+        "photo_HRFMcV": {
+          "type": "photo",
           "settings": {
-            "photo": "shopify://shop_images/IMG_6444.jpg",
+            "photo": "shopify://shop_images/hf_20260724_210647_411433be-ca63-4ef4-8ef3-89bc30a1be27.png",
             "name": "",
             "caption": ""
           }
         },
-        "depoimento_JPitVC": {
-          "type": "depoimento",
+        "u1": {
+          "type": "photo",
           "settings": {
-            "photo": "shopify://shop_images/IMG_6446.jpg",
+            "photo": "shopify://shop_images/UGC_TRI.png",
             "name": "",
             "caption": ""
           }
         },
-        "d2": {
-          "type": "depoimento",
+        "u2": {
+          "type": "photo",
           "settings": {
-            "photo": "shopify://shop_images/IMG_6452.jpg",
+            "photo": "shopify://shop_images/UGC_HAIR.png",
             "name": "",
             "caption": ""
           }
         },
-        "d3": {
-          "type": "depoimento",
+        "u3": {
+          "type": "photo",
           "settings": {
-            "photo": "shopify://shop_images/IMG_6448.jpg",
+            "photo": "shopify://shop_images/ugc_tetra2.png",
             "name": "",
             "caption": ""
           }
         },
-        "d4": {
-          "type": "depoimento",
+        "u4": {
+          "type": "photo",
           "settings": {
-            "photo": "shopify://shop_images/IMG_6449.jpg",
+            "photo": "shopify://shop_images/ugc_vitc.png",
             "name": "",
             "caption": ""
           }
         },
-        "depoimento_eLm463": {
-          "type": "depoimento",
+        "u5": {
+          "type": "photo",
           "settings": {
-            "photo": "shopify://shop_images/IMG_6445.jpg",
+            "photo": "shopify://shop_images/ugc_sleep.png",
+            "name": "",
+            "caption": ""
+          }
+        },
+        "u6": {
+          "type": "photo",
+          "settings": {
+            "photo": "shopify://shop_images/ugc_tetra.png",
+            "name": "",
+            "caption": ""
+          }
+        },
+        "u7": {
+          "type": "photo",
+          "settings": {
+            "photo": "shopify://shop_images/ucg_omega3.png",
+            "name": "",
+            "caption": ""
+          }
+        },
+        "u8": {
+          "type": "photo",
+          "settings": {
+            "photo": "shopify://shop_images/ugc_whey.png",
+            "name": "",
+            "caption": ""
+          }
+        },
+        "photo_DebGBc": {
+          "type": "photo",
+          "settings": {
+            "photo": "shopify://shop_images/hf_20260724_210654_eaa2d1ca-6030-49bd-8899-41dd317dc906.png",
             "name": "",
             "caption": ""
           }
         }
       },
       "block_order": [
-        "d1",
-        "depoimento_JPitVC",
-        "d2",
-        "d3",
-        "d4",
-        "depoimento_eLm463"
+        "photo_HRFMcV",
+        "u1",
+        "u2",
+        "u3",
+        "u4",
+        "u5",
+        "u6",
+        "u7",
+        "u8",
+        "photo_DebGBc"
       ],
       "settings": {
-        "color_scheme": "",
-        "heading": "O que dizem nossos clientes",
-        "subheading": "Histórias reais de quem já faz parte da Botanika.",
-        "show_stars": true
+        "color_scheme": "default",
+        "heading": "A Botanika na sua rotina",
+        "subheading": "Faça da Botanika parte do seu dia a dia."
       }
     },
     "pdp_guarantees": {
@@ -653,6 +779,7 @@
     },
     "botanika_pdp_cta": {
       "type": "botanika-pdp-cta",
+      "disabled": true,
       "settings": {
         "section_width": "container",
         "heading": "Treina melhor. Recupera melhor.",
@@ -747,13 +874,29 @@
         "padding_bottom": 0,
         "reset_spacing": false
       }
+    },
+    "semana_hero_pdp": {
+      "type": "semana-hero",
+      "settings": {
+        "show": true,
+        "eyebrow": "14 A 19 DE SETEMBRO",
+        "heading": "Semana do",
+        "heading_accent": "Cliente",
+        "subheading": "Quanto mais itens no carrinho, maior o desconto. Com 4 suplementos, a 5ª Super Vitamina C sai de graça.",
+        "show_steps": true,
+        "cta_text": "Ver todos os suplementos",
+        "cta_link": "/collections/suplementos",
+        "footnote": "Frete grátis · Brinde · Condição especial para clientes",
+        "min_height": 440
+      }
     }
   },
   "order": [
     "breadcrumb",
     "pdp_promo",
     "main",
-    "pdp_depoimentos",
+    "semana_hero_pdp",
+    "pdp_ugc",
     "pdp_guarantees",
     "botanika_pdp_manifesto",
     "botanika_pdp_ingredients",
