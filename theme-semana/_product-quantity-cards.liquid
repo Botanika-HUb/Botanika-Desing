@@ -9,15 +9,40 @@ assign fst = bs.free_shipping_threshold | default: 199.90
 assign free_ship = fst | times: 100
 %}
 {%- comment -%}
-  Removido o bônus de 8% da Semana Fitness (campanha de agosto).
-  Ele somava 8 pontos ao desconto EXIBIDO quando o destaque de campanha
-  estava ligado, sem nenhum desconto correspondente na Shopify — ou seja,
-  mostrava na vitrine um preço que o checkout não cobraria.
-  O percentual exibido aqui vem apenas dos tiers configurados.
+  O percentual do card é DERIVADO do que existe de desconto automático na
+  Shopify — não do número digitado em "Desconto %" no editor. Foi assim que o
+  bônus de 8% da Semana Fitness chegou a exibir, em agosto, um preço que o
+  checkout não cobrava. Com a derivação, o card não consegue mais mentir:
+  quem manda é a regra, não o campo.
+
+  Duas fontes, e vale sempre a melhor (é o que a Shopify aplica):
+    · ESCADA POR PRODUTO — 5% em 2un, 10% em 3un, do MESMO produto.
+      Só vale para os 9 handles listados em qc_ladder. Os kits ficam de fora:
+      a [ESCADA] Kit Imunidade expirou em 22/08 e não foi retomada, e os outros
+      dois kits nunca tiveram escada.
+    · ESCADA DE VOLUME — 15% em 5+ itens, 20% em 8+, de QUALQUER produto da
+      coleção `todos-os-produtos-volume` (os 3 kits estão nela). Só existe
+      durante a Semana do Cliente, por isso o recorte de data em qc_vol.
+
+  Depois de 20/09 o volume acaba: os cards de 5un voltam sozinhos para os 10%
+  da escada por produto, e para os kits voltam a "preço regular". Nada a fazer.
 {%- endcomment -%}
-{%- assign t1_eff = bs.tier1_discount -%}
-{%- assign t2_eff = bs.tier2_discount -%}
-{%- assign t3_eff = bs.tier3_discount -%}
+{%- liquid
+  assign qc_ladder = 'tetravit-d,super-omega-3-coq10,hair-botanika,super-vitamina-c,tri-mg-complex,whey-balance-chocolate,whey-balance-sem-sabor,sleep-inositol,creatina-l-carnitina'
+  assign qc_key = ',' | append: product.handle | append: ','
+  assign qc_list = ',' | append: qc_ladder | append: ','
+  assign qc_has_ladder = false
+  if qc_list contains qc_key
+    assign qc_has_ladder = true
+  endif
+
+  # Janela da Semana do Cliente: 14/09 03:01Z -> 20/09 03:00Z (00:01 -> 00:00 BRT).
+  assign qc_now = 'now' | date: '%s' | times: 1
+  assign qc_vol = false
+  if qc_now >= 1789354860 and qc_now < 1789873200
+    assign qc_vol = true
+  endif
+-%}
 {%- assign t1_sub = bs.tier1_subtitle -%}
 {%- assign t2_sub = bs.tier2_subtitle -%}
 {%- assign t3_sub = bs.tier3_subtitle -%}
@@ -53,41 +78,58 @@ data-free-ship="{{ free_ship }}"
 case n
 when '1'
 assign q = bs.tier1_quantity
-assign eff = t1_eff
 assign title = bs.tier1_title
 assign sub = t1_sub
 assign badge1 = bs.tier1_badge1
 assign msg = bs.tier1_message
 assign bonus = bs.tier1_bonus
 assign setimg = bs.tier1_image
-assign metaimg = product.metafields.custom.qty_tier1_image.value
 assign enabled = bs.tier1_enabled
 when '2'
 assign q = bs.tier2_quantity
-assign eff = t2_eff
 assign title = bs.tier2_title
 assign sub = t2_sub
 assign badge1 = bs.tier2_badge1
 assign msg = bs.tier2_message
 assign bonus = bs.tier2_bonus
 assign setimg = bs.tier2_image
-assign metaimg = product.metafields.custom.qty_tier2_image.value
 assign enabled = bs.tier2_enabled
 when '3'
 assign q = bs.tier3_quantity
-assign eff = t3_eff
 assign title = bs.tier3_title
 assign sub = t3_sub
 assign badge1 = bs.tier3_badge1
 assign msg = bs.tier3_message
 assign bonus = bs.tier3_bonus
 assign setimg = bs.tier3_image
-assign metaimg = product.metafields.custom.qty_tier3_image.value
 assign enabled = bs.tier3_enabled
 endcase
 -%}
 {%- if enabled -%}
 {%- liquid
+# Imagem pela QUANTIDADE, não pelo índice do tier. Os metafields guardam
+# 1, 2 e 3 potes; como os tiers agora valem 2, 3 e 5, casar por índice mostraria
+# o número errado de potes. Acima de 3 usa a de 3 potes — é o maior asset que existe.
+case q
+when 1
+assign metaimg = product.metafields.custom.qty_tier1_image.value
+when 2
+assign metaimg = product.metafields.custom.qty_tier2_image.value
+else
+assign metaimg = product.metafields.custom.qty_tier3_image.value
+endcase
+# Melhor desconto REAL para esta quantidade — volume ganha da escada por produto.
+if qc_vol and q >= 8
+assign eff = 20
+elsif qc_vol and q >= 5
+assign eff = 15
+elsif qc_has_ladder and q >= 3
+assign eff = 10
+elsif qc_has_ladder and q >= 2
+assign eff = 5
+else
+assign eff = 0
+endif
 assign c_total = unit_price | times: q
 assign c_disc_amt = c_total | times: eff | divided_by: 100
 assign c_price = c_total | minus: c_disc_amt
@@ -118,7 +160,8 @@ endunless
 {%- if eff > 0 -%}<span class="qty2__pill qty2__pill--off">{{ eff }}% OFF</span>{%- else -%}<span class="qty2__pill qty2__pill--reg">preço regular</span>{%- endif -%}
 <span class="qty2__pill qty2__pill--free" data-freeship{% unless c_free %} hidden{% endunless %}>🚚 frete grátis</span>
 </div>
-{%- if sub != blank -%}<span class="qty2__sub">{{ sub }}</span>{%- endif -%}
+{%- comment -%}Subtítulo só quando há desconto real: nos kits, "economize" num card a preço regular seria promessa vazia.{%- endcomment -%}
+{%- if sub != blank and eff > 0 -%}<span class="qty2__sub">{{ sub }}</span>{%- endif -%}
 <div class="qty2__price"><div class="qty2__parc"><span class="qty2__x">{{ installments }}x de </span><span class="qty2__big" data-installment>{% if show_currency %}{{ c_installment | money_with_currency }}{% else %}{{ c_installment | money }}{% endif %}</span><span class="qty2__semjuros">sem juros</span></div><div class="qty2__cash">ou <b data-total>{% if show_currency %}{{ c_price | money_with_currency }}{% else %}{{ c_price | money }}{% endif %}</b> à vista{%- if eff > 0 -%} <s class="qty2__cmp" data-compare>{% if show_currency %}{{ c_total | money_with_currency }}{% else %}{{ c_total | money }}{% endif %}</s>{%- endif -%}</div></div>
 {%- if eff > 0 -%}<span class="qty2__save" data-save>você economiza {% if show_currency %}{{ c_disc_amt | money_with_currency }}{% else %}{{ c_disc_amt | money }}{% endif %}</span>{%- endif -%}
 </div>
@@ -293,7 +336,7 @@ customElements.define('quantity-discount-cards', QuantityDiscountCards);
 { "type": "image_picker", "id": "tier1_image", "label": "Imagem" },
 { "type": "text", "id": "tier1_title", "label": "Título", "default": "1 pote" },
 { "type": "range", "id": "tier1_quantity", "label": "Quantidade no carrinho", "min": 1, "max": 20, "step": 1, "default": 1 },
-{ "type": "range", "id": "tier1_discount", "label": "Desconto %", "min": 0, "max": 50, "step": 1, "unit": "%", "default": 0 },
+{ "type": "range", "id": "tier1_discount", "label": "Desconto % (legado — o card calcula o real)", "min": 0, "max": 50, "step": 1, "unit": "%", "default": 0 },
 { "type": "text", "id": "tier1_subtitle", "label": "Subtítulo" },
 { "type": "text", "id": "tier1_badge1", "label": "Badge" },
 { "type": "text", "id": "tier1_message", "label": "Mensagem extra" },
@@ -303,7 +346,7 @@ customElements.define('quantity-discount-cards', QuantityDiscountCards);
 { "type": "image_picker", "id": "tier2_image", "label": "Imagem" },
 { "type": "text", "id": "tier2_title", "label": "Título", "default": "2 potes" },
 { "type": "range", "id": "tier2_quantity", "label": "Quantidade no carrinho", "min": 1, "max": 20, "step": 1, "default": 2 },
-{ "type": "range", "id": "tier2_discount", "label": "Desconto %", "min": 0, "max": 50, "step": 1, "unit": "%", "default": 5 },
+{ "type": "range", "id": "tier2_discount", "label": "Desconto % (legado — o card calcula o real)", "min": 0, "max": 50, "step": 1, "unit": "%", "default": 5 },
 { "type": "text", "id": "tier2_subtitle", "label": "Subtítulo", "default": "Leve 2 e economize" },
 { "type": "text", "id": "tier2_badge1", "label": "Badge", "default": "Mais vendido" },
 { "type": "text", "id": "tier2_message", "label": "Mensagem extra" },
@@ -313,7 +356,7 @@ customElements.define('quantity-discount-cards', QuantityDiscountCards);
 { "type": "image_picker", "id": "tier3_image", "label": "Imagem" },
 { "type": "text", "id": "tier3_title", "label": "Título", "default": "3 potes" },
 { "type": "range", "id": "tier3_quantity", "label": "Quantidade no carrinho", "min": 1, "max": 20, "step": 1, "default": 3 },
-{ "type": "range", "id": "tier3_discount", "label": "Desconto %", "min": 0, "max": 50, "step": 1, "unit": "%", "default": 10 },
+{ "type": "range", "id": "tier3_discount", "label": "Desconto % (legado — o card calcula o real)", "min": 0, "max": 50, "step": 1, "unit": "%", "default": 10 },
 { "type": "text", "id": "tier3_subtitle", "label": "Subtítulo", "default": "Leve 3 — melhor preço por pote" },
 { "type": "text", "id": "tier3_badge1", "label": "Badge", "default": "Melhor valor" },
 { "type": "text", "id": "tier3_message", "label": "Mensagem extra" },
