@@ -225,3 +225,24 @@ contra o tema antes de mover) e removida.
 
 **Regra:** um arquivo do tema mora num lugar só, no caminho igual ao da Shopify.
 Não recriar pasta paralela.
+
+### 4.1 Frete — a única troca manual da campanha
+
+| Desconto | Janela | Mínimo |
+|---|---|---|
+| `[SEMANA DO CLIENTE] Frete grátis sem mínimo — DESATIVAR À MÃO ao bater 100 pedidos` | 14/09 03:01Z → **20/09 03:00Z** | nenhum |
+| `[SEMANA DO CLIENTE] Frete grátis acima de R$ 199,90` | 14/09 03:01Z → 20/09 03:00Z | R$ 199,90 |
+
+Os dois rodam juntos desde a virada. Enquanto o sem-mínimo estiver ativo, **ele ganha**
+— a Shopify aplica o melhor frete para o cliente, então no começo é frete grátis para
+qualquer valor. No instante em que alguém **desativar o sem-mínimo no admin**, o de
+R$199,90 assume sozinho, sem buraco e sem precisar mexer em mais nada.
+
+**Por que o fim mudou.** Ele terminava às 23:59 de 14/09. Com ticket médio de R$299 e a
+meta de R$130 mil em 6 dias (~72 pedidos/dia), o pedido nº 100 cairia no meio do dia 2 —
+o corte automático quebraria a promessa dos "100 primeiros" sem ninguém ver. O fim foi
+estendido até o encerramento da campanha e o controle passou a ser manual, como o
+planejamento oficial descreve.
+
+⚠️ **O risco virou o oposto:** se ninguém desativar, é frete grátis sem mínimo a semana
+inteira. O título do desconto foi renomeado para gritar isso no admin.
