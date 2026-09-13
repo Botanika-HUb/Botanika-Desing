@@ -18,7 +18,7 @@
           devolver 'deal' aos índices 2, 5, 6 e 8 para os cards voltarem a ofertar.
     Matriz de 7 pares. Whey dispara nos DOIS sabores (Chocolate + Sem Sabor):
       Whey Choco→Creatina · Whey Sem Sabor→Creatina · Hair→Vit C · Tri[Mg]→TetraVit · TetraVit→Ômega · Vit C→TetraVit · Ômega→TetraVit · Sleep→Tri[Mg]
-  Card 2 (azul, dupla de sabores) — SÓ whey: aparece quando há UM sabor no carrinho e o OUTRO não.
+  Card 2 (teal, dupla de sabores) — SÓ whey: aparece quando há UM sabor no carrinho e o OUTRO não.
     Amarra na ESCADA do whey (2 potes = 5%, 3 = 10%) e DESTACA o preço com o 5% já aplicado ao
     levar o 2º pote. Botão adiciona o sabor oposto.
   Rendered in: cart drawer (snippets/minicart.liquid + sections/minicart-form.liquid) e cart page (sections/order-bump.liquid).
@@ -120,11 +120,11 @@
     .botanika-ob__btn:hover{filter:brightness(.93)}
     .botanika-ob__btn:disabled,.botanika-ob__btn.is-loading{opacity:.7;cursor:default}
     .botanika-ob__btn svg{flex:0 0 auto}
-    /* Card de MENSAGEM (Creatina/Ômega, sem desconto) — azul da marca, sem cara de oferta */
+    /* Card de MENSAGEM (ob_modes = 'msg') — tinta sobre creme, sem cara de oferta */
     .botanika-ob--msg{--ob-accent:#2B1607;--ob-accent-d:#1A0D04}
     .botanika-ob--msg .botanika-ob__card{background:linear-gradient(180deg,#FFF8EF 0%,#fff 46%);border-color:rgba(43,22,7,.22);box-shadow:0 0 0 3px rgba(43,22,7,.05),0 8px 22px rgba(43,22,7,.10)}
     .botanika-ob--msg .botanika-ob__price{color:#2B1607}
-    /* Card 2 — dupla de sabores do Whey (azul da marca, foco no preço com desconto) */
+    /* Card 2 — dupla de sabores do Whey (teal = economia por volume, desconto real da escada) */
     .botanika-ob--duo{--ob-accent:#0D9488;--ob-accent-d:#0F766E;margin-top:1.2rem}
     .botanika-ob--duo .botanika-ob__card{background:linear-gradient(180deg,#ECFDF8 0%,#fff 46%);box-shadow:0 0 0 3px rgba(13,148,136,.08),0 8px 22px rgba(13,148,136,.14);border-color:var(--ob-go)}
     .botanika-ob--duo .botanika-ob__badge{background:linear-gradient(90deg,#0D9488,#0F766E)}
