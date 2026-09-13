@@ -185,3 +185,28 @@ assign ob_modes = 'msg,msg,msg,deal,msg,msg,msg,deal,msg' | split: ','
 **Regra que não se quebra:** um card só pode dizer "−10% só aqui" se o `[BUMP]` BxGy
 correspondente estiver ATIVO naquela data. Antes de trocar `msg` por `deal`, conferir o
 status no Shopify — não confiar nesta tabela.
+
+### 5.2 Seletor de quantidade da PDP — reverte sozinho
+
+O bloco `blocks/_product-quantity-cards.liquid` passou a **derivar** o percentual
+do que existe de desconto automático, em vez de ler o campo "Desconto %" do editor
+(que ficou como legado). Regra, sempre a melhor das duas:
+
+| Quantidade | Com escada própria (9 handles) | Sem escada (os 3 kits) |
+|---|---|---|
+| 2 un | 5% | preço regular |
+| 3 un | 10% | preço regular |
+| 5 un | **15%** (volume, só na semana) | **15%** (volume, só na semana) |
+| 8 un | **20%** (volume, só na semana) | **20%** (volume, só na semana) |
+
+Handles com escada própria: `tetravit-d`, `super-omega-3-coq10`, `hair-botanika`,
+`super-vitamina-c`, `tri-mg-complex`, `whey-balance-chocolate`,
+`whey-balance-sem-sabor`, `sleep-inositol`, `creatina-l-carnitina`.
+
+A janela do volume está fixa no código como epoch (`1789354860` a `1789873200`,
+= 14/09 03:01Z → 20/09 03:00Z). **Depois de 20/09 o card volta sozinho** para os
+10% da escada por produto — e para "preço regular" nos kits. Nada a reverter à mão.
+
+> Se um dia os kits ganharem escada própria, basta acrescentar o handle em
+> `qc_ladder`, dentro do bloco. Sem isso, card de kit em 2 ou 3 unidades **tem**
+> que aparecer como preço regular — era exatamente o que estava errado antes.
