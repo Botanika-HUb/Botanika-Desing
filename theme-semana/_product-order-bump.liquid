@@ -1,0 +1,309 @@
+{%- comment -%}
+  ============================================================
+  Order bump contínuo (PDP) — "Complete sua rotina".
+  Bump de PRODUTOS complementares de 1 toque (estilo Blessy).
+  Curadoria por produto: metafield custom.order_bump (handles
+  separados por vírgula). Sem metafield, usa as configs do bloco
+  (whey/sleep) + fallback. Nunca oferta o próprio produto.
+  CTA único: intercepta o botão de compra -> âncora + bumps ->
+  checkout. Barra de frete sincroniza com a do seletor.
+  ============================================================
+{%- endcomment -%}
+{%- liquid
+  assign bs = block.settings
+  assign cur = closest.product
+  assign fst = bs.free_shipping_threshold | default: 199.90
+  assign free_ship = fst | times: 100
+  assign show_currency = settings.show_currency_code
+-%}
+{%- if bs.show -%}
+  {%- comment -%} monta listas paralelas: handles ~~ tags ~~ descs (desc '-' = vazio) {%- endcomment -%}
+  {%- assign HS = '' -%}
+  {%- assign TS = '' -%}
+  {%- assign DS = '' -%}
+  {%- assign mf = cur.metafields.custom.order_bump -%}
+  {%- if mf != blank -%}
+    {%- assign items = mf | split: ',' -%}
+    {%- for raw in items -%}
+      {%- assign hh = raw | strip -%}
+      {%- assign HS = HS | append: hh | append: '~~' -%}
+      {%- if forloop.first -%}{%- assign TS = TS | append: 'Mais escolhido~~' -%}{%- else -%}{%- assign TS = TS | append: 'Combina~~' -%}{%- endif -%}
+      {%- assign DS = DS | append: '-~~' -%}
+    {%- endfor -%}
+  {%- else -%}
+    {%- assign HS = bs.bump_1_handle | append: '~~' | append: bs.bump_2_handle | append: '~~' | append: bs.fallback_handle | append: '~~' -%}
+    {%- capture t1 -%}{{ bs.bump_1_tag | default: '-' }}{%- endcapture -%}
+    {%- capture t2 -%}{{ bs.bump_2_tag | default: '-' }}{%- endcapture -%}
+    {%- capture t3 -%}{{ bs.fallback_tag | default: '-' }}{%- endcapture -%}
+    {%- assign TS = t1 | append: '~~' | append: t2 | append: '~~' | append: t3 | append: '~~' -%}
+    {%- capture d1 -%}{{ bs.bump_1_desc | default: '-' }}{%- endcapture -%}
+    {%- capture d2 -%}{{ bs.bump_2_desc | default: '-' }}{%- endcapture -%}
+    {%- capture d3 -%}{{ bs.fallback_desc | default: '-' }}{%- endcapture -%}
+    {%- assign DS = d1 | append: '~~' | append: d2 | append: '~~' | append: d3 | append: '~~' -%}
+  {%- endif -%}
+  {%- assign HL = HS | split: '~~' -%}
+  {%- assign TL = TS | split: '~~' -%}
+  {%- assign DL = DS | split: '~~' -%}
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap">
+  <order-bump-cards
+    class="obp"
+    data-free-ship="{{ free_ship }}"
+    data-money-format="{{ shop.money_format | escape }}"
+    {{ block.shopify_attributes }}
+  >
+    <div class="obp__head">
+      <span class="obp__n">2</span>
+      <span class="obp__t">{{ bs.heading }}</span>
+    </div>
+    {%- if bs.subheading != blank -%}<p class="obp__sub">{{ bs.subheading }}</p>{%- endif -%}
+
+    <div class="obp__cards">
+      {%- assign rendered = 0 -%}
+      {%- assign used = ',' -%}
+      {%- for hh in HL -%}
+        {%- assign idx = forloop.index0 -%}
+        {%- assign p = all_products[hh] -%}
+        {%- if rendered < 2 and p != blank and p.handle != cur.handle -%}
+          {%- unless used contains p.handle -%}
+            {%- assign v = p.selected_or_first_available_variant -%}
+            {%- if v != blank -%}
+              {%- assign rendered = rendered | plus: 1 -%}
+              {%- assign used = used | append: p.handle | append: ',' -%}
+              {%- assign tag = TL[idx] | strip -%}
+              {%- assign desc = DL[idx] | strip -%}
+              {%- if desc == '-' -%}{%- assign desc = '' -%}{%- endif -%}
+              {%- assign hot = false -%}
+              {%- if rendered == 1 -%}{%- assign hot = true -%}{%- endif -%}
+              <div
+                class="obp__card{% unless p.available %} is-out{% endunless %}"
+                data-variant="{{ v.id }}"
+                data-price="{{ v.price }}"
+                {% if p.available %}role="checkbox" aria-checked="false" tabindex="0"{% endif %}
+              >
+                <div class="obp__img">
+                  {%- if p.featured_image -%}
+                    {{ p.featured_image | image_url: width: 180 | image_tag: loading: 'lazy', alt: p.title }}
+                  {%- else -%}
+                    {{ 'product-1' | placeholder_svg_tag: 'obp__ph' }}
+                  {%- endif -%}
+                </div>
+                <div class="obp__l">
+                  {%- if tag != blank and tag != '-' -%}<span class="obp__tag{% if hot %} obp__tag--hot{% endif %}">{{ tag }}</span>{%- endif -%}
+                  <div class="obp__name">{{ p.title | split: '—' | first | strip }}</div>
+                  {%- if desc != blank -%}<div class="obp__desc">{{ desc }}</div>{%- endif -%}
+                  <div class="obp__price">{% if show_currency %}{{ v.price | money_with_currency }}{% else %}{{ v.price | money }}{% endif %}</div>
+                </div>
+                <div class="obp__r">
+                  {%- if p.available -%}
+                    <button class="obp__btn" type="button" aria-hidden="true" tabindex="-1">
+                      <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+                      <span class="obp__btn-lbl">Adicionar</span>
+                    </button>
+                  {%- else -%}
+                    <span class="obp__soldout">Esgotado</span>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endunless -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if rendered > 0 -%}
+      <div class="obp__foot" data-foot hidden>
+        <div class="obp__sum">
+          <span class="obp__sum-l">Total do pedido</span>
+          <span class="obp__sum-v" data-total></span>
+        </div>
+        <div class="obp__ship" data-ship>
+          <div class="obp__ship-top"><span data-ship-msg></span></div>
+          <div class="obp__ship-track"><div class="obp__ship-fill" data-ship-fill></div></div>
+          <div class="obp__ship-scale"><span>R$0</span><span>Frete grátis · {% if show_currency %}{{ free_ship | money_with_currency }}{% else %}{{ free_ship | money }}{% endif %}</span></div>
+        </div>
+      </div>
+    {%- endif -%}
+  </order-bump-cards>
+
+  {%- style -%}
+    .obp{--o-blue:#F97316;--o-navy:#C2410C;--o-ink:#2B1607;--o-muted:#8a7666;--o-line:#F1E3D3;
+      --o-tint:#FFF1E2;--o-tintA:#FFF8EF;--o-gold:#FBBF24;--o-ok:#0D9488;
+      display:block;margin:0 0 20px;font-family:inherit;}
+    .obp__head{display:flex;align-items:center;gap:10px;margin:0 0 4px;}
+    .obp__n{flex:0 0 24px;height:24px;border-radius:50%;background:var(--o-blue);color:#fff;
+      display:grid;place-items:center;font-size:12px;font-weight:800;font-family:'Fraunces',Georgia,serif;}
+    .obp__t{font-family:'Fraunces',Georgia,serif;font-size:17px;font-weight:600;color:var(--o-ink);letter-spacing:-.01em;}
+    .obp__sub{font-size:12px;color:var(--o-muted);margin:0 0 14px 34px;line-height:1.4;}
+    .obp__cards{display:flex;flex-direction:column;gap:10px;}
+    .obp__card{position:relative;display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;
+      background:#fff;border:1.5px solid var(--o-line);border-radius:14px;padding:12px;cursor:pointer;transition:.16s;}
+    .obp__card:hover{border-color:#FBBF24;}
+    .obp__card.is-on{border-color:var(--o-blue);box-shadow:0 0 0 3px rgba(249,115,22,.13);background:#FFF6EC;}
+    .obp__card.is-out{opacity:.6;cursor:default;}
+    .obp__img{width:56px;height:56px;border-radius:10px;background:#FDF3E7;display:grid;place-items:center;overflow:hidden;}
+    .obp__img img,.obp__ph{width:100%;height:100%;object-fit:contain;padding:4px;}
+    .obp__l{min-width:0;}
+    .obp__tag{display:inline-block;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;
+      color:var(--o-navy);background:var(--o-tint);border-radius:6px;padding:2px 7px;margin-bottom:5px;}
+    .obp__tag--hot{background:#fff3d6;color:#8a6400;}
+    .obp__name{font-size:13px;font-weight:700;color:var(--o-ink);line-height:1.2;letter-spacing:-.01em;}
+    .obp__desc{font-size:11.5px;color:var(--o-muted);line-height:1.35;margin-top:3px;}
+    .obp__price{font-size:13px;font-weight:800;color:var(--o-ink);margin-top:6px;font-variant-numeric:tabular-nums;}
+    .obp__btn{border:1.5px solid var(--o-blue);background:#fff;color:var(--o-blue);font:inherit;font-weight:800;
+      font-size:12px;border-radius:9px;padding:9px 12px;cursor:pointer;white-space:nowrap;transition:.15s;display:flex;align-items:center;gap:5px;}
+    .obp__card.is-on .obp__btn{background:var(--o-blue);color:#fff;}
+    .obp__btn svg{width:13px;height:13px;}
+    .obp__soldout{font-size:11px;font-weight:700;color:var(--o-muted);}
+    .obp__foot{margin-top:14px;}
+    .obp__sum{display:flex;justify-content:space-between;align-items:baseline;background:var(--o-tintA);
+      border:1px solid var(--o-line);border-radius:12px;padding:12px 14px;margin-bottom:12px;}
+    .obp__sum-l{font-size:13px;font-weight:700;color:var(--o-ink);}
+    .obp__sum-v{font-size:19px;font-weight:800;color:var(--o-navy);font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
+    .obp__ship-top{display:flex;align-items:center;gap:6px;justify-content:center;font-size:11.5px;color:var(--o-muted);margin-bottom:7px;}
+    .obp__ship-top .amt{font-weight:800;color:var(--o-muted);}
+    .obp__ship.is-done .obp__ship-top,.obp__ship.is-done .amt{color:var(--o-ok);}
+    .obp__ship-track{height:7px;border-radius:99px;background:var(--o-line);overflow:hidden;}
+    .obp__ship-fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#E2560E,#FBBF24);transition:width .5s cubic-bezier(.22,.61,.36,1);}
+    .obp__ship.is-done .obp__ship-fill{background:var(--o-ok);}
+    .obp__ship-scale{display:flex;justify-content:space-between;margin-top:6px;font-size:9.5px;color:var(--o-muted);text-transform:uppercase;letter-spacing:.05em;font-variant-numeric:tabular-nums;}
+    @media (prefers-reduced-motion:reduce){.obp__card,.obp__ship-fill{transition:none;}}
+  {%- endstyle -%}
+{%- endif -%}
+{% javascript %}
+    class OrderBumpCards extends HTMLElement {
+      connectedCallback(){
+        this.section = this.closest('[id^="shopify-section-"]') || document;
+        this.freeShip = parseInt(this.dataset.freeShip) || 34900;
+        this.moneyFormat = this.dataset.moneyFormat || '';
+        this.cards = Array.prototype.slice.call(this.querySelectorAll('.obp__card[role="checkbox"]'));
+        this.foot = this.querySelector('[data-foot]');
+        this.totalEl = this.querySelector('[data-total]');
+        this.ship = this.querySelector('[data-ship]');
+        this.shipFill = this.querySelector('[data-ship-fill]');
+        this.shipMsg = this.querySelector('[data-ship-msg]');
+        var self = this;
+        this.cards.forEach(function(card){
+          card.addEventListener('click', function(){ self.toggle(card); });
+          card.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); self.toggle(card); } });
+        });
+        var qc = this.section.querySelector('quantity-discount-cards');
+        if(qc){ qc.addEventListener('click', function(){ setTimeout(function(){ self.recalc(); }, 30); }); }
+        this.section.addEventListener('click', function(e){
+          var btn = e.target.closest('button[name="add"], .product-form__submit');
+          if(!btn || !self.section.contains(btn)) return;
+          if(self.selected().length === 0) return;
+          e.preventDefault(); e.stopImmediatePropagation();
+          self.checkout(btn);
+        }, true);
+        this.recalc();
+      }
+      selected(){ return this.cards.filter(function(c){ return c.classList.contains('is-on'); }); }
+      toggle(card){
+        card.classList.toggle('is-on');
+        var on = card.classList.contains('is-on');
+        card.setAttribute('aria-checked', on ? 'true' : 'false');
+        var lbl = card.querySelector('.obp__btn-lbl'); if(lbl) lbl.textContent = on ? 'Adicionado' : 'Adicionar';
+        this.recalc();
+      }
+      anchorPrice(){
+        var qc = this.section.querySelector('quantity-discount-cards');
+        if(qc){
+          var active = qc.querySelector('.qty2__opt.is-active');
+          var unit = parseInt(qc.dataset.unitPrice);
+          if(active && unit){ var q=parseInt(active.dataset.quantity), d=parseInt(active.dataset.discount); var t=unit*q; return t - Math.floor(t*d/100); }
+        }
+        var vi = this.section.querySelector('form[id^="product-form-"] [name="id"]') || this.section.querySelector('input.product-variant-id');
+        var qi = this.section.querySelector('input.quantity-input');
+        var pj = this.section.querySelector('.productJson');
+        if(vi && pj){ try{ var data=JSON.parse(pj.textContent); var v=data.variants.find(function(x){return x.id===parseInt(vi.value);}); if(v) return v.price*(qi?parseInt(qi.value)||1:1); }catch(e){} }
+        return 0;
+      }
+      anchorInfo(){
+        var vi = this.section.querySelector('form[id^="product-form-"] [name="id"]') || this.section.querySelector('input.product-variant-id');
+        var qi = this.section.querySelector('input.quantity-input');
+        return { id: vi ? parseInt(vi.value) : 0, qty: qi ? (parseInt(qi.value)||1) : 1 };
+      }
+      recalc(){
+        var sel = this.selected();
+        var total = this.anchorPrice();
+        sel.forEach(function(c){ total += parseInt(c.dataset.price); });
+        if(this.foot) this.foot.hidden = sel.length === 0;
+        if(this.totalEl) this.totalEl.textContent = this.money(total);
+        if(this.ship){
+          var pct = Math.min(100, Math.round(total / this.freeShip * 100));
+          if(this.shipFill) this.shipFill.style.width = pct + '%';
+          if(total >= this.freeShip){
+            this.ship.classList.add('is-done');
+            if(this.shipMsg) this.shipMsg.innerHTML = '🚚 <span class="amt">Frete grátis desbloqueado!</span>';
+          } else {
+            this.ship.classList.remove('is-done');
+            if(this.shipMsg) this.shipMsg.innerHTML = '🚚 Faltam <span class="amt">' + this.money(this.freeShip - total) + '</span> para o frete grátis';
+          }
+        }
+        this.syncQtyBar(total);
+      }
+      syncQtyBar(total){
+        var qc = this.section.querySelector('quantity-discount-cards');
+        if(!qc) return;
+        var ship = qc.querySelector('[data-ship]');
+        if(!ship) return;
+        var fill = qc.querySelector('[data-ship-fill]');
+        var msg = qc.querySelector('[data-ship-msg]');
+        var pct = Math.min(100, Math.round(total / this.freeShip * 100));
+        if(fill) fill.style.width = pct + '%';
+        if(total >= this.freeShip){
+          ship.classList.add('is-done');
+          if(msg) msg.innerHTML = '<span class="amt">Frete grátis desbloqueado!</span> 🎉';
+        } else {
+          ship.classList.remove('is-done');
+          if(msg) msg.innerHTML = 'Faltam <span class="amt">' + this.money(this.freeShip - total) + '</span> para o frete grátis';
+        }
+      }
+      checkout(btn){
+        var a = this.anchorInfo();
+        if(!a.id){ btn.click(); return; }
+        var items = [{ id: a.id, quantity: a.qty }];
+        this.selected().forEach(function(c){ items.push({ id: parseInt(c.dataset.variant), quantity: 1 }); });
+        fetch('/cart/add.js', {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ items: items })
+        }).then(function(){ window.location.href = '/checkout'; })
+          .catch(function(){ window.location.href = '/cart'; });
+      }
+      money(cents){
+        var a=(cents/100).toFixed(2), p=a.split('.'), ip=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,'.'), dp=p[1], f=this.moneyFormat;
+        var m=function(k){return String.fromCharCode(123,123)+k+String.fromCharCode(125,125);};
+        return f.replace(m('amount_with_comma_separator'),ip+','+dp).replace(m('amount_no_decimals_with_comma_separator'),ip).replace(m('amount_no_decimals'),p[0]).replace(m('amount'),a);
+      }
+    }
+    customElements.define('order-bump-cards', OrderBumpCards);
+{% endjavascript %}
+{% schema %}
+{
+  "name": "Order bump — rotina",
+  "tag": null,
+  "settings": [
+    { "type": "checkbox", "id": "show", "label": "Mostrar bloco", "default": true },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Complete sua rotina" },
+    { "type": "text", "id": "subheading", "label": "Subtítulo", "default": "Leve junto e ganhe o desconto por volume automático — tudo numa compra só." },
+    { "type": "number", "id": "free_shipping_threshold", "label": "Piso do frete grátis (R$)", "default": 199.90 },
+    { "type": "paragraph", "content": "Curadoria por produto: defina o metafield custom.order_bump (handles separados por vírgula) em cada produto. Sem metafield, usa os bumps abaixo." },
+    { "type": "header", "content": "Bump 1 (padrão)" },
+    { "type": "text", "id": "bump_1_handle", "label": "Handle do produto", "default": "whey-balance-chocolate" },
+    { "type": "text", "id": "bump_1_tag", "label": "Selo", "default": "Mais escolhido" },
+    { "type": "text", "id": "bump_1_desc", "label": "Descrição curta", "default": "Proteína + colágeno pra fechar a rotina." },
+    { "type": "header", "content": "Bump 2 (padrão)" },
+    { "type": "text", "id": "bump_2_handle", "label": "Handle do produto", "default": "sleep-inositol" },
+    { "type": "text", "id": "bump_2_tag", "label": "Selo", "default": "Combina" },
+    { "type": "text", "id": "bump_2_desc", "label": "Descrição curta", "default": "Noite tranquila pra recuperar melhor." },
+    { "type": "header", "content": "Fallback (bump = produto da página)" },
+    { "type": "text", "id": "fallback_handle", "label": "Handle do produto", "default": "creatina-l-carnitina" },
+    { "type": "text", "id": "fallback_tag", "label": "Selo", "default": "Recomendado" },
+    { "type": "text", "id": "fallback_desc", "label": "Descrição curta", "default": "O clássico pra turbinar seu resultado." }
+  ],
+  "presets": [
+    { "name": "Order bump — rotina" }
+  ]
+}
+{% endschema %}
