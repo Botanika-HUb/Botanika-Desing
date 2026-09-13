@@ -46,19 +46,12 @@
         "campaign_selo_Im1x9k": {
           "type": "_product-campaign-selo",
           "settings": {
-            "show": true,
+            "show": false,
             "handles": "whey-balance-chocolate,creatina-l-carnitina",
-            "icon": "🍊",
-            "text": "Semana do Cliente · até 20% OFF",
+            "icon": "💪",
+            "text": "Semana Fitness — 8% OFF neste produto",
             "bg_color": "#323c91",
-            "text_color": "#ffffff",
-            "style": "campanha",
-            "all_products": true,
-            "exclude_handles": "",
-            "line_2": "2 unidades deste produto: 5% OFF · 3 unidades: 10% OFF",
-            "line_3": "5 itens no carrinho, de qualquer produto: 15% OFF · 8 itens: 20% OFF",
-            "line_4": "Compre 4: adicione 1 Super Vitamina C e ela sai por R$ 0,00",
-            "line_5": "O melhor desconto é aplicado automaticamente no carrinho"
+            "text_color": "#ffffff"
           },
           "blocks": {}
         },
@@ -140,7 +133,7 @@
             "sp_text": "+2 mil clientes recompraram",
             "legend_label": "Escolha sua opção:",
             "installments": 3,
-            "color_active": "#F97316",
+            "color_active": "#10c322",
             "color_badge1": "#2d6b22",
             "color_badge2": "#f97316",
             "tier1_enabled": true,
@@ -171,8 +164,7 @@
             "tier3_badge1": "Menor preço",
             "tier3_badge2": "",
             "tier3_message": "",
-            "tier3_bonus": "",
-            "free_shipping_threshold": 199.9
+            "tier3_bonus": "+ Manual da Suplementação"
           },
           "blocks": {}
         },
@@ -180,8 +172,8 @@
           "type": "_product-countdown-bar",
           "settings": {
             "show": false,
-            "message": "⏳ Semana do Cliente termina em",
-            "bg_color": "#E2560E",
+            "message": "⏳ Semana Fitness termina em",
+            "bg_color": "#323c91",
             "text_color": "#ffffff"
           },
           "blocks": {}
@@ -238,9 +230,7 @@
             "guarantee_sub": "Seu dinheiro de volta em até 7 dias",
             "show_secure": false,
             "secure_title": "Compra 100% segura",
-            "secure_sub": "Pagamento criptografado",
-            "freeship_title": "Frete grátis acima de R$199,90",
-            "freeship_sub": "Durante a Semana do Cliente, para todo o Brasil"
+            "secure_sub": "Pagamento criptografado"
           },
           "blocks": {}
         },
@@ -253,7 +243,7 @@
             "placeholder": "00000-000",
             "button_text": "Calcular",
             "cep_link": "",
-            "footnote": "Durante a Semana do Cliente, frete grátis acima de R$ 199,90. O frete final é confirmado no checkout.",
+            "footnote": "Valores estimados. O frete final é confirmado no checkout.",
             "msg_invalid": "Digite um CEP válido (8 dígitos).",
             "msg_none": "Não encontramos frete para este CEP.",
             "p0_label": "SP – Grande São Paulo",
@@ -342,7 +332,7 @@
             "discount_content_icon": "none",
             "discount_content": "",
             "return_content_icon": "free_shipping",
-            "return_content": "<p><strong>Frete grátis acima de R$199,90</strong></p>"
+            "return_content": "<p><strong>Frete grátis acima de R$349 reais</strong></p>"
           },
           "blocks": {}
         },
