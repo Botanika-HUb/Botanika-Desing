@@ -13,8 +13,16 @@ Configurado em 12/09. Tudo **programado**, com data de fim. Nada depende de algu
 | Frete grátis ≥ R$ 199,90 | `DiscountAutomaticNode/1580105302248` | 14/09 00h01 → 20/09 00h00 | SIM / SIM / NÃO |
 | 100 primeiros — frete sem mínimo | `DiscountAutomaticNode/1580105335016` | 14/09 00h01 → **14/09 23h59** | SIM / SIM / NÃO |
 | Compre 4, leve 5 — Super Vitamina C | `DiscountAutomaticNode/1580105367784` | 14/09 00h01 → 20/09 00h00 | SIM / SIM / SIM |
-| Escada Volume — 15% (5+ itens) | `DiscountAutomaticNode/1577084682472` | 14/09 00h01 → 20/09 00h00 | SIM / SIM / SIM |
-| Escada Volume — 20% (8+ itens) | `DiscountAutomaticNode/1577084715240` | 14/09 00h01 → 20/09 00h00 | SIM / SIM / SIM |
+| ~~Escada Volume — 15% (5+ itens)~~ | `DiscountAutomaticNode/1577084682472` | **DESATIVADO em 13/09** | — |
+| ~~Escada Volume — 20% (8+ itens)~~ | `DiscountAutomaticNode/1577084715240` | **DESATIVADO em 13/09** | — |
+
+> **Escadas de volume — desativadas em 13/09, a pedido.** Elas nunca foram perpétuas: foram criadas
+> em 02/09 já agendadas só para a janela da campanha (14/09 03:01Z → 20/09 03:00Z) e morreriam
+> sozinhas em 20/09. Como os 15%/20% saíram de toda a comunicação (ajuste do Gabriel), desconto que
+> ninguém anuncia só custava margem. **Não há nada a restaurar depois da campanha** — o estado
+> perpétuo da loja (as escadas por produto, 5% em 2 un e 10% em 3 un, com `endsAt` nulo) é o mesmo
+> com ou sem elas. Se um dia forem reaproveitadas: `discountAutomaticActivate` nos mesmos IDs, mas
+> **o `startsAt`/`endsAt` original foi sobrescrito** pela desativação — tem que reagendar a janela.
 
 **RECOMPRA10** é classe PRODUTO (aplicado sobre a coleção `[CUPONS] Todos os Produtos`, não sobre
 "todos os produtos" — se fosse "todos os produtos" a Shopify o classificaria como classe PEDIDO e o
@@ -23,7 +31,8 @@ bloqueio contra o cupom de influenciadora deixaria de existir). Sem limite de us
 
 **Aberto a qualquer cliente** (decisão de 12/09). A restrição por segmento foi removida porque exigia
 que a pessoa estivesse logada com o e-mail da compra anterior, o que gerava recusa no carrinho. Em
-troca: **se o código vazar, funciona para cliente novo também** — com a escada de 20% chega a 28% off.
+troca: **se o código vazar, funciona para cliente novo também** — somado à escada por produto chega a
+~19% off (era 28% quando as escadas de volume existiam; foram desativadas em 13/09).
 Por isso o código não pode aparecer em criativo público, só no disparo segmentado, e vale olhar a
 contagem de uso na segunda e na terça.
 
@@ -65,9 +74,11 @@ em 20/09 00h00**, sem data de fim. A volta é automática — ninguém precisa r
 Continuam ativos e intocados: **Whey → Creatina**, **Tri[Mg] → TetraVit D**, **Sleep → Tri[Mg]**,
 as 16 escadas por produto, os cupons de influenciadora e os cupons abertos.
 
-⚠️ **Não sobrou vaga.** Durante a campanha a loja volta a 25/25 automáticos: 16 escadas por produto +
-3 bumps + Upsell.com + 2 escadas de volume + 3 da campanha. Qualquer desconto automático novo durante
-a semana (relâmpago, kit, coleção) exige pausar outro antes. Cupom não entra nessa cota.
+⚠️ **Cota de automáticos.** O teto efetivo é 24 simultâneos (contados por sobreposição de janela).
+Antes de 13/09 a semana fechava no limite: 16 escadas por produto + 3 bumps + Upsell.com +
+2 escadas de volume + 3 da campanha. **Com as 2 escadas de volume desativadas em 13/09, sobraram
+2 vagas** — é o que permite reativar até dois dos bumps que foram encerrados para abrir espaço
+(Hair→Vit C, Vit C/Ômega→TetraVit, Creatina→Whey). Cupom não entra nessa cota.
 
 ---
 
@@ -84,8 +95,10 @@ lugar onde a vitrine pode prometer o que a loja não entrega.
   removido de **todos** os canais: site, criativos, CRM, WhatsApp, influenciadoras, lives. O plano
   oficial em PDF ainda menciona os 5% do PIX e o acúmulo deles com os 10% de recompra — **essa parte
   do documento está vencida**.
-- **Qualquer percentual somado do tipo "até 25%".** A soma da escada por produto com a escada de
-  volume não foi testada. Só anunciar número que tenha sido visto num carrinho real.
+- **Qualquer percentual somado do tipo "até 25%".** Desde 13/09 a pergunta ficou sem objeto: as
+  escadas de volume foram desativadas, o teto automático é 10% e não existe mais nenhuma soma de
+  escadas para testar. O único empilhamento real é **RECOMPRA10 (10%) sobre a escada (10%)**,
+  que dá ~19% efetivo em 3 unidades — e mesmo esse só se anuncia depois de visto num carrinho real.
 
 ### Anunciar com o texto certo
 - **Compre 4, leve 5:** o BxGy da Shopify **não adiciona o item ao carrinho** — ele zera o preço de
@@ -99,9 +112,10 @@ lugar onde a vitrine pode prometer o que a loja não entrega.
   aberto — cliente novo tenta, é recusado, e abandona.
 
 ### Comunicar o que existe e ninguém está comunicando
-- **As escadas de 15% (5+ itens) e 20% (8+ itens) são novas da semana** e não estão na mensagem
-  oficial, que fala em "seguir a mecânica que já temos atualmente". É o maior gancho de ticket da
-  campanha. O tema precisa mostrar os degraus.
+- ~~As escadas de 15% (5+ itens) e 20% (8+ itens)~~ — **resolvido de outra forma em 13/09.** O Gabriel
+  pediu para tirar os 15%/20% da comunicação e enfatizar o "compre 4, leve 5". Como ninguém ia
+  anunciá-las, foram desativadas. A mecânica visível voltou a ser exatamente a de sempre
+  (5% em 2 un, 10% em 3 un) mais o brinde — que é o que a mensagem oficial descreve.
 - **"Os 100 primeiros pedidos" não é contagem, é horário** (segunda 14/09 até 23h59). Comunicar como
   contagem gera reclamação de quem comprar na terça.
 - **RECOMPRA10 é cupom e exige login** com o e-mail que tem pedido anterior. O código precisa
@@ -111,18 +125,17 @@ lugar onde a vitrine pode prometer o que a loja não entrega.
 PALPITE12, BRASIL10, VOLTEI10 e RECUPERA10 foram pausados (ver seção 2). Durante a campanha, nenhum
 cupom aberto empata ou supera a condição da base. Os que continuam no ar — JOINGLE, ELAINE, LUCCA
 (5%), BOTANIKA (5%, não acumula com nada), ALUNO10, ALUNONOVA15, VOLTA5, VOLTA10, RECUPERA10ZAP e
-RECUPERA10MAIL — ficam abaixo dos 28% da recompra e não criam conflito.
+RECUPERA10MAIL — ficam abaixo do teto da semana e não criam conflito.
 
 ### Tema: de onde vem o número na tela
-O seletor de potes da página de produto é **por produto** (2 un 5%, 3 un 10%). As escadas de 15% e 20%
-são **por carrinho** (5+ e 8+ itens de qualquer produto). Quem leva 3 Hair + 2 Creatina tem 5 itens e
-entra em 15% — e o tema hoje não conta isso em lugar nenhum.
+O seletor de potes da página de produto é **por produto** (2 un 5%, 3 un 10%) e é a única escada que
+existe desde 13/09 — as escadas por carrinho (15% em 5+, 20% em 8+) foram desativadas. O seletor
+deriva o percentual da lista de handles com escada real (`botanika-escada-handles`), então kit
+aparece como preço regular sem ninguém precisar lembrar disso.
 
-**Regra:** o percentual e o preço exibidos têm que vir do cálculo real do carrinho da Shopify, nunca
-de tabela fixa no JavaScript do tema. Enquanto não soubermos se a escada por produto soma com a de
-volume, qualquer conta hardcoded pode mostrar um número que o checkout não confirma. A barra de
-progresso ("faltam 2 itens para 15% OFF") pode ser tabela fixa, porque só conta itens. O desconto
-exibido, não.
+**Regra que continua valendo:** o percentual e o preço exibidos têm que vir do cálculo real, nunca de
+tabela fixa no JavaScript do tema. A barra de progresso ("faltam 2 itens para o brinde") pode ser
+tabela fixa, porque só conta itens. O desconto exibido, não.
 
 ### Não acumula (se a copy disser que acumula, está errado)
 - RECOMPRA10 **não** soma com cupom de influenciadora (os dois são classe PRODUTO — a Shopify
@@ -145,7 +158,7 @@ exibido, não.
 | Brinde dos 200 primeiros (Manual + Guia da Imunidade) | **Resolvido.** Entrega via ActiveCampaign, fora da Shopify. |
 | VICTORIA, JULIACOLARES e FESTEVES não acumulavam com a escada | **Corrigido em 12/09.** Os três agora combinam com desconto de produto, conforme o plano oficial. Históricos preservados (566, 70 e 20 usos). |
 | "Cupom de quantidade exclusivo para cliente" | **Resolvido.** Segue a tabela atual, como o briefing manda. Nenhuma tabela nova criada. |
-| Escada por produto + escada de volume: soma ou pega a melhor? | **Em aberto.** Sem teste. Enquanto não for verificado num carrinho real, não anunciar percentual somado. |
+| Escada por produto + escada de volume: soma ou pega a melhor? | **Sem objeto desde 13/09.** As escadas de volume foram desativadas; sobrou só a escada por produto (teto 10%). Nada a testar. |
 | Cupom **ANAAMARAL** | **Corrigido em 12/09.** Estava aplicando só no Hair Botanika (1 produto de 12); passou para a coleção `[CUPONS] Todos os Produtos`, igual aos outros 20. Os 2 usos foram preservados. |
 | "4 suplementos participantes" (Compre 4, leve 5) | Na configuração **qualquer produto conta**, inclusive kits. Não existe lista de participantes. Ou a copy tira "participantes", ou alguém define a lista e a mecânica é reconfigurada. |
 | Acesso antecipado 23/09 com 5% OFF | **Nada configurado.** É pós-semana. Vai precisar de um segmento de quem comprou entre 14 e 19/09 + cupom com "combina com" tudo desligado. |
@@ -196,16 +209,23 @@ do que existe de desconto automático, em vez de ler o campo "Desconto %" do edi
 |---|---|---|
 | 2 un | 5% | preço regular |
 | 3 un | 10% | preço regular |
-| 5 un | **15%** (volume, só na semana) | **15%** (volume, só na semana) |
-| 8 un | **20%** (volume, só na semana) | **20%** (volume, só na semana) |
+| 5 un | 10% (teto) | preço regular |
+| 8 un | 10% (teto) | preço regular |
+
+> As linhas de 5 un e 8 un valiam **15%/20%** enquanto as escadas de volume existiam. Elas foram
+> **desativadas em 13/09** — hoje o teto é 10% em qualquer quantidade.
 
 Handles com escada própria: `tetravit-d`, `super-omega-3-coq10`, `hair-botanika`,
 `super-vitamina-c`, `tri-mg-complex`, `whey-balance-chocolate`,
 `whey-balance-sem-sabor`, `sleep-inositol`, `creatina-l-carnitina`.
 
-A janela do volume está fixa no código como epoch (`1789354860` a `1789873200`,
-= 14/09 03:01Z → 20/09 03:00Z). **Depois de 20/09 o card volta sozinho** para os
-10% da escada por produto — e para "preço regular" nos kits. Nada a reverter à mão.
+O bloco ainda tem os ramos `qc_vol` (15% em 5+, 20% em 8+) presos à janela em epoch
+(`1789354860` a `1789873200` = 14/09 03:01Z → 20/09 03:00Z). **Hoje são código morto**:
+os três cards são 1/2/3 unidades, então `q` nunca passa de 3 e o ramo nunca roda.
+Ficaram no lugar de propósito na véspera do lançamento — mexer num arquivo de 25 KB
+horas antes de publicar valia menos que o risco. **Limpeza pós-campanha:** remover os
+ramos `qc_vol`, senão quem um dia configurar um card de 5 unidades no editor volta a
+ver 15% na vitrine sem desconto nenhum atrás. Nada a reverter à mão em 20/09.
 
 > Se um dia os kits ganharem escada própria, basta acrescentar o handle em
 > `qc_ladder`, dentro do bloco. Sem isso, card de kit em 2 ou 3 unidades **tem**
