@@ -1,13 +1,21 @@
 {%- comment -%}
   Botanika — Order Bump (cross-sell messaging card)
   Card 1: primeiro par elegível. Trigger = produto no carrinho, Bump = produto ofertado.
-    - Pares com desconto real ([BUMP] BxGy 10%): mostram "−10% só aqui" + preço com desconto.
-    - Cards de MENSAGEM (ob_is_msg): bump = Creatina OU Ômega. Preço cheio, sem "−10%",
-      botão "Adicionar ao carrinho". Motivo (espelho BxGy nativo do Shopify):
+    - 'deal': existe um [BUMP] BxGy 10% ATIVO no Shopify -> mostra "−10% só aqui" + preço com desconto.
+    - 'msg':  NAO existe desconto real -> preço cheio, sem "−10%", botão "Adicionar ao carrinho".
+      Quem manda é o array ob_modes (um item por par). REGRA: um card só pode dizer "−10%"
+      se o BxGy correspondente estiver ativo na data — o cliente nunca pode ver um preço
+      que o checkout não vai cobrar.
+      Por que cada 'msg':
         · WHEY → CREATINA: dar 10% na creatina brigaria com a escada dos 2 wheys.
         · TETRAVIT → ÔMEGA: o desconto real fica no TetraVit (Tri/Ômega/Vit C → TetraVit).
           O Ômega não pode ser gatilho-em-preço-cheio e beneficiário ao mesmo tempo, então
-          o card que OFERECE Ômega vira mensagem (o desconto [BUMP] TetraVit→Ômega foi desativado).
+          o card que OFERECE Ômega vira mensagem ([BUMP] TetraVit→Ômega desativado em 31/08).
+        · HAIR → VIT C, VIT C → TETRAVIT, ÔMEGA → TETRAVIT e CREATINA → WHEY: os três BxGy
+          que os sustentavam terminam em 14/09 03:01Z, encerrados para liberar slots de
+          desconto automático na Semana do Cliente (o limite é 25 sobrepostos; a semana usa 24).
+          As retomadas já estão AGENDADAS para 20/09 03:00Z — depois dessa data, basta
+          devolver 'deal' aos índices 2, 5, 6 e 8 para os cards voltarem a ofertar.
     Matriz de 7 pares. Whey dispara nos DOIS sabores (Chocolate + Sem Sabor):
       Whey Choco→Creatina · Whey Sem Sabor→Creatina · Hair→Vit C · Tri[Mg]→TetraVit · TetraVit→Ômega · Vit C→TetraVit · Ômega→TetraVit · Sleep→Tri[Mg]
   Card 2 (azul, dupla de sabores) — SÓ whey: aparece quando há UM sabor no carrinho e o OUTRO não.
@@ -24,6 +32,12 @@
   assign ob_bumps = 'creatina-l-carnitina,creatina-l-carnitina,super-vitamina-c,tetravit-d,super-omega-3-coq10,tetravit-d,tetravit-d,tri-mg-complex,whey-balance-chocolate' | split: ','
   assign ob_variants = '48115368820968,48115368820968,48115368460520,48115367936232,48115368034536,48115367936232,48115367936232,48115368558824,48115368919272' | split: ','
   assign ob_headlines = 'Complete o combo de treino com Creatina~Complete o combo de treino com Creatina~Turbine cabelo e pele com Vitamina C~Ative sua vitamina D com o TetraVit D~Reforce a imunidade com Ômega 3~Feche sua base imune com o TetraVit D~Complete a dupla da imunidade: TetraVit D~Potencialize seu sono com o Tri[Mg]~Feche o combo de treino com Whey Balance' | split: '~'
+  # 'deal' = tem [BUMP] BxGy 10% ativo | 'msg' = preço cheio, sem promessa de desconto.
+  # Índices:  0 WheyChoco→Crea · 1 WheySem→Crea · 2 Hair→VitC · 3 Tri→Tetra · 4 Tetra→Ômega
+  #           5 VitC→Tetra · 6 Ômega→Tetra · 7 Sleep→Tri · 8 Crea→Whey
+  # Pós 20/09 (retomadas agendadas): devolver 'deal' aos índices 2, 5, 6 e 8.
+  assign ob_modes = 'msg,msg,msg,deal,msg,msg,msg,deal,msg' | split: ','
+
   assign ob_bodies = 'Whey constrói, creatina sustenta a força. Juntos, são a base de quem treina e quer resultado consistente.~Whey constrói, creatina sustenta a força. Juntos, são a base de quem treina e quer resultado consistente.~A vitamina C é essencial pra produção de colágeno — potencializa o resultado do Hair na pele, unhas e cabelo.~O magnésio ajuda o corpo a ativar a vitamina D. Levar os dois juntos faz um trabalhar pelo outro.~Vitamina D + Ômega 3 são a dupla base da imunidade e do dia a dia. Uso contínuo, resultado que soma.~A Vit C protege as células e as vitaminas A, D, E e K do TetraVit sustentam sua imunidade no uso contínuo. Juntos, o combo fica completo.~Ômega 3 e as vitaminas lipossolúveis (A, D, E, K) se potencializam. O TetraVit fecha a base do seu dia a dia.~O magnésio ajuda no relaxamento muscular e na rotina do sono. Com o Sleep, é a dupla certa pra fechar a noite.~Creatina sustenta a força, o Whey constrói. Juntos, são a base de quem treina e quer resultado consistente.' | split: '~'
 
   # Build a lookup string of product ids currently in the cart.
@@ -88,34 +102,34 @@
 -%}
 {%- if ob_index >= 0 or wsw_show -%}
   <style>
-    .botanika-ob{--ob-indigo:#323c91;--ob-green:#10c322;--ob-red:#e11d2a;--ob-red-d:#b3121d;box-sizing:border-box;width:100%;max-width:100%;margin:0 0 2rem;overflow:hidden}
+    .botanika-ob{--ob-ink:#2B1607;--ob-go:#0D9488;--ob-accent:#F97316;--ob-accent-d:#C2410C;box-sizing:border-box;width:100%;max-width:100%;margin:0 0 2rem;overflow:hidden}
     .botanika-ob *{box-sizing:border-box}
-    .botanika-ob__badge{display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(90deg,var(--ob-red),var(--ob-red-d));color:#fff;font-size:1.05rem;font-weight:700;line-height:1;letter-spacing:.03em;text-transform:uppercase;padding:.55rem .9rem;border-radius:.6rem .6rem 0 0}
-    .botanika-ob__card{position:relative;display:flex;gap:1.3rem;align-items:flex-start;background:linear-gradient(180deg,#fff1f1 0%,#fff 44%);border:2px solid var(--ob-red);border-radius:0 .9rem .9rem .9rem;padding:1.4rem;box-shadow:0 0 0 3px rgba(225,29,42,.08),0 8px 22px rgba(225,29,42,.14)}
-    .botanika-ob__media{flex:0 0 auto;width:8rem;height:8rem;border-radius:.7rem;overflow:hidden;background:#f5f6fb;display:block;border:1px solid rgba(50,60,145,.12)}
+    .botanika-ob__badge{display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(90deg,var(--ob-accent),var(--ob-accent-d));color:#fff;font-size:1.05rem;font-weight:700;line-height:1;letter-spacing:.03em;text-transform:uppercase;padding:.55rem .9rem;border-radius:.6rem .6rem 0 0}
+    .botanika-ob__card{position:relative;display:flex;gap:1.3rem;align-items:flex-start;background:linear-gradient(180deg,#FFF1E2 0%,#fff 44%);border:2px solid var(--ob-accent);border-radius:0 .9rem .9rem .9rem;padding:1.4rem;box-shadow:0 0 0 3px rgba(249,115,22,.10),0 8px 22px rgba(194,65,12,.16)}
+    .botanika-ob__media{flex:0 0 auto;width:8rem;height:8rem;border-radius:.7rem;overflow:hidden;background:#FFF8EF;display:block;border:1px solid rgba(194,65,12,.14)}
     .botanika-ob__media img{width:100%;height:100%;object-fit:contain;display:block}
     .botanika-ob__content{flex:1 1 auto;min-width:0}
-    .botanika-ob__selo{display:inline-block;background:var(--ob-red);color:#fff;font-size:1.05rem;font-weight:800;line-height:1;letter-spacing:.02em;padding:.4rem .7rem;border-radius:2rem;margin-bottom:.6rem}
-    .botanika-ob__headline{margin:0 0 .4rem;font-size:1.55rem;line-height:1.25;font-weight:700;color:var(--ob-indigo)}
-    .botanika-ob__body{margin:0 0 .9rem;font-size:1.28rem;line-height:1.45;color:#4a4a5a}
+    .botanika-ob__selo{display:inline-block;background:var(--ob-accent);color:#fff;font-size:1.05rem;font-weight:800;line-height:1;letter-spacing:.02em;padding:.4rem .7rem;border-radius:2rem;margin-bottom:.6rem}
+    .botanika-ob__headline{margin:0 0 .4rem;font-size:1.55rem;line-height:1.25;font-weight:700;color:var(--ob-ink)}
+    .botanika-ob__body{margin:0 0 .9rem;font-size:1.28rem;line-height:1.45;color:rgba(43,22,7,.68)}
     .botanika-ob__pricing{display:flex;flex-wrap:wrap;align-items:baseline;gap:.4rem .7rem;margin-bottom:1rem}
-    .botanika-ob__price-old{font-size:1.35rem;font-weight:600;color:#9a9aa8;line-height:1;text-decoration:line-through}
-    .botanika-ob__price{font-size:1.7rem;font-weight:800;color:var(--ob-red);line-height:1}
-    .botanika-ob__hint{display:inline-flex;align-items:center;gap:.35rem;font-size:1.1rem;font-weight:600;color:var(--ob-green)}
-    .botanika-ob__btn{-webkit-appearance:none;appearance:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;border:0;border-radius:.7rem;background:linear-gradient(90deg,var(--ob-red),var(--ob-red-d));color:#fff;font-size:1.35rem;font-weight:800;letter-spacing:.02em;line-height:1;padding:1.25rem 1.4rem;transition:filter .2s ease,opacity .2s ease}
+    .botanika-ob__price-old{font-size:1.35rem;font-weight:600;color:rgba(43,22,7,.45);line-height:1;text-decoration:line-through}
+    .botanika-ob__price{font-size:1.7rem;font-weight:800;color:var(--ob-accent);line-height:1}
+    .botanika-ob__hint{display:inline-flex;align-items:center;gap:.35rem;font-size:1.1rem;font-weight:600;color:var(--ob-go)}
+    .botanika-ob__btn{-webkit-appearance:none;appearance:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;border:0;border-radius:.7rem;background:linear-gradient(90deg,var(--ob-accent),var(--ob-accent-d));color:#fff;font-size:1.35rem;font-weight:800;letter-spacing:.02em;line-height:1;padding:1.25rem 1.4rem;transition:filter .2s ease,opacity .2s ease}
     .botanika-ob__btn:hover{filter:brightness(.93)}
     .botanika-ob__btn:disabled,.botanika-ob__btn.is-loading{opacity:.7;cursor:default}
     .botanika-ob__btn svg{flex:0 0 auto}
     /* Card de MENSAGEM (Creatina/Ômega, sem desconto) — azul da marca, sem cara de oferta */
-    .botanika-ob--msg{--ob-red:#323c91;--ob-red-d:#28316f}
-    .botanika-ob--msg .botanika-ob__card{background:linear-gradient(180deg,#eef1fb 0%,#fff 46%);box-shadow:0 0 0 3px rgba(50,60,145,.06),0 8px 22px rgba(50,60,145,.12)}
-    .botanika-ob--msg .botanika-ob__price{color:#1c2030}
+    .botanika-ob--msg{--ob-accent:#2B1607;--ob-accent-d:#1A0D04}
+    .botanika-ob--msg .botanika-ob__card{background:linear-gradient(180deg,#FFF8EF 0%,#fff 46%);border-color:rgba(43,22,7,.22);box-shadow:0 0 0 3px rgba(43,22,7,.05),0 8px 22px rgba(43,22,7,.10)}
+    .botanika-ob--msg .botanika-ob__price{color:#2B1607}
     /* Card 2 — dupla de sabores do Whey (azul da marca, foco no preço com desconto) */
-    .botanika-ob--duo{--ob-red:#15265c;--ob-red-d:#0f1c46;margin-top:1.2rem}
-    .botanika-ob--duo .botanika-ob__card{background:linear-gradient(180deg,#eef7ef 0%,#fff 46%);box-shadow:0 0 0 3px rgba(16,195,34,.07),0 8px 22px rgba(21,38,92,.12);border-color:var(--ob-green)}
-    .botanika-ob--duo .botanika-ob__badge{background:linear-gradient(90deg,#0ea51d,#0b8417)}
-    .botanika-ob--duo .botanika-ob__selo{background:var(--ob-green)}
-    .botanika-ob--duo .botanika-ob__price{color:#0b8417}
+    .botanika-ob--duo{--ob-accent:#0D9488;--ob-accent-d:#0F766E;margin-top:1.2rem}
+    .botanika-ob--duo .botanika-ob__card{background:linear-gradient(180deg,#ECFDF8 0%,#fff 46%);box-shadow:0 0 0 3px rgba(13,148,136,.08),0 8px 22px rgba(13,148,136,.14);border-color:var(--ob-go)}
+    .botanika-ob--duo .botanika-ob__badge{background:linear-gradient(90deg,#0D9488,#0F766E)}
+    .botanika-ob--duo .botanika-ob__selo{background:var(--ob-go)}
+    .botanika-ob--duo .botanika-ob__price{color:#0F766E}
     @media (max-width:480px){
       .botanika-ob__card{gap:1rem;padding:1.1rem}
       .botanika-ob__media{width:6.6rem;height:6.6rem}
@@ -133,9 +147,9 @@
     assign ob_full = ob_product.price | money
     assign ob_deal = ob_product.price | times: 0.9 | round | money
     assign ob_img = ob_product.featured_image
-    assign ob_is_msg = false
-    if ob_bumps[ob_index] == 'creatina-l-carnitina' or ob_bumps[ob_index] == 'super-omega-3-coq10'
-      assign ob_is_msg = true
+    assign ob_is_msg = true
+    if ob_modes[ob_index] == 'deal'
+      assign ob_is_msg = false
     endif
   -%}
   <div class="botanika-ob{% if ob_is_msg %} botanika-ob--msg{% endif %}" data-surface="{{ ob_surface }}">

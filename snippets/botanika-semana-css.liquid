@@ -180,4 +180,41 @@
   .sc-wrap { max-width: 1100px; margin: 0 auto; }
   .sc-h2 { margin: 0 0 6px; font-size: clamp(24px, 3.6vw, 38px); font-weight: 900; letter-spacing: -.02em; color: var(--sc-ink); text-align: center; line-height: 1.1; }
   .sc-lead { margin: 0 auto 26px; max-width: 56ch; text-align: center; font-size: clamp(14.5px, 1.8vw, 17px); color: var(--sc-ink-60); line-height: 1.5; }
+  /* ===== Gaveta do carrinho: cards de recomendação =====
+     O card da gaveta é o mesmo 'product-item' da home, então o destaque laranja
+     é reaplicado aqui no escopo da gaveta. '.cart-recommend' cobre as duas
+     variantes do tema (minicart "inside" e "beside") e sobrevive ao re-render
+     por AJAX da seção cart-upsell. */
+  .cart-recommend .product-item__wrapper {
+    border: 2px solid var(--sc-o-500);
+    border-radius: 14px;
+    padding: 10px;
+    background: #fff;
+  }
+  .cart-recommend .bls-add-cart-list,
+  .cart-recommend .product__add-cart {
+    background: var(--sc-o-500);
+    border-color: var(--sc-o-500);
+    color: #fff;
+    text-decoration: none;
+  }
+  .cart-recommend .bls-add-cart-list:hover,
+  .cart-recommend .product__add-cart:hover {
+    background: var(--sc-o-700);
+    border-color: var(--sc-o-700);
+    color: #fff;
+  }
+
+  /* ===== Preço em evidência: parcela em cima, à vista embaixo =====
+     '.installment-price__parc' carrega a classe utilitária 'primary-color', que
+     herda o esquema de cor da SEÇÃO — por isso a parcela saía verde na home e
+     azul na gaveta, com o mesmo snippet. Aqui ela vira laranja da campanha em
+     todas as superfícies (home, gaveta, carrinho e PDP).
+     O !important é proposital: 'primary-color' é utilitária do tema e pode vir
+     marcada, e a cor do preço não pode depender de quem carregou primeiro. */
+  .installment-price__parc.primary-color { color: var(--sc-o-600) !important; }
+  .installment-price__tag {
+    background: var(--sc-y-200);
+    color: var(--sc-o-700);
+  }
 </style>
