@@ -74,11 +74,23 @@ em 20/09 00h00**, sem data de fim. A volta é automática — ninguém precisa r
 Continuam ativos e intocados: **Whey → Creatina**, **Tri[Mg] → TetraVit D**, **Sleep → Tri[Mg]**,
 as 16 escadas por produto, os cupons de influenciadora e os cupons abertos.
 
-⚠️ **Cota de automáticos.** O teto efetivo é 24 simultâneos (contados por sobreposição de janela).
-Antes de 13/09 a semana fechava no limite: 16 escadas por produto + 3 bumps + Upsell.com +
-2 escadas de volume + 3 da campanha. **Com as 2 escadas de volume desativadas em 13/09, sobraram
-2 vagas** — é o que permite reativar até dois dos bumps que foram encerrados para abrir espaço
-(Hair→Vit C, Vit C/Ômega→TetraVit, Creatina→Whey). Cupom não entra nessa cota.
+⚠️ **Cota de automáticos: a loja está NO TETO. Não sobrou vaga.**
+
+O teto é **25 automáticos** e a Shopify o aplica por sobreposição de período — a mensagem exata do
+erro é `ACTIVE_PERIOD_OVERLAP: Limit of 25 automatic discounts reached.`
+
+> **Não confie em contagem feita à mão aqui.** Em 13/09, depois de desativar as 2 escadas de volume,
+> a contagem manual dos automáticos que se sobrepõem à janela deu **23** — e mesmo assim a tentativa
+> de estender um bump foi recusada por limite. Ou seja, a Shopify conta algo que a listagem simples
+> não mostra (provavelmente os instantes de fronteira, ou os 3 gêmeos `[retomada 20/09]`, que têm
+> `endsAt` nulo). **A única contagem confiável é tentar a operação e ver se passa.** Já errei essa
+> conta duas vezes; não repita o erro.
+
+Cupom **não** entra nessa cota — só automáticos.
+
+**Onde abre vaga sem custo:** no dia 1, ao desativar à mão o frete grátis sem mínimo dos 100
+primeiros (`DiscountAutomaticNode/1580105335016`), libera-se uma vaga. É o momento natural para
+trazer **um** bump de volta rodando de terça a sexta.
 
 ---
 
@@ -266,3 +278,30 @@ planejamento oficial descreve.
 
 ⚠️ **O risco virou o oposto:** se ninguém desativar, é frete grátis sem mínimo a semana
 inteira. O título do desconto foi renomeado para gritar isso no admin.
+
+**Bônus dessa desativação: abre 1 vaga na cota de automáticos.** A loja está no teto de 25
+(ver a seção da cota). Tentar reativar os bumps encerrados em 13/09 foi recusado com
+`ACTIVE_PERIOD_OVERLAP`. Assim que o sem-mínimo sair do ar, dá para trazer **um** bump de volta.
+
+Operação (estende o original até o instante em que o gêmeo `[retomada 20/09]` começa — sem
+criar nada novo, sem sobreposição e sem alterar o estado pós-campanha):
+
+```graphql
+mutation { discountAutomaticBxgyUpdate(
+  id: "gid://shopify/DiscountAutomaticNode/<ID>",
+  automaticBxgyDiscount: { endsAt: "2026-09-20T03:00:00Z" }
+) { userErrors { field code message } } }
+```
+
+Ordem de prioridade, por uso real medido em 13/09:
+
+| Bump | ID do original | Usos | Por dia | Cards da gaveta que destrava |
+|---|---|---|---|---|
+| Vit C / Ômega → TetraVit D | `1573508743400` | 48 em 23 d | **2,1** | **2** (índices 5 e 6) |
+| Hair → Vitamina C | `1572745773288` | 46 em 28 d | 1,6 | 1 (índice 2) |
+| Creatina → Whey | `1574087000296` | 21 em 21 d | 1,0 | 1 (índice 8) |
+
+⚠️ **Ao reativar, virar o `ob_modes` correspondente para `deal`** em
+`snippets/botanika-order-bump.liquid` — senão a gaveta segue mostrando preço cheio e o
+desconto existe sem ninguém saber. O caminho inverso (virar para `deal` sem o desconto
+existir) é quebra da regra de ouro: nunca faça isso antes de a mutation passar.
