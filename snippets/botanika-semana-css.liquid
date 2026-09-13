@@ -1,0 +1,179 @@
+{%- comment -%}
+  ============================================================
+  SEMANA DO CLIENTE — sistema visual
+  Identidade própria da campanha: cítrico (laranja → amarelo),
+  inspirada na Super Vitamina C, que é o brinde da semana.
+  Não reaproveita a paleta do Dia D (vermelho) nem a da marca
+  (índigo) — a semana tem cara própria.
+
+  Renderizado uma vez, a partir de 'botanika-campaign-css'.
+  Tudo aqui é prefixado .sc- para não vazar no resto do tema.
+  ============================================================
+{%- endcomment -%}
+<style>
+  :root {
+    /* --- Cítrico --- */
+    --sc-o-700: #C2410C;
+    --sc-o-600: #E2560E;
+    --sc-o-500: #F97316;
+    --sc-o-400: #FB923C;
+    --sc-y-400: #FBBF24;
+    --sc-y-300: #FCD34D;
+    --sc-y-200: #FDE68A;
+
+    /* --- Neutros quentes --- */
+    --sc-cream:  #FFF8EF;
+    --sc-cream-2:#FFEFDC;
+    --sc-ink:    #2B1607;
+    --sc-ink-60: rgba(43, 22, 7, .62);
+    --sc-white:  #FFFFFF;
+
+    /* --- Sinal de "grátis" / sucesso --- */
+    --sc-go:     #0D9488;
+    --sc-go-dark:#0F766E;
+
+    /* --- Superfícies --- */
+    --sc-grad:   linear-gradient(100deg, var(--sc-o-600) 0%, var(--sc-o-500) 42%, var(--sc-y-400) 100%);
+    --sc-grad-soft: linear-gradient(100deg, #FFE9D2 0%, #FFF3D6 100%);
+    --sc-shadow: 0 18px 42px -18px rgba(194, 65, 12, .55);
+    --sc-radius: 20px;
+  }
+
+  /* ===== Sunburst: o motivo da campanha =====
+     Raios cônicos suaves, como a referência cítrica. Puro CSS,
+     sem imagem, sem requisição extra. */
+  .sc-burst { position: relative; isolation: isolate; overflow: hidden; }
+  .sc-burst::before {
+    content: ""; position: absolute; z-index: -1;
+    top: 50%; left: 50%; width: 210%; aspect-ratio: 1; translate: -50% -50%;
+    background: repeating-conic-gradient(
+      from 0deg at 50% 50%,
+      rgba(255,255,255,.16) 0deg 7deg,
+      rgba(255,255,255,0)  7deg 16deg
+    );
+    animation: sc-spin 90s linear infinite;
+  }
+  .sc-burst::after {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: radial-gradient(ellipse 70% 90% at 50% 45%, rgba(255,255,255,.22), transparent 70%);
+  }
+  @keyframes sc-spin { to { rotate: 360deg; } }
+  @media (prefers-reduced-motion: reduce) {
+    .sc-burst::before { animation: none; }
+  }
+
+  /* ===== Tipografia da campanha ===== */
+  .sc-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase;
+    padding: 7px 16px; border-radius: 999px;
+    background: rgba(255,255,255,.22); color: var(--sc-white);
+    backdrop-filter: blur(2px);
+  }
+  .sc-title {
+    margin: 0; font-weight: 900; line-height: .95;
+    font-size: clamp(34px, 7.2vw, 76px);
+    letter-spacing: -.02em; color: var(--sc-white);
+    text-shadow: 0 3px 0 rgba(194,65,12,.35), 0 14px 30px rgba(0,0,0,.18);
+  }
+  .sc-title em { font-style: normal; color: var(--sc-y-200); display: block; }
+  .sc-sub { margin: 0; font-size: clamp(15px, 2.1vw, 20px); line-height: 1.45; color: rgba(255,255,255,.95); max-width: 46ch; }
+
+  /* ===== Botão ===== */
+  .sc-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--sc-white); color: var(--sc-o-700);
+    font-weight: 900; font-size: 16px; letter-spacing: .01em;
+    padding: 16px 34px; border-radius: 999px; border: 0; cursor: pointer;
+    text-decoration: none; box-shadow: 0 10px 24px -10px rgba(0,0,0,.45);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .sc-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 30px -12px rgba(0,0,0,.5); }
+  .sc-btn--go { background: var(--sc-go); color: #fff; }
+
+  /* ===== Cartão de degrau (a escada) ===== */
+  .sc-steps { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 800px) { .sc-steps { grid-template-columns: repeat(4, 1fr); } }
+
+  .sc-step {
+    position: relative; border-radius: var(--sc-radius); padding: 20px 16px 18px;
+    background: var(--sc-white); border: 2px solid var(--sc-cream-2);
+    display: flex; flex-direction: column; gap: 6px; align-items: center; text-align: center;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .sc-step__pct { font-size: clamp(30px, 6vw, 44px); font-weight: 900; line-height: 1; color: var(--sc-o-600); letter-spacing: -.03em; }
+  .sc-step__qty { font-size: 13.5px; font-weight: 700; color: var(--sc-ink); }
+  .sc-step__hint { font-size: 12px; color: var(--sc-ink-60); line-height: 1.35; }
+  /* O último degrau puxa o olho */
+  .sc-step--peak { background: var(--sc-grad); border-color: transparent; box-shadow: var(--sc-shadow); }
+  .sc-step--peak .sc-step__pct,
+  .sc-step--peak .sc-step__qty { color: var(--sc-white); }
+  .sc-step--peak .sc-step__hint { color: rgba(255,255,255,.88); }
+  .sc-step--peak::after {
+    content: "MAIOR DESCONTO"; position: absolute; top: -10px; left: 50%; translate: -50% 0;
+    background: var(--sc-ink); color: var(--sc-y-300);
+    font-size: 9.5px; font-weight: 900; letter-spacing: .1em;
+    padding: 4px 10px; border-radius: 999px; white-space: nowrap;
+  }
+
+  .sc-note {
+    margin: 14px 0 0; text-align: center; font-size: 13px; color: var(--sc-ink-60);
+    display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap;
+  }
+
+  /* ===== Barra de progresso do carrinho ===== */
+  .sc-prog { background: var(--sc-cream); border: 2px solid var(--sc-cream-2); border-radius: 16px; padding: 14px 16px; margin: 0 0 14px; }
+  .sc-prog__top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+  .sc-prog__msg { font-size: 13.5px; font-weight: 700; color: var(--sc-ink); line-height: 1.3; }
+  .sc-prog__msg b { color: var(--sc-o-600); }
+  .sc-prog__now { font-size: 12px; font-weight: 800; color: var(--sc-go-dark); white-space: nowrap; }
+  .sc-prog__track { height: 10px; border-radius: 999px; background: #fff; border: 1px solid var(--sc-cream-2); overflow: hidden; }
+  .sc-prog__fill { height: 100%; border-radius: 999px; background: var(--sc-grad); transition: width .5s cubic-bezier(.3,1,.3,1); }
+  .sc-prog__ticks { display: flex; justify-content: space-between; margin-top: 7px; font-size: 10.5px; font-weight: 700; color: var(--sc-ink-60); }
+  .sc-prog__ticks span.is-on { color: var(--sc-o-600); }
+
+  /* ===== Bloco do brinde no carrinho ===== */
+  .sc-gift {
+    position: relative; border-radius: var(--sc-radius); padding: 16px;
+    background: var(--sc-grad-soft); border: 2px dashed var(--sc-o-400); margin: 0 0 16px;
+  }
+  .sc-gift__flag {
+    display: inline-flex; align-items: center; gap: 6px; margin-bottom: 10px;
+    background: var(--sc-grad); color: #fff; font-size: 10.5px; font-weight: 900;
+    letter-spacing: .06em; padding: 5px 12px; border-radius: 999px;
+  }
+  .sc-gift__msg { font-size: 14px; line-height: 1.45; color: var(--sc-ink); margin-bottom: 12px; }
+  .sc-gift__msg b { color: var(--sc-o-700); }
+  .sc-gift__row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .sc-gift__img { width: 60px; height: 60px; object-fit: cover; border-radius: 12px; background: #fff; flex: 0 0 auto; }
+  .sc-gift__info { display: flex; flex-direction: column; flex: 1 1 130px; min-width: 0; gap: 2px; }
+  .sc-gift__name { font-size: 13.5px; font-weight: 800; color: var(--sc-ink); }
+  .sc-gift__price { font-size: 13px; color: var(--sc-ink-60); }
+  .sc-gift__price s { opacity: .7; }
+  .sc-gift__price b { color: var(--sc-go-dark); font-size: 14px; }
+  .sc-gift--won { border-style: solid; border-color: var(--sc-go); background: #ECFDF5; }
+  .sc-gift--won .sc-gift__flag { background: var(--sc-go); }
+
+  @media (max-width: 420px) {
+    .sc-gift__row { justify-content: center; text-align: center; }
+    .sc-gift__info { flex-basis: 100%; align-items: center; }
+    .sc-gift .sc-btn { width: 100%; }
+  }
+
+  /* ===== Faixa da PDP ===== */
+  .sc-pdp {
+    border-radius: 16px; padding: 14px 16px; margin: 0 0 16px;
+    background: var(--sc-grad); color: #fff; box-shadow: var(--sc-shadow);
+  }
+  .sc-pdp__head { display: flex; align-items: center; gap: 9px; font-weight: 900; font-size: 14.5px; line-height: 1.2; }
+  .sc-pdp__ic { font-size: 19px; }
+  .sc-pdp__list { margin: 10px 0 0; padding: 0; list-style: none; display: grid; gap: 5px; }
+  .sc-pdp__list li { font-size: 12.5px; line-height: 1.4; color: rgba(255,255,255,.95); display: flex; gap: 7px; }
+  .sc-pdp__list b { color: var(--sc-y-200); }
+
+  /* ===== Seção genérica da campanha ===== */
+  .sc-section { background: var(--sc-cream); padding: clamp(36px, 6vw, 68px) 20px; }
+  .sc-wrap { max-width: 1100px; margin: 0 auto; }
+  .sc-h2 { margin: 0 0 6px; font-size: clamp(24px, 3.6vw, 38px); font-weight: 900; letter-spacing: -.02em; color: var(--sc-ink); text-align: center; line-height: 1.1; }
+  .sc-lead { margin: 0 auto 26px; max-width: 56ch; text-align: center; font-size: clamp(14.5px, 1.8vw, 17px); color: var(--sc-ink-60); line-height: 1.5; }
+</style>

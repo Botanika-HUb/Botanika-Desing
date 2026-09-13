@@ -1,0 +1,108 @@
+{%- comment -%}
+  ============================================================
+  SEMANA DO CLIENTE — hero da home.
+  Fundo cítrico com sunburst em CSS (sem imagem), a escada de
+  desconto logo abaixo do título e um CTA.
+  Aceita arte pronta (desktop/mobile) quando o design chegar:
+  se houver imagem, ela substitui o fundo em degradê.
+  ============================================================
+{%- endcomment -%}
+{%- liquid
+  assign st = section.settings
+-%}
+{%- if st.show -%}
+  <section class="sc-hero sc-burst" style="--sc-hero-min:{{ st.min_height }}px">
+    {%- if st.image_desktop != blank -%}
+      <picture class="sc-hero__art">
+        {%- if st.image_mobile != blank -%}
+          <source media="(max-width: 749px)" srcset="{{ st.image_mobile | image_url: width: 1200 }}">
+        {%- endif -%}
+        <img src="{{ st.image_desktop | image_url: width: 2200 }}" alt="{{ st.heading | escape }}" fetchpriority="high" decoding="async">
+      </picture>
+    {%- endif -%}
+
+    <div class="sc-hero__inner sc-wrap">
+      {%- if st.eyebrow != blank -%}
+        <span class="sc-eyebrow">{{ st.eyebrow }}</span>
+      {%- endif -%}
+
+      <h1 class="sc-title">
+        {{ st.heading }}
+        {%- if st.heading_accent != blank -%}<em>{{ st.heading_accent }}</em>{%- endif -%}
+      </h1>
+
+      {%- if st.subheading != blank -%}
+        <p class="sc-sub">{{ st.subheading }}</p>
+      {%- endif -%}
+
+      {%- if st.show_steps -%}
+        <div class="sc-hero__steps">
+          {%- render 'botanika-semana-escada', on_dark: true -%}
+        </div>
+      {%- endif -%}
+
+      {%- if st.cta_text != blank -%}
+        <a class="sc-btn" href="{{ st.cta_link | default: '/collections/suplementos' }}">
+          {{ st.cta_text }}
+          <span aria-hidden="true">→</span>
+        </a>
+      {%- endif -%}
+
+      {%- if st.footnote != blank -%}
+        <p class="sc-hero__foot">{{ st.footnote }}</p>
+      {%- endif -%}
+    </div>
+  </section>
+
+  {%- style -%}
+    .sc-hero {
+      position: relative;
+      min-height: var(--sc-hero-min, 520px);
+      display: flex; align-items: center; justify-content: center;
+      padding: clamp(44px, 7vw, 84px) 20px;
+      background: var(--sc-grad);
+      text-align: center;
+    }
+    .sc-hero__art { position: absolute; inset: 0; z-index: 0; }
+    .sc-hero__art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .sc-hero__inner {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 18px;
+      width: 100%;
+    }
+    .sc-hero__steps { width: 100%; margin: 6px 0 4px; }
+    .sc-hero__foot { margin: 2px 0 0; font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.82); }
+
+    /* Sobre o degradê, os cartões da escada ganham vidro fosco */
+    .sc-steps--dark .sc-step { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.28); backdrop-filter: blur(6px); }
+    .sc-steps--dark .sc-step__pct { color: #fff; }
+    .sc-steps--dark .sc-step__qty { color: #fff; }
+    .sc-steps--dark .sc-step__hint { color: rgba(255,255,255,.8); }
+    .sc-steps--dark .sc-step--peak { background: #fff; border-color: #fff; }
+    .sc-steps--dark .sc-step--peak .sc-step__pct { color: var(--sc-o-600); }
+    .sc-steps--dark .sc-step--peak .sc-step__qty { color: var(--sc-ink); }
+    .sc-steps--dark .sc-step--peak .sc-step__hint { color: var(--sc-ink-60); }
+    .sc-note--dark { color: rgba(255,255,255,.9); }
+  {%- endstyle -%}
+{%- endif -%}
+{% schema %}
+{
+  "name": "Semana · Hero",
+  "settings": [
+    { "type": "checkbox", "id": "show", "label": "Mostrar", "default": true },
+    { "type": "text", "id": "eyebrow", "label": "Chamada", "default": "14 A 19 DE SETEMBRO" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Semana do" },
+    { "type": "text", "id": "heading_accent", "label": "Título — segunda linha (destaque)", "default": "Cliente" },
+    { "type": "textarea", "id": "subheading", "label": "Subtítulo", "default": "Quanto mais itens no carrinho, maior o desconto. Com 4 suplementos, a 5ª Super Vitamina C sai de graça." },
+    { "type": "checkbox", "id": "show_steps", "label": "Mostrar a escada de desconto", "default": true },
+    { "type": "text", "id": "cta_text", "label": "Texto do botão", "default": "Montar meu combo" },
+    { "type": "url", "id": "cta_link", "label": "Link do botão" },
+    { "type": "text", "id": "footnote", "label": "Rodapé do hero", "default": "Frete grátis · Brinde · Condição especial para clientes" },
+    { "type": "range", "id": "min_height", "label": "Altura mínima", "min": 380, "max": 760, "step": 20, "unit": "px", "default": 560 },
+    { "type": "header", "content": "Arte (opcional — substitui o fundo em degradê)" },
+    { "type": "image_picker", "id": "image_desktop", "label": "Imagem (desktop)" },
+    { "type": "image_picker", "id": "image_mobile", "label": "Imagem (mobile)" }
+  ],
+  "presets": [ { "name": "Semana · Hero" } ]
+}
+{% endschema %}

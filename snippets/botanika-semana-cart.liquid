@@ -1,0 +1,150 @@
+{%- comment -%}
+  ============================================================
+  SEMANA DO CLIENTE — bloco do carrinho.
+  Duas peças: barra de progresso da escada + bloco do brinde.
+
+  REGRA DE OURO DESTE ARQUIVO:
+  nenhum preço com desconto é calculado aqui. A barra só CONTA
+  ITENS (número inteiro, não tem como divergir do checkout) e o
+  bloco do brinde lê o desconto REAL que a Shopify já aplicou na
+  linha, via discount_allocations. Se a Shopify não aplicou, o
+  bloco não afirma que aplicou — ele apenas instrui.
+
+  Motivo: o desconto da semana depende da quantidade no carrinho
+  (5%/10% por produto, 15% em 5+ itens, 20% em 8+). Não existe
+  número correto para escrever fora do carrinho, e mesmo dentro
+  dele quem manda é a Shopify.
+
+  Uso: {% render 'botanika-semana-cart' %}
+  ============================================================
+{%- endcomment -%}
+{%- liquid
+  assign qty = cart.item_count
+
+  assign t1 = 5
+  assign t2 = 8
+
+  assign next_qty = 0
+  assign next_pct = ''
+  assign now_pct = ''
+
+  if qty >= t2
+    assign now_pct = '20%'
+  elsif qty >= t1
+    assign now_pct = '15%'
+    assign next_qty = t2 | minus: qty
+    assign next_pct = '20%'
+  else
+    assign next_qty = t1 | minus: qty
+    assign next_pct = '15%'
+  endif
+
+  assign pct_fill = qty | times: 100 | divided_by: t2
+  if pct_fill > 100
+    assign pct_fill = 100
+  endif
+
+  assign gift_handle = settings.sc_gift_handle | default: 'super-vitamina-c'
+  assign gift_product = all_products[gift_handle]
+
+  assign gift_line = blank
+  for item in cart.items
+    if item.product.handle == gift_handle
+      assign gift_line = item
+      break
+    endif
+  endfor
+
+  assign gift_applied = false
+  if gift_line != blank
+    for alloc in gift_line.line_level_discount_allocations
+      if alloc.amount > 0
+        assign gift_applied = true
+        break
+      endif
+    endfor
+  endif
+
+  assign gift_missing = 4 | minus: qty
+-%}
+
+{%- if qty > 0 -%}
+  {%- comment -%} ---------- Progresso da escada ---------- {%- endcomment -%}
+  <div class="sc-prog">
+    <div class="sc-prog__top">
+      <span class="sc-prog__msg">
+        {%- if next_qty > 0 -%}
+          {%- if next_qty == 1 -%}
+            Falta <b>1 item</b> para <b>{{ next_pct }} OFF</b>
+          {%- else -%}
+            Faltam <b>{{ next_qty }} itens</b> para <b>{{ next_pct }} OFF</b>
+          {%- endif -%}
+        {%- else -%}
+          Você chegou no maior desconto da semana 🎉
+        {%- endif -%}
+      </span>
+      {%- if now_pct != blank -%}
+        <span class="sc-prog__now">{{ now_pct }} liberado</span>
+      {%- endif -%}
+    </div>
+    <div class="sc-prog__track" role="progressbar" aria-valuenow="{{ qty }}" aria-valuemin="0" aria-valuemax="{{ t2 }}" aria-label="Progresso do desconto por quantidade">
+      <div class="sc-prog__fill" style="width: {{ pct_fill }}%"></div>
+    </div>
+    <div class="sc-prog__ticks">
+      <span class="{% if qty >= t1 %}is-on{% endif %}">5 itens · 15%</span>
+      <span class="{% if qty >= t2 %}is-on{% endif %}">8 itens · 20%</span>
+    </div>
+  </div>
+
+  {%- comment -%} ---------- Brinde: Compre 4, leve 5 ---------- {%- endcomment -%}
+  {%- if gift_product != blank and gift_product.selected_or_first_available_variant.available -%}
+    {%- assign gift_variant = gift_product.selected_or_first_available_variant -%}
+
+    {%- if gift_applied -%}
+      <div class="sc-gift sc-gift--won">
+        <span class="sc-gift__flag">🎁 BRINDE GARANTIDO</span>
+        <p class="sc-gift__msg">
+          Sua <b>{{ gift_product.title }}</b> está no carrinho por <b>R$ 0,00</b>.
+        </p>
+      </div>
+
+    {%- elsif qty >= 4 -%}
+      <div class="sc-gift">
+        <span class="sc-gift__flag">🎁 COMPRE 4, LEVE 5</span>
+        <p class="sc-gift__msg">
+          Você já tem {{ qty }} itens. <b>Adicione 1 {{ gift_product.title }}</b> e ela sai por <b>R$ 0,00</b> no checkout.
+        </p>
+        <div class="sc-gift__row">
+          {%- if gift_product.featured_media -%}
+            <img class="sc-gift__img"
+              src="{{ gift_product.featured_media | image_url: width: 160 }}"
+              width="60" height="60" loading="lazy" decoding="async"
+              alt="{{ gift_product.title | escape }}">
+          {%- endif -%}
+          <span class="sc-gift__info">
+            <span class="sc-gift__name">{{ gift_product.title }}</span>
+            <span class="sc-gift__price"><s>{{ gift_variant.price | money }}</s> &nbsp;<b>R$ 0,00</b></span>
+          </span>
+          <form method="post" action="{{ routes.cart_add_url }}">
+            <input type="hidden" name="id" value="{{ gift_variant.id }}">
+            <input type="hidden" name="quantity" value="1">
+            <input type="hidden" name="return_to" value="{{ routes.cart_url }}">
+            <button type="submit" class="sc-btn sc-btn--go">Adicionar o brinde</button>
+          </form>
+        </div>
+      </div>
+
+    {%- elsif gift_missing > 0 -%}
+      <div class="sc-gift">
+        <span class="sc-gift__flag">🎁 COMPRE 4, LEVE 5</span>
+        <p class="sc-gift__msg">
+          {%- if gift_missing == 1 -%}
+            Falta <b>1 item</b> para você ganhar uma {{ gift_product.title }}.
+          {%- else -%}
+            Faltam <b>{{ gift_missing }} itens</b> para você ganhar uma {{ gift_product.title }}.
+          {%- endif -%}
+        </p>
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}

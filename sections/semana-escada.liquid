@@ -1,0 +1,28 @@
+{%- comment -%}
+  Seção avulsa com a escada de desconto, para usar na home
+  (ou em qualquer página) fora do hero.
+{%- endcomment -%}
+{%- if section.settings.show -%}
+  <section class="sc-section">
+    <div class="sc-wrap">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="sc-h2">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.lead != blank -%}
+        <p class="sc-lead">{{ section.settings.lead }}</p>
+      {%- endif -%}
+      {%- render 'botanika-semana-escada' -%}
+    </div>
+  </section>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Semana · Escada",
+  "settings": [
+    { "type": "checkbox", "id": "show", "label": "Mostrar", "default": true },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Quanto mais, maior o desconto" },
+    { "type": "textarea", "id": "lead", "label": "Texto de apoio", "default": "A escada conta os itens do seu carrinho — pode misturar produtos diferentes. Não precisa de cupom: entra sozinho." }
+  ],
+  "presets": [ { "name": "Semana · Escada" } ]
+}
+{% endschema %}

@@ -1,0 +1,39 @@
+{%- comment -%}
+  ============================================================
+  Escada de desconto da Semana do Cliente — markup reutilizável.
+  Usado pelo hero da home e pela seção avulsa.
+
+  IMPORTANTE: estes são os DEGRAUS (quantidade → percentual),
+  não preços. O preço com desconto nunca é calculado no tema —
+  quem calcula é a Shopify, no carrinho. Ver a nota obrigatória
+  ao final: "o melhor desconto é aplicado automaticamente".
+
+  Parâmetros: on_dark (true quando estiver sobre o degradê)
+  ============================================================
+{%- endcomment -%}
+<div class="sc-steps{% if on_dark %} sc-steps--dark{% endif %}">
+  <div class="sc-step">
+    <span class="sc-step__pct">5%</span>
+    <span class="sc-step__qty">2 unidades</span>
+    <span class="sc-step__hint">do mesmo produto</span>
+  </div>
+  <div class="sc-step">
+    <span class="sc-step__pct">10%</span>
+    <span class="sc-step__qty">3 unidades</span>
+    <span class="sc-step__hint">do mesmo produto</span>
+  </div>
+  <div class="sc-step">
+    <span class="sc-step__pct">15%</span>
+    <span class="sc-step__qty">5 itens</span>
+    <span class="sc-step__hint">de qualquer produto</span>
+  </div>
+  <div class="sc-step sc-step--peak">
+    <span class="sc-step__pct">20%</span>
+    <span class="sc-step__qty">8 itens</span>
+    <span class="sc-step__hint">de qualquer produto</span>
+  </div>
+</div>
+<p class="sc-note{% if on_dark %} sc-note--dark{% endif %}">
+  <span aria-hidden="true">✨</span>
+  O melhor desconto é aplicado automaticamente no carrinho.
+</p>

@@ -1,0 +1,68 @@
+{%- comment -%}
+  ============================================================
+  SEMANA DO CLIENTE — faixa da página de produto.
+
+  Resolve o buraco do seletor de potes: ele para em 3 unidades /
+  10%, mas a escada da semana vai até 20% contando ITENS DO
+  CARRINHO, de qualquer produto. Quem leva 3 Hair + 2 Creatina
+  tem 5 itens e entra em 15% — e hoje a PDP não conta isso.
+
+  Nenhum preço é recalculado aqui. A faixa comunica degraus e
+  condições; o valor com desconto só aparece no carrinho, vindo
+  da Shopify.
+  ============================================================
+{%- endcomment -%}
+{%- liquid
+  assign bs = block.settings
+  assign product = closest.product
+
+  assign hidden = bs.exclude_handles | downcase | replace: ' ', '' | split: ','
+  assign skip = false
+  for h in hidden
+    if h != blank and h == product.handle
+      assign skip = true
+      break
+    endif
+  endfor
+-%}
+{%- if bs.show and skip == false -%}
+  <div class="sc-pdp" {{ block.shopify_attributes }}>
+    <div class="sc-pdp__head">
+      <span class="sc-pdp__ic" aria-hidden="true">{{ bs.icon }}</span>
+      <span>{{ bs.title }}</span>
+    </div>
+    <ul class="sc-pdp__list">
+      {%- if bs.line_product != blank -%}
+        <li><span aria-hidden="true">▸</span><span>{{ bs.line_product }}</span></li>
+      {%- endif -%}
+      {%- if bs.line_cart != blank -%}
+        <li><span aria-hidden="true">▸</span><span>{{ bs.line_cart }}</span></li>
+      {%- endif -%}
+      {%- if bs.line_gift != blank -%}
+        <li><span aria-hidden="true">▸</span><span>{{ bs.line_gift }}</span></li>
+      {%- endif -%}
+      {%- if bs.line_note != blank -%}
+        <li><span aria-hidden="true">▸</span><span>{{ bs.line_note }}</span></li>
+      {%- endif -%}
+    </ul>
+  </div>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Semana · Faixa da PDP",
+  "tag": null,
+  "settings": [
+    { "type": "checkbox", "id": "show", "label": "Mostrar faixa", "default": true },
+    { "type": "text", "id": "icon", "label": "Ícone (emoji)", "default": "🍊" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Semana do Cliente · até 20% OFF" },
+    { "type": "header", "content": "Linhas" },
+    { "type": "text", "id": "line_product", "label": "Linha 1 — por produto", "default": "2 unidades deste produto: 5% OFF · 3 unidades: 10% OFF" },
+    { "type": "text", "id": "line_cart", "label": "Linha 2 — por carrinho", "default": "5 itens no carrinho, de qualquer produto: 15% OFF · 8 itens: 20% OFF" },
+    { "type": "text", "id": "line_gift", "label": "Linha 3 — brinde", "default": "Compre 4: adicione 1 Super Vitamina C e ela sai por R$ 0,00" },
+    { "type": "text", "id": "line_note", "label": "Linha 4 — observação", "default": "O melhor desconto é aplicado automaticamente no carrinho" },
+    { "type": "header", "content": "Exceções" },
+    { "type": "text", "id": "exclude_handles", "label": "Produtos onde NÃO mostrar (handles, separados por vírgula)", "info": "Handle é o final da URL do produto." }
+  ],
+  "presets": [ { "name": "Semana · Faixa da PDP" } ]
+}
+{% endschema %}
