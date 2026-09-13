@@ -1,42 +1,79 @@
 {%- comment -%}
-  Selo da campanha na página de produto (Dia D). Aparece só nos produtos
-  cujos handles estão na lista. Linha principal (−8% Dia D) + reforço opcional.
+  ============================================================
+  Selo/faixa de campanha na página de produto.
+
+  Dois estilos:
+   · "simples"  — a faixa lisa original (uma linha, cor chapada)
+   · "campanha" — a faixa da Semana do Cliente: degradê cítrico
+                  e até 4 linhas, para comunicar a escada inteira
+
+  Dois escopos:
+   · lista de handles (comportamento original)
+   · todos os produtos (checkbox), com lista de exceções
+
+  Compatível com o uso anterior: quem só preencheu "text" e
+  "handles" continua vendo exatamente o que via antes.
+
+  Nenhum preço é recalculado aqui. A faixa comunica degraus e
+  condições; o valor com desconto só aparece no carrinho, vindo
+  da Shopify.
+  ============================================================
 {%- endcomment -%}
 {%- liquid
   assign bs = block.settings
   assign product = closest.product
-  assign handles = bs.handles | downcase | replace: ' ', '' | split: ','
+
   assign match = false
-  for h in handles
-    if h == product.handle
-      assign match = true
-      break
-    endif
-  endfor
+  if bs.all_products
+    assign match = true
+    assign excluded = bs.exclude_handles | downcase | replace: ' ', '' | split: ','
+    for h in excluded
+      if h != blank and h == product.handle
+        assign match = false
+        break
+      endif
+    endfor
+  else
+    assign handles = bs.handles | downcase | replace: ' ', '' | split: ','
+    for h in handles
+      if h == product.handle
+        assign match = true
+        break
+      endif
+    endfor
+  endif
 -%}
 {%- if bs.show and match -%}
-  <div class="camp-selo" style="--cs-bg:{{ bs.bg_color }};--cs-fg:{{ bs.text_color }};" {{ block.shopify_attributes }}>
-    <div class="camp-selo__body">
-      <span class="camp-selo__main">
-        {%- if bs.icon != blank -%}<span class="camp-selo__ic">{{ bs.icon }}</span>{%- endif -%}
-        <span class="camp-selo__tx">{{ bs.text }}</span>
-      </span>
-      {%- if bs.subtext != blank -%}<span class="camp-selo__sub">{{ bs.subtext }}</span>{%- endif -%}
+  {%- if bs.style == 'campanha' -%}
+    <div class="sc-pdp" {{ block.shopify_attributes }}>
+      <div class="sc-pdp__head">
+        {%- if bs.icon != blank -%}<span class="sc-pdp__ic" aria-hidden="true">{{ bs.icon }}</span>{%- endif -%}
+        <span>{{ bs.text }}</span>
+      </div>
+      {%- if bs.line_2 != blank or bs.line_3 != blank or bs.line_4 != blank or bs.line_5 != blank -%}
+        <ul class="sc-pdp__list">
+          {%- if bs.line_2 != blank -%}<li><span aria-hidden="true">▸</span><span>{{ bs.line_2 }}</span></li>{%- endif -%}
+          {%- if bs.line_3 != blank -%}<li><span aria-hidden="true">▸</span><span>{{ bs.line_3 }}</span></li>{%- endif -%}
+          {%- if bs.line_4 != blank -%}<li><span aria-hidden="true">▸</span><span>{{ bs.line_4 }}</span></li>{%- endif -%}
+          {%- if bs.line_5 != blank -%}<li><span aria-hidden="true">▸</span><span>{{ bs.line_5 }}</span></li>{%- endif -%}
+        </ul>
+      {%- endif -%}
     </div>
-  </div>
-  {%- style -%}
-    .camp-selo {
-      display: flex; align-items: center; gap: 12px; margin: 0 0 16px;
-      background: var(--cs-bg, #14162e); color: var(--cs-fg, #ffffff);
-      padding: 13px 16px; border-radius: 12px; line-height: 1.15;
-      border-left: 4px solid #E23744;
-    }
-    .camp-selo__body { display: flex; flex-direction: column; gap: 3px; }
-    .camp-selo__main { display: flex; align-items: center; gap: 8px; }
-    .camp-selo__ic { font-size: 18px; flex: 0 0 auto; }
-    .camp-selo__tx { font-size: 14px; font-weight: 800; letter-spacing: .01em; }
-    .camp-selo__sub { font-size: 12px; font-weight: 500; opacity: .82; }
-  {%- endstyle -%}
+  {%- else -%}
+    <div class="camp-selo" style="--cs-bg:{{ bs.bg_color }};--cs-fg:{{ bs.text_color }};" {{ block.shopify_attributes }}>
+      {%- if bs.icon != blank -%}<span class="camp-selo__ic">{{ bs.icon }}</span>{%- endif -%}
+      <span class="camp-selo__tx">{{ bs.text }}</span>
+    </div>
+    {%- style -%}
+      .camp-selo {
+        display: flex; align-items: center; gap: 10px; margin: 0 0 16px;
+        background: var(--cs-bg, #323C91); color: var(--cs-fg, #ffffff);
+        padding: 10px 16px; border-radius: 12px; font-weight: 700; line-height: 1.2;
+      }
+      .camp-selo__ic { font-size: 20px; flex: 0 0 auto; }
+      .camp-selo__tx { font-size: 14.5px; }
+    {%- endstyle -%}
+  {%- endif -%}
 {%- endif -%}
 {% schema %}
 {
@@ -44,11 +81,26 @@
   "tag": null,
   "settings": [
     { "type": "checkbox", "id": "show", "label": "Mostrar selo", "default": true },
-    { "type": "text", "id": "handles", "label": "Produtos (handles, separados por vírgula)", "info": "Handle é o final da URL do produto.", "default": "tetravit-d,super-omega-3-coq10,super-vitamina-c" },
-    { "type": "text", "id": "icon", "label": "Ícone (emoji)", "default": "⚡" },
-    { "type": "text", "id": "text", "label": "Texto principal", "default": "DIA D — 8% OFF neste produto" },
-    { "type": "text", "id": "subtext", "label": "Reforço (opcional)", "default": "🎁 Manual da Suplementação grátis • 🚚 Frete grátis acima de R$349" },
-    { "type": "color", "id": "bg_color", "label": "Fundo", "default": "#14162e" },
+    {
+      "type": "select", "id": "style", "label": "Estilo", "default": "simples",
+      "options": [
+        { "value": "simples", "label": "Simples (uma linha, cor chapada)" },
+        { "value": "campanha", "label": "Campanha (degradê cítrico, até 4 linhas)" }
+      ]
+    },
+    { "type": "header", "content": "Onde aparece" },
+    { "type": "checkbox", "id": "all_products", "label": "Em todos os produtos", "info": "Ligado, ignora a lista de handles abaixo e usa a lista de exceções.", "default": false },
+    { "type": "text", "id": "handles", "label": "Produtos (handles, separados por vírgula)", "info": "Usado quando \"Em todos os produtos\" está desligado.", "default": "tetravit-d,super-omega-3-coq10,super-vitamina-c" },
+    { "type": "text", "id": "exclude_handles", "label": "Exceções (handles, separados por vírgula)" },
+    { "type": "header", "content": "Conteúdo" },
+    { "type": "text", "id": "icon", "label": "Ícone (emoji)", "default": "🛡️" },
+    { "type": "text", "id": "text", "label": "Título", "default": "Semana da Imunidade — 8% OFF neste produto" },
+    { "type": "text", "id": "line_2", "label": "Linha 2 (só no estilo Campanha)" },
+    { "type": "text", "id": "line_3", "label": "Linha 3 (só no estilo Campanha)" },
+    { "type": "text", "id": "line_4", "label": "Linha 4 (só no estilo Campanha)" },
+    { "type": "text", "id": "line_5", "label": "Linha 5 (só no estilo Campanha)" },
+    { "type": "header", "content": "Cores (só no estilo Simples)" },
+    { "type": "color", "id": "bg_color", "label": "Fundo", "default": "#323C91" },
     { "type": "color", "id": "text_color", "label": "Texto", "default": "#ffffff" }
   ],
   "presets": [ { "name": "Selo da campanha" } ]

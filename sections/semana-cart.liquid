@@ -1,0 +1,22 @@
+{%- comment -%}
+  Ponte fina: coloca o bloco da Semana do Cliente (progresso da
+  escada + brinde) no topo da página de carrinho, sem precisar
+  editar o main-cart-items.liquid.
+{%- endcomment -%}
+{%- if section.settings.show -%}
+  <div class="sc-cart-slot">
+    {%- render 'botanika-semana-cart' -%}
+  </div>
+  {%- style -%}
+    .sc-cart-slot { max-width: var(--page-width, 1200px); margin: 0 auto; padding: 18px 20px 0; }
+  {%- endstyle -%}
+{%- endif -%}
+{% schema %}
+{
+  "name": "Semana · Carrinho",
+  "settings": [
+    { "type": "checkbox", "id": "show", "label": "Mostrar", "default": true }
+  ],
+  "presets": [ { "name": "Semana · Carrinho" } ]
+}
+{% endschema %}
