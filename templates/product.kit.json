@@ -165,7 +165,8 @@
             "tier3_badge1": "Menor preço",
             "tier3_message": "",
             "tier3_bonus": "",
-            "free_shipping_threshold": 199.9
+            "free_shipping_threshold": 199.9,
+            "default_tier": "2"
           },
           "blocks": {}
         },

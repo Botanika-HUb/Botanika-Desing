@@ -87,6 +87,7 @@ data-free-ship="{{ free_ship }}"
 {%- endcomment -%}
 {%- liquid
   assign qc_up = ','
+  assign qc_enabled = ','
   assign qc_best = -1
   for i in (1..3)
     case i
@@ -101,6 +102,7 @@ data-free-ship="{{ free_ship }}"
       assign qi_q = bs.tier3_quantity
     endcase
     if qi_on
+      assign qc_enabled = qc_enabled | append: i | append: ','
       if qc_vol and qi_q >= 8
         assign qi_eff = 20
       elsif qc_vol and qi_q >= 5
@@ -118,6 +120,18 @@ data-free-ship="{{ free_ship }}"
       endif
     endif
   endfor
+
+  # Card que já vem marcado. 'auto' mantém o comportamento antigo: o primeiro
+  # renderizado, que é o de maior quantidade. Se o tier escolhido estiver
+  # desativado, cai no 'auto' em vez de não marcar nenhum.
+  assign qc_pick = ''
+  assign qc_want = bs.default_tier | default: 'auto'
+  if qc_want != 'auto'
+    assign qc_dkey = ',' | append: qc_want | append: ','
+    if qc_enabled contains qc_dkey
+      assign qc_pick = qc_want
+    endif
+  endif
 -%}
 {%- assign order = '3,2,1' | split: ',' -%}
 {%- assign active_done = false -%}
@@ -193,10 +207,16 @@ if c_price >= free_ship
 assign c_free = true
 endif
 assign is_active = false
+if qc_pick != blank
+if n == qc_pick
+assign is_active = true
+endif
+else
 unless active_done
 assign is_active = true
 assign active_done = true
 endunless
+endif
 -%}
 <div class="qty2__opt{% if is_active %} is-active{% endif %}" data-tier="{{ n }}" data-quantity="{{ q }}" data-discount="{{ eff }}" role="radio" aria-checked="{% if is_active %}true{% else %}false{% endif %}" tabindex="0">
 {%- comment -%}Selo só em card que melhora o desconto: "Menor preço" num empate seria mentira.{%- endcomment -%}
@@ -383,6 +403,7 @@ customElements.define('quantity-discount-cards', QuantityDiscountCards);
 { "type": "text", "id": "sp_text", "label": "Texto de prova social", "default": "+2 mil clientes recompraram" },
 { "type": "header", "content": "Geral" },
 { "type": "text", "id": "legend_label", "label": "Rótulo da legenda", "default": "Escolha sua opção:" },
+{ "type": "select", "id": "default_tier", "label": "Card já selecionado", "info": "Automático marca o primeiro da lista (o de maior quantidade).", "default": "auto", "options": [ { "value": "auto", "label": "Automático" }, { "value": "1", "label": "Tier 1" }, { "value": "2", "label": "Tier 2" }, { "value": "3", "label": "Tier 3" } ] },
 { "type": "range", "id": "installments", "label": "Parcelas", "min": 1, "max": 12, "step": 1, "default": 3 },
 { "type": "number", "id": "free_shipping_threshold", "label": "Piso do frete grátis (R$)", "default": 199.90 },
 { "type": "color", "id": "color_active", "label": "Cor de destaque (legado, não usado)", "default": "#323C91" },

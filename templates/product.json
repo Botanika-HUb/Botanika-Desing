@@ -174,7 +174,8 @@
             "tier3_message": "",
             "tier3_bonus": "",
             "free_shipping_threshold": 199.9,
-            "tier1_image": "shopify://shop_images/kit-imunidade-2-kits.png"
+            "tier1_image": "shopify://shop_images/kit-imunidade-2-kits.png",
+            "default_tier": "2"
           },
           "blocks": {}
         },
