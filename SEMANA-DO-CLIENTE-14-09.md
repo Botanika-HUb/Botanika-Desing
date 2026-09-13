@@ -154,3 +154,34 @@ exibido, não.
 
 Frete grátis ≥ R$ 349 · 16 escadas por produto com teto de 10% · 6 bumps (3 deles pelos IDs
 `[retomada 20/09]`) · cupons de influenciadora · cupons abertos. Nada da Semana do Cliente sobrando.
+
+### 5.1 Reversão do tema — os cards do bump da gaveta
+
+A loja volta sozinha nos descontos, mas **o tema não**. Os três `[BUMP]` que foram encerrados
+em 14/09 03:01Z para liberar slots (Hair→Vit C, Vit C/Ômega→TetraVit, Creatina→Whey)
+alimentavam **quatro** cards do bump da gaveta. Enquanto não existirem, esses cards mostram
+preço cheio e botão "Adicionar ao carrinho", sem prometer desconto.
+
+Depois que as retomadas agendadas entrarem (20/09 03:00Z), abrir
+`snippets/botanika-order-bump.liquid` e devolver `deal` aos índices **2, 5, 6 e 8**:
+
+```liquid
+assign ob_modes = 'msg,msg,msg,deal,msg,msg,msg,deal,msg' | split: ','
+                          ↑2        ↑3       ↑5  ↑6  ↑7  ↑8
+```
+
+| # | Gatilho no carrinho | Card oferece | Hoje | Após 20/09 |
+|---|---|---|---|---|
+| 0 | Whey Chocolate | Creatina | `msg` | `msg` (proposital — brigaria com a escada dos 2 wheys) |
+| 1 | Whey Sem Sabor | Creatina | `msg` | `msg` (idem) |
+| 2 | Hair | Super Vit C | `msg` | **`deal`** |
+| 3 | Tri[Mg] | TetraVit D | `deal` | `deal` (BxGy sem data de fim) |
+| 4 | TetraVit D | Ômega 3 | `msg` | `msg` (BxGy desativado em 31/08) |
+| 5 | Super Vit C | TetraVit D | `msg` | **`deal`** |
+| 6 | Ômega 3 | TetraVit D | `msg` | **`deal`** |
+| 7 | Sleep | Tri[Mg] | `deal` | `deal` (BxGy sem data de fim) |
+| 8 | Creatina | Whey Chocolate | `msg` | **`deal`** |
+
+**Regra que não se quebra:** um card só pode dizer "−10% só aqui" se o `[BUMP]` BxGy
+correspondente estiver ATIVO naquela data. Antes de trocar `msg` por `deal`, conferir o
+status no Shopify — não confiar nesta tabela.
