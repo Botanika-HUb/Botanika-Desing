@@ -1161,7 +1161,7 @@
         "gap": 40,
         "glifo": "brilho",
         "bg_color": "#ffffff",
-        "pill_color": "#323C91",
+        "pill_color": "#C2410C",
         "icon_bg_color": "#ffffff",
         "text_color": "#ffffff"
       }
@@ -1195,8 +1195,8 @@
   },
   "order": [
     "slideshow_8KKtNU",
-    "semana_hero",
     "botanika_selos",
+    "semana_hero",
     "promotion_banner_QPT7Gc",
     "icon_box_8VQnjt",
     "shopable_video_9LczTB",
