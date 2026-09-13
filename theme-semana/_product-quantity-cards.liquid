@@ -74,15 +74,16 @@ data-free-ship="{{ free_ship }}"
 <legend class="qty2__legend"><span>{{ bs.legend_label }}</span> <b class="qty2__legend-val"></b></legend>
 <div class="qty2__grid">
 {%- comment -%}
-  Pré-passe. Um card de quantidade só existe se ele BATE o card menor.
-  Sem isso, fora da janela do volume o card de 5un empata com o de 3un (os dois
-  caem nos 10% da escada por produto) e ficaria anunciando "menor preço" e
-  "maior desconto da semana" num empate — e nos kits os três cards empatariam
-  a preço regular. Avalia na ordem dos tiers (1, 2, 3), que é a ordem crescente
-  de quantidade usada nos templates.
+  Pré-passe. Marca quais cards MELHORAM o desconto em relação ao card menor.
+  Todos os cards continuam aparecendo — o seletor precisa dos três degraus.
+  O que cai, em quem não melhora, é o SELO e o SUBTÍTULO: fora da janela do
+  volume o card de 5un empata com o de 3un (os dois caem nos 10% da escada por
+  produto) e não pode anunciar "menor preço" nem "maior desconto da semana";
+  nos kits os três empatam a preço regular. Avalia na ordem dos tiers (1, 2, 3),
+  que é a ordem crescente de quantidade usada nos templates.
 {%- endcomment -%}
 {%- liquid
-  assign qc_keep = ','
+  assign qc_up = ','
   assign qc_best = -1
   for i in (1..3)
     case i
@@ -109,7 +110,7 @@ data-free-ship="{{ free_ship }}"
         assign qi_eff = 0
       endif
       if qc_best < 0 or qi_eff > qc_best
-        assign qc_keep = qc_keep | append: i | append: ','
+        assign qc_up = qc_up | append: i | append: ','
         assign qc_best = qi_eff
       endif
     endif
@@ -149,12 +150,12 @@ assign setimg = bs.tier3_image
 assign enabled = bs.tier3_enabled
 endcase
 assign qc_nkey = ',' | append: n | append: ','
-assign qc_show = false
-if enabled and qc_keep contains qc_nkey
-assign qc_show = true
+assign qc_better = false
+if qc_up contains qc_nkey
+assign qc_better = true
 endif
 -%}
-{%- if qc_show -%}
+{%- if enabled -%}
 {%- liquid
 # Imagem pela QUANTIDADE, não pelo índice do tier. Os metafields guardam
 # 1, 2 e 3 potes; como os tiers agora valem 2, 3 e 5, casar por índice mostraria
@@ -195,7 +196,8 @@ assign active_done = true
 endunless
 -%}
 <div class="qty2__opt{% if is_active %} is-active{% endif %}" data-tier="{{ n }}" data-quantity="{{ q }}" data-discount="{{ eff }}" role="radio" aria-checked="{% if is_active %}true{% else %}false{% endif %}" tabindex="0">
-{%- if badge1 != blank -%}<span class="qty2__badge">{{ badge1 }}</span>{%- endif -%}
+{%- comment -%}Selo só em card que melhora o desconto: "Menor preço" num empate seria mentira.{%- endcomment -%}
+{%- if badge1 != blank and qc_better -%}<span class="qty2__badge">{{ badge1 }}</span>{%- endif -%}
 <span class="qty2__check"></span>
 <div class="qty2__jar">
 {%- if metaimg != blank -%}{{ metaimg | image_url: width: 260 | image_tag: loading: 'lazy', class: 'qty2__img' }}
@@ -211,8 +213,8 @@ endunless
 {%- if eff > 0 -%}<span class="qty2__pill qty2__pill--off">{{ eff }}% OFF</span>{%- else -%}<span class="qty2__pill qty2__pill--reg">preço regular</span>{%- endif -%}
 <span class="qty2__pill qty2__pill--free" data-freeship{% unless c_free %} hidden{% endunless %}>🚚 frete grátis</span>
 </div>
-{%- comment -%}Subtítulo só quando há desconto real: nos kits, "economize" num card a preço regular seria promessa vazia.{%- endcomment -%}
-{%- if sub != blank and eff > 0 -%}<span class="qty2__sub">{{ sub }}</span>{%- endif -%}
+{%- comment -%}Subtítulo só quando há desconto real E o card melhora o anterior: "economize" a preço regular, ou "maior desconto" num empate, seriam promessa vazia.{%- endcomment -%}
+{%- if sub != blank and eff > 0 and qc_better -%}<span class="qty2__sub">{{ sub }}</span>{%- endif -%}
 <div class="qty2__price"><div class="qty2__parc"><span class="qty2__x">{{ installments }}x de </span><span class="qty2__big" data-installment>{% if show_currency %}{{ c_installment | money_with_currency }}{% else %}{{ c_installment | money }}{% endif %}</span><span class="qty2__semjuros">sem juros</span></div><div class="qty2__cash">ou <b data-total>{% if show_currency %}{{ c_price | money_with_currency }}{% else %}{{ c_price | money }}{% endif %}</b> à vista{%- if eff > 0 -%} <s class="qty2__cmp" data-compare>{% if show_currency %}{{ c_total | money_with_currency }}{% else %}{{ c_total | money }}{% endif %}</s>{%- endif -%}</div></div>
 {%- if eff > 0 -%}<span class="qty2__save" data-save>você economiza {% if show_currency %}{{ c_disc_amt | money_with_currency }}{% else %}{{ c_disc_amt | money }}{% endif %}</span>{%- endif -%}
 </div>
