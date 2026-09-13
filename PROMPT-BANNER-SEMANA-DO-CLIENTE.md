@@ -2,6 +2,9 @@
 
 > Gerado a partir do tema já construído (`Semana do Cliente - OFICIAL`) e dos descontos
 > realmente configurados na Shopify em 13/09/2026. Se a oferta mudar, este prompt muda junto.
+>
+> **Atualizado** depois dos ajustes do time: saíram os degraus de 15% e 20%, e o
+> Compre 4 Leve 5 passou a ser o destaque da peça.
 
 ---
 
@@ -70,21 +73,23 @@ SEMANA DO CLIENTE
 
 **Chamada**
 ```
-Quanto mais itens no carrinho, maior o desconto.
+Leve mais unidades do mesmo produto e o desconto aumenta.
 ```
 
-**Os quatro degraus** (podem virar quatro cápsulas / blocos)
+**Os degraus — são DOIS, mais o brinde** (três cápsulas lado a lado)
 ```
 5% OFF   ·  2 unidades do mesmo produto
 10% OFF  ·  3 unidades do mesmo produto
-15% OFF  ·  5 itens, de qualquer produto
-20% OFF  ·  8 itens, de qualquer produto
+GRÁTIS   ·  Compre 4, leve 5 — a 5ª Super Vitamina C é brinde
 ```
 
-**Brinde (dar destaque, é o gancho da semana)**
+O terceiro card é o do BRINDE e tem que ser o mais forte dos três: fundo sólido
+branco, texto laranja, enquanto os outros dois são cápsulas translúcidas.
+É o gancho da semana.
+
+**Frase completa do brinde, se couber em outra linha**
 ```
-Compre 4 suplementos e leve 5:
-a 5ª Super Vitamina C sai por R$ 0,00
+Compre 4 unidades e ganhe uma Super Vitamina C de brinde
 ```
 
 **Frete**
@@ -107,8 +112,11 @@ Botão branco, texto em `#C2410C`, cantos totalmente arredondados (pill).
 ## O que NÃO pode aparecer
 
 - **Nada de PIX.** Não existe desconto por PIX nesta campanha.
+- **Não existe 15% nem 20% na comunicação.** A escada de volume continua ativa na
+  Shopify, mas o time decidiu não anunciá-la: quem juntar itens recebe a mais sem ter
+  sido prometido. Na arte, o teto comunicado é **10%**.
 - **Nunca somar percentuais.** Os descontos não acumulam entre si — a loja aplica só o
-  melhor. Jamais escrever "até 35%", "20% + 15%" ou parecido. O teto é **20%**.
+  melhor. Jamais escrever "até 35%", "10% + 5%" ou parecido.
 - **Não prometer "frete grátis" sem a condição.** Ou é "para os 100 primeiros", ou é
   "acima de R$ 199,90". Frete grátis solto é promessa falsa a partir do 101º pedido.
 - **Não inventar preço em reais** de nenhum produto.
@@ -143,13 +151,13 @@ degradê laranja com sombra suave — o contraste azul sobre laranja é o ponto 
 "SEMANA DO CLIENTE" grande em branco com a palavra "CLIENTE" em `#FDE68A`, a data logo
 acima numa cápsula translúcida, a chamada abaixo e o CTA. À direita, os potes agrupados,
 com a Super Vitamina C à frente e um selo redondo "GRÁTIS" em `#0D9488` apontando para ela.
-Os quatro degraus numa faixa inferior, em cápsulas de vidro fosco.
+Os três cards numa faixa inferior: dois em vidro fosco e o do brinde em branco sólido.
 
 **Mobile (1400 × 1737):** mesma linguagem em pilha — data, título, chamada, potes no meio,
-degraus em grade 2×2, CTA por último, tudo acima dos 80 px de baixo.
+os três cards em linha, CTA por último, tudo acima dos 80 px de baixo.
 
 **Faixa fina (1410 × 230):** só degradê + sunburst + "SEMANA DO CLIENTE · 14 A 19 DE SETEMBRO"
-à esquerda e os quatro degraus em linha à direita. Sem produto, sem CTA.
+à esquerda e os três cards em linha à direita. Sem produto, sem CTA.
 
 ## Entregáveis
 
