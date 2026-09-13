@@ -22,7 +22,7 @@ assign free_ship = fst | times: 100
       dois kits nunca tiveram escada.
     · ESCADA DE VOLUME — 15% em 5+ itens, 20% em 8+, de QUALQUER produto da
       coleção `todos-os-produtos-volume` (os 3 kits estão nela). Só existe
-      durante a Semana do Cliente, por isso o recorte de data em qc_vol.
+      durante a Semana do Cliente — a janela vem do snippet botanika-semana-janela.
 
   Depois de 20/09 o volume acaba: os cards de 5un voltam sozinhos para os 10%
   da escada por produto, e para os kits voltam a "preço regular". Nada a fazer.
@@ -38,10 +38,13 @@ assign free_ship = fst | times: 100
     assign qc_has_ladder = true
   endif
 
-  # Janela da Semana do Cliente: 14/09 03:01Z -> 20/09 03:00Z (00:01 -> 00:00 BRT).
-  assign qc_now = 'now' | date: '%s' | times: 1
+  # Janela da campanha — fonte única em snippets/botanika-semana-janela.liquid.
+  capture qc_janela
+    render 'botanika-semana-janela'
+  endcapture
+  assign qc_janela = qc_janela | strip
   assign qc_vol = false
-  if qc_now >= 1789354860 and qc_now < 1789873200
+  if qc_janela == 'on'
     assign qc_vol = true
   endif
 -%}

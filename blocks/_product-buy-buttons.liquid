@@ -7,7 +7,18 @@
 {%- if product.metafields.custom.external_affiliate == blank -%}
   {% if products_group == blank %}
 
-    {%- comment -%} ============ BANNER CUPOM BOTANIKA ============ {%- endcomment -%}
+    {%- comment -%}
+      ============ BANNER CUPOM BOTANIKA ============
+      Escondido durante a Semana do Cliente. O cupom BOTANIKA está com
+      combinesWith orderDiscounts/productDiscounts/shippingDiscounts todos em
+      false: aplicá-lo derruba a escada automática E o frete grátis. Um carrinho
+      de 5 itens sairia de 15% + frete grátis para 5% + frete pago — e o convite
+      fica colado no botão de compra. Fora da campanha ele volta sozinho, porque
+      aí não há automático concorrendo.
+    {%- endcomment -%}
+    {%- capture bb_janela -%}{%- render 'botanika-semana-janela' -%}{%- endcapture -%}
+    {%- assign bb_janela = bb_janela | strip -%}
+    {%- unless bb_janela == 'on' -%}
     <div class="botanika-coupon-banner" id="botanika-coupon-banner-{{ section.id }}">
       <div class="botanika-coupon-banner__icon">🎟</div>
       <div class="botanika-coupon-banner__content">
@@ -172,6 +183,7 @@
       })();
     </script>
     {%- comment -%} ============ FIM BANNER CUPOM BOTANIKA ============ {%- endcomment -%}
+    {%- endunless -%}
 
     <div
       class="product-detail__buy-buttons button-trigger__sticky mb-20"

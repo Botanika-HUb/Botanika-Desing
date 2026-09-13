@@ -1,0 +1,31 @@
+{%- comment -%}
+  ============================================================
+  Fonte única da JANELA da Semana do Cliente.
+
+    14/09/2026 03:01Z  →  20/09/2026 03:00Z
+    (00:01 → 00:00 no horário de Brasília)
+
+  Imprime 'on' enquanto a campanha está valendo, e nada fora dela.
+
+  Uso:
+    {%- capture janela -%}{%- render 'botanika-semana-janela' -%}{%- endcapture -%}
+    {%- assign janela = janela | strip -%}
+    {%- if janela == 'on' -%} ... {%- endif -%}
+
+  Usado por:
+    · blocks/_product-quantity-cards.liquid — libera os 15%/20% de volume
+    · blocks/_product-buy-buttons.liquid    — esconde o banner do cupom BOTANIKA
+
+  Por que existe: as datas estavam escritas em epoch dentro de um bloco. Com
+  dois lugares precisando da mesma janela, duas cópias acabariam divergindo —
+  e um dos lados passaria a mostrar desconto fora da campanha.
+
+  Se a campanha mudar de data, muda AQUI e só aqui.
+  ============================================================
+{%- endcomment -%}
+{%- liquid
+  assign _now = 'now' | date: '%s' | times: 1
+  if _now >= 1789354860 and _now < 1789873200
+    echo 'on'
+  endif
+-%}
