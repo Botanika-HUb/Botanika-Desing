@@ -1017,7 +1017,8 @@
         "cta_link": "/collections/suplementos",
         "footnote": "Frete grátis · Brinde · Condição especial para clientes",
         "min_height": 440
-      }
+      },
+      "disabled": true
     }
   },
   "order": [
