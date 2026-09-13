@@ -1,0 +1,128 @@
+{%- comment -%}
+  ============================================================
+  SEMANA DO CLIENTE — segunda tarja (urgência + benefícios).
+  Fica LOGO ABAIXO da tarja de confiança que já existe, sem
+  tocar nela. Cores da campanha.
+
+  Traz o contador regressivo até o fim da semana e um rodízio
+  de benefícios. Quando a data passa, a tarja some sozinha —
+  não fica prometendo campanha encerrada.
+
+  Nenhum preço aqui: só percentuais de degrau e condições.
+  ============================================================
+{%- endcomment -%}
+{%- liquid
+  assign st = section.settings
+-%}
+{%- if st.show -%}
+  <div class="sc-tarja sc-burst" data-sc-end="{{ st.end_at }}" hidden>
+    <div class="sc-tarja__in">
+      <span class="sc-tarja__badge">{{ st.badge }}</span>
+
+      <span class="sc-tarja__rot" aria-live="off">
+        {%- assign items = st.benefits | split: '|' -%}
+        {%- for it in items -%}
+          <span class="sc-tarja__item" style="--i:{{ forloop.index0 }};--n:{{ items.size }}">{{ it | strip }}</span>
+        {%- endfor -%}
+      </span>
+
+      <span class="sc-tarja__cd">
+        <span class="sc-tarja__cdlabel">{{ st.cd_label }}</span>
+        <span class="sc-tarja__digits">
+          <b data-d></b><i>d</i><b data-h></b><i>h</i><b data-m></b><i>m</i><b data-s></b><i>s</i>
+        </span>
+      </span>
+    </div>
+  </div>
+
+  {%- style -%}
+    .sc-tarja {
+      background: var(--sc-grad); color: #fff; overflow: hidden;
+      border-top: 1px solid rgba(255,255,255,.28);
+    }
+    .sc-tarja__in {
+      max-width: 1280px; margin: 0 auto; padding: 9px 16px;
+      display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;
+    }
+    .sc-tarja__badge {
+      font-size: 10.5px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase;
+      background: rgba(0,0,0,.22); padding: 5px 12px; border-radius: 999px; white-space: nowrap;
+    }
+    /* Rodízio de benefícios: um por vez, sem empurrar o layout */
+    .sc-tarja__rot { position: relative; display: block; height: 19px; flex: 1 1 230px; max-width: 460px; }
+    .sc-tarja__item {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; white-space: nowrap; opacity: 0;
+      animation: sc-rot calc(var(--n) * 3.2s) linear infinite;
+      animation-delay: calc(var(--i) * 3.2s);
+    }
+    @keyframes sc-rot {
+      0%   { opacity: 0; transform: translateY(6px); }
+      4%   { opacity: 1; transform: translateY(0); }
+      28%  { opacity: 1; transform: translateY(0); }
+      33%  { opacity: 0; transform: translateY(-6px); }
+      100% { opacity: 0; transform: translateY(-6px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sc-tarja__item { animation: none; opacity: 0; }
+      .sc-tarja__item:first-child { opacity: 1; }
+    }
+    .sc-tarja__cd { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+    .sc-tarja__cdlabel { font-size: 10.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; opacity: .9; }
+    .sc-tarja__digits { display: inline-flex; align-items: center; gap: 3px; font-variant-numeric: tabular-nums; }
+    .sc-tarja__digits b {
+      background: rgba(0,0,0,.26); border-radius: 7px; padding: 3px 6px;
+      font-size: 13px; font-weight: 900; min-width: 26px; text-align: center;
+    }
+    .sc-tarja__digits i { font-style: normal; font-size: 10px; font-weight: 800; opacity: .85; margin-right: 3px; }
+
+    @media (max-width: 640px) {
+      .sc-tarja__in { gap: 8px; padding: 8px 12px; }
+      .sc-tarja__rot { flex-basis: 100%; order: 3; height: 17px; }
+      .sc-tarja__item { font-size: 12px; }
+      .sc-tarja__digits b { min-width: 24px; font-size: 12px; }
+    }
+  {%- endstyle -%}
+
+  <script>
+    (function () {
+      var el = document.querySelector('.sc-tarja[data-sc-end]');
+      if (!el) return;
+      var raw = (el.getAttribute('data-sc-end') || '').trim();
+      if (!raw) return;
+      // "AAAA-MM-DD HH:MM:SS" no horário de Brasília
+      var target = new Date(raw.replace(' ', 'T') + '-03:00').getTime();
+      if (isNaN(target)) return;
+
+      var d = el.querySelector('[data-d]'), h = el.querySelector('[data-h]'),
+          m = el.querySelector('[data-m]'), s = el.querySelector('[data-s]');
+      var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+
+      function tick() {
+        var left = target - Date.now();
+        if (left <= 0) { el.hidden = true; clearInterval(timer); return; }
+        var sec = Math.floor(left / 1000);
+        d.textContent = pad(Math.floor(sec / 86400));
+        h.textContent = pad(Math.floor(sec % 86400 / 3600));
+        m.textContent = pad(Math.floor(sec % 3600 / 60));
+        s.textContent = pad(sec % 60);
+        el.hidden = false;
+      }
+      tick();
+      var timer = setInterval(tick, 1000);
+    })();
+  </script>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Semana · Tarja de urgência",
+  "settings": [
+    { "type": "checkbox", "id": "show", "label": "Mostrar tarja", "default": true },
+    { "type": "text", "id": "badge", "label": "Selo", "default": "🍊 Semana do Cliente" },
+    { "type": "textarea", "id": "benefits", "label": "Benefícios (separados por |)", "info": "Aparecem um de cada vez, em rodízio.", "default": "Até 20% OFF por quantidade | Compre 4, leve 5 — Super Vitamina C grátis | Frete grátis acima de R$ 199,90 | 10% extra na recompra com RECOMPRA10" },
+    { "type": "text", "id": "cd_label", "label": "Rótulo do contador", "default": "Termina em" },
+    { "type": "text", "id": "end_at", "label": "Fim da campanha", "info": "Formato AAAA-MM-DD HH:MM:SS, horário de Brasília. A tarja some sozinha depois disso.", "default": "2026-09-20 00:00:00" }
+  ],
+  "presets": [ { "name": "Semana · Tarja de urgência" } ]
+}
+{% endschema %}

@@ -18,8 +18,8 @@
         "heading_accent": "Cliente",
         "subheading": "Quanto mais itens no carrinho, maior o desconto. Com 4 suplementos, a 5ª Super Vitamina C sai de graça.",
         "show_steps": true,
-        "cta_text": "Montar meu combo",
-        "cta_link": "/collections/suplementos",
+        "cta_text": "Ver os mais vendidos",
+        "cta_link": "#mais-vendidos",
         "footnote": "Frete grátis · Brinde · Condição especial para clientes",
         "min_height": 560
       }
@@ -439,7 +439,11 @@
     "featured_collection_TCP844": {
       "type": "featured-collection",
       "custom_css": [
-        ".product__add-cart {background: #10c322; color: #fff;}"
+        ".product-item__wrapper { border: 2px solid #F97316; border-radius: 18px; padding: 12px; background: #fff; box-shadow: 0 14px 32px -18px rgba(194,65,12,.5); }",
+        ".product-item__inner { border-radius: 12px; overflow: hidden; }",
+        ".product__add-cart { background: linear-gradient(100deg,#E2560E 0%,#F97316 45%,#FBBF24 100%); color: #fff; border-color: transparent; font-weight: 800; }",
+        ".product__add-cart:hover { filter: brightness(1.06); }",
+        ".card-product-price .price, .price-regular .price { color: #E2560E; }"
       ],
       "name": "t:names.featured_collection",
       "settings": {
@@ -1189,19 +1193,30 @@
     "kits_conceitos": {
       "type": "kits-conceitos",
       "settings": {}
+    },
+    "semana_tarja": {
+      "type": "semana-tarja",
+      "settings": {
+        "show": true,
+        "badge": "🍊 Semana do Cliente",
+        "benefits": "Até 20% OFF por quantidade | Compre 4, leve 5 — Super Vitamina C grátis | Frete grátis acima de R$ 199,90 | 10% extra na recompra com RECOMPRA10",
+        "cd_label": "Termina em",
+        "end_at": "2026-09-20 00:00:00"
+      }
     }
   },
   "order": [
+    "semana_tarja",
     "semana_hero",
     "slideshow_8KKtNU",
-    "semana_escada",
+    "botanika_selos",
     "promotion_banner_QPT7Gc",
     "icon_box_8VQnjt",
-    "botanika_selos",
     "shopable_video_9LczTB",
     "frete_promo",
     "anchor_mais_vendidos",
     "featured_collection_TCP844",
+    "semana_escada",
     "botanika_medical_authority",
     "kits_conceitos",
     "ugc_galeria",
