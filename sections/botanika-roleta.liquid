@@ -1,23 +1,23 @@
 {%- comment -%}
   ============================================================
-  Roleta Botanika — pop-up de captura (e-mail + telefone VIP).
+  Roleta Botanika — pop-up de captura (e-mail + WhatsApp).
 
   FLUXO
-    1. Roleta + botão GIRAR. Gira de verdade e para num prêmio.
-    2. Prêmio revelado + campo de e-mail.
-    3. Telefone (+55) + consentimento  ->  grupo VIP.
+    1. E-mail obrigatório para liberar o giro.
+    2. Roleta gira e para na fatia premiada.
+    3. WhatsApp (+55) + consentimento para liberar o cupom.
     4. Cupom na tela com botão de copiar. Ninguém sai do site.
 
-  PRÊMIOS
-    Lista configurável (até 6) com rótulo, código e peso. As 8 fatias
-    são distribuídas entre os prêmios conforme o peso, e o sorteio usa
-    o mesmo peso — ou seja, a fatia em que o ponteiro para é a fatia
-    que a pessoa realmente ganhou. Não existe fatia perdedora e nenhum
-    prêmio é inalcançável.
-
-    Com um único prêmio cadastrado (o caso de hoje: BOTANIKA 5%), as 8
-    fatias mostram esse prêmio e a roleta funciona como "presente
-    garantido". Basta cadastrar o 2º prêmio para ela virar sorteio.
+  FATIAS x PRÊMIO — leia antes de mexer
+    As 8 fatias são só o visual. O que a pessoa ganha é decidido por
+    "Fatia que sempre ganha":
+      · 1 a 8  -> a roleta SEMPRE para nessa fatia. As outras aparecem
+                 na roda mas nunca saem. É o padrão do mercado (Omnisend,
+                 Wheelio) e foi o formato pedido.
+      · 0      -> sorteio real entre todas as fatias que tiverem cupom
+                 preenchido. Cada uma sai com a mesma chance.
+    Só as fatias que podem sair precisam de cupom. As cores da roda são
+    alternadas e não revelam quais fatias são premiadas.
 
   CAPTURA
     Mesmo pipeline do antigo pop-up de diagnóstico: POST no endpoint
@@ -35,21 +35,18 @@
   endif
 -%}
 {%- if show -%}
-  {%- assign prize_count = 0 -%}
-  {%- capture prizes_json -%}
-    {%- for i in (1..6) -%}
-      {%- assign lk = 'prize' | append: i | append: '_label' -%}
-      {%- assign ck = 'prize' | append: i | append: '_code' -%}
-      {%- assign wk = 'prize' | append: i | append: '_weight' -%}
-      {%- if st[lk] != blank and st[ck] != blank -%}
-        {%- if prize_count > 0 -%},{%- endif -%}
-        {"label":{{ st[lk] | json }},"code":{{ st[ck] | json }},"weight":{{ st[wk] | default: 1 }}}
-        {%- assign prize_count = prize_count | plus: 1 -%}
-      {%- endif -%}
+  {%- assign has_prize = false -%}
+  {%- capture slices_json -%}
+    {%- for i in (1..8) -%}
+      {%- assign lk = 'slice' | append: i | append: '_label' -%}
+      {%- assign ck = 'slice' | append: i | append: '_code' -%}
+      {%- if i > 1 -%},{%- endif -%}
+      {"label":{{ st[lk] | default: '' | json }},"code":{{ st[ck] | default: '' | json }}}
+      {%- if st[ck] != blank -%}{%- assign has_prize = true -%}{%- endif -%}
     {%- endfor -%}
   {%- endcapture -%}
 
-  {%- if prize_count > 0 or request.design_mode -%}
+  {%- if has_prize or request.design_mode -%}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap">
 
     <div
@@ -57,6 +54,7 @@
       data-brl
       data-delay="{{ st.delay_seconds }}"
       data-endpoint="{{ st.lead_endpoint | escape }}"
+      data-win="{{ st.win_slice }}"
       hidden
     >
       <div class="brl-ov" role="dialog" aria-modal="true" aria-label="{{ st.heading | escape }}">
@@ -70,20 +68,10 @@
           </div>
 
           <div class="brl__panel">
-            {%- comment -%} 1. girar {%- endcomment -%}
+            {%- comment -%} 1. e-mail libera o giro {%- endcomment -%}
             <div data-brl-step="1">
               <h2 class="brl__title">{{ st.heading }}</h2>
               <p class="brl__sub">{{ st.subheading }}</p>
-              <button type="button" class="brl__cta" data-brl-spin>{{ st.spin_label }}</button>
-              <button type="button" class="brl__skip" data-brl-close>{{ st.decline_label }}</button>
-            </div>
-
-            {%- comment -%} 2. premio + e-mail {%- endcomment -%}
-            <div data-brl-step="2" hidden>
-              <h2 class="brl__title brl__title--win">
-                &#127873; Você ganhou <b data-brl-prize></b>!
-              </h2>
-              <p class="brl__sub">{{ st.email_sub }}</p>
               <form data-brl-email-form novalidate>
                 <input
                   class="brl__input"
@@ -96,14 +84,16 @@
                   required
                 >
                 <p class="brl__err" data-brl-email-err hidden>Confere o e-mail, parece que faltou alguma coisa.</p>
-                <button type="submit" class="brl__cta" data-brl-email-submit>{{ st.email_button }}</button>
+                <button type="submit" class="brl__cta" data-brl-spin>{{ st.spin_label }}</button>
               </form>
               <p class="brl__fine">{{ st.email_consent }}</p>
             </div>
 
-            {%- comment -%} 3. telefone / VIP {%- endcomment -%}
-            <div data-brl-step="3" hidden>
-              <h2 class="brl__title">{{ st.vip_heading }}</h2>
+            {%- comment -%} 2. premio revelado + WhatsApp {%- endcomment -%}
+            <div data-brl-step="2" hidden>
+              <h2 class="brl__title brl__title--win">
+                &#127873; Você ganhou <b data-brl-prize></b>!
+              </h2>
               <p class="brl__sub">{{ st.vip_sub }}</p>
               <form data-brl-phone-form novalidate>
                 <div class="brl__phone">
@@ -114,7 +104,7 @@
                     inputmode="numeric"
                     autocomplete="tel-national"
                     placeholder="(11) 90000-0000"
-                    aria-label="Seu telefone"
+                    aria-label="Seu WhatsApp"
                     data-brl-phone
                   >
                 </div>
@@ -125,13 +115,12 @@
                 </label>
                 <button type="submit" class="brl__cta" data-brl-phone-submit>{{ st.vip_button }}</button>
               </form>
-              <button type="button" class="brl__skip" data-brl-phone-skip>{{ st.vip_skip }}</button>
             </div>
 
-            {%- comment -%} 4. cupom {%- endcomment -%}
-            <div data-brl-step="4" hidden>
+            {%- comment -%} 3. cupom {%- endcomment -%}
+            <div data-brl-step="3" hidden>
               <h2 class="brl__title">{{ st.done_heading }}</h2>
-              <p class="brl__sub" data-brl-done-sub>{{ st.done_sub }}</p>
+              <p class="brl__sub">{{ st.done_sub }}</p>
               <div class="brl__coupon">
                 <div class="brl__coupon-lbl">Seu cupom</div>
                 <div class="brl__coupon-row">
@@ -147,24 +136,25 @@
       </div>
     </div>
 
-    <script type="application/json" data-brl-prizes>[{{ prizes_json | strip }}]</script>
+    <script type="application/json" data-brl-slices>[{{ slices_json | strip }}]</script>
 
     <style>
-      #botanika-roleta{--blue:#323C91;--navy:#15265c;--ink:#1a2340;--muted:#6b7392;--line:#e6e8f2;--tint:#eef1fb;--ok:#1a8f3c;--ok-tint:#e9f6ee;}
+      #botanika-roleta{--blue:#323C91;--blue-2:#4b57bd;--navy:#15265c;--gold:#f4b325;--ink:#1a2340;--muted:#6b7392;--line:#e6e8f2;--tint:#eef1fb;--ok:#1a8f3c;}
+      #botanika-roleta *,#botanika-roleta *::before,#botanika-roleta *::after{box-sizing:border-box;}
       #botanika-roleta[hidden]{display:none!important}
       #botanika-roleta [hidden]{display:none!important}
       #botanika-roleta .brl-ov{position:fixed;top:0;right:0;bottom:0;left:0;inset:0;z-index:99999;background:rgba(15,20,45,.58);backdrop-filter:blur(3px);display:flex;align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto;opacity:0;transition:opacity .25s ease;font-family:'Inter',system-ui,-apple-system,sans-serif;}
       #botanika-roleta.is-open .brl-ov{opacity:1;}
       #botanika-roleta .brl{position:relative;margin:auto;width:100%;max-width:420px;background:#fff;color:var(--ink);border-radius:22px;padding:22px 20px 20px;box-shadow:0 24px 60px -20px rgba(21,38,92,.5);transform:translateY(16px) scale(.98);transition:transform .28s cubic-bezier(.22,.61,.36,1);-webkit-font-smoothing:antialiased;}
       #botanika-roleta.is-open .brl{transform:none;}
-      #botanika-roleta .brl__x{position:absolute;top:10px;right:10px;z-index:3;width:32px;height:32px;border:0;border-radius:50%;background:var(--tint);color:var(--muted);cursor:pointer;font-size:14px;line-height:1;display:grid;place-items:center;}
+      #botanika-roleta .brl__x{position:absolute;top:10px;right:10px;z-index:4;width:32px;height:32px;border:0;border-radius:50%;background:var(--tint);color:var(--muted);cursor:pointer;font-size:14px;line-height:1;display:grid;place-items:center;}
       #botanika-roleta .brl__x:hover{background:var(--line);color:var(--ink);}
 
-      #botanika-roleta .brl__wheelwrap{position:relative;width:236px;height:236px;margin:6px auto 18px;}
-      #botanika-roleta .brl__disc{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:50%;box-shadow:0 0 0 7px #fff,0 0 0 10px var(--blue),0 10px 26px -8px rgba(21,38,92,.55);transition:transform 4.6s cubic-bezier(.12,.72,.14,1);}
-      #botanika-roleta .brl__lbl{position:absolute;left:50%;top:50%;transform-origin:0 0;font-size:11px;font-weight:800;letter-spacing:.02em;color:#fff;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.25);pointer-events:none;}
-      #botanika-roleta .brl__hub{position:absolute;top:50%;left:50%;width:42px;height:42px;margin:-21px 0 0 -21px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(21,38,92,.35);}
-      #botanika-roleta .brl__pin{position:absolute;top:-12px;left:50%;margin-left:-11px;width:22px;height:30px;z-index:2;background:var(--navy);clip-path:polygon(50% 100%,0 0,100% 0);filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));}
+      #botanika-roleta .brl__wheelwrap{position:relative;width:250px;height:250px;margin:8px auto 20px;}
+      #botanika-roleta .brl__disc{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:50%;box-shadow:0 0 0 6px #fff,0 0 0 12px var(--navy),0 0 0 15px var(--gold),0 12px 28px -8px rgba(21,38,92,.55);transition:transform 5s cubic-bezier(.11,.7,.12,1);}
+      #botanika-roleta .brl__lbl{position:absolute;left:50%;top:50%;transform-origin:0 0;font-size:9.5px;font-weight:800;letter-spacing:.01em;line-height:1.12;color:#fff;text-align:center;text-shadow:0 1px 2px rgba(0,0,0,.35);pointer-events:none;overflow-wrap:break-word;}
+      #botanika-roleta .brl__hub{position:absolute;top:50%;left:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px var(--gold),0 2px 10px rgba(21,38,92,.4);}
+      #botanika-roleta .brl__pin{position:absolute;top:-14px;left:50%;margin-left:-12px;width:24px;height:32px;z-index:3;background:var(--gold);clip-path:polygon(50% 100%,0 0,100% 0);filter:drop-shadow(0 2px 4px rgba(0,0,0,.35));}
 
       #botanika-roleta .brl__title{font-family:'Fraunces',Georgia,serif;font-size:21px;font-weight:600;line-height:1.18;letter-spacing:-.01em;margin:0 0 6px;text-align:center;text-wrap:balance;}
       #botanika-roleta .brl__title--win b{color:var(--blue);}
@@ -174,7 +164,6 @@
       #botanika-roleta .brl__cta:disabled{opacity:.6;cursor:not-allowed;}
       #botanika-roleta .brl__cta--ghost{background:#fff;color:var(--blue);border:1.5px solid var(--line);}
       #botanika-roleta .brl__cta--ghost:hover{background:var(--tint);color:var(--navy);}
-      #botanika-roleta .brl__skip{display:block;width:100%;text-align:center;background:none;border:0;color:var(--muted);font:inherit;font-size:11.5px;margin-top:11px;cursor:pointer;text-decoration:underline;}
       #botanika-roleta .brl__input{width:100%;border:1.5px solid var(--line);border-radius:11px;padding:13px 14px;font:inherit;font-size:16px;color:var(--ink);background:#fff;outline:none;transition:border-color .15s,box-shadow .15s;}
       #botanika-roleta .brl__input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(50,60,145,.12);}
       #botanika-roleta .brl__phone{display:flex;gap:8px;}
@@ -195,8 +184,9 @@
       #botanika-roleta .brl__hint{font-size:11.5px;color:var(--ok);font-weight:700;text-align:center;margin:9px 0 0;min-height:16px;}
       #botanika-roleta .brl__panel .brl__cta--ghost{margin-top:14px;}
       @media (max-width:380px){
-        #botanika-roleta .brl__wheelwrap{width:200px;height:200px;}
+        #botanika-roleta .brl__wheelwrap{width:206px;height:206px;}
         #botanika-roleta .brl__title{font-size:19px;}
+        #botanika-roleta .brl__lbl{font-size:8.5px;}
       }
       @media (prefers-reduced-motion:reduce){
         #botanika-roleta .brl-ov,#botanika-roleta .brl,#botanika-roleta .brl__disc{transition:none!important;}
@@ -209,79 +199,62 @@
         if (!root || root.dataset.brlInit === '1') return;
         root.dataset.brlInit = '1';
 
-        var dataEl = document.querySelector('[data-brl-prizes]');
-        var prizes = [];
-        try { prizes = JSON.parse(dataEl.textContent); } catch (e) { prizes = []; }
-        prizes = prizes.filter(function (p) { return p && p.code; });
-        if (!prizes.length) return;
+        var dataEl = document.querySelector('[data-brl-slices]');
+        var slices = [];
+        try { slices = JSON.parse(dataEl.textContent); } catch (e) { slices = []; }
+        if (slices.length !== 8) return;
+        if (!slices.some(function (s) { return s.code; })) return;
 
-        var SLICES = 8;
+        var N = slices.length;
         var KEY = 'botanika_roleta_seen';
         var ENDPOINT = root.dataset.endpoint || '';
         var DELAY = (parseInt(root.dataset.delay, 10) || 6) * 1000;
-        var COLORS = ['#323C91', '#15265c'];
+        var WIN = parseInt(root.dataset.win, 10) || 0;
+        var WHEEL_COLORS = ['#323C91', '#4b57bd'];
 
         var q = function (s) { return root.querySelector(s); };
         var disc = q('[data-brl-disc]');
         var steps = {};
-        [1, 2, 3, 4].forEach(function (n) { steps[n] = q('[data-brl-step="' + n + '"]'); });
+        [1, 2, 3].forEach(function (n) { steps[n] = q('[data-brl-step="' + n + '"]'); });
 
         var lead = { email: '', phone: '', code: '', label: '' };
         var opened = false, spinning = false, spun = false, rotation = 0;
 
         function show(n) {
-          [1, 2, 3, 4].forEach(function (k) { if (steps[k]) steps[k].hidden = (k !== n); });
+          [1, 2, 3].forEach(function (k) { if (steps[k]) steps[k].hidden = (k !== n); });
         }
 
-        // ---- monta as fatias: cada prêmio ocupa fatias proporcionais ao peso
-        var totalWeight = 0;
-        prizes.forEach(function (p) { totalWeight += Math.max(1, p.weight || 1); });
-
-        var sliceOf = [];
-        if (prizes.length === 1) {
-          for (var s = 0; s < SLICES; s++) sliceOf.push(0);
-        } else {
-          var acc = 0;
-          for (var i = 0; i < prizes.length; i++) {
-            var w = Math.max(1, prizes[i].weight || 1);
-            var n = Math.max(1, Math.round((w / totalWeight) * SLICES));
-            for (var j = 0; j < n && sliceOf.length < SLICES; j++) sliceOf.push(i);
-            acc += n;
-          }
-          while (sliceOf.length < SLICES) sliceOf.push(0);
-          sliceOf = sliceOf.slice(0, SLICES);
-        }
-
-        var step = 360 / SLICES;
+        // ---- desenha a roda: cores alternadas, como numa roleta de verdade
+        var step = 360 / N;
         var stops = [];
-        for (var k = 0; k < SLICES; k++) {
-          stops.push(COLORS[k % COLORS.length] + ' ' + (k * step) + 'deg ' + ((k + 1) * step) + 'deg');
+        for (var k = 0; k < N; k++) {
+          stops.push(WHEEL_COLORS[k % WHEEL_COLORS.length] + ' ' + (k * step) + 'deg ' + ((k + 1) * step) + 'deg');
         }
         disc.style.background = 'conic-gradient(' + stops.join(',') + ')';
 
-        // raio do rótulo acompanha o tamanho da roda (o CSS encolhe pra 200px < 380px)
+        // o rótulo é um bloco que ocupa a faixa entre o miolo e a borda,
+        // centrado na fatia — assim texto longo quebra em vez de vazar da roda
         var small = window.matchMedia && window.matchMedia('(max-width: 380px)').matches;
-        var radius = Math.round((small ? 200 : 236) * 0.26);
-        for (var m = 0; m < SLICES; m++) {
+        var wheel = small ? 206 : 250;
+        var inner = small ? 26 : 30;
+        var labelW = Math.round(wheel / 2 - inner - 8);
+        for (var m = 0; m < N; m++) {
           var span = document.createElement('span');
           span.className = 'brl__lbl';
-          span.textContent = prizes[sliceOf[m]].label || '';
+          span.textContent = slices[m].label || '';
+          span.style.width = labelW + 'px';
           var center = m * step + step / 2;
-          span.style.transform = 'rotate(' + (center - 90) + 'deg) translate(' + radius + 'px, -0.5em)';
+          span.style.transform = 'rotate(' + (center - 90) + 'deg) translate(' + inner + 'px, -50%)';
           disc.appendChild(span);
         }
 
-        // ---- sorteio real: peso do prêmio, depois uma das fatias dele
+        // ---- qual fatia ganha
         function draw() {
-          var roll = Math.random() * totalWeight, run = 0, idx = 0;
-          for (var i = 0; i < prizes.length; i++) {
-            run += Math.max(1, prizes[i].weight || 1);
-            if (roll < run) { idx = i; break; }
-          }
-          var mine = [];
-          for (var s = 0; s < SLICES; s++) if (sliceOf[s] === idx) mine.push(s);
-          if (!mine.length) mine = [0];
-          return { prize: prizes[idx], slice: mine[Math.floor(Math.random() * mine.length)] };
+          if (WIN >= 1 && WIN <= N && slices[WIN - 1].code) return WIN - 1;
+          var pool = [];
+          for (var i = 0; i < N; i++) if (slices[i].code) pool.push(i);
+          if (!pool.length) return 0;
+          return pool[Math.floor(Math.random() * pool.length)];
         }
 
         function reduceMotion() {
@@ -291,18 +264,15 @@
         function spin() {
           if (spinning || spun) return;
           spinning = true;
-          var btn = q('[data-brl-spin]');
-          if (btn) btn.disabled = true;
 
-          var result = draw();
-          lead.code = result.prize.code;
-          lead.label = result.prize.label || result.prize.code;
+          var idx = draw();
+          lead.code = slices[idx].code;
+          lead.label = slices[idx].label || slices[idx].code;
 
-          // centro da fatia precisa parar sob o ponteiro (topo)
-          var center = result.slice * step + step / 2;
-          var jitter = (Math.random() - 0.5) * (step * 0.5);
-          var target = 360 * 6 - center + jitter;
-          rotation += target;
+          // o centro da fatia precisa parar sob o ponteiro (topo)
+          var center = idx * step + step / 2;
+          var jitter = (Math.random() - 0.5) * (step * 0.45);
+          rotation += 360 * 6 - center + jitter;
 
           function finish() {
             spinning = false;
@@ -310,8 +280,8 @@
             var el = q('[data-brl-prize]');
             if (el) el.textContent = lead.label;
             show(2);
-            var input = q('[data-brl-email]');
-            if (input) { try { input.focus({ preventScroll: true }); } catch (e) { input.focus(); } }
+            var p = q('[data-brl-phone]');
+            if (p) { try { p.focus({ preventScroll: true }); } catch (e) { p.focus(); } }
           }
 
           if (reduceMotion()) {
@@ -325,11 +295,12 @@
           var done = false;
           var once = function () { if (done) return; done = true; finish(); };
           disc.addEventListener('transitionend', once, { once: true });
-          setTimeout(once, 5200);
+          setTimeout(once, 5600);
         }
 
         // ---- captura
         function send(extra) {
+          if (!ENDPOINT) return;
           var payload = {
             email: lead.email,
             telefone: lead.phone,
@@ -338,13 +309,14 @@
             origem: 'roleta'
           };
           for (var k in extra) { if (Object.prototype.hasOwnProperty.call(extra, k)) payload[k] = extra[k]; }
-          if (!ENDPOINT) return Promise.resolve();
-          return fetch(ENDPOINT, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-            keepalive: true
-          }).catch(function () {});
+          try {
+            fetch(ENDPOINT, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+              keepalive: true
+            }).catch(function () {});
+          } catch (e) {}
         }
 
         function sendToShopify(email) {
@@ -358,9 +330,10 @@
           } catch (e) {}
         }
 
-        // ---- e-mail
+        // ---- e-mail libera o giro
         q('[data-brl-email-form]').addEventListener('submit', function (e) {
           e.preventDefault();
+          if (spinning || spun) return;
           var input = q('[data-brl-email]');
           var err = q('[data-brl-email-err]');
           var email = (input.value || '').trim();
@@ -371,17 +344,15 @@
           }
           err.hidden = true;
           lead.email = email;
-          var btn = q('[data-brl-email-submit]');
-          btn.disabled = true;
+          var btn = q('[data-brl-spin]');
+          if (btn) { btn.disabled = true; btn.textContent = 'Girando…'; }
+          input.disabled = true;
           sendToShopify(email);
+          spin();
           send({ etapa: 'email' });
-          btn.disabled = false;
-          show(3);
-          var p = q('[data-brl-phone]');
-          if (p) { try { p.focus({ preventScroll: true }); } catch (e2) { p.focus(); } }
         });
 
-        // ---- telefone
+        // ---- WhatsApp libera o cupom
         var phoneInput = q('[data-brl-phone]');
         phoneInput.addEventListener('input', function () {
           var d = (phoneInput.value || '').replace(/\D/g, '').slice(0, 11);
@@ -393,13 +364,6 @@
           }
           phoneInput.value = out;
         });
-
-        function toCoupon(sub) {
-          var codeEl = q('[data-brl-code]');
-          if (codeEl) codeEl.textContent = lead.code;
-          if (sub) { var s = q('[data-brl-done-sub]'); if (s) s.textContent = sub; }
-          show(4);
-        }
 
         q('[data-brl-phone-form]').addEventListener('submit', function (e) {
           e.preventDefault();
@@ -413,22 +377,16 @@
             return;
           }
           if (!consent.checked) {
-            err.textContent = 'Marque a caixinha pra entrar no grupo VIP.';
+            err.textContent = 'Marque a caixinha pra liberar o cupom.';
             err.hidden = false;
             return;
           }
           err.hidden = true;
           lead.phone = '+55' + digits;
-          var btn = q('[data-brl-phone-submit]');
-          btn.disabled = true;
-          send({ etapa: 'vip', vip: true });
-          btn.disabled = false;
-          toCoupon(null);
-        });
-
-        q('[data-brl-phone-skip]').addEventListener('click', function () {
-          send({ etapa: 'sem_vip', vip: false });
-          toCoupon(null);
+          send({ etapa: 'whatsapp', vip: true });
+          var codeEl = q('[data-brl-code]');
+          if (codeEl) codeEl.textContent = lead.code;
+          show(3);
         });
 
         // ---- copiar cupom
@@ -462,8 +420,6 @@
           setTimeout(function () { root.hidden = true; }, 260);
         }
 
-        var spinBtn = q('[data-brl-spin]');
-        if (spinBtn) spinBtn.addEventListener('click', spin);
         root.querySelectorAll('[data-brl-close]').forEach(function (b) { b.addEventListener('click', close); });
         root.querySelector('.brl-ov').addEventListener('click', function (e) { if (e.target === this) close(); });
         document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !root.hidden) close(); });
@@ -489,50 +445,42 @@
     { "type": "range", "id": "delay_seconds", "label": "Atraso pra abrir", "min": 0, "max": 30, "step": 1, "unit": "s", "default": 6 },
     { "type": "text", "id": "lead_endpoint", "label": "Endpoint de captura (Cloudflare)", "default": "https://botanika-desing.pages.dev/api/lead" },
 
-    { "type": "header", "content": "Passo 1 — girar" },
-    { "type": "text", "id": "heading", "label": "Título", "default": "Gire e garanta seu presente" },
-    { "type": "text", "id": "subheading", "label": "Subtítulo", "default": "Presente garantido pra quem é novo por aqui." },
-    { "type": "text", "id": "spin_label", "label": "Botão girar", "default": "GIRAR A ROLETA" },
-    { "type": "text", "id": "decline_label", "label": "Recusar", "default": "Agora não, obrigado" },
-
-    { "type": "header", "content": "Passo 2 — e-mail" },
-    { "type": "text", "id": "email_sub", "label": "Subtítulo", "default": "Coloque seu e-mail para liberar o cupom." },
+    { "type": "header", "content": "Passo 1 — e-mail libera o giro" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Gire e ganhe um presente" },
+    { "type": "text", "id": "subheading", "label": "Subtítulo", "default": "Coloque seu e-mail e gire a roleta." },
     { "type": "text", "id": "email_placeholder", "label": "Placeholder", "default": "seu@email.com" },
-    { "type": "text", "id": "email_button", "label": "Botão", "default": "LIBERAR MEU CUPOM" },
+    { "type": "text", "id": "spin_label", "label": "Botão", "default": "GIRAR A ROLETA" },
     { "type": "text", "id": "email_consent", "label": "Aviso de consentimento", "default": "Ao continuar, você aceita receber e-mails da Botanika. Pode sair quando quiser. 🔒" },
 
-    { "type": "header", "content": "Passo 3 — telefone / VIP" },
-    { "type": "text", "id": "vip_heading", "label": "Título", "default": "Falta um passo pro seu cupom" },
-    { "type": "text", "id": "vip_sub", "label": "Subtítulo", "default": "Entre no grupo VIP e receba brindes e descontos antes de todo mundo." },
+    { "type": "header", "content": "Passo 2 — WhatsApp libera o cupom" },
+    { "type": "text", "id": "vip_sub", "label": "Subtítulo", "default": "Coloque seu WhatsApp para liberar o cupom e entrar no grupo VIP." },
     { "type": "text", "id": "vip_consent", "label": "Texto do aceite", "default": "Aceito receber mensagens da Botanika no WhatsApp" },
-    { "type": "text", "id": "vip_button", "label": "Botão", "default": "QUERO SER VIP" },
-    { "type": "text", "id": "vip_skip", "label": "Pular", "default": "Vou perder os mimos" },
+    { "type": "text", "id": "vip_button", "label": "Botão", "default": "LIBERAR MEU CUPOM" },
 
-    { "type": "header", "content": "Passo 4 — cupom" },
+    { "type": "header", "content": "Passo 3 — cupom" },
     { "type": "text", "id": "done_heading", "label": "Título", "default": "Prontinho! 🎉" },
     { "type": "text", "id": "done_sub", "label": "Subtítulo", "default": "Copie seu cupom e use no carrinho." },
     { "type": "text", "id": "done_button", "label": "Botão", "default": "Voltar às compras" },
 
-    { "type": "header", "content": "Prêmios" },
-    { "type": "paragraph", "content": "Cada prêmio ocupa fatias proporcionais ao peso, e o sorteio usa o mesmo peso — a fatia onde o ponteiro para é a que a pessoa ganhou. Com um único prêmio cadastrado, as 8 fatias mostram esse prêmio e a roleta vira presente garantido. Os códigos precisam existir em Descontos no admin." },
-    { "type": "text", "id": "prize1_label", "label": "Prêmio 1 — rótulo", "default": "5% OFF" },
-    { "type": "text", "id": "prize1_code", "label": "Prêmio 1 — cupom", "default": "BOTANIKA" },
-    { "type": "range", "id": "prize1_weight", "label": "Prêmio 1 — peso", "min": 1, "max": 20, "step": 1, "default": 1 },
-    { "type": "text", "id": "prize2_label", "label": "Prêmio 2 — rótulo" },
-    { "type": "text", "id": "prize2_code", "label": "Prêmio 2 — cupom" },
-    { "type": "range", "id": "prize2_weight", "label": "Prêmio 2 — peso", "min": 1, "max": 20, "step": 1, "default": 1 },
-    { "type": "text", "id": "prize3_label", "label": "Prêmio 3 — rótulo" },
-    { "type": "text", "id": "prize3_code", "label": "Prêmio 3 — cupom" },
-    { "type": "range", "id": "prize3_weight", "label": "Prêmio 3 — peso", "min": 1, "max": 20, "step": 1, "default": 1 },
-    { "type": "text", "id": "prize4_label", "label": "Prêmio 4 — rótulo" },
-    { "type": "text", "id": "prize4_code", "label": "Prêmio 4 — cupom" },
-    { "type": "range", "id": "prize4_weight", "label": "Prêmio 4 — peso", "min": 1, "max": 20, "step": 1, "default": 1 },
-    { "type": "text", "id": "prize5_label", "label": "Prêmio 5 — rótulo" },
-    { "type": "text", "id": "prize5_code", "label": "Prêmio 5 — cupom" },
-    { "type": "range", "id": "prize5_weight", "label": "Prêmio 5 — peso", "min": 1, "max": 20, "step": 1, "default": 1 },
-    { "type": "text", "id": "prize6_label", "label": "Prêmio 6 — rótulo" },
-    { "type": "text", "id": "prize6_code", "label": "Prêmio 6 — cupom" },
-    { "type": "range", "id": "prize6_weight", "label": "Prêmio 6 — peso", "min": 1, "max": 20, "step": 1, "default": 1 }
+    { "type": "header", "content": "Fatias da roleta" },
+    { "type": "paragraph", "content": "As 8 fatias são o visual da roda. Só a fatia que sai precisa de cupom — fatias sem cupom ficam com cor apagada e nunca são sorteadas. Use o campo abaixo para escolher se a roleta sempre para numa fatia fixa ou se sorteia de verdade." },
+    { "type": "range", "id": "win_slice", "label": "Fatia que sempre ganha (0 = sorteio real)", "min": 0, "max": 8, "step": 1, "default": 1 },
+    { "type": "text", "id": "slice1_label", "label": "Fatia 1", "default": "5% OFF" },
+    { "type": "text", "id": "slice1_code", "label": "Fatia 1 — cupom", "default": "BOTANIKA" },
+    { "type": "text", "id": "slice2_label", "label": "Fatia 2", "default": "FRETE GRÁTIS" },
+    { "type": "text", "id": "slice2_code", "label": "Fatia 2 — cupom" },
+    { "type": "text", "id": "slice3_label", "label": "Fatia 3", "default": "NÃO FOI DESSA VEZ" },
+    { "type": "text", "id": "slice3_code", "label": "Fatia 3 — cupom" },
+    { "type": "text", "id": "slice4_label", "label": "Fatia 4", "default": "10% OFF" },
+    { "type": "text", "id": "slice4_code", "label": "Fatia 4 — cupom" },
+    { "type": "text", "id": "slice5_label", "label": "Fatia 5", "default": "BRINDE SURPRESA" },
+    { "type": "text", "id": "slice5_code", "label": "Fatia 5 — cupom" },
+    { "type": "text", "id": "slice6_label", "label": "Fatia 6", "default": "NÃO FOI DESSA VEZ" },
+    { "type": "text", "id": "slice6_code", "label": "Fatia 6 — cupom" },
+    { "type": "text", "id": "slice7_label", "label": "Fatia 7", "default": "FRETE GRÁTIS" },
+    { "type": "text", "id": "slice7_code", "label": "Fatia 7 — cupom" },
+    { "type": "text", "id": "slice8_label", "label": "Fatia 8", "default": "BRINDE SURPRESA" },
+    { "type": "text", "id": "slice8_code", "label": "Fatia 8 — cupom" }
   ],
   "presets": [ { "name": "Roleta Botanika" } ]
 }
