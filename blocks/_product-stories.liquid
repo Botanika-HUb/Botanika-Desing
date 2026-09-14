@@ -1,0 +1,361 @@
+{%- comment -%}
+  ============================================================
+  Stories (destaques) — carrossel estilo Instagram Stories,
+  dentro das informações do produto (abaixo dos depoimentos,
+  acima do bloco de frete/confiança).
+
+  Cada destaque = 1 vídeo vertical + legenda curta. Ao tocar,
+  abre um visualizador em tela cheia com barra de progresso
+  por destaque, navegação por toque (esquerda = anterior,
+  direita = próximo), avanço automático ao fim do vídeo,
+  botão de som e fechar por swipe pra baixo ou pelo X.
+
+  CAPAS: não dependemos da miniatura gerada pelo Shopify
+  (video.preview_image), que vem genérica/errada — o próprio
+  vídeo carrega só os metadados (frame real) pouco antes de
+  entrar na tela. Mesma técnica da Galeria Botanika (UGC).
+  Quem quiser uma capa curada à mão usa "Capa (opcional)".
+
+  TELA CHEIA: o visualizador é movido para o <body> ao carregar.
+  Sem isso, o position:fixed ficaria preso ao <motion-element>
+  da coluna de informações (ancestral com transform) e o
+  "tela cheia" quebraria no desktop.
+
+  Compartilhado entre todos os produtos que usam este template
+  (mesmo padrão da Galeria Botanika e Autoridade Médica).
+  ============================================================
+{%- endcomment -%}
+{%- liquid
+  assign bs = block.settings
+  assign has_story = false
+  for i in (1..8)
+    assign vk = 'story' | append: i | append: '_video'
+    if bs[vk] != blank
+      assign has_story = true
+    endif
+  endfor
+-%}
+{%- if has_story or request.design_mode -%}
+  <div class="pstory" data-pstory-block="{{ block.id }}" {{ block.shopify_attributes }}>
+    <div class="pstory__row">
+      {%- assign story_index = 0 -%}
+      {%- for i in (1..8) -%}
+        {%- assign vk = 'story' | append: i | append: '_video' -%}
+        {%- assign ck = 'story' | append: i | append: '_cover' -%}
+        {%- assign lk = 'story' | append: i | append: '_label' -%}
+        {%- assign video = bs[vk] -%}
+        {%- if video != blank -%}
+          {%- assign cover_url = bs[ck] | image_url: width: 300 -%}
+          <button type="button" class="pstory__item" data-pstory-open data-index="{{ story_index }}">
+            <span class="pstory__ring">
+              <span class="pstory__avatar">
+                {%- if cover_url != blank -%}
+                  <img src="{{ cover_url }}" alt="" loading="lazy">
+                {%- else -%}
+                  <video
+                    class="pstory__thumb"
+                    data-pstory-thumb
+                    muted
+                    playsinline
+                    webkit-playsinline
+                    preload="none"
+                    tabindex="-1"
+                    aria-hidden="true"
+                  >
+                    {%- for source in video.sources -%}
+                      {%- if source.format == 'mp4' -%}
+                        <source src="{{ source.url }}" type="{{ source.mime_type }}">
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </video>
+                {%- endif -%}
+              </span>
+            </span>
+            {%- if bs[lk] != blank -%}<span class="pstory__label">{{ bs[lk] }}</span>{%- endif -%}
+          </button>
+          {%- assign story_index = story_index | plus: 1 -%}
+        {%- elsif request.design_mode -%}
+          <span class="pstory__item pstory__item--empty">
+            <span class="pstory__ring"><span class="pstory__avatar"><span class="pstory__ph"></span></span></span>
+            <span class="pstory__label">Destaque {{ i }}</span>
+          </span>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="pstory__viewer" data-pstory-viewer id="pstory-viewer-{{ block.id }}" hidden>
+      <div class="pstory__stage">
+        <div class="pstory__bars" data-pstory-bars></div>
+        <button type="button" class="pstory__close" data-pstory-close aria-label="Fechar">✕</button>
+        <button type="button" class="pstory__mute" data-pstory-mute aria-label="Ativar ou desativar o som">🔊</button>
+        <video class="pstory__video" data-pstory-video playsinline webkit-playsinline></video>
+        <div class="pstory__tap pstory__tap--prev" data-pstory-prev></div>
+        <div class="pstory__tap pstory__tap--next" data-pstory-next></div>
+      </div>
+    </div>
+
+    {%- assign story_count = 0 -%}
+    {%- capture stories_json -%}
+      {%- for i in (1..8) -%}
+        {%- assign vk = 'story' | append: i | append: '_video' -%}
+        {%- assign ck = 'story' | append: i | append: '_cover' -%}
+        {%- assign lk = 'story' | append: i | append: '_label' -%}
+        {%- assign video = bs[vk] -%}
+        {%- if video != blank -%}
+          {%- assign poster_url = bs[ck] | image_url: width: 800 -%}
+          {%- assign source_count = 0 -%}
+          {%- capture sources_json -%}
+            {%- for source in video.sources -%}
+              {%- if source.format == 'mp4' -%}
+                {%- if source_count > 0 -%},{%- endif -%}
+                {"url":{{ source.url | json }},"type":{{ source.mime_type | json }}}
+                {%- assign source_count = source_count | plus: 1 -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endcapture -%}
+          {%- if story_count > 0 -%},{%- endif -%}
+          {"label":{{ bs[lk] | default: '' | json }},"poster":{{ poster_url | default: '' | json }},"sources":[{{ sources_json | strip }}]}
+          {%- assign story_count = story_count | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+    <script type="application/json" data-pstory-data>[{{ stories_json | strip }}]</script>
+
+    <script>
+      (function () {
+        var root = document.querySelector('[data-pstory-block="{{ block.id }}"]');
+        if (!root) return;
+
+        var dataEl = root.querySelector('[data-pstory-data]');
+        var stories = [];
+        try { stories = JSON.parse(dataEl.textContent); } catch (e) { stories = []; }
+        if (!stories.length) return;
+
+        var viewer = root.querySelector('[data-pstory-viewer]');
+        if (!viewer) return;
+
+        // Move o visualizador para o <body>: position:fixed precisa da viewport,
+        // e a coluna de informações do produto tem transform (motion-element).
+        var orphan = document.getElementById(viewer.id);
+        if (orphan && orphan !== viewer && orphan.parentNode === document.body) {
+          document.body.removeChild(orphan);
+        }
+        document.body.appendChild(viewer);
+
+        var video = viewer.querySelector('[data-pstory-video]');
+        var barsWrap = viewer.querySelector('[data-pstory-bars]');
+        var muteBtn = viewer.querySelector('[data-pstory-mute]');
+        var closeBtn = viewer.querySelector('[data-pstory-close]');
+        var prevZone = viewer.querySelector('[data-pstory-prev]');
+        var nextZone = viewer.querySelector('[data-pstory-next]');
+        if (!video || !barsWrap || !muteBtn || !closeBtn) return;
+
+        var items = root.querySelectorAll('[data-pstory-open]');
+        var current = 0;
+        var muted = false;
+
+        for (var b = 0; b < stories.length; b++) {
+          var bar = document.createElement('span');
+          bar.className = 'pstory__bar';
+          var fill = document.createElement('span');
+          fill.className = 'pstory__bar-fill';
+          bar.appendChild(fill);
+          barsWrap.appendChild(bar);
+        }
+        var bars = barsWrap.querySelectorAll('.pstory__bar-fill');
+
+        function updateMuteIcon() {
+          muteBtn.textContent = muted ? '🔇' : '🔊';
+        }
+
+        function setBars(index) {
+          for (var i = 0; i < bars.length; i++) {
+            bars[i].style.width = i < index ? '100%' : '0%';
+          }
+        }
+
+        function loadStory(index) {
+          if (index < 0) index = 0;
+          if (index >= stories.length) { closeViewer(); return; }
+          var s = stories[index];
+          // Destaque sem fonte MP4 utilizável: pula para o próximo.
+          if (!s || !s.sources || !s.sources.length) {
+            if (index >= current) { loadStory(index + 1); } else { loadStory(index - 1); }
+            return;
+          }
+          current = index;
+          video.pause();
+          video.removeAttribute('poster');
+          video.innerHTML = '';
+          for (var i = 0; i < s.sources.length; i++) {
+            var sourceEl = document.createElement('source');
+            sourceEl.src = s.sources[i].url;
+            sourceEl.type = s.sources[i].type;
+            video.appendChild(sourceEl);
+          }
+          if (s.poster) video.setAttribute('poster', s.poster);
+          video.muted = muted;
+          video.load();
+          var p = video.play();
+          if (p && p.catch) {
+            p.catch(function () {
+              video.muted = true;
+              muted = true;
+              updateMuteIcon();
+              var retry = video.play();
+              if (retry && retry.catch) retry.catch(function () {});
+            });
+          }
+          setBars(current);
+        }
+
+        video.addEventListener('timeupdate', function () {
+          if (!video.duration || !bars[current]) return;
+          bars[current].style.width = ((video.currentTime / video.duration) * 100) + '%';
+        });
+
+        video.addEventListener('ended', function () {
+          loadStory(current + 1);
+        });
+
+        function openViewer(index) {
+          viewer.hidden = false;
+          document.documentElement.style.overflow = 'hidden';
+          document.body.style.overflow = 'hidden';
+          loadStory(index);
+        }
+
+        function closeViewer() {
+          viewer.hidden = true;
+          document.documentElement.style.overflow = '';
+          document.body.style.overflow = '';
+          video.pause();
+        }
+
+        for (var n = 0; n < items.length; n++) {
+          (function (btn) {
+            btn.addEventListener('click', function () {
+              openViewer(parseInt(btn.getAttribute('data-index'), 10) || 0);
+            });
+          })(items[n]);
+        }
+
+        closeBtn.addEventListener('click', closeViewer);
+        if (prevZone) prevZone.addEventListener('click', function () { loadStory(current - 1); });
+        if (nextZone) nextZone.addEventListener('click', function () { loadStory(current + 1); });
+        muteBtn.addEventListener('click', function () {
+          muted = !muted;
+          video.muted = muted;
+          updateMuteIcon();
+        });
+
+        document.addEventListener('keydown', function (e) {
+          if (viewer.hidden) return;
+          if (e.key === 'Escape') closeViewer();
+          if (e.key === 'ArrowRight') loadStory(current + 1);
+          if (e.key === 'ArrowLeft') loadStory(current - 1);
+        });
+
+        var touchStartY = null;
+        viewer.addEventListener('touchstart', function (e) { touchStartY = e.touches[0].clientY; }, { passive: true });
+        viewer.addEventListener('touchend', function (e) {
+          if (touchStartY === null) return;
+          var dy = e.changedTouches[0].clientY - touchStartY;
+          if (dy > 80) closeViewer();
+          touchStartY = null;
+        }, { passive: true });
+
+        // Capas: carrega só os metadados (primeiro frame real) perto da viewport.
+        var thumbs = root.querySelectorAll('video[data-pstory-thumb]');
+        if (thumbs.length && 'IntersectionObserver' in window) {
+          var thumbIO = new IntersectionObserver(function (entries) {
+            for (var i = 0; i < entries.length; i++) {
+              if (!entries[i].isIntersecting) continue;
+              var v = entries[i].target;
+              if (v.preload !== 'metadata') {
+                v.preload = 'metadata';
+                v.load();
+              }
+              thumbIO.unobserve(v);
+            }
+          }, { rootMargin: '600px 0px 600px 0px', threshold: 0 });
+          for (var t = 0; t < thumbs.length; t++) thumbIO.observe(thumbs[t]);
+        } else {
+          for (var t2 = 0; t2 < thumbs.length; t2++) {
+            thumbs[t2].preload = 'metadata';
+            thumbs[t2].load();
+          }
+        }
+      })();
+    </script>
+  </div>
+
+  {%- style -%}
+    .pstory { margin: 4px 0 20px; }
+    .pstory__row { display: flex; gap: 14px; overflow-x: auto; padding: 4px 2px 6px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .pstory__row::-webkit-scrollbar { display: none; }
+    .pstory__item { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 6px; width: 74px; background: none; border: none; cursor: pointer; padding: 0; }
+    .pstory__item--empty { cursor: default; opacity: .55; }
+    .pstory__ring { display: block; width: 68px; height: 68px; border-radius: 50%; padding: 3px; background: linear-gradient(45deg, #f9ce34, #ee2a7b 45%, #6228d7); }
+    .pstory__avatar { display: block; width: 100%; height: 100%; border-radius: 50%; overflow: hidden; background: #eef0f5; border: 2px solid #fff; }
+    .pstory__avatar img, .pstory__thumb { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pstory__thumb { background: #000; pointer-events: none; }
+    .pstory__ph { display: block; width: 100%; height: 100%; background: linear-gradient(135deg, #e8ebf3, #dfe3ee); }
+    .pstory__label { font-size: 11.5px; font-weight: 600; color: #1a2340; text-align: center; line-height: 1.2; max-width: 74px; }
+
+    .pstory__viewer { position: fixed; inset: 0; top: 0; right: 0; bottom: 0; left: 0; z-index: 9999; background: rgba(0,0,0,.85); display: flex; align-items: center; justify-content: center; }
+    .pstory__viewer[hidden] { display: none; }
+    .pstory__stage { position: relative; width: 100%; max-width: 420px; height: 100vh; height: 100dvh; margin: 0 auto; background: #000; overflow: hidden; }
+    .pstory__video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pstory__tap { position: absolute; top: 0; bottom: 0; width: 35%; cursor: pointer; }
+    .pstory__tap--prev { left: 0; }
+    .pstory__tap--next { right: 0; }
+    .pstory__bars { position: absolute; top: 10px; left: 10px; right: 10px; display: flex; gap: 4px; z-index: 2; }
+    .pstory__bar { flex: 1; height: 3px; border-radius: 999px; background: rgba(255,255,255,.35); overflow: hidden; }
+    .pstory__bar-fill { display: block; height: 100%; width: 0%; background: #fff; }
+    .pstory__close { position: absolute; top: 18px; right: 12px; z-index: 3; width: 34px; height: 34px; border-radius: 50%; border: none; background: rgba(0,0,0,.4); color: #fff; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .pstory__mute { position: absolute; top: 18px; right: 56px; z-index: 3; width: 34px; height: 34px; border-radius: 50%; border: none; background: rgba(0,0,0,.4); color: #fff; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  {%- endstyle -%}
+{%- endif -%}
+{% schema %}
+{
+  "name": "Stories (destaques)",
+  "tag": null,
+  "settings": [
+    { "type": "paragraph", "content": "Carrossel de destaques estilo Stories (Instagram). Cada destaque = 1 vídeo vertical + legenda curta. Ao tocar, abre em tela cheia com barra de progresso e navegação por toque. A capa é opcional: sem ela, o próprio vídeo mostra seu primeiro frame." },
+    { "type": "header", "content": "Destaque 1" },
+    { "type": "video", "id": "story1_video", "label": "Vídeo 1" },
+    { "type": "image_picker", "id": "story1_cover", "label": "Capa 1 (opcional)" },
+    { "type": "text", "id": "story1_label", "label": "Legenda 1" },
+    { "type": "header", "content": "Destaque 2" },
+    { "type": "video", "id": "story2_video", "label": "Vídeo 2" },
+    { "type": "image_picker", "id": "story2_cover", "label": "Capa 2 (opcional)" },
+    { "type": "text", "id": "story2_label", "label": "Legenda 2" },
+    { "type": "header", "content": "Destaque 3" },
+    { "type": "video", "id": "story3_video", "label": "Vídeo 3" },
+    { "type": "image_picker", "id": "story3_cover", "label": "Capa 3 (opcional)" },
+    { "type": "text", "id": "story3_label", "label": "Legenda 3" },
+    { "type": "header", "content": "Destaque 4" },
+    { "type": "video", "id": "story4_video", "label": "Vídeo 4" },
+    { "type": "image_picker", "id": "story4_cover", "label": "Capa 4 (opcional)" },
+    { "type": "text", "id": "story4_label", "label": "Legenda 4" },
+    { "type": "header", "content": "Destaque 5" },
+    { "type": "video", "id": "story5_video", "label": "Vídeo 5" },
+    { "type": "image_picker", "id": "story5_cover", "label": "Capa 5 (opcional)" },
+    { "type": "text", "id": "story5_label", "label": "Legenda 5" },
+    { "type": "header", "content": "Destaque 6" },
+    { "type": "video", "id": "story6_video", "label": "Vídeo 6" },
+    { "type": "image_picker", "id": "story6_cover", "label": "Capa 6 (opcional)" },
+    { "type": "text", "id": "story6_label", "label": "Legenda 6" },
+    { "type": "header", "content": "Destaque 7" },
+    { "type": "video", "id": "story7_video", "label": "Vídeo 7" },
+    { "type": "image_picker", "id": "story7_cover", "label": "Capa 7 (opcional)" },
+    { "type": "text", "id": "story7_label", "label": "Legenda 7" },
+    { "type": "header", "content": "Destaque 8" },
+    { "type": "video", "id": "story8_video", "label": "Vídeo 8" },
+    { "type": "image_picker", "id": "story8_cover", "label": "Capa 8 (opcional)" },
+    { "type": "text", "id": "story8_label", "label": "Legenda 8" }
+  ],
+  "presets": [ { "name": "Stories (destaques)" } ]
+}
+{% endschema %}
