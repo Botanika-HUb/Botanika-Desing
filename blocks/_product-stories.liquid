@@ -116,6 +116,29 @@
         <video class="pstory__video" data-pstory-video playsinline webkit-playsinline></video>
         <div class="pstory__tap pstory__tap--prev" data-pstory-prev></div>
         <div class="pstory__tap pstory__tap--next" data-pstory-next></div>
+        {%- if product != blank -%}
+          <div class="pstory__buy" data-pstory-buy>
+            <div class="pstory__buy-top">
+              {%- if product.featured_image != blank -%}
+                <img class="pstory__buy-thumb" src="{{ product.featured_image | image_url: width: 200 }}" alt="" width="56" height="56">
+              {%- endif -%}
+              <div class="pstory__buy-texts">
+                {%- if bs.eyebrow != blank -%}<span class="pstory__buy-eyebrow">{{ bs.eyebrow }}</span>{%- endif -%}
+                <span class="pstory__buy-name">{{ product.title }}</span>
+                <span class="pstory__buy-offer">{%- if bs.offer != blank -%}{{ bs.offer }}{%- else -%}{{ product.price | money }}{%- endif -%}</span>
+              </div>
+              {%- if bs.badge != blank -%}<span class="pstory__buy-badge">{{ bs.badge }}</span>{%- endif -%}
+            </div>
+            <button
+              type="button"
+              class="pstory__buy-cta"
+              data-pstory-cta
+              data-variant="{{ product.selected_or_first_available_variant.id }}"
+              data-variants="{{ product.variants.size }}"
+              data-available="{{ product.available }}"
+            >{%- if product.available == false -%}Esgotado{%- elsif product.variants.size > 1 -%}Escolher opção{%- else -%}{{ bs.cta_label | default: 'Adicionar ao carrinho' }}{%- endif -%}</button>
+          </div>
+        {%- endif -%}
       </div>
     </div>
 
@@ -290,6 +313,81 @@
           touchStartY = null;
         }, { passive: true });
 
+        // Botao de compra dentro do story: sempre o produto desta pagina.
+        var buyBtn = viewer.querySelector('[data-pstory-cta]');
+        if (buyBtn) {
+          buyBtn.addEventListener('click', function () {
+            var variants = parseInt(buyBtn.getAttribute('data-variants'), 10) || 1;
+            var vid = buyBtn.getAttribute('data-variant');
+            if (buyBtn.getAttribute('data-available') === 'false') return;
+            if (variants > 1 || !vid) { closeViewer(); return; }
+
+            var label = buyBtn.textContent;
+            buyBtn.disabled = true;
+            buyBtn.textContent = 'Adicionando...';
+
+            var drawer = document.querySelector('cart-notification');
+            var fd = new FormData();
+            fd.append('id', vid);
+            fd.append('quantity', 1);
+            if (drawer) {
+              fd.append('sections', 'minicart-form');
+              fd.append('sections_url', window.location.pathname);
+            }
+
+            fetch('/cart/add', {
+              method: 'POST',
+              headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/javascript' },
+              body: fd
+            }).then(function (r) {
+              return r.json();
+            }).then(function (res) {
+              if (res && res.status) throw new Error(res.description || 'erro');
+
+              fetch('/cart.json', { headers: { 'Accept': 'application/json' } })
+                .then(function (r) { return r.json(); })
+                .then(function (c) {
+                  if (c.item_count === undefined) return;
+                  document.querySelectorAll('.cart-count').forEach(function (el) {
+                    if (el.classList.contains('cart-count-drawer')) {
+                      el.innerHTML = '(' + c.item_count + ')';
+                    } else {
+                      el.innerHTML = c.item_count > 100 ? '~' : c.item_count;
+                    }
+                  });
+                  var ht = document.querySelector('header-total-price');
+                  if (ht && ht.updateTotal) ht.updateTotal(c);
+                  var fsb = document.querySelector('free-ship-progress-bar');
+                  if (fsb && fsb.init) fsb.init(c.items_subtotal_price);
+                })
+                .catch(function () {});
+
+              if (drawer && res && res.sections && res.sections['minicart-form']) {
+                var target = document.getElementById('minicart-form');
+                var doc = new DOMParser().parseFromString(res.sections['minicart-form'], 'text/html');
+                var fresh = doc.querySelector('#minicart-form');
+                if (target && fresh) target.innerHTML = fresh.innerHTML;
+                drawer.classList.remove('is-empty');
+              }
+
+              closeViewer();
+
+              if (drawer && drawer.cartAction) {
+                drawer.cartAction();
+              } else {
+                var bubble = document.getElementById('cart-icon-bubble');
+                if (bubble) setTimeout(function () { bubble.click(); }, 120);
+              }
+
+              buyBtn.disabled = false;
+              buyBtn.textContent = label;
+            }).catch(function () {
+              buyBtn.textContent = 'Tente de novo';
+              setTimeout(function () { buyBtn.disabled = false; buyBtn.textContent = label; }, 1500);
+            });
+          });
+        }
+
         // Capas: carrega os metadados perto da viewport e avanca 1s,
         // porque muito video comeca com um quadro preto (fade in).
         var thumbs = root.querySelectorAll('video[data-pstory-thumb]');
@@ -348,7 +446,17 @@
     .pstory__viewer[hidden] { display: none; }
     .pstory__stage { position: relative; width: 100%; max-width: 420px; height: 100vh; height: 100dvh; margin: 0 auto; background: #000; overflow: hidden; }
     .pstory__video { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .pstory__tap { position: absolute; top: 0; bottom: 0; width: 35%; cursor: pointer; }
+    .pstory__tap { position: absolute; top: 0; bottom: 150px; width: 35%; cursor: pointer; }
+    .pstory__buy { position: absolute; left: 12px; right: 12px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 4; background: #fff; border-radius: 18px; padding: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+    .pstory__buy-top { display: flex; align-items: center; gap: 12px; position: relative; }
+    .pstory__buy-thumb { width: 56px; height: 56px; border-radius: 12px; object-fit: contain; background: #f2f4f9; flex: 0 0 auto; }
+    .pstory__buy-texts { display: flex; flex-direction: column; min-width: 0; flex: 1 1 auto; padding-right: 76px; }
+    .pstory__buy-eyebrow { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #6b7392; font-weight: 700; }
+    .pstory__buy-name { font-size: 15px; font-weight: 700; color: #15265c; line-height: 1.25; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+    .pstory__buy-offer { font-size: 13px; color: #4a5270; margin-top: 2px; }
+    .pstory__buy-badge { position: absolute; top: 0; right: 0; background: #f4b325; color: #15265c; font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 4px 8px; border-radius: 999px; }
+    .pstory__buy-cta { display: block; width: 100%; margin-top: 12px; border: none; border-radius: 12px; background: #10c322; color: #fff; font-size: 16px; font-weight: 800; padding: 14px 16px; cursor: pointer; }
+    .pstory__buy-cta:disabled { opacity: .7; cursor: default; }
     .pstory__tap--prev { left: 0; }
     .pstory__tap--next { right: 0; }
     .pstory__bars { position: absolute; top: 10px; left: 10px; right: 10px; display: flex; gap: 4px; z-index: 2; }
@@ -365,6 +473,11 @@
   "settings": [
     { "type": "text", "id": "only_handles", "label": "Mostrar so nestes produtos (handles, separados por virgula)", "info": "Deixe vazio para valer em todos." },
     { "type": "text", "id": "exclude_handles", "label": "Nao mostrar nestes produtos (handles, separados por virgula)" },
+    { "type": "header", "content": "Cartao de compra dentro do story" },
+    { "type": "text", "id": "eyebrow", "label": "Linha de cima", "info": "Ex.: MAIS VENDIDO. Vazio esconde." },
+    { "type": "text", "id": "offer", "label": "Linha de oferta", "info": "Vazio mostra o preco do produto." },
+    { "type": "text", "id": "badge", "label": "Selo do canto", "info": "Ex.: LANCAMENTO. Vazio esconde." },
+    { "type": "text", "id": "cta_label", "label": "Texto do botao", "default": "Adicionar ao carrinho", "info": "Produto com mais de uma opcao mostra 'Escolher opcao' e fecha o story." },
     { "type": "paragraph", "content": "Carrossel de destaques estilo Stories (Instagram). Cada destaque = 1 vídeo vertical + legenda curta. Ao tocar, abre em tela cheia com barra de progresso e navegação por toque. A capa é opcional: sem ela, o próprio vídeo mostra seu primeiro frame." },
     { "type": "header", "content": "Destaque 1" },
     { "type": "video", "id": "story1_video", "label": "Vídeo 1" },
