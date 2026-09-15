@@ -77,21 +77,36 @@
                 {%- if cover_url != blank -%}
                   <img src="{{ cover_url }}" alt="" loading="lazy">
                 {%- else -%}
+                  {%- liquid
+                    assign thumb_src = blank
+                    assign thumb_h = 99999
+                    for source in video.sources
+                      if source.format == 'mp4' and source.height < thumb_h
+                        assign thumb_h = source.height
+                        assign thumb_src = source
+                      endif
+                    endfor
+                  -%}
                   <video
                     class="pstory__thumb"
                     data-pstory-thumb
                     muted
+                    loop
                     playsinline
                     webkit-playsinline
                     preload="none"
                     tabindex="-1"
                     aria-hidden="true"
                   >
-                    {%- for source in video.sources -%}
-                      {%- if source.format == 'mp4' -%}
-                        <source src="{{ source.url }}" type="{{ source.mime_type }}">
-                      {%- endif -%}
-                    {%- endfor -%}
+                    {%- if thumb_src != blank -%}
+                      <source src="{{ thumb_src.url }}" type="{{ thumb_src.mime_type }}">
+                    {%- else -%}
+                      {%- for source in video.sources -%}
+                        {%- if source.format == 'mp4' -%}
+                          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+                        {%- endif -%}
+                      {%- endfor -%}
+                    {%- endif -%}
                   </video>
                 {%- endif -%}
               </span>
@@ -413,17 +428,33 @@
           if (v.readyState >= 1) seek();
         }
 
+        // Toca em loop, mudo, apenas o circulo que esta de fato visivel.
+        // Fora da tela pausa, entao nunca ha mais do que os visiveis rodando.
+        function playThumb(v) {
+          if (v.preload !== 'auto') {
+            v.preload = 'auto';
+            v.load();
+          }
+          var pr = v.play();
+          if (pr && pr.catch) {
+            pr.catch(function () { primeThumb(v); });
+          }
+        }
+
         if (thumbs.length && 'IntersectionObserver' in window) {
           var thumbIO = new IntersectionObserver(function (entries) {
             for (var i = 0; i < entries.length; i++) {
-              if (!entries[i].isIntersecting) continue;
-              primeThumb(entries[i].target);
-              thumbIO.unobserve(entries[i].target);
+              var v = entries[i].target;
+              if (entries[i].isIntersecting) {
+                playThumb(v);
+              } else {
+                v.pause();
+              }
             }
-          }, { rootMargin: '600px 0px 600px 0px', threshold: 0 });
+          }, { threshold: 0.5 });
           for (var t = 0; t < thumbs.length; t++) thumbIO.observe(thumbs[t]);
         } else {
-          for (var t2 = 0; t2 < thumbs.length; t2++) primeThumb(thumbs[t2]);
+          for (var t2 = 0; t2 < thumbs.length; t2++) playThumb(thumbs[t2]);
         }
       })();
     </script>
