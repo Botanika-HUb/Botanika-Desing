@@ -1,6 +1,6 @@
 {%- comment -%}
   ============================================================
-  Roleta Botanika — pop-up de captura (e-mail + WhatsApp).
+  Roleta Botanika: pop-up de captura (e-mail + WhatsApp).
 
   FLUXO
     1. E-mail obrigatório para liberar o giro.
@@ -8,7 +8,7 @@
     3. WhatsApp (+55) + consentimento para liberar o cupom.
     4. Cupom na tela com botão de copiar. Ninguém sai do site.
 
-  FATIAS x PRÊMIO — leia antes de mexer
+  FATIAS x PRÊMIO (leia antes de mexer)
     As 8 fatias são só o visual. O que a pessoa ganha é decidido por
     "Fatia que sempre ganha":
       · 1 a 8  -> a roleta SEMPRE para nessa fatia. As outras aparecem
@@ -40,8 +40,9 @@
     {%- for i in (1..8) -%}
       {%- assign lk = 'slice' | append: i | append: '_label' -%}
       {%- assign ck = 'slice' | append: i | append: '_code' -%}
+      {%- assign ek = 'slice' | append: i | append: '_emoji' -%}
       {%- if i > 1 -%},{%- endif -%}
-      {"label":{{ st[lk] | default: '' | json }},"code":{{ st[ck] | default: '' | json }}}
+      {"label":{{ st[lk] | default: '' | json }},"code":{{ st[ck] | default: '' | json }},"emoji":{{ st[ek] | default: '' | json }}}
       {%- if st[ck] != blank -%}{%- assign has_prize = true -%}{%- endif -%}
     {%- endfor -%}
   {%- endcapture -%}
@@ -63,8 +64,9 @@
 
           <div class="brl__wheelwrap">
             <div class="brl__pin" aria-hidden="true"></div>
-            <div class="brl__disc" data-brl-disc></div>
-            <div class="brl__hub" aria-hidden="true"></div>
+            <div class="brl__disc" data-brl-disc><span class="brl__sep" aria-hidden="true"></span></div>
+            <div class="brl__rim" data-brl-rim aria-hidden="true"></div>
+            <div class="brl__hub" aria-hidden="true">🌿</div>
           </div>
 
           <div class="brl__panel">
@@ -92,7 +94,7 @@
             {%- comment -%} 2. premio revelado + WhatsApp {%- endcomment -%}
             <div data-brl-step="2" hidden>
               <h2 class="brl__title brl__title--win">
-                &#127873; Você ganhou <b data-brl-prize></b>!
+                &#127873; Boa! Você ganhou <b data-brl-prize></b>
               </h2>
               <p class="brl__sub">{{ st.vip_sub }}</p>
               <form data-brl-phone-form novalidate>
@@ -147,14 +149,18 @@
       #botanika-roleta.is-open .brl-ov{opacity:1;}
       #botanika-roleta .brl{position:relative;margin:auto;width:100%;max-width:420px;background:#fff;color:var(--ink);border-radius:22px;padding:22px 20px 20px;box-shadow:0 24px 60px -20px rgba(21,38,92,.5);transform:translateY(16px) scale(.98);transition:transform .28s cubic-bezier(.22,.61,.36,1);-webkit-font-smoothing:antialiased;}
       #botanika-roleta.is-open .brl{transform:none;}
-      #botanika-roleta .brl__x{position:absolute;top:10px;right:10px;z-index:4;width:32px;height:32px;border:0;border-radius:50%;background:var(--tint);color:var(--muted);cursor:pointer;font-size:14px;line-height:1;display:grid;place-items:center;}
+      #botanika-roleta .brl__x{position:absolute;top:10px;right:10px;z-index:6;width:32px;height:32px;border:0;border-radius:50%;background:var(--tint);color:var(--muted);cursor:pointer;font-size:14px;line-height:1;display:grid;place-items:center;}
       #botanika-roleta .brl__x:hover{background:var(--line);color:var(--ink);}
 
       #botanika-roleta .brl__wheelwrap{position:relative;width:250px;height:250px;margin:8px auto 20px;}
-      #botanika-roleta .brl__disc{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:50%;box-shadow:0 0 0 6px #fff,0 0 0 12px var(--navy),0 0 0 15px var(--gold),0 12px 28px -8px rgba(21,38,92,.55);transition:transform 5s cubic-bezier(.11,.7,.12,1);}
-      #botanika-roleta .brl__lbl{position:absolute;left:50%;top:50%;transform-origin:0 0;font-size:9.5px;font-weight:800;letter-spacing:.01em;line-height:1.12;color:#fff;text-align:center;text-shadow:0 1px 2px rgba(0,0,0,.35);pointer-events:none;overflow-wrap:break-word;}
-      #botanika-roleta .brl__hub{position:absolute;top:50%;left:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px var(--gold),0 2px 10px rgba(21,38,92,.4);}
-      #botanika-roleta .brl__pin{position:absolute;top:-14px;left:50%;margin-left:-12px;width:24px;height:32px;z-index:3;background:var(--gold);clip-path:polygon(50% 100%,0 0,100% 0);filter:drop-shadow(0 2px 4px rgba(0,0,0,.35));}
+      #botanika-roleta .brl__disc{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:50%;box-shadow:0 0 0 5px #fff,0 0 0 16px var(--navy),0 0 0 18px var(--gold),0 14px 30px -10px rgba(21,38,92,.6);transition:transform 5s cubic-bezier(.11,.7,.12,1);}
+      #botanika-roleta .brl__lbl{position:absolute;left:50%;top:50%;transform-origin:0 0;font-size:10px;font-weight:800;letter-spacing:.01em;line-height:1.12;text-align:center;pointer-events:none;overflow-wrap:break-word;}
+      #botanika-roleta .brl__lbl-ic{display:block;font-size:13px;line-height:1;margin-bottom:3px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.2));}
+      #botanika-roleta .brl__sep{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:50%;pointer-events:none;background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.55) 0deg .45deg,transparent .45deg 45deg);}
+      #botanika-roleta .brl__rim{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+      #botanika-roleta .brl__dot{position:absolute;left:50%;top:50%;width:4px;height:4px;margin:-2px 0 0 -2px;border-radius:50%;background:var(--gold);box-shadow:0 0 3px rgba(244,179,37,.9);}
+      #botanika-roleta .brl__hub{position:absolute;top:50%;left:50%;z-index:2;width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:19px;box-shadow:0 0 0 4px var(--gold),0 3px 10px rgba(21,38,92,.45);}
+      #botanika-roleta .brl__pin{position:absolute;top:-8px;left:50%;margin-left:-13px;width:26px;height:36px;z-index:5;background:#fff;clip-path:polygon(50% 100%,0 0,100% 0);filter:drop-shadow(0 0 1px var(--navy)) drop-shadow(0 0 2px rgba(21,38,92,.7)) drop-shadow(0 3px 4px rgba(0,0,0,.35));}
 
       #botanika-roleta .brl__title{font-family:'Fraunces',Georgia,serif;font-size:21px;font-weight:600;line-height:1.18;letter-spacing:-.01em;margin:0 0 6px;text-align:center;text-wrap:balance;}
       #botanika-roleta .brl__title--win b{color:var(--blue);}
@@ -187,6 +193,7 @@
         #botanika-roleta .brl__wheelwrap{width:206px;height:206px;}
         #botanika-roleta .brl__title{font-size:19px;}
         #botanika-roleta .brl__lbl{font-size:8.5px;}
+        #botanika-roleta .brl__lbl-ic{font-size:11px;}
       }
       @media (prefers-reduced-motion:reduce){
         #botanika-roleta .brl-ov,#botanika-roleta .brl,#botanika-roleta .brl__disc{transition:none!important;}
@@ -210,10 +217,17 @@
         var ENDPOINT = root.dataset.endpoint || '';
         var DELAY = (parseInt(root.dataset.delay, 10) || 6) * 1000;
         var WIN = parseInt(root.dataset.win, 10) || 0;
-        var WHEEL_COLORS = ['#323C91', '#4b57bd'];
+        var WHEEL_COLORS = [{ bg: '#323C91', fg: '#ffffff' }, { bg: '#f4b325', fg: '#15265c' }];
 
         var q = function (s) { return root.querySelector(s); };
         var disc = q('[data-brl-disc]');
+
+        // medidas da roda (o CSS encolhe a roda abaixo de 380px)
+        var small = window.matchMedia && window.matchMedia('(max-width: 380px)').matches;
+        var wheel = small ? 206 : 250;
+        var inner = small ? 30 : 34;
+        var labelW = Math.round(wheel / 2 - inner - 8);
+        var rimRadius = Math.round(wheel / 2 + 10);
         var steps = {};
         [1, 2, 3].forEach(function (n) { steps[n] = q('[data-brl-step="' + n + '"]'); });
 
@@ -224,24 +238,38 @@
           [1, 2, 3].forEach(function (k) { if (steps[k]) steps[k].hidden = (k !== n); });
         }
 
-        // ---- desenha a roda: cores alternadas, como numa roleta de verdade
+        // ---- desenha a roda: indigo e dourado alternados
         var step = 360 / N;
         var stops = [];
         for (var k = 0; k < N; k++) {
-          stops.push(WHEEL_COLORS[k % WHEEL_COLORS.length] + ' ' + (k * step) + 'deg ' + ((k + 1) * step) + 'deg');
+          stops.push(WHEEL_COLORS[k % WHEEL_COLORS.length].bg + ' ' + (k * step) + 'deg ' + ((k + 1) * step) + 'deg');
         }
         disc.style.background = 'conic-gradient(' + stops.join(',') + ')';
 
+        // pontinhos dourados no aro (fora do disco, nao giram)
+        var rim = q('[data-brl-rim]');
+        if (rim) {
+          for (var dcount = 0; dcount < 16; dcount++) {
+            var dot = document.createElement('span');
+            dot.className = 'brl__dot';
+            dot.style.transform = 'rotate(' + (dcount * (360 / 16)) + 'deg) translateY(-' + (rimRadius) + 'px)';
+            rim.appendChild(dot);
+          }
+        }
+
         // o rótulo é um bloco que ocupa a faixa entre o miolo e a borda,
-        // centrado na fatia — assim texto longo quebra em vez de vazar da roda
-        var small = window.matchMedia && window.matchMedia('(max-width: 380px)').matches;
-        var wheel = small ? 206 : 250;
-        var inner = small ? 26 : 30;
-        var labelW = Math.round(wheel / 2 - inner - 8);
+        // centrado na fatia, assim texto longo quebra em vez de vazar da roda
         for (var m = 0; m < N; m++) {
           var span = document.createElement('span');
           span.className = 'brl__lbl';
-          span.textContent = slices[m].label || '';
+          span.style.color = WHEEL_COLORS[m % WHEEL_COLORS.length].fg;
+          if (slices[m].emoji) {
+            var ic = document.createElement('span');
+            ic.className = 'brl__lbl-ic';
+            ic.textContent = slices[m].emoji;
+            span.appendChild(ic);
+          }
+          span.appendChild(document.createTextNode(slices[m].label || ''));
           span.style.width = labelW + 'px';
           var center = m * step + step / 2;
           span.style.transform = 'rotate(' + (center - 90) + 'deg) translate(' + inner + 'px, -50%)';
@@ -445,42 +473,50 @@
     { "type": "range", "id": "delay_seconds", "label": "Atraso pra abrir", "min": 0, "max": 30, "step": 1, "unit": "s", "default": 6 },
     { "type": "text", "id": "lead_endpoint", "label": "Endpoint de captura (Cloudflare)", "default": "https://botanika-desing.pages.dev/api/lead" },
 
-    { "type": "header", "content": "Passo 1 — e-mail libera o giro" },
-    { "type": "text", "id": "heading", "label": "Título", "default": "Gire e ganhe um presente" },
-    { "type": "text", "id": "subheading", "label": "Subtítulo", "default": "Coloque seu e-mail e gire a roleta." },
+    { "type": "header", "content": "Passo 1: e-mail libera o giro" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Tem presente te esperando" },
+    { "type": "text", "id": "subheading", "label": "Subtítulo", "default": "Gire a roleta e descubra o que a Botanika separou pra você. Todo mundo leva alguma coisa." },
     { "type": "text", "id": "email_placeholder", "label": "Placeholder", "default": "seu@email.com" },
-    { "type": "text", "id": "spin_label", "label": "Botão", "default": "GIRAR A ROLETA" },
-    { "type": "text", "id": "email_consent", "label": "Aviso de consentimento", "default": "Ao continuar, você aceita receber e-mails da Botanika. Pode sair quando quiser. 🔒" },
+    { "type": "text", "id": "spin_label", "label": "Botão", "default": "GIRAR E GANHAR" },
+    { "type": "text", "id": "email_consent", "label": "Aviso de consentimento", "default": "É rápido e sem spam. Só o cupom e as novidades da Botanika, e você sai quando quiser. 🔒" },
 
-    { "type": "header", "content": "Passo 2 — WhatsApp libera o cupom" },
-    { "type": "text", "id": "vip_sub", "label": "Subtítulo", "default": "Coloque seu WhatsApp para liberar o cupom e entrar no grupo VIP." },
+    { "type": "header", "content": "Passo 2: WhatsApp libera o cupom" },
+    { "type": "text", "id": "vip_sub", "label": "Subtítulo", "default": "Seu cupom já está reservado. Solte seu WhatsApp pra liberar ele agora e entrar no Grupo VIP, onde o desconto sai primeiro." },
     { "type": "text", "id": "vip_consent", "label": "Texto do aceite", "default": "Aceito receber mensagens da Botanika no WhatsApp" },
-    { "type": "text", "id": "vip_button", "label": "Botão", "default": "LIBERAR MEU CUPOM" },
+    { "type": "text", "id": "vip_button", "label": "Botão", "default": "LIBERAR MEU PRESENTE" },
 
-    { "type": "header", "content": "Passo 3 — cupom" },
-    { "type": "text", "id": "done_heading", "label": "Título", "default": "Prontinho! 🎉" },
-    { "type": "text", "id": "done_sub", "label": "Subtítulo", "default": "Copie seu cupom e use no carrinho." },
-    { "type": "text", "id": "done_button", "label": "Botão", "default": "Voltar às compras" },
+    { "type": "header", "content": "Passo 3: cupom" },
+    { "type": "text", "id": "done_heading", "label": "Título", "default": "Presente liberado! 🎉" },
+    { "type": "text", "id": "done_sub", "label": "Subtítulo", "default": "Ele é seu. Copia o código e cola no carrinho. Vale em qualquer produto do site." },
+    { "type": "text", "id": "done_button", "label": "Botão", "default": "Escolher meus produtos" },
 
     { "type": "header", "content": "Fatias da roleta" },
-    { "type": "paragraph", "content": "As 8 fatias são o visual da roda. Só a fatia que sai precisa de cupom — fatias sem cupom ficam com cor apagada e nunca são sorteadas. Use o campo abaixo para escolher se a roleta sempre para numa fatia fixa ou se sorteia de verdade." },
+    { "type": "paragraph", "content": "As 8 fatias são só o visual da roda, com cores alternadas. Apenas as fatias que podem sair precisam de cupom. Use o campo abaixo para escolher se a roleta sempre para numa fatia fixa ou se sorteia de verdade entre as fatias com cupom." },
     { "type": "range", "id": "win_slice", "label": "Fatia que sempre ganha (0 = sorteio real)", "min": 0, "max": 8, "step": 1, "default": 1 },
     { "type": "text", "id": "slice1_label", "label": "Fatia 1", "default": "5% OFF" },
-    { "type": "text", "id": "slice1_code", "label": "Fatia 1 — cupom", "default": "BOTANIKA" },
+    { "type": "text", "id": "slice1_code", "label": "Fatia 1 (cupom)", "default": "BOTANIKA" },
+    { "type": "text", "id": "slice1_emoji", "label": "Fatia 1 (emoji)", "default": "🎁" },
     { "type": "text", "id": "slice2_label", "label": "Fatia 2", "default": "FRETE GRÁTIS" },
-    { "type": "text", "id": "slice2_code", "label": "Fatia 2 — cupom" },
+    { "type": "text", "id": "slice2_code", "label": "Fatia 2 (cupom)" },
+    { "type": "text", "id": "slice2_emoji", "label": "Fatia 2 (emoji)", "default": "🚚" },
     { "type": "text", "id": "slice3_label", "label": "Fatia 3", "default": "NÃO FOI DESSA VEZ" },
-    { "type": "text", "id": "slice3_code", "label": "Fatia 3 — cupom" },
+    { "type": "text", "id": "slice3_code", "label": "Fatia 3 (cupom)" },
+    { "type": "text", "id": "slice3_emoji", "label": "Fatia 3 (emoji)", "default": "🍀" },
     { "type": "text", "id": "slice4_label", "label": "Fatia 4", "default": "10% OFF" },
-    { "type": "text", "id": "slice4_code", "label": "Fatia 4 — cupom" },
+    { "type": "text", "id": "slice4_code", "label": "Fatia 4 (cupom)" },
+    { "type": "text", "id": "slice4_emoji", "label": "Fatia 4 (emoji)", "default": "✨" },
     { "type": "text", "id": "slice5_label", "label": "Fatia 5", "default": "BRINDE SURPRESA" },
-    { "type": "text", "id": "slice5_code", "label": "Fatia 5 — cupom" },
+    { "type": "text", "id": "slice5_code", "label": "Fatia 5 (cupom)" },
+    { "type": "text", "id": "slice5_emoji", "label": "Fatia 5 (emoji)", "default": "🎀" },
     { "type": "text", "id": "slice6_label", "label": "Fatia 6", "default": "NÃO FOI DESSA VEZ" },
-    { "type": "text", "id": "slice6_code", "label": "Fatia 6 — cupom" },
+    { "type": "text", "id": "slice6_code", "label": "Fatia 6 (cupom)" },
+    { "type": "text", "id": "slice6_emoji", "label": "Fatia 6 (emoji)", "default": "🍀" },
     { "type": "text", "id": "slice7_label", "label": "Fatia 7", "default": "FRETE GRÁTIS" },
-    { "type": "text", "id": "slice7_code", "label": "Fatia 7 — cupom" },
+    { "type": "text", "id": "slice7_code", "label": "Fatia 7 (cupom)" },
+    { "type": "text", "id": "slice7_emoji", "label": "Fatia 7 (emoji)", "default": "🚚" },
     { "type": "text", "id": "slice8_label", "label": "Fatia 8", "default": "BRINDE SURPRESA" },
-    { "type": "text", "id": "slice8_code", "label": "Fatia 8 — cupom" }
+    { "type": "text", "id": "slice8_code", "label": "Fatia 8 (cupom)" },
+    { "type": "text", "id": "slice8_emoji", "label": "Fatia 8 (emoji)", "default": "🎀" }
   ],
   "presets": [ { "name": "Roleta Botanika" } ]
 }
