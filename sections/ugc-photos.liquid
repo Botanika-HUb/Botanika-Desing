@@ -1,50 +1,394 @@
 {%- comment -%}
   ============================================================
-  Galeria estilo UGC — fotos de clientes / estilo de vida.
+  Galeria estilo UGC — fotos e vídeos de clientes / creators.
   Carrossel de cards (rola na horizontal no mobile, 4 por
-  linha no desktop). Cada card = 1 foto (+ nome/legenda opc).
-  Cards vazios so aparecem no editor (nao na loja).
+  linha no desktop). Cada card = 1 foto OU 1 vídeo (+ nome/
+  legenda opcionais). Cards de vídeo são um pouco maiores que
+  os de foto. Cards vazios so aparecem no editor (nao na loja).
+
+  Vídeos: a capa não depende da miniatura gerada pelo Shopify
+  (que pode vir errada/genérica) — em vez disso, o próprio
+  vídeo carrega só os metadados (frame real) pouco antes de
+  entrar na tela, e toca automaticamente (mudo) só quando o
+  card está de fato visível. Preload fica em "none" até esse
+  momento, entao nenhum vídeo é baixado por inteiro à toa —
+  mesmo com 14 vídeos, a página não fica pesada. Botão de som
+  liga/desliga o áudio de cada vídeo. Quem quiser uma capa
+  curada à mão pode enviar em "Capa personalizada" no bloco.
+
+  STORIES COMPRÁVEIS (somente na home): na home os cards de
+  vídeo viram stories. Ao tocar, abre em tela cheia com barra
+  de progresso, navegação por toque e um cartão do produto
+  sobreposto embaixo. O botão adiciona ao carrinho e abre o
+  minicart do tema; se o produto tiver mais de uma variante
+  (sabor, tamanho), o botão leva para a PDP em vez de escolher
+  a variante errada. Nas PDPs a galeria segue como sempre foi.
   ============================================================
 {%- endcomment -%}
 {%- liquid
   assign st = section.settings
   assign items = section.blocks
-  assign has_photo = false
+  assign has_content = false
   for b in items
-    if b.settings.photo != blank
-      assign has_photo = true
+    if b.type == 'video'
+      if b.settings.video != blank
+        assign has_content = true
+      endif
+    else
+      if b.settings.photo != blank
+        assign has_content = true
+      endif
     endif
   endfor
+
+  assign shop_mode = false
+  if template.name == 'index'
+    assign shop_mode = true
+  endif
 -%}
-{%- if has_photo or request.design_mode -%}
-  <div class="section ugc-wrap color-{{ st.color_scheme }} gradient">
+{%- if has_content or request.design_mode -%}
+  <div class="section ugc-wrap color-{{ st.color_scheme }} gradient" data-ugc-gallery="{{ section.id }}">
     <div class="container">
       {%- if st.heading != blank -%}<h2 class="ugc__title">{{ st.heading }}</h2>{%- endif -%}
       {%- if st.subheading != blank -%}<p class="ugc__sub">{{ st.subheading }}</p>{%- endif -%}
       <div class="ugc__row">
+        {%- assign vid_index = 0 -%}
         {%- for b in items -%}
           {%- assign bs = b.settings -%}
-          {%- if bs.photo != blank or request.design_mode -%}
-            <div class="ugc__card" {{ b.shopify_attributes }}>
-              <div class="ugc__media">
-                {%- if bs.photo != blank -%}
-                  {{ bs.photo | image_url: width: 800 | image_tag: loading: 'lazy', class: 'ugc__img', alt: bs.name | default: 'Botanika' }}
-                {%- else -%}
-                  <div class="ugc__ph"></div>
+          {%- if b.type == 'video' -%}
+            {%- if bs.video != blank or request.design_mode -%}
+              {%- assign cover_url = bs.cover | image_url: width: 800 -%}
+              <div class="ugc__card ugc__card--video{% if shop_mode and bs.video != blank %} ugc__card--tap{% endif %}" {{ b.shopify_attributes }}>
+                <div class="ugc__media">
+                  {%- if bs.video != blank -%}
+                    <video
+                      class="ugc__img ugc__vid"
+                      data-ugc-video
+                      {%- if cover_url != blank %} poster="{{ cover_url }}"{% endif %}
+                      muted
+                      loop
+                      playsinline
+                      preload="none"
+                      aria-label="{{ bs.name | default: 'Vídeo Botanika' }}"
+                    >
+                      {%- for source in bs.video.sources -%}
+                        {%- if source.format == 'mp4' -%}
+                          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </video>
+                    {%- if shop_mode -%}
+                      <button type="button" class="ugc__tap" data-ugc-open="{{ vid_index }}" aria-label="Abrir em tela cheia"></button>
+                    {%- endif -%}
+                    <button type="button" class="ugc__mute" data-ugc-mute-toggle aria-label="Ativar ou desativar o som">🔇</button>
+                  {%- else -%}
+                    <div class="ugc__ph"></div>
+                  {%- endif -%}
+                </div>
+                {%- if bs.name != blank or bs.caption != blank -%}
+                  <div class="ugc__info">
+                    {%- if bs.name != blank -%}<span class="ugc__name">{{ bs.name }}</span>{%- endif -%}
+                    {%- if bs.caption != blank -%}<span class="ugc__caption">{{ bs.caption }}</span>{%- endif -%}
+                  </div>
                 {%- endif -%}
               </div>
-              {%- if bs.name != blank or bs.caption != blank -%}
-                <div class="ugc__info">
-                  {%- if bs.name != blank -%}<span class="ugc__name">{{ bs.name }}</span>{%- endif -%}
-                  {%- if bs.caption != blank -%}<span class="ugc__caption">{{ bs.caption }}</span>{%- endif -%}
+              {%- if bs.video != blank -%}{%- assign vid_index = vid_index | plus: 1 -%}{%- endif -%}
+            {%- endif -%}
+          {%- else -%}
+            {%- if bs.photo != blank or request.design_mode -%}
+              <div class="ugc__card" {{ b.shopify_attributes }}>
+                <div class="ugc__media">
+                  {%- if bs.photo != blank -%}
+                    {{ bs.photo | image_url: width: 800 | image_tag: loading: 'lazy', class: 'ugc__img', alt: bs.name | default: 'Botanika' }}
+                  {%- else -%}
+                    <div class="ugc__ph"></div>
+                  {%- endif -%}
                 </div>
-              {%- endif -%}
-            </div>
+                {%- if bs.name != blank or bs.caption != blank -%}
+                  <div class="ugc__info">
+                    {%- if bs.name != blank -%}<span class="ugc__name">{{ bs.name }}</span>{%- endif -%}
+                    {%- if bs.caption != blank -%}<span class="ugc__caption">{{ bs.caption }}</span>{%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
           {%- endif -%}
         {%- endfor -%}
       </div>
     </div>
   </div>
+
+  {%- if shop_mode -%}
+    {%- capture stories_json -%}
+      {%- assign first = true -%}
+      {%- for b in items -%}
+        {%- assign bs = b.settings -%}
+        {%- if b.type == 'video' and bs.video != blank -%}
+          {%- unless first -%},{%- endunless -%}
+          {%- assign first = false -%}
+          {%- capture srcs -%}
+            {%- assign fs = true -%}
+            {%- for source in bs.video.sources -%}
+              {%- if source.format == 'mp4' -%}
+                {%- unless fs -%},{%- endunless -%}{%- assign fs = false -%}
+                {"src":{{ source.url | json }},"type":{{ source.mime_type | json }}}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endcapture -%}
+          {%- assign p = bs.product -%}
+          {"sources":[{{ srcs | strip }}],"eyebrow":{{ bs.eyebrow | default: '' | json }},"offer":{{ bs.offer | default: '' | json }},"badge":{{ bs.badge | default: '' | json }},"cta":{{ bs.cta_label | default: 'Adicionar ao carrinho' | json }}
+          {%- if p != blank -%}
+            ,"product":{"title":{{ p.title | json }},"url":{{ p.url | json }},"image":{{ p.featured_image | image_url: width: 200 | json }},"price":{{ p.price | money | json }},"variants":{{ p.variants.size }},"vid":{{ p.selected_or_first_available_variant.id | json }},"available":{{ p.available | json }}}
+          {%- endif -%}
+          }
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+    <script type="application/json" data-ugcs-data="{{ section.id }}">[{{ stories_json | strip }}]</script>
+
+    <div class="ugcs" data-ugcs-viewer="{{ section.id }}" hidden>
+      <div class="ugcs__bars" data-ugcs-bars></div>
+      <button type="button" class="ugcs__close" data-ugcs-close aria-label="Fechar">&times;</button>
+      <button type="button" class="ugcs__sound" data-ugcs-sound aria-label="Som">🔇</button>
+      <video class="ugcs__video" data-ugcs-video playsinline webkit-playsinline preload="auto"></video>
+      <button type="button" class="ugcs__nav ugcs__nav--prev" data-ugcs-prev aria-label="Anterior"></button>
+      <button type="button" class="ugcs__nav ugcs__nav--next" data-ugcs-next aria-label="Próximo"></button>
+      <div class="ugcs__card" data-ugcs-card hidden>
+        <div class="ugcs__card-top">
+          <img class="ugcs__thumb" data-ugcs-thumb alt="">
+          <div class="ugcs__texts">
+            <span class="ugcs__eyebrow" data-ugcs-eyebrow></span>
+            <span class="ugcs__pname" data-ugcs-pname></span>
+            <span class="ugcs__offer" data-ugcs-offer></span>
+          </div>
+          <span class="ugcs__badge" data-ugcs-badge hidden></span>
+        </div>
+        <button type="button" class="ugcs__cta" data-ugcs-cta></button>
+      </div>
+    </div>
+  {%- endif -%}
+
+  <script>
+    (function () {
+      var root = document.querySelector('[data-ugc-gallery="{{ section.id }}"]');
+      if (!root) return;
+      var videos = root.querySelectorAll('video[data-ugc-video]');
+
+      if (videos.length && 'IntersectionObserver' in window) {
+        var metaIO = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var v = entry.target;
+            if (v.preload !== 'metadata') {
+              v.preload = 'metadata';
+              v.load();
+            }
+            metaIO.unobserve(v);
+          });
+        }, { rootMargin: '600px 0px 600px 0px', threshold: 0 });
+
+        var playIO = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            var v = entry.target;
+            if (entry.isIntersecting) {
+              var p = v.play();
+              if (p && p.catch) p.catch(function () {});
+            } else {
+              v.pause();
+            }
+          });
+        }, { threshold: 0.6 });
+
+        videos.forEach(function (v) {
+          metaIO.observe(v);
+          playIO.observe(v);
+        });
+      }
+
+      root.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-ugc-mute-toggle]');
+        if (!btn) return;
+        var card = btn.closest('.ugc__card');
+        var video = card && card.querySelector('video');
+        if (!video) return;
+        video.muted = !video.muted;
+        btn.textContent = video.muted ? '🔇' : '🔊';
+      });
+
+      // ---- Stories compraveis (somente na home) ----
+      var viewer = document.querySelector('[data-ugcs-viewer="{{ section.id }}"]');
+      var dataEl = document.querySelector('[data-ugcs-data="{{ section.id }}"]');
+      if (!viewer || !dataEl) return;
+
+      var items = [];
+      try { items = JSON.parse(dataEl.textContent) || []; } catch (err) { items = []; }
+      if (!items.length) return;
+
+      if (viewer.parentNode !== document.body) document.body.appendChild(viewer);
+
+      var vEl = viewer.querySelector('[data-ugcs-video]');
+      var barsEl = viewer.querySelector('[data-ugcs-bars]');
+      var cardEl = viewer.querySelector('[data-ugcs-card]');
+      var thumbEl = viewer.querySelector('[data-ugcs-thumb]');
+      var eyeEl = viewer.querySelector('[data-ugcs-eyebrow]');
+      var nameEl = viewer.querySelector('[data-ugcs-pname]');
+      var offerEl = viewer.querySelector('[data-ugcs-offer]');
+      var badgeEl = viewer.querySelector('[data-ugcs-badge]');
+      var ctaEl = viewer.querySelector('[data-ugcs-cta]');
+      var soundEl = viewer.querySelector('[data-ugcs-sound]');
+      var bars = [];
+      var current = -1;
+      var open = false;
+
+      function buildBars() {
+        barsEl.innerHTML = '';
+        bars = [];
+        for (var i = 0; i < items.length; i++) {
+          var b = document.createElement('span');
+          b.className = 'ugcs__bar';
+          var f = document.createElement('i');
+          b.appendChild(f);
+          barsEl.appendChild(b);
+          bars.push(f);
+        }
+      }
+
+      function paintBars() {
+        for (var i = 0; i < bars.length; i++) {
+          bars[i].style.width = i < current ? '100%' : (i === current ? '0%' : '0%');
+        }
+      }
+
+      function money(v) { return v || ''; }
+
+      function show(i) {
+        if (i < 0) i = 0;
+        if (i >= items.length) { close(); return; }
+        current = i;
+        var it = items[i];
+
+        while (vEl.firstChild) vEl.removeChild(vEl.firstChild);
+        (it.sources || []).forEach(function (s) {
+          var el = document.createElement('source');
+          el.src = s.src;
+          if (s.type) el.type = s.type;
+          vEl.appendChild(el);
+        });
+        vEl.load();
+        var pr = vEl.play();
+        if (pr && pr.catch) pr.catch(function () {});
+
+        paintBars();
+
+        var p = it.product;
+        if (p) {
+          cardEl.hidden = false;
+          if (p.image) { thumbEl.src = p.image; thumbEl.hidden = false; } else { thumbEl.hidden = true; }
+          eyeEl.textContent = it.eyebrow || '';
+          eyeEl.hidden = !it.eyebrow;
+          nameEl.textContent = p.title || '';
+          offerEl.textContent = it.offer || money(p.price);
+          if (it.badge) { badgeEl.textContent = it.badge; badgeEl.hidden = false; } else { badgeEl.hidden = true; }
+          if (!p.available) {
+            ctaEl.textContent = 'Esgotado';
+            ctaEl.disabled = true;
+          } else {
+            ctaEl.disabled = false;
+            ctaEl.textContent = p.variants > 1 ? 'Ver produto' : (it.cta || 'Adicionar ao carrinho');
+          }
+        } else {
+          cardEl.hidden = true;
+        }
+      }
+
+      function openAt(i) {
+        if (!open) {
+          open = true;
+          viewer.hidden = false;
+          document.documentElement.style.overflow = 'hidden';
+          buildBars();
+        }
+        show(i);
+      }
+
+      function close() {
+        open = false;
+        viewer.hidden = true;
+        document.documentElement.style.overflow = '';
+        vEl.pause();
+        while (vEl.firstChild) vEl.removeChild(vEl.firstChild);
+        current = -1;
+      }
+
+      vEl.addEventListener('timeupdate', function () {
+        if (current < 0 || !bars[current] || !vEl.duration) return;
+        bars[current].style.width = ((vEl.currentTime / vEl.duration) * 100) + '%';
+      });
+      vEl.addEventListener('ended', function () { show(current + 1); });
+
+      viewer.querySelector('[data-ugcs-next]').addEventListener('click', function () { show(current + 1); });
+      viewer.querySelector('[data-ugcs-prev]').addEventListener('click', function () { show(current - 1); });
+      viewer.querySelector('[data-ugcs-close]').addEventListener('click', close);
+
+      soundEl.addEventListener('click', function () {
+        vEl.muted = !vEl.muted;
+        soundEl.textContent = vEl.muted ? '🔇' : '🔊';
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (!open) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowRight') show(current + 1);
+        if (e.key === 'ArrowLeft') show(current - 1);
+      });
+
+      var touchY = null;
+      viewer.addEventListener('touchstart', function (e) {
+        touchY = e.touches && e.touches.length === 1 ? e.touches[0].clientY : null;
+      }, { passive: true });
+      viewer.addEventListener('touchend', function (e) {
+        if (touchY === null) return;
+        var endY = e.changedTouches && e.changedTouches.length ? e.changedTouches[0].clientY : null;
+        if (endY !== null && endY - touchY > 90) close();
+        touchY = null;
+      }, { passive: true });
+
+      ctaEl.addEventListener('click', function () {
+        var it = items[current];
+        if (!it || !it.product) return;
+        var p = it.product;
+        if (p.variants > 1) { window.location.href = p.url; return; }
+        var label = ctaEl.textContent;
+        ctaEl.disabled = true;
+        ctaEl.textContent = 'Adicionando...';
+        fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ items: [{ id: p.vid, quantity: 1 }] })
+        }).then(function (r) {
+          if (!r.ok) throw new Error('add');
+          return r.json();
+        }).then(function () {
+          ctaEl.textContent = 'Adicionado ✓';
+          close();
+          document.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
+          var bubble = document.getElementById('cart-icon-bubble');
+          if (bubble) { setTimeout(function () { bubble.click(); }, 120); }
+          setTimeout(function () { ctaEl.disabled = false; ctaEl.textContent = label; }, 800);
+        }).catch(function () {
+          ctaEl.textContent = 'Tente de novo';
+          setTimeout(function () { ctaEl.disabled = false; ctaEl.textContent = label; }, 1500);
+        });
+      });
+
+      root.addEventListener('click', function (e) {
+        var t = e.target.closest('[data-ugc-open]');
+        if (!t) return;
+        e.preventDefault();
+        openAt(parseInt(t.getAttribute('data-ugc-open'), 10) || 0);
+      });
+    })();
+  </script>
 
   {%- style -%}
     .ugc-wrap { padding: 48px 0; }
@@ -54,15 +398,51 @@
     .ugc__row::-webkit-scrollbar { height: 6px; }
     .ugc__row::-webkit-scrollbar-thumb { background: rgba(0,0,0,.15); border-radius: 999px; }
     .ugc__card { flex: 0 0 auto; width: min(78vw, 290px); scroll-snap-align: start; }
-    .ugc__media { aspect-ratio: 3 / 4; border-radius: 20px; overflow: hidden; background: #eef0f5; box-shadow: 0 6px 18px rgba(0,0,0,.08); }
+    .ugc__card--video { width: min(85vw, 330px); }
+    .ugc__media { position: relative; aspect-ratio: 3 / 4; border-radius: 20px; overflow: hidden; background: #eef0f5; box-shadow: 0 6px 18px rgba(0,0,0,.08); }
     .ugc__img, .ugc__ph { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ugc__vid { background: #000; }
     .ugc__ph { background: linear-gradient(135deg, #e8ebf3, #dfe3ee); }
+    .ugc__mute { position: absolute; right: 10px; bottom: 10px; width: 34px; height: 34px; border-radius: 50%; border: none; background: rgba(0,0,0,.45); color: #fff; font-size: 14px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 3; line-height: 1; padding: 0; }
+    .ugc__mute:hover { background: rgba(0,0,0,.65); }
+    .ugc__tap { position: absolute; inset: 0; border: none; background: transparent; cursor: pointer; z-index: 2; padding: 0; }
+    .ugc__card--tap .ugc__media { cursor: pointer; }
     .ugc__info { padding: 12px 4px 0; text-align: center; }
     .ugc__name { display: block; font-weight: 700; font-size: 15px; }
     .ugc__caption { display: block; font-size: 13px; opacity: .75; margin-top: 2px; }
     @media (min-width: 1000px) {
       .ugc__card { width: calc((100% - 3 * 18px) / 4); }
+      .ugc__card--video { width: 360px; }
     }
+
+    .ugcs { position: fixed; inset: 0; z-index: 100000; background: #000; display: flex; align-items: center; justify-content: center; }
+    .ugcs[hidden] { display: none !important; }
+    .ugcs__video { width: 100%; height: 100%; object-fit: contain; background: #000; }
+    @media (min-width: 900px) {
+      .ugcs__video { width: auto; height: 100%; max-width: 480px; }
+    }
+    .ugcs__bars { position: absolute; top: calc(10px + env(safe-area-inset-top, 0px)); left: 10px; right: 10px; display: flex; gap: 4px; z-index: 4; }
+    .ugcs__bar { flex: 1 1 0; height: 3px; border-radius: 999px; background: rgba(255,255,255,.35); overflow: hidden; }
+    .ugcs__bar i { display: block; height: 100%; width: 0; background: #fff; }
+    .ugcs__close, .ugcs__sound { position: absolute; z-index: 5; width: 40px; height: 40px; border-radius: 50%; border: none; background: rgba(0,0,0,.45); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+    .ugcs__close { top: calc(24px + env(safe-area-inset-top, 0px)); right: 14px; font-size: 24px; line-height: 1; }
+    .ugcs__sound { bottom: calc(150px + env(safe-area-inset-bottom, 0px)); right: 14px; font-size: 16px; }
+    .ugcs__nav { position: absolute; top: 0; bottom: 150px; width: 34%; border: none; background: transparent; cursor: pointer; z-index: 3; padding: 0; }
+    .ugcs__nav--prev { left: 0; }
+    .ugcs__nav--next { right: 0; }
+    .ugcs__card { position: absolute; left: 12px; right: 12px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 6; background: #fff; border-radius: 18px; padding: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.35); max-width: 460px; margin: 0 auto; }
+    .ugcs__card[hidden] { display: none !important; }
+    .ugcs__card-top { display: flex; align-items: center; gap: 12px; position: relative; }
+    .ugcs__thumb { width: 56px; height: 56px; border-radius: 12px; object-fit: contain; background: #f2f4f9; flex: 0 0 auto; }
+    .ugcs__texts { display: flex; flex-direction: column; min-width: 0; flex: 1 1 auto; padding-right: 76px; }
+    .ugcs__eyebrow { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #6b7392; font-weight: 700; }
+    .ugcs__eyebrow[hidden] { display: none; }
+    .ugcs__pname { font-size: 15px; font-weight: 700; color: #15265c; line-height: 1.25; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+    .ugcs__offer { font-size: 13px; color: #4a5270; margin-top: 2px; }
+    .ugcs__badge { position: absolute; top: 0; right: 0; background: #f4b325; color: #15265c; font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 4px 8px; border-radius: 999px; }
+    .ugcs__badge[hidden] { display: none !important; }
+    .ugcs__cta { display: block; width: 100%; margin-top: 12px; border: none; border-radius: 12px; background: #10c322; color: #fff; font-size: 16px; font-weight: 800; padding: 14px 16px; cursor: pointer; }
+    .ugcs__cta:disabled { opacity: .7; cursor: default; }
   {%- endstyle -%}
 {%- endif -%}
 
@@ -72,7 +452,8 @@
   "settings": [
     { "type": "color_scheme", "id": "color_scheme", "label": "Esquema de cor", "default": "default" },
     { "type": "text", "id": "heading", "label": "Título", "default": "A Botanika na sua rotina" },
-    { "type": "text", "id": "subheading", "label": "Subtítulo", "default": "Faça da Botanika parte do seu dia a dia." }
+    { "type": "text", "id": "subheading", "label": "Subtítulo", "default": "Faça da Botanika parte do seu dia a dia." },
+    { "type": "paragraph", "content": "Na home, os vídeos abrem em tela cheia com o cartão do produto. Escolha o produto em cada bloco de vídeo. Nas páginas de produto a galeria continua sem essa abertura." }
   ],
   "blocks": [
     {
@@ -83,9 +464,25 @@
         { "type": "text", "id": "name", "label": "Nome (opcional)" },
         { "type": "text", "id": "caption", "label": "Legenda (opcional)" }
       ]
+    },
+    {
+      "type": "video",
+      "name": "Vídeo (creator)",
+      "settings": [
+        { "type": "video", "id": "video", "label": "Vídeo — faça upload do MP4 ou escolha um já enviado em Arquivos" },
+        { "type": "image_picker", "id": "cover", "label": "Capa personalizada (opcional)", "info": "Sem isso, o próprio vídeo mostra seu primeiro frame como capa automaticamente." },
+        { "type": "text", "id": "name", "label": "Nome (opcional)" },
+        { "type": "text", "id": "caption", "label": "Legenda (opcional)" },
+        { "type": "header", "content": "Produto do story (somente na home)" },
+        { "type": "product", "id": "product", "label": "Produto deste vídeo", "info": "Sem produto, o vídeo abre em tela cheia sem cartão de compra." },
+        { "type": "text", "id": "eyebrow", "label": "Linha de cima", "info": "Ex.: NOVO SABOR, MAIS VENDIDO." },
+        { "type": "text", "id": "offer", "label": "Linha de oferta", "info": "Ex.: Ganhe 5 sachês grátis. Vazio mostra o preço." },
+        { "type": "text", "id": "badge", "label": "Selo do canto", "info": "Ex.: LANÇAMENTO. Vazio esconde o selo." },
+        { "type": "text", "id": "cta_label", "label": "Texto do botão", "default": "Adicionar ao carrinho", "info": "Produtos com mais de uma variante levam para a página do produto." }
+      ]
     }
   ],
-  "max_blocks": 12,
+  "max_blocks": 30,
   "presets": [
     {
       "name": "Galeria Botanika",
