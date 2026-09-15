@@ -265,26 +265,42 @@
           touchStartY = null;
         }, { passive: true });
 
-        // Capas: carrega só os metadados (primeiro frame real) perto da viewport.
+        // Capas: carrega os metadados perto da viewport e avanca 1s,
+        // porque muito video comeca com um quadro preto (fade in).
         var thumbs = root.querySelectorAll('video[data-pstory-thumb]');
+
+        function primeThumb(v) {
+          if (v.getAttribute('data-pstory-primed')) return;
+          v.setAttribute('data-pstory-primed', '1');
+          var seeked = false;
+          var seek = function () {
+            if (seeked) return;
+            var d = v.duration;
+            var t = (isFinite(d) && d > 0) ? Math.min(1, d * 0.3) : 1;
+            if (!(t > 0)) return;
+            seeked = true;
+            try { v.currentTime = t; } catch (e) { seeked = false; }
+          };
+          v.addEventListener('loadedmetadata', seek);
+          v.addEventListener('loadeddata', seek);
+          if (v.preload !== 'metadata') {
+            v.preload = 'metadata';
+            v.load();
+          }
+          if (v.readyState >= 1) seek();
+        }
+
         if (thumbs.length && 'IntersectionObserver' in window) {
           var thumbIO = new IntersectionObserver(function (entries) {
             for (var i = 0; i < entries.length; i++) {
               if (!entries[i].isIntersecting) continue;
-              var v = entries[i].target;
-              if (v.preload !== 'metadata') {
-                v.preload = 'metadata';
-                v.load();
-              }
-              thumbIO.unobserve(v);
+              primeThumb(entries[i].target);
+              thumbIO.unobserve(entries[i].target);
             }
           }, { rootMargin: '600px 0px 600px 0px', threshold: 0 });
           for (var t = 0; t < thumbs.length; t++) thumbIO.observe(thumbs[t]);
         } else {
-          for (var t2 = 0; t2 < thumbs.length; t2++) {
-            thumbs[t2].preload = 'metadata';
-            thumbs[t2].load();
-          }
+          for (var t2 = 0; t2 < thumbs.length; t2++) primeThumb(thumbs[t2]);
         }
       })();
     </script>
