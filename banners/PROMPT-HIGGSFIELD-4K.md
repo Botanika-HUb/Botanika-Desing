@@ -59,3 +59,46 @@ COMPOSITION: vertical portrait framing. The row of five jars sits as a horizonta
    `banners/semana-do-cliente-v2.html`, no lugar do gradiente CSS, mantendo a
    camada `.layer` com a tipografia por cima.
 3. Re-renderizar com `scratchpad/shot.mjs` para sair nos 2200×933 e 1400×1737.
+
+---
+
+## Resultado — 16/09/2026
+
+O teto diario resetou e as duas artes sairam em 4k/max:
+
+| | job id | tamanho |
+|---|---|---|
+| desktop 21:9 | `dd7ac317-acfe-4d26-9988-eb7c4b9eeef0` | 3840×1648 |
+| mobile 4:5 | `7c7d1919-a992-4201-8483-0cc6588963f3` | 2560×3200 |
+
+Conferido: nenhum texto na imagem, os 4 potes navy iguais entre si, o 5º
+distinto (corpo creme + tampa teal), laranja cortada ao lado, lado esquerdo
+(desktop) e terco superior (mobile) limpos para a tipografia.
+
+Composicao final em `banners/semana-do-cliente-v3-foto.html`, renderizada em
+2200×933 e 1400×1737. Validado por medicao no navegador: Fraunces 700 e
+Inter 700/900 carregaram de verdade (sem fallback), acentos corretos, texto
+termina em x=1088 de 2200 no desktop (os potes comecam depois de 1210) e em
+y=795 de 1737 no mobile (os potes comecam depois de 1158) — sem colisao.
+
+### Armadilha de infraestrutura (custou tempo)
+
+O proxy desta sessao **bloqueia o CDN da Higgsfield nos dois sentidos**
+(`d8j0ntlcm91z4.cloudfront.net` e `d2ol7oe51mr4n9.cloudfront.net` devolvem
+403 no CONNECT). Nao da para baixar a arte nem o PNG final para este repo.
+
+Caminho que funciona: fazer **tudo dentro do `sandbox_exec` da Higgsfield** —
+ele tem internet, ImageMagick, Playwright e Chromium. Baixar a arte la,
+montar o HTML la, renderizar la, e subir o resultado com `media_upload` +
+`PUT` + `media_confirm`. O usuario pega os arquivos pela Higgsfield.
+
+Dois detalhes do sandbox:
+- o Playwright esta instalado **global** em `/usr/local/lib/node_modules`;
+  um `import` de `/home/user` nao resolve. Use
+  `createRequire('/usr/local/lib/node_modules/')` num arquivo `.cjs`.
+- o sandbox e descartado ~10s depois de cada chamada. Encadeie tudo com `&&`
+  numa chamada so, ou refaca os downloads.
+
+**Nao tente trazer imagem para o chat como base64.** Foi tentado com blobs de
+5 a 12 KB e a transcricao corrompeu todas as vezes. Valide por medicao
+(boundingBox, `document.fonts.check`) e entregue pelo widget.

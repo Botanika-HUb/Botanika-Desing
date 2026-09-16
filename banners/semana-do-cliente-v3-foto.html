@@ -1,0 +1,59 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<title>Semana do Cliente — banner v3 (arte fotorrealista)</title>
+<!--
+  Banner "Compre 4, leve 5" — versao fotorrealista.
+  Fundo: arte gerada na Higgsfield (gpt_image_2_5 / flare / quality max / 4k).
+  Tipografia: vem daqui, nunca da IA (texto gerado em portugues erra acento).
+  Artboards exatas: #desktop 2200x933 · #mobile 1400x1737.
+  Render: Playwright headless, element.screenshot() em cada artboard.
+-->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+:root{--cream:#FFF7ED;--y2:#FEF08A}
+body{background:#111}
+.art{position:relative;overflow:hidden;background-size:cover;background-position:center}
+#desktop{width:2200px;height:933px;background-image:url('https://d8j0ntlcm91z4.cloudfront.net/user_3G8JflzxGLjgF5BzXPb0aaKiMmm/hf_20260916_064605_dd7ac317-acfe-4d26-9988-eb7c4b9eeef0.png')}
+#mobile{width:1400px;height:1737px;background-image:url('https://d8j0ntlcm91z4.cloudfront.net/user_3G8JflzxGLjgF5BzXPb0aaKiMmm/hf_20260916_065350_7c7d1919-a992-4201-8483-0cc6588963f3.png');margin-top:40px}
+#desktop::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(90,25,0,.52) 0%,rgba(90,25,0,.34) 38%,rgba(90,25,0,0) 62%)}
+#mobile::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(90,25,0,.46) 0%,rgba(90,25,0,.22) 42%,rgba(90,25,0,0) 66%)}
+.layer{position:absolute;inset:0;z-index:2;display:flex;color:var(--cream)}
+#desktop .layer{align-items:center;padding:0 120px}
+#mobile .layer{flex-direction:column;align-items:center;text-align:center;padding:110px 90px 0}
+.box{max-width:1060px}
+.eyebrow{font-family:Inter,sans-serif;font-weight:700;letter-spacing:.22em;text-transform:uppercase;opacity:.92}
+.kicker{font-family:Fraunces,serif;font-weight:600;letter-spacing:-.01em;color:var(--y2)}
+.hero{font-family:Fraunces,serif;font-weight:700;letter-spacing:-.025em;line-height:.98}
+/* numerais em Inter: o Fraunces desenha o 5 quase como um S nesse corpo */
+.hero .num{font-family:Inter,sans-serif;font-weight:900;font-size:.88em;letter-spacing:-.03em;color:var(--y2)}
+.sub{font-family:Inter,sans-serif;font-weight:500;opacity:.95;line-height:1.35}
+.chips{display:flex;flex-wrap:wrap;gap:16px}
+#mobile .chips{justify-content:center}
+.chip{font-family:Inter,sans-serif;font-weight:700;border:2px solid rgba(255,247,237,.55);border-radius:999px;background:rgba(255,247,237,.10)}
+#desktop .eyebrow{font-size:23px;margin-bottom:22px}
+#desktop .kicker{font-size:52px;margin-bottom:10px}
+#desktop .hero{font-size:132px;margin-bottom:30px}
+#desktop .sub{font-size:33px;margin-bottom:42px;max-width:860px}
+#desktop .chip{font-size:23px;padding:15px 30px}
+#mobile .eyebrow{font-size:30px;margin-bottom:26px}
+#mobile .kicker{font-size:62px;margin-bottom:12px}
+#mobile .hero{font-size:140px;margin-bottom:34px}
+#mobile .sub{font-size:39px;margin-bottom:46px}
+#mobile .chip{font-size:28px;padding:18px 34px}
+</style></head><body>
+<div class="art" id="desktop"><div class="layer"><div class="box">
+<div class="eyebrow">14 a 19 de setembro</div>
+<div class="kicker">Semana do Cliente</div>
+<div class="hero">Compre <span class="num">4</span>, leve <span class="num">5</span>.</div>
+<div class="sub">O quinto pote &eacute; uma Super Vitamina C &mdash; por nossa conta.</div>
+<div class="chips"><div class="chip">At&eacute; 10% OFF levando 3 do mesmo produto</div><div class="chip">Frete gr&aacute;tis acima de R$ 199,90</div></div>
+</div></div></div>
+<div class="art" id="mobile"><div class="layer">
+<div class="eyebrow">14 a 19 de setembro</div>
+<div class="kicker">Semana do Cliente</div>
+<div class="hero">Compre <span class="num">4</span>,<br>leve <span class="num">5</span>.</div>
+<div class="sub">O quinto pote &eacute; uma<br>Super Vitamina C &mdash; por nossa conta.</div>
+<div class="chips"><div class="chip">At&eacute; 10% OFF levando 3 do mesmo produto</div><div class="chip">Frete gr&aacute;tis acima de R$ 199,90</div></div>
+</div></div>
+</body></html>
