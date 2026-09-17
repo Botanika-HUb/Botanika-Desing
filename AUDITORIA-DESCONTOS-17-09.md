@@ -191,3 +191,71 @@ a página anunciou.
 7. PIX 5% é anunciado em três lugares e não existe.
 
 **Nada neste documento foi alterado na loja.**
+
+---
+
+## 7. SOLUÇÃO — 17/09, 11h50 BRT
+
+O requisito não era escolher entre escada e brinde. É ter os dois:
+**comprou 4, ganha a Vitamina C, tenha escada ou não, produtos iguais ou não.**
+
+### O que destrava
+
+O conflito não é "escada versus brinde". É que o BxGy **consome unidades** como
+pré-requisito, e desconto de PRODUTO disputa unidade com desconto de PRODUTO.
+
+**Desconto de PEDIDO não disputa unidade nenhuma.** Isso já estava medido nesta
+auditoria: o cupom BOTANIKA (classe ORDEM) somou com a escada do Hair sem tirar
+nada dela.
+
+Então o brinde virou um desconto de pedido:
+
+| | antes | agora |
+|---|---|---|
+| tipo | BxGy (PRODUTO) | básico (**ORDEM**) |
+| efeito | 1 Super Vitamina C 100% off | **R$ 89,52 off no pedido** |
+| condição | 4 unidades de pré-requisito | **5+ itens no carrinho** |
+| consome unidades? | sim — matava a escada | **não** |
+
+`gid://shopify/DiscountAutomaticNode/1581920714984` — ACTIVE até 20/09 03:00Z,
+`combinesWith` produto/pedido/frete todos `true`.
+
+Os 5 itens são os 4 que a cliente escolheu + a Vitamina C que o tema adiciona.
+Bate exatamente com "compre 4, leve 5".
+
+O BxGy `1580105367784` foi encerrado (33 usos).
+
+### Validado por simulação
+
+| carrinho | total | desconto |
+|---|---|---|
+| 3 Hair + TetraVit + Vit C (o caso das 5 reclamações) | R$ 385,50 | escada 29,82 **+** brinde 89,52 |
+| 5 potes avulsos | R$ 467,14 | brinde 89,52 |
+| 4 itens (não atinge o brinde) | R$ 385,50 | só escada 29,82 |
+| 7 itens com 2 escadas | R$ 695,44 | 29,82 + 16,30 **+** 89,52 |
+| 3 Hair + TetraVit + Vit C + JULIACOLARES | R$ 375,18 | 119,34 **+** 10,32 do cupom |
+
+Escada, brinde e cupom de influenciador somam. Era isso que a campanha
+prometia desde o dia 14.
+
+### Vazamento durante o teste — fechado
+
+Com o BxGy antigo ainda ativo, um carrinho de 5 avulsos pegou **os dois
+brindes: R$ 179,04**. O BxGy foi encerrado e o cenário refeito: R$ 89,52.
+`asyncUsageCount` do novo desconto estava em 0 — nenhum pedido pegou o dobro.
+
+### Limitações conhecidas
+
+1. **O mínimo de 5 conta QUALQUER item, não só suplemento elegível.** Cinco
+   kits sem nenhuma Vitamina C no carrinho também dão R$ 89,52 de desconto.
+   Desconto de pedido não aceita recorte por produto — é o preço de usar essa
+   classe. Sobre-entrega, nunca sub-entrega.
+2. **O desconto aparece no rodapé, não na linha.** A Vitamina C continua
+   listada a R$ 89,52 e o abatimento vem como "-R$ 89,52" no total. O painel
+   do tema (`botanika-semana-gift-sync.liquid` e `botanika-semana-cart.liquid`)
+   testa `final_line_price == 0` para escrever "Brinde aplicado: R$ 0,00" —
+   esse teste nunca mais será verdadeiro e o painel vai ficar preso em
+   "aplicando o desconto...". Precisa de ajuste no tema.
+3. Os seis códigos com `combinesWith` tudo falso (LIVE8, VOLTA5, VOLTA10,
+   RECUPERA10MAIL, RECUPERA10ZAP, ALUNO10) continuam matando escada **e**
+   agora também o brinde. Pendência anterior, não introduzida aqui.
