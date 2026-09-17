@@ -19,6 +19,11 @@ export default async function CuponsTab({
     orderBy: [{ claimed: "asc" }, { approvedAt: "desc" }],
   });
 
+  // Domínio público para o link do cupom (storeUrl); se não configurado,
+  // cai no .myshopify.com (o /discount/<código> também funciona lá).
+  const storeBase =
+    brand.storeUrl || (brand.shopDomain ? `https://${brand.shopDomain}` : null);
+
   return (
     <section>
       <h1 className="mb-1 text-2xl font-bold">
@@ -64,6 +69,8 @@ export default async function CuponsTab({
                   termsSigned: Boolean(c.termsAcceptedAt),
                   goalAmount: c.goalAmount,
                   goalPlaceholder: brand.goalDefaultAmount,
+                  storeUrl: storeBase,
+                  accountId: c.accountId,
                 } satisfies ApprovedView
               }
             />

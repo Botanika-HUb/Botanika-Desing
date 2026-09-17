@@ -8,7 +8,9 @@ import {
   removeCreatorAction,
   type ApproveState,
 } from "@/actions/admin";
+import { enterAsCreatorAction } from "@/actions/auth";
 import { SubmitButton } from "@/components/SubmitButton";
+import { CopyButton } from "@/components/CopyButton";
 import { CouponEditor } from "./CouponEditor";
 import { CreatorFicha } from "./CreatorFicha";
 
@@ -148,6 +150,8 @@ export type ApprovedView = {
   termsSigned: boolean;
   goalAmount: number | null;
   goalPlaceholder: number;
+  storeUrl: string | null;
+  accountId: string | null;
 };
 
 export function ApprovedCard({ creator }: { creator: ApprovedView }) {
@@ -156,6 +160,11 @@ export function ApprovedCard({ creator }: { creator: ApprovedView }) {
     editCreatorCouponAction,
     null,
   );
+
+  const discountLink =
+    creator.storeUrl && creator.couponCode
+      ? `${creator.storeUrl.replace(/\/$/, "")}/discount/${creator.couponCode}`
+      : null;
 
   return (
     <div className="card">
@@ -206,6 +215,33 @@ export function ApprovedCard({ creator }: { creator: ApprovedView }) {
           </button>
         </div>
       </div>
+
+      {(discountLink || (creator.accountId && creator.claimed)) && (
+        <div className="mt-3 flex flex-wrap items-center gap-2 border-t pt-3">
+          {discountLink && (
+            <>
+              <a
+                href={discountLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="min-w-0 flex-1 truncate rounded-lg bg-[var(--background)] px-3 py-1.5 text-xs text-[var(--muted)] hover:underline"
+                title="Link do cupom — abre a loja com o desconto já aplicado"
+              >
+                {discountLink}
+              </a>
+              <CopyButton value={discountLink} label="Copiar link" />
+            </>
+          )}
+          {creator.accountId && creator.claimed && (
+            <form action={enterAsCreatorAction} className="ml-auto">
+              <input type="hidden" name="accountId" value={creator.accountId} />
+              <button type="submit" className="btn btn-ghost text-sm">
+                Entrar como →
+              </button>
+            </form>
+          )}
+        </div>
+      )}
 
       {open && (
         <>

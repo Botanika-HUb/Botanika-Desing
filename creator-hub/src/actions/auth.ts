@@ -10,6 +10,8 @@ import {
   logoutCreator,
   loginAdmin,
   logoutAdmin,
+  getCurrentAdmin,
+  impersonateCreatorAccount,
 } from "@/lib/auth";
 
 export type LoginState = { error?: string } | null;
@@ -144,6 +146,34 @@ export async function claimCreatorAction(
 export async function creatorLogoutAction() {
   await logoutCreator();
   redirect("/entrar");
+}
+
+// Admin "entra como" um creator: abre o painel daquela conta (impersonação).
+// Só admin logado; admin de marca só entra em creator da própria marca.
+export async function enterAsCreatorAction(formData: FormData) {
+  const admin = await getCurrentAdmin();
+  if (!admin) redirect("/admin/login");
+  const accountId = String(formData.get("accountId") || "");
+  if (!accountId) redirect("/admin");
+  const account = await prisma.creatorAccount.findUnique({
+    where: { id: accountId },
+    include: { creators: { select: { brandId: true } } },
+  });
+  if (!account) redirect("/admin");
+  if (
+    admin.brandId &&
+    !account.creators.some((c) => c.brandId === admin.brandId)
+  ) {
+    redirect("/admin");
+  }
+  await impersonateCreatorAccount(account.id, admin.id);
+  redirect("/painel");
+}
+
+// Sai do modo "entrar como" e volta pro admin (o cookie de admin continua lá).
+export async function exitImpersonationAction() {
+  await logoutCreator();
+  redirect("/admin");
 }
 
 const adminLoginSchema = z.object({

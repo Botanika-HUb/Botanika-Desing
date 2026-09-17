@@ -25,7 +25,9 @@ const ADMIN_COOKIE = "botanika_admin_session";
 const MAX_AGE = 60 * 60 * 24 * 30; // 30 dias
 
 type Role = "creator" | "admin";
-type SessionPayload = { sub: string; role: Role };
+// `imp` = id do admin quando a sessão de creator é uma impersonação ("entrar
+// como") feita pelo admin. Ausente numa sessão normal da creator.
+type SessionPayload = { sub: string; role: Role; imp?: string };
 
 export async function hashPassword(plain: string): Promise<string> {
   return bcrypt.hash(plain, 10);
@@ -80,6 +82,28 @@ export async function loginCreatorAccount(accountId: string) {
 export async function logoutCreator() {
   const store = await cookies();
   store.delete(CREATOR_COOKIE);
+}
+
+// Admin "entrando como" creator (impersonação). Grava o id do admin no token
+// para o painel avisar que é modo admin e permitir voltar. Não mexe no cookie
+// de admin — o admin continua logado por baixo.
+export async function impersonateCreatorAccount(
+  accountId: string,
+  adminId: string,
+) {
+  await setSession(CREATOR_COOKIE, {
+    sub: accountId,
+    role: "creator",
+    imp: adminId,
+  });
+}
+
+// Se a sessão de creator atual é uma impersonação de admin, retorna o id do
+// admin; senão null.
+export async function getCreatorImpersonatorId(): Promise<string | null> {
+  const session = await readSession(CREATOR_COOKIE);
+  if (!session || session.role !== "creator") return null;
+  return session.imp ?? null;
 }
 
 export async function getCurrentCreatorAccount() {

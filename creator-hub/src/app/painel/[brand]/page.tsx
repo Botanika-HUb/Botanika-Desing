@@ -2,8 +2,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Logo } from "@/components/Logo";
 import { CopyButton } from "@/components/CopyButton";
-import { getCurrentCreatorAccount } from "@/lib/auth";
-import { creatorLogoutAction } from "@/actions/auth";
+import { getCurrentCreatorAccount, getCreatorImpersonatorId } from "@/lib/auth";
+import { creatorLogoutAction, exitImpersonationAction } from "@/actions/auth";
 import { prisma } from "@/lib/prisma";
 import { brandConnection } from "@/lib/brand";
 import { isShopifyConfigured, type CreatorSales } from "@/lib/shopify";
@@ -42,6 +42,9 @@ export default async function PainelBrand({
   const account = await getCurrentCreatorAccount();
   if (!account) redirect("/entrar");
 
+  // Admin "entrando como" esta creator? (mostra aviso e pula o gate do termo)
+  const impersonating = Boolean(await getCreatorImpersonatorId());
+
   const { brand: slug } = await params;
   const sp = await searchParams;
   const { key: periodKey, since, until } = resolvePeriod(sp.period, sp.from, sp.to);
@@ -61,7 +64,7 @@ export default async function PainelBrand({
   const acceptedCurrentTerm =
     membership.termsAcceptedAt != null &&
     (membership.termsVersion ?? 0) >= brand.termVersion;
-  if (!acceptedCurrentTerm) {
+  if (!acceptedCurrentTerm && !impersonating) {
     return (
       <div className="flex min-h-screen flex-col" style={{ ["--brand" as string]: color }}>
         <header className="border-b bg-[var(--surface)]">
@@ -160,6 +163,18 @@ export default async function PainelBrand({
 
   return (
     <div className="flex min-h-screen flex-col" style={{ ["--brand" as string]: color }}>
+      {impersonating && (
+        <div className="flex flex-wrap items-center justify-center gap-2 bg-amber-400 px-4 py-2 text-center text-sm text-black">
+          <span>
+            👁 Modo admin — você está vendo o painel de <b>{account.name}</b>.
+          </span>
+          <form action={exitImpersonationAction}>
+            <button type="submit" className="font-semibold underline">
+              Voltar ao admin
+            </button>
+          </form>
+        </div>
+      )}
       <header className="border-b bg-[var(--surface)]">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
           <div className="flex items-center gap-3">
