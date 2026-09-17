@@ -305,3 +305,71 @@ Ordem de prioridade, por uso real medido em 13/09:
 `snippets/botanika-order-bump.liquid` — senão a gaveta segue mostrando preço cheio e o
 desconto existe sem ninguém saber. O caminho inverso (virar para `deal` sem o desconto
 existir) é quebra da regra de ouro: nunca faça isso antes de a mutation passar.
+
+---
+
+## 17/09 — Correção definitiva do brinde (causa raiz encontrada)
+
+### O que estava acontecendo
+
+`snippets/botanika-semana-gift-sync.liquid` roda no navegador e, quando o
+carrinho chega a 4 unidades elegíveis, **adiciona sozinho** um pote de Super
+Vitamina C (variante 48115368460520, R$ 89,52) via `/cart/add.js`, marcado com
+a propriedade `_semana_cliente_brinde`. Na tela ele escreve:
+
+> 🎁 Super Vitamina C adicionada automaticamente
+> "O desconto de 100% da promoção será aplicado automaticamente."
+
+Só que o desconto era um **BxGy**, e BxGy **consome** as 4 unidades de
+pré-requisito. Quando as escadas por produto já tinham pego essas unidades
+(o caso normal, porque só um desconto se aplica por unidade), o BxGy não
+podia disparar — e o pote ficava no carrinho **cobrado**.
+
+Ou seja: a loja colocava um produto pago no carrinho da cliente por conta
+própria, prometia que era grátis, e cobrava. Três clientes reclamaram
+(14–17/09). Não era "desconto que não aplicou": era cobrança indevida.
+
+Agravante: a lista `eligible` do script inclui `9558490448104`
+(Kit da Imunidade), que **não estava** na lista do BxGy. Dava para bater as
+4 unidades com um produto que o desconto nem aceitava.
+
+### A correção
+
+Trocado o mecanismo do brinde:
+
+| | antes | depois |
+|---|---|---|
+| tipo | BxGy "compre 4, leve 5" | desconto de produto, valor fixo |
+| valor | 100% em 1 Super Vitamina C | **R$ 89,52** na Super Vitamina C |
+| condição | 4 unidades de pré-requisito | **subtotal ≥ R$ 300** |
+| consome unidades? | **sim** — matava as escadas | **não** |
+
+`gid://shopify/DiscountAutomaticNode/1581910425832` — ACTIVE até 20/09 03:00Z,
+`combinesWith` produto/pedido/frete todos `true`, `appliesOnEachItem: false`
+(aplica uma vez por pedido).
+
+O BxGy `1580105367784` foi encerrado (`endsAt` = 2026-09-17T13:55:00Z,
+33 usos no total).
+
+**Por que R$ 300:** o pior caso de "4 unidades" é 4× Tri[Mg] (o mais barato,
+R$ 87,50) = R$ 350, que com os 10% da escada vira **R$ 315**. Qualquer teto
+acima disso deixaria de entregar o brinde para quem cumpriu a regra. R$ 300
+nunca sub-entrega.
+
+**Vazamento conhecido, aceito:** um carrinho de 3 unidades acima de R$ 300
+que contenha uma Super Vitamina C também ganha o desconto (ex.: 2 Ômega +
+1 Vit C). Sobre-entrega, nunca sub-entrega — e a regra do projeto é que o
+cliente nunca veja um preço que o checkout não honra. Se incomodar, o número
+é um campo só.
+
+### Ainda pendente (não autorizado)
+
+- `blocks/_product-quantity-cards.liquid`, `snippets/botanika-semana-cart.liquid`
+  e `snippets/botanika-semana-gift-sync.liquid` anunciam **"+5% OFF adicional
+  no PIX"**. Esse desconto **não existe** na Shopify — varredura completa em
+  automáticos e cupons ativos não achou nada de PIX. É promessa sem lastro,
+  em três lugares.
+- O painel de confiança diz "Frete grátis acima de R$349" enquanto a caixa da
+  campanha diz "a partir de R$ 199,90", na mesma página.
+- Escrita em tema publicado é bloqueada pela política do servidor MCP; essas
+  correções têm que sair pelo admin ou num tema duplicado.
