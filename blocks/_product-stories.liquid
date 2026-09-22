@@ -28,7 +28,7 @@
 {%- liquid
   assign bs = block.settings
   assign has_story = false
-  for i in (1..8)
+  for i in (1..12)
     assign vk = 'story' | append: i | append: '_video'
     if bs[vk] != blank
       assign has_story = true
@@ -64,7 +64,7 @@
   <div class="pstory" data-pstory-block="{{ block.id }}" {{ block.shopify_attributes }}>
     <div class="pstory__row">
       {%- assign story_index = 0 -%}
-      {%- for i in (1..8) -%}
+      {%- for i in (1..12) -%}
         {%- assign vk = 'story' | append: i | append: '_video' -%}
         {%- assign ck = 'story' | append: i | append: '_cover' -%}
         {%- assign lk = 'story' | append: i | append: '_label' -%}
@@ -159,7 +159,7 @@
 
     {%- assign story_count = 0 -%}
     {%- capture stories_json -%}
-      {%- for i in (1..8) -%}
+      {%- for i in (1..12) -%}
         {%- assign vk = 'story' | append: i | append: '_video' -%}
         {%- assign ck = 'story' | append: i | append: '_cover' -%}
         {%- assign lk = 'story' | append: i | append: '_label' -%}
@@ -564,7 +564,23 @@
     { "type": "header", "content": "Destaque 8" },
     { "type": "video", "id": "story8_video", "label": "Vídeo 8" },
     { "type": "image_picker", "id": "story8_cover", "label": "Capa 8 (opcional)" },
-    { "type": "text", "id": "story8_label", "label": "Legenda 8" }
+    { "type": "text", "id": "story8_label", "label": "Legenda 8" },
+    { "type": "header", "content": "Destaque 9" },
+    { "type": "video", "id": "story9_video", "label": "Vídeo 9" },
+    { "type": "image_picker", "id": "story9_cover", "label": "Capa 9 (opcional)" },
+    { "type": "text", "id": "story9_label", "label": "Legenda 9" },
+    { "type": "header", "content": "Destaque 10" },
+    { "type": "video", "id": "story10_video", "label": "Vídeo 10" },
+    { "type": "image_picker", "id": "story10_cover", "label": "Capa 10 (opcional)" },
+    { "type": "text", "id": "story10_label", "label": "Legenda 10" },
+    { "type": "header", "content": "Destaque 11" },
+    { "type": "video", "id": "story11_video", "label": "Vídeo 11" },
+    { "type": "image_picker", "id": "story11_cover", "label": "Capa 11 (opcional)" },
+    { "type": "text", "id": "story11_label", "label": "Legenda 11" },
+    { "type": "header", "content": "Destaque 12" },
+    { "type": "video", "id": "story12_video", "label": "Vídeo 12" },
+    { "type": "image_picker", "id": "story12_cover", "label": "Capa 12 (opcional)" },
+    { "type": "text", "id": "story12_label", "label": "Legenda 12" }
   ],
   "presets": [ { "name": "Stories (destaques)" } ]
 }
