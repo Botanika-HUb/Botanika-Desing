@@ -13,4 +13,5 @@ clone landing-tetravit               tetravit
 clone landing-sleep                  sleep
 clone landing-creatina               creatina
 clone landing-links                  links
+clone landing-social                 social
 echo "Slugs prontos."

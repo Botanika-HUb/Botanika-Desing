@@ -124,6 +124,15 @@ As LPs são servidas no domínio da marca via **Cloudflare Pages** (host) + **Go
 - **Identidade:** "Herbário Botanika" — papel claro + verde-floresta/dourado/sálvia · selo botânico · fundo de partículas + vinha de progresso · Fraunces + Outfit
 - **Status:** ✅ pronta
 
+### Link-in-bio (linktree do Instagram)
+- **Pasta:** `landing-social/` · **slug de produção:** `/social` (via `build.sh`)
+- **Link (preview):** https://raw.githack.com/BotanikaHub/Botanika-Desing/lp/landing-social/index.html
+- **Domínio pretendido:** `social.botanikabrasil.com.br` (subdomínio dedicado pra bio do Instagram) — DNS CNAME na GoDaddy, host Cloudflare Pages.
+- **Conteúdo:** cards de link (Loja oficial, Grupo VIP, Kits, WhatsApp, Rastrear pedido) + rodapé Instagram/YouTube. Headline alinhada à bio: "Fórmulas puras, resultados reais."
+- **Rastreio:** Google Tag `GT-P8RLSDHK` → GA4 `G-2JFV5TGHCV` + Meta Pixel `828186133708463` + evento de clique por link (`link_click` / `select_content` / `LinkbioClick`).
+- **Identidade:** índigo escuro + lima · vidro fosco (backdrop-filter) · auras radiais flutuantes · fonte "Instrument" (embutida) + Georgia itálico. Arquivo único autocontido (logo/foto/fonte em data-URI).
+- **Status:** ✅ publicada na `lp`
+
 <!-- PRÓXIMOS PRODUTOS (modelo — copiar ao criar):
 ### N. <Nome do produto>
 - **Pasta:** `landing-<slug>/`
