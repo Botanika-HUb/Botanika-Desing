@@ -1,0 +1,49 @@
+{%- comment -%}
+  Nota por estrelas da Botanika (dados do Judge.me).
+  Renderizado no servidor: aparece junto com a pagina, sem depender do JS do app.
+  Usado na PDP (bloco "Avaliacao e vendidos"), nos cards de produto e no quickview.
+{%- endcomment -%}
+{%- liquid
+  assign jm_count = product.metafields.reviews.rating_count.value | plus: 0
+  assign jm_rating = product.metafields.reviews.rating.value.rating | plus: 0.0
+  assign jm_scale = product.metafields.reviews.rating.value.scale_max | plus: 0.0
+  if jm_scale <= 0
+    assign jm_scale = 5.0
+  endif
+-%}
+{%- if jm_count > 0 and jm_rating > 0 -%}
+  {%- liquid
+    assign jm_pct = jm_rating | divided_by: jm_scale | times: 100
+    assign jm_score = jm_rating | round: 1 | replace: '.', ','
+    assign jm_word = 'avaliações'
+    if jm_count == 1
+      assign jm_word = 'avaliação'
+    endif
+    assign jm_self = false
+    assign jm_url = product.url | split: '?' | first
+    if request.page_type == 'product' and request.path == jm_url
+      assign jm_self = true
+    endif
+  -%}
+  {%- capture jm_inner -%}
+    <span class="btrate__stars" style="--btrate-fill: {{ jm_pct }}%" aria-hidden="true"><span class="btrate__off">★★★★★</span><span class="btrate__on">★★★★★</span></span><span class="btrate__num">{{ jm_score }}</span><span class="btrate__count">({{ jm_count }} {{ jm_word }})</span>
+  {%- endcapture -%}
+  {%- capture jm_attrs -%}
+    class="btrate product-reviews {{ class }}" style="{{ jm_style }}" data-id="{{ product.id }}" aria-label="Nota {{ jm_score }} de {{ jm_scale | round }} — {{ jm_count }} {{ jm_word }}"{% if block %} {{ block.shopify_attributes }}{% endif %}
+  {%- endcapture -%}
+  {%- if jm_self -%}
+    <a href="#avaliacoes" {{ jm_attrs }}>{{ jm_inner }}</a>
+  {%- else -%}
+    <span {{ jm_attrs }}>{{ jm_inner }}</span>
+  {%- endif -%}
+{%- endif -%}
+{%- if product.metafields.spr.reviews -%}
+  <div
+    class="product-reviews {{ class }}"
+    {%- if block -%}
+      {{ block.shopify_attributes }}
+    {%- endif -%}
+  >
+    <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+  </div>
+{%- endif -%}

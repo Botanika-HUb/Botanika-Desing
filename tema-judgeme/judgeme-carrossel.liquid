@@ -1,0 +1,89 @@
+{% comment %} Judge.me - Carrossel de avaliacoes (Home) - Botanika (cards no estilo do bloco) {% endcomment %}
+<style>
+.btcar{--ink:#1b2560;--muted:#6b6f80;--line:#eceef6;--blue:#323c91;--star:#ff9c05;--green:#1a8f3c;max-width:{{ section.settings.max_width | default: 1280 }}px;margin:0 auto;padding:{{ section.settings.padding_top | default: 20 }}px 0 {{ section.settings.padding_bottom | default: 60 }}px;font-family:inherit;}
+.btcar__head{text-align:center;margin:0 0 26px;padding:0 20px;}
+.btcar__title{font-size:clamp(22px,2.4vw,30px);font-weight:800;color:var(--blue);margin:0 0 6px;}
+.btcar__sub{font-size:15px;color:var(--muted);margin:0;}
+.btcar__track{display:flex;align-items:stretch;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 20px 20px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:#c7cbe0 transparent;}
+.btcar__track::-webkit-scrollbar{height:7px;}
+.btcar__track::-webkit-scrollbar-thumb{background:#c7cbe0;border-radius:99px;}
+.btcar__track > .btc{flex:0 0 340px;width:340px;max-width:86vw;scroll-snap-align:start;}
+.btcar .btc{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px 24px;box-shadow:0 8px 26px rgba(27,37,96,.06)}
+.btcar .btc__stars{color:var(--star);font-size:18px;letter-spacing:2px;line-height:1}
+.btcar .btc__quote{color:var(--ink);font-size:15.5px;line-height:1.62;margin:14px 0 18px;flex:1}
+.btcar .btc__author{font-weight:700;color:var(--ink);font-size:15px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.btcar .btc__vf{display:inline-flex;align-items:center;gap:5px;font-weight:600;font-size:12px;color:var(--green);background:rgba(26,143,60,.1);padding:4px 9px;border-radius:999px}
+.btcar .btc__vf svg{width:13px;height:13px}
+.btcar .btc__prod{display:flex;align-items:center;gap:14px;margin-top:18px;padding-top:18px;border-top:1px solid var(--line);text-decoration:none}
+.btcar .btc__thumb{flex:0 0 70px;width:70px;height:70px;border-radius:14px;background:#f5f6fb;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.btcar .btc__thumb img{width:100%;height:100%;object-fit:contain;padding:6px}
+.btcar .btc__pinfo{min-width:0}
+.btcar .btc__pname{font-weight:700;color:var(--ink);font-size:14px;line-height:1.3;margin-bottom:5px}
+.btcar .btc__old{color:var(--muted);text-decoration:line-through;font-size:12.5px;margin-right:6px}
+.btcar .btc__inst{display:block;color:var(--blue);font-weight:800;font-size:15px}
+.btcar .btc__nofee{display:inline-block;background:rgba(26,143,60,.12);color:var(--green);font-weight:700;font-size:11px;padding:2px 7px;border-radius:6px;margin-left:5px;vertical-align:middle}
+.btcar .btc__cash{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+@media(max-width:640px){.btcar__track>.btc{flex-basis:300px;width:300px}}
+</style>
+{%- capture vfsvg -%}<span class="btc__vf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Compra verificada</span>{%- endcapture -%}
+{%- comment -%} Somente avaliacoes reais vindas do Judge.me {%- endcomment -%}
+{%- assign limit = section.settings.max_reviews | default: 12 -%}
+{%- assign min_len = section.settings.min_length | default: 30 -%}
+{%- capture cards -%}
+  {%- assign reviews = shop.metafields.judgeme.all_reviews_0 -%}
+  {%- assign chunks = reviews | split: "jdgm-rev jdgm-divider-top" -%}
+  {%- assign shown = 0 -%}
+  {%- for c in chunks offset: 1 -%}
+    {%- if shown >= limit -%}{%- break -%}{%- endif -%}
+    {%- unless c contains "jdgm-rev__prod-link'>" -%}{%- continue -%}{%- endunless -%}
+    {%- assign onc = c | split: 'jdgm--on' | size | minus: 1 -%}
+    {%- if onc < 5 -%}{%- continue -%}{%- endif -%}
+    {%- assign bodyhtml = c | split: "jdgm-rev__body'>" | last | split: "</div>" | first -%}
+    {%- assign bt = bodyhtml | strip_html | strip -%}
+    {%- assign blen = bt | size -%}
+    {%- if blen < min_len -%}{%- continue -%}{%- endif -%}
+    {%- assign handle = c | split: "/products/" | last | split: "'" | first -%}
+    {%- assign p = all_products[handle] -%}
+    {%- if p == empty -%}{%- continue -%}{%- endif -%}
+    {%- assign author = c | split: "jdgm-rev__author'>" | last | split: "</span>" | first | strip_html | strip -%}
+    {%- assign shown = shown | plus: 1 -%}
+    <article class="btc">
+      <div class="btc__stars">★★★★★</div>
+      <p class="btc__quote">{{ bt | truncate: 230 }}</p>
+      <div class="btc__author">{{ author }} {{ vfsvg }}</div>
+      <a class="btc__prod" href="{{ p.url }}">
+        <span class="btc__thumb">{%- if p.featured_image -%}<img src="{{ p.featured_image | image_url: width: 160 }}" alt="{{ p.title | escape }}" loading="lazy">{%- endif -%}</span>
+        <span class="btc__pinfo"><span class="btc__pname">{{ p.title }}</span>{%- if p.compare_at_price > p.price -%}<span class="btc__old">{{ p.compare_at_price | money }}</span>{%- endif -%}<span class="btc__inst">3x de {{ p.price | divided_by: 3 | money }}<span class="btc__nofee">sem juros</span></span><span class="btc__cash">ou {{ p.price | money }} à vista</span></span>
+      </a>
+    </article>
+  {%- endfor -%}
+{%- endcapture -%}
+{%- if cards != blank or request.design_mode -%}
+<div class="btcar" {{ section.shopify_attributes }}>
+  <div class="btcar__head">
+    {%- if section.settings.heading != blank -%}<h2 class="btcar__title">{{ section.settings.heading }}</h2>{%- endif -%}
+    {%- assign cnt = shop.metafields.judgeme.all_reviews_count -%}{%- assign rat = shop.metafields.judgeme.all_reviews_rating -%}
+    {%- if section.settings.show_sub -%}<p class="btcar__sub">{% if cnt != blank and rat != blank %}{{ cnt }} avaliações reais · nota média {{ rat | times: 1.0 | round: 1 | replace: '.', ',' }}★{% else %}{{ section.settings.subheading }}{% endif %}</p>{%- endif -%}
+  </div>
+  <div class="btcar__track">{{ cards }}</div>
+</div>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Judge.me Carrossel",
+  "tag": "section",
+  "class": "section-judgeme-carousel",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "Mais avaliações de clientes" },
+    { "type": "checkbox", "id": "show_sub", "label": "Mostrar subtítulo (nº + nota)", "default": true },
+    { "type": "text", "id": "subheading", "label": "Subtítulo (fallback)", "default": "Avaliações reais de clientes Botanika." },
+    { "type": "range", "id": "max_reviews", "min": 4, "max": 24, "step": 1, "label": "Quantas avaliações mostrar", "default": 12 },
+    { "type": "range", "id": "min_length", "min": 0, "max": 120, "step": 5, "unit": "car", "label": "Tamanho mínimo do texto", "info": "Avaliações mais curtas que isso são puladas.", "default": 30 },
+    { "type": "range", "id": "max_width", "min": 900, "max": 1410, "step": 10, "unit": "px", "label": "Largura máxima", "default": 1280 },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Espaço acima", "default": 20 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Espaço abaixo", "default": 60 }
+  ],
+  "presets": [ { "name": "Judge.me Carrossel" } ],
+  "enabled_on": { "templates": ["index"] }
+}
+{% endschema %}
