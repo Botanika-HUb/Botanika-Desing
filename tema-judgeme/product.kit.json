@@ -215,22 +215,22 @@
         "pdp_stories_1": {
           "type": "_product-stories",
           "settings": {
-            "story1_video": "shopify://files/videos/AnaCreatina.MOV",
+            "story1_video": "shopify://files/videos/Creatina 5.MOV",
             "story1_label": "Creatina",
-            "story2_video": "shopify://files/videos/AlineHair.mov",
+            "story2_video": "shopify://files/videos/MGHAIR01.mov",
             "story2_label": "Hair",
-            "story3_video": "shopify://files/videos/DharaTri Mg .mov",
+            "story3_video": "shopify://files/videos/MGTRI01.mov",
             "story3_label": "Tri [Mg]",
-            "story4_video": "shopify://files/videos/LissiaTetraVitD.mov",
+            "story4_video": "shopify://files/videos/MGTETRA01.mov",
             "story4_label": "TetraVit D",
-            "story5_video": "shopify://files/videos/larissaOmega3.mov",
+            "story5_video": "shopify://files/videos/Omega 3 1.mov",
             "story5_label": "Ômega 3",
-            "story6_video": "shopify://files/videos/LarissaVitaminaC.mov",
+            "story6_video": "shopify://files/videos/Vitamina C 1.mov",
             "story6_label": "Vitamina C",
-            "story7_video": "shopify://files/videos/jack01_73cc31ad-30fb-49e6-8715-8cc1c0e17981.mov",
-            "story7_label": "Na rotina",
-            "story8_video": "shopify://files/videos/jack02.mov",
-            "story8_label": "Resultados"
+            "story7_video": "shopify://files/videos/LARAWHEY01.mov",
+            "story7_label": "Whey",
+            "story8_video": "shopify://files/videos/Unboxing.mov",
+            "story8_label": "Unboxing"
           },
           "blocks": {}
         },
@@ -432,14 +432,6 @@
     "pdp_ugc": {
       "type": "ugc-photos",
       "blocks": {
-        "video_5": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/DharaTetra Vit D .mov",
-            "name": "",
-            "caption": ""
-          }
-        },
         "video_1": {
           "type": "video",
           "settings": {
@@ -452,14 +444,6 @@
           "type": "video",
           "settings": {
             "video": "shopify://files/videos/DharaTri Mg .mov",
-            "name": "",
-            "caption": ""
-          }
-        },
-        "video_2": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/AnaCreatina.MOV",
             "name": "",
             "caption": ""
           }
@@ -480,14 +464,6 @@
             "caption": ""
           }
         },
-        "video_9": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/larissaOmega3.mov",
-            "name": "",
-            "caption": ""
-          }
-        },
         "video_3": {
           "type": "video",
           "settings": {
@@ -496,34 +472,10 @@
             "caption": ""
           }
         },
-        "video_7": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/jack01_73cc31ad-30fb-49e6-8715-8cc1c0e17981.mov",
-            "name": "",
-            "caption": ""
-          }
-        },
         "video_8": {
           "type": "video",
           "settings": {
             "video": "shopify://files/videos/jack02.mov",
-            "name": "",
-            "caption": ""
-          }
-        },
-        "video_10": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/LarissaVitaminaC.mov",
-            "name": "",
-            "caption": ""
-          }
-        },
-        "video_12": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/LissiaTetraVitD.mov",
             "name": "",
             "caption": ""
           }
@@ -543,23 +495,44 @@
             "name": "",
             "caption": ""
           }
+        },
+        "video_ugerhair3mov": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Rayssa Külkamp Krüger HAIR 3.mov",
+            "name": "",
+            "caption": ""
+          }
+        },
+        "video_arawhey02mov": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/LARAWHEY02.mov",
+            "name": "",
+            "caption": ""
+          }
+        },
+        "video_arawhey03mov": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/LARAWHEY03.mov",
+            "name": "",
+            "caption": ""
+          }
         }
       },
       "block_order": [
-        "video_5",
         "video_1",
         "video_6",
-        "video_2",
         "video_8qTFXb",
         "video_11",
-        "video_9",
         "video_3",
-        "video_7",
         "video_8",
-        "video_10",
-        "video_12",
         "video_4",
-        "video_13"
+        "video_13",
+        "video_ugerhair3mov",
+        "video_arawhey02mov",
+        "video_arawhey03mov"
       ],
       "settings": {
         "color_scheme": "default",
