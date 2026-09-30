@@ -24,7 +24,8 @@
         "image_mobile": "shopify://shop_images/novodisplaymobile.png",
         "image_alt": "Quanto mais você compra, mais você ganha",
         "image_link": ""
-      }
+      },
+      "disabled": true
     },
     "main": {
       "type": "main-product-layout-2",
@@ -139,23 +140,23 @@
             "tier1_quantity": 1,
             "tier1_discount": 0,
             "tier1_subtitle": "NAC + MSM + Coenzima Q10 + Cranberry",
-            "tier1_badge1": "Frete grátis",
-            "tier1_message": "Envio grátis para todo o Brasil",
+            "tier1_badge1": "",
+            "tier1_message": "Entrega para todo o Brasil",
             "tier2_enabled": false,
             "tier2_image": "",
             "tier2_title": "2 KITS",
             "tier2_quantity": 2,
-            "tier2_discount": 5,
-            "tier2_subtitle": "Leve 2 e economize 5%",
+            "tier2_discount": 0,
+            "tier2_subtitle": "Leve 2 KITS",
             "tier2_badge1": "Mais vendido",
             "tier2_message": "",
             "tier3_enabled": false,
             "tier3_image": "",
             "tier3_title": "3 KITS",
             "tier3_quantity": 3,
-            "tier3_discount": 10,
-            "tier3_subtitle": "Leve 3 e economize 10%",
-            "tier3_badge1": "Menor preço",
+            "tier3_discount": 0,
+            "tier3_subtitle": "Leve 3 KITS",
+            "tier3_badge1": "",
             "tier3_message": "",
             "tier3_bonus": "+ Manual da Suplementação"
           },
@@ -347,7 +348,7 @@
             "discount_content_icon": "none",
             "discount_content": "",
             "return_content_icon": "free_shipping",
-            "return_content": "<p><strong>Frete grátis acima de R$199 reais</strong></p>"
+            "return_content": "<p><strong>Frete grátis acima de R$349 reais</strong></p>"
           },
           "blocks": {}
         },

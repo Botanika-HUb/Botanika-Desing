@@ -1,0 +1,134 @@
+{%- comment -%}
+  Carrossel de lançamentos — versão destaque (fundo azul-marinho, brilho dourado, cards animados).
+  Puxa os produtos da coleção escolhida (padrão: Lançamentos).
+{%- endcomment -%}
+<style>
+.bl{--navy:#1b2560;--navy2:#323c91;--gold:#e8c26a;--gold2:#b8913a;--green:#10c322;position:relative;overflow:hidden;color:#fff;
+  background:radial-gradient(1100px 420px at 50% -10%,rgba(232,194,106,.28),transparent 60%),radial-gradient(700px 400px at 100% 100%,rgba(96,112,230,.35),transparent 60%),linear-gradient(160deg,#141b4d 0%,#1f2a72 55%,#2a3590 100%);
+  padding:{{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px}
+.bl *{box-sizing:border-box}
+.bl::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.18) 1px,transparent 1.5px);background-size:26px 26px;opacity:.25;pointer-events:none}
+.bl__head{position:relative;text-align:center;max-width:1100px;margin:0 auto 34px;padding:0 16px}
+.bl__eb{display:inline-flex;align-items:center;gap:8px;background:rgba(232,194,106,.14);border:1px solid rgba(232,194,106,.55);color:var(--gold);font-weight:800;font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:7px 14px;border-radius:999px}
+.bl__dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(232,194,106,.7);animation:blpulse 1.6s infinite}
+@keyframes blpulse{0%{box-shadow:0 0 0 0 rgba(232,194,106,.7)}70%{box-shadow:0 0 0 10px rgba(232,194,106,0)}100%{box-shadow:0 0 0 0 rgba(232,194,106,0)}}
+.bl__h{font-size:clamp(30px,4.6vw,56px);font-weight:900;color:#fff;margin:16px 0 0;line-height:1.02;letter-spacing:-.02em}
+.bl__h em{font-style:normal;background:linear-gradient(90deg,#f6dc98,#e8c26a 40%,#fff3cf 50%,#e8c26a 60%,#b8913a);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:blshine 4s linear infinite}
+@keyframes blshine{to{background-position:200% center}}
+.bl__sub{color:rgba(255,255,255,.82);font-size:17px;margin:14px auto 0;max-width:56ch}
+.bl__strip{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px}
+.bl__pill{background:#fff;color:var(--navy);font-weight:800;font-size:13px;padding:8px 14px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+.bl__pill--green{background:var(--green);color:#fff}
+.bl__marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.bl__track{display:flex;gap:26px;width:max-content;padding:18px 13px 26px;animation:blroll {{ section.settings.speed }}s linear infinite}
+.bl__marquee:hover .bl__track{animation-play-state:paused}
+@keyframes blroll{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 13px))}}
+.blc{position:relative;flex:0 0 280px;width:280px;background:#fff;border-radius:26px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;
+  box-shadow:0 18px 40px rgba(6,10,40,.45);transition:transform .2s,box-shadow .2s;outline:2px solid transparent}
+.blc:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 26px 50px rgba(6,10,40,.55),0 0 0 3px var(--gold)}
+.blc__media{position:relative;aspect-ratio:1/1;overflow:hidden;background:radial-gradient(circle at 50% 60%,#ffffff 0%,#eef1fb 70%)}
+.blc__media img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;display:block;padding:18px;transition:transform .35s}
+.blc:hover .blc__media img{transform:scale(1.07) rotate(-1.5deg)}
+.blc__media::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;z-index:2;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-18deg);animation:blsheen 3.8s ease-in-out infinite}
+@keyframes blsheen{0%,60%{left:-60%}100%{left:130%}}
+.blc__tag{position:absolute;top:14px;left:14px;z-index:3;background:linear-gradient(100deg,#e0201a,#ff5a1f);color:#fff;font-weight:900;font-size:11px;padding:6px 11px;border-radius:999px;letter-spacing:.06em;box-shadow:0 4px 12px rgba(224,32,26,.4)}
+.blc__new{position:absolute;top:14px;right:14px;z-index:3;background:var(--gold);color:var(--navy);font-weight:900;font-size:11px;padding:6px 10px;border-radius:999px;letter-spacing:.06em}
+.blc__body{padding:16px 18px 20px;text-align:center;display:flex;flex-direction:column;gap:9px;flex:1}
+.blc__name{font-weight:800;font-size:16px;color:var(--navy);line-height:1.25;margin:0;min-height:2.5em}
+.blc__chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.blc__chip{font-size:11.5px;font-weight:700;color:var(--navy2);background:rgba(50,60,145,.09);border-radius:999px;padding:4px 10px}
+.blc__price{margin-top:auto}
+.blc__now{font-weight:900;font-size:22px;color:var(--navy2)}
+.blc__cash{color:#6b6f80;font-size:12px;display:block;margin-top:1px}
+.blc__btn{margin-top:12px;background:var(--green);color:#fff;font-weight:900;padding:14px;border-radius:999px;letter-spacing:.01em;box-shadow:0 8px 18px rgba(16,195,34,.35);transition:background .15s}
+.blc:hover .blc__btn{background:#079615}
+.bl__cta{position:relative;text-align:center;margin-top:8px}
+.bl__cta a{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(90deg,#f6dc98,#e8c26a);color:var(--navy);font-weight:900;font-size:16px;padding:16px 30px;border-radius:999px;text-decoration:none;box-shadow:0 10px 26px rgba(232,194,106,.35);transition:transform .15s}
+.bl__cta a:hover{transform:translateY(-2px)}
+@media(max-width:575px){.blc{flex-basis:240px;width:240px}.bl__sub{font-size:15px}.bl__pill{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.bl__track{animation:none;flex-wrap:wrap;justify-content:center;width:auto}.blc__media::after,.bl__h em,.bl__dot{animation:none}}
+</style>
+{%- assign col = section.settings.collection | default: collections['lancamentos'] -%}
+<div class="bl">
+  <div class="bl__head">
+    {%- if section.settings.eyebrow != blank -%}<span class="bl__eb"><span class="bl__dot"></span>{{ section.settings.eyebrow }}</span>{%- endif -%}
+    <h2 class="bl__h">{{ section.settings.heading_1 }} <em>{{ section.settings.heading_2 }}</em></h2>
+    {%- if section.settings.subheading != blank -%}<p class="bl__sub">{{ section.settings.subheading }}</p>{%- endif -%}
+    {%- if section.settings.pill_1 != blank or section.settings.pill_2 != blank -%}
+    <div class="bl__strip">
+      {%- if section.settings.pill_1 != blank -%}<span class="bl__pill">{{ section.settings.pill_1 }}</span>{%- endif -%}
+      {%- if section.settings.pill_2 != blank -%}<span class="bl__pill bl__pill--green">{{ section.settings.pill_2 }}</span>{%- endif -%}
+    </div>
+    {%- endif -%}
+  </div>
+  <div class="bl__marquee"><div class="bl__track">
+  {%- capture cards -%}
+  {%- for p in col.products limit: 12 -%}
+    {%- if p.available -%}
+    {%- liquid
+      assign chips = ''
+      case p.handle
+        when 'nac-botanika'
+          assign chips = '600 mg,cápsulas'
+        when 'msm-botanika'
+          assign chips = 'enxofre orgânico,vida ativa'
+        when 'coenzima-q10-botanika'
+          assign chips = 'energia celular,antioxidante'
+        when 'cranberry-botanika'
+          assign chips = 'trato urinário,antioxidante'
+        when 'nac-xarope-40mg-120ml-morango-botanika'
+          assign chips = 'xarope,sabor morango'
+        when 'flexia-botanika'
+          assign chips = 'articulações,mobilidade'
+        when 'whey-balance-910g-chocolate-botanika'
+          assign chips = '26 porções,whey + colágeno'
+        when 'whey-balance-455g-cappuccino-botanika'
+          assign chips = 'novo sabor,23 g de proteína'
+      endcase
+      assign chips = chips | split: ','
+      assign nome = p.metafields.custom.card_name | default: p.title
+      assign parcela = p.price | divided_by: 3
+    -%}
+    <a class="blc" href="{{ p.url }}">
+      <div class="blc__media">
+        <span class="blc__tag">🔥 LANÇAMENTO</span>
+        <span class="blc__new">NOVO</span>
+        {%- if p.featured_image -%}{{ p.featured_image | image_url: width: 600 | image_tag: loading: 'lazy' }}{%- endif -%}
+      </div>
+      <div class="blc__body">
+        <h3 class="blc__name">{{ nome }}</h3>
+        {%- if chips.size > 0 -%}<div class="blc__chips">{%- for c in chips -%}<span class="blc__chip">{{ c }}</span>{%- endfor -%}</div>{%- endif -%}
+        <div class="blc__price"><span class="blc__now">{{ p.price | money }}</span><span class="blc__cash">ou 3x de {{ parcela | money }} sem juros</span></div>
+        <span class="blc__btn">{{ section.settings.button_label }}</span>
+      </div>
+    </a>
+    {%- endif -%}
+  {%- endfor -%}
+  {%- endcapture -%}
+  {{ cards }}{{ cards }}
+  </div></div>
+  {%- if section.settings.cta_label != blank -%}
+  <div class="bl__cta"><a href="{{ section.settings.cta_link | default: col.url }}">{{ section.settings.cta_label }} →</a></div>
+  {%- endif -%}
+</div>
+{% schema %}
+{
+  "name": "Carrossel Lançamentos",
+  "settings": [
+    {"type":"collection","id":"collection","label":"Coleção"},
+    {"type":"text","id":"eyebrow","label":"Selo do topo","default":"Acabou de chegar"},
+    {"type":"text","id":"heading_1","label":"Título (parte branca)","default":"Chegaram os"},
+    {"type":"text","id":"heading_2","label":"Título (parte dourada)","default":"lançamentos Botanika"},
+    {"type":"text","id":"subheading","label":"Subtítulo","default":"8 novas fórmulas para completar a sua rotina — da energia celular às articulações."},
+    {"type":"text","id":"pill_1","label":"Destaque 1 (branco)","default":"✨ 8 novidades no ar"},
+    {"type":"text","id":"pill_2","label":"Destaque 2 (verde) — só preencher se a promoção estiver ativa de verdade","default":""},
+    {"type":"text","id":"button_label","label":"Texto do botão do card","default":"Quero conhecer"},
+    {"type":"text","id":"cta_label","label":"Botão final","default":"Ver todos os lançamentos"},
+    {"type":"url","id":"cta_link","label":"Link do botão final (vazio = coleção)"},
+    {"type":"range","id":"speed","label":"Velocidade (segundos por volta)","min":20,"max":80,"step":5,"default":45},
+    {"type":"range","id":"padding_top","label":"Espaço acima","min":0,"max":120,"step":5,"default":70},
+    {"type":"range","id":"padding_bottom","label":"Espaço abaixo","min":0,"max":120,"step":5,"default":70}
+  ],
+  "presets": [{"name":"Carrossel Lançamentos"}]
+}
+{% endschema %}

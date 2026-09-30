@@ -24,7 +24,7 @@
       { "type": "header", "content": "Carrinho gamificado (frete + brinde)" },
       { "type": "checkbox", "id": "cart_gift_enabled", "label": "Ativar barra frete + brinde", "default": true },
       { "type": "text", "id": "cart_ship_goal", "label": "Valor para frete grátis (R$)", "info": "Só números. Ex.: 349", "default": "349" },
-      { "type": "text", "id": "cart_gift_goal", "label": "Valor para ganhar brinde (R$)", "info": "Só números. Precisa de um desconto 'Compre X ganhe Y' no Admin. Ex.: 450", "default": "450" }
+      { "type": "text", "id": "cart_gift_goal", "label": "Valor para ganhar brinde (R$)", "info": "Deixe VAZIO se não houver brinde ativo. Só preencha quando existir um desconto 'Compre X ganhe Y' no Admin. Ex.: 450", "default": "" }
     ]
   },
   {

@@ -5,6 +5,9 @@
   Metas e textos em Config. do tema → "Melhorias Botanika".
   ⚠️ O brinde em si precisa de um desconto "Compre X ganhe Y"
      (nativo) OU app — a barra é o incentivo visual.
+  ⚠️ A parte do brinde só aparece se "Valor para ganhar brinde"
+     estiver preenchido. Com o campo vazio, a barra fala apenas de
+     frete grátis — para não prometer um brinde que não existe.
   ============================================================
 {%- endcomment -%}
 {%- if settings.cart_gift_enabled -%}
@@ -26,14 +29,23 @@
     assign ship_left = ship | minus: total
     assign gift_left = gift | minus: total
   -%}
+  {%- if maxgoal > 0 -%}
   <div class="bgc">
     <div class="bgc__msg">
-      {%- if total >= maxgoal and maxgoal > 0 -%}
-        🎉 <strong>Você ganhou frete grátis e brinde!</strong>
-      {%- elsif total >= ship and ship > 0 -%}
-        ✅ Frete grátis garantido! Faltam <strong>{{ gift_left | times: 100 | money }}</strong> para ganhar um <strong>brinde 🎁</strong>
+      {%- if gift > 0 -%}
+        {%- if total >= maxgoal and maxgoal > 0 -%}
+          🎉 <strong>Você ganhou frete grátis e brinde!</strong>
+        {%- elsif total >= ship and ship > 0 -%}
+          ✅ Frete grátis garantido! Faltam <strong>{{ gift_left | times: 100 | money }}</strong> para ganhar um <strong>brinde 🎁</strong>
+        {%- else -%}
+          Faltam <strong>{{ ship_left | times: 100 | money }}</strong> para <strong>frete grátis 🚚</strong> — e <strong>{{ gift_left | times: 100 | money }}</strong> para um <strong>brinde 🎁</strong>
+        {%- endif -%}
       {%- else -%}
-        Faltam <strong>{{ ship_left | times: 100 | money }}</strong> para <strong>frete grátis 🚚</strong> — e <strong>{{ gift_left | times: 100 | money }}</strong> para um <strong>brinde 🎁</strong>
+        {%- if total >= ship and ship > 0 -%}
+          🎉 <strong>Você ganhou frete grátis!</strong>
+        {%- else -%}
+          Faltam <strong>{{ ship_left | times: 100 | money }}</strong> para <strong>frete grátis 🚚</strong>
+        {%- endif -%}
       {%- endif -%}
     </div>
     <div class="bgc__track">
@@ -41,7 +53,7 @@
       {%- if maxgoal > 0 -%}
         {%- assign ship_pos = ship | divided_by: maxgoal | times: 100 | round -%}
         <span class="bgc__pin {% if total >= ship %}bgc__pin--on{% endif %}" style="left: {{ ship_pos }}%;" title="Frete grátis">🚚</span>
-        <span class="bgc__pin {% if total >= gift %}bgc__pin--on{% endif %}" style="left: 100%;" title="Brinde">🎁</span>
+        {%- if gift > 0 -%}<span class="bgc__pin {% if total >= gift %}bgc__pin--on{% endif %}" style="left: 100%;" title="Brinde">🎁</span>{%- endif -%}
       {%- endif -%}
     </div>
   </div>
@@ -53,4 +65,5 @@
     .bgc__pin { position: absolute; top: 50%; transform: translate(-50%,-50%); font-size: 15px; filter: grayscale(1); opacity: .55; transition: .3s; }
     .bgc__pin--on { filter: none; opacity: 1; transform: translate(-50%,-50%) scale(1.15); }
   {%- endstyle -%}
+  {%- endif -%}
 {%- endif -%}
