@@ -1,14 +1,14 @@
 {%- comment -%}
-  Retorna 'yes' se o produto faz parte da campanha (destaque ligado
-  + handle na lista de Configurações do tema → "Campanha — destaque").
-  Uso: {% render 'botanika-campaign-flag', product: card_product %}
+  Retorna 'yes' se o produto faz parte da campanha.
+  Lancamento set/26 encerrado em out/26: a lista fixa de lancamentos foi esvaziada
+  (sem contorno nem selo "Lancamento" nos cards).
+  Campanha configuravel via Configuracoes do tema continua sendo respeitada.
 {%- endcomment -%}
 {%- liquid
   assign p = product
-  assign on = settings.camp_active
-  assign list = settings.camp_handles | default: '' | downcase | replace: ' ', '' | split: ','
   assign match = false
-  if on and p != blank
+  if settings.camp_active and p != blank
+    assign list = settings.camp_handles | default: '' | downcase | replace: ' ', '' | split: ','
     for h in list
       if h == p.handle
         assign match = true
