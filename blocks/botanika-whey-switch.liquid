@@ -1,0 +1,179 @@
+{%- comment -%}
+  Botanika — Seletor de Tamanho e Sabor (Whey)
+  Cada combinação é um produto separado, ligado pelo metafield custom.whey_flavors.
+  Cada produto informa custom.whey_size e custom.whey_flavor.
+  Tamanho: troca o tamanho mantendo o sabor (se não existir, vai para o sabor disponível).
+  Sabor: troca o sabor mantendo o tamanho (se não existir, vai para o tamanho disponível).
+{%- endcomment -%}
+{%- liquid
+  assign product = closest.product
+  assign bs = block.settings
+  assign items = product.metafields.custom.whey_flavors.value
+  assign cur_size = product.metafields.custom.whey_size.value
+  assign cur_flavor = product.metafields.custom.whey_flavor.value
+  assign sizes = ''
+  assign flavs = ''
+  if items != blank
+    for p in items
+      assign s = p.metafields.custom.whey_size.value
+      assign f = p.metafields.custom.whey_flavor.value
+      if s != blank
+        assign hay = ';;' | append: sizes | append: ';;'
+        assign key = ';;' | append: s | append: ';;'
+        unless hay contains key
+          if sizes == ''
+            assign sizes = s
+          else
+            assign sizes = sizes | append: ';;' | append: s
+          endif
+        endunless
+      endif
+      if f != blank
+        assign hay = ';;' | append: flavs | append: ';;'
+        assign key = ';;' | append: f | append: ';;'
+        unless hay contains key
+          if flavs == ''
+            assign flavs = f
+          else
+            assign flavs = flavs | append: ';;' | append: f
+          endif
+        endunless
+      endif
+    endfor
+  endif
+  assign size_list = sizes | split: ';;'
+  assign flav_list = flavs | split: ';;'
+-%}
+{%- if items != blank and cur_size != blank and cur_flavor != blank and items.size > 1 -%}
+  <div class="bt-sw" style="--bt-brand: {{ bs.brand_color }};" {{ block.shopify_attributes }}>
+
+    {%- if size_list.size > 1 -%}
+      <div class="bt-sw__group">
+        {%- if bs.label_size != blank -%}<p class="bt-sw__label">{{ bs.label_size }}</p>{%- endif -%}
+        <div class="bt-sw__pills" role="list">
+          {%- for s in size_list -%}
+            {%- liquid
+              assign target = nil
+              assign fallback = nil
+              for p in items
+                if p.metafields.custom.whey_size.value == s
+                  if fallback == nil
+                    assign fallback = p
+                  endif
+                  if p.metafields.custom.whey_flavor.value == cur_flavor
+                    assign target = p
+                  endif
+                endif
+              endfor
+              if target == nil
+                assign target = fallback
+              endif
+              assign v = target.selected_or_first_available_variant
+              assign t_flavor = target.metafields.custom.whey_flavor.value
+            -%}
+            {%- capture inner -%}
+              <span class="bt-sw__info">
+                <span class="bt-sw__name">{{ s }}</span>
+                {%- if v and bs.show_price -%}<span class="bt-sw__price">{{ v.price | money }}</span>{%- endif -%}
+                {%- if t_flavor != cur_flavor -%}<span class="bt-sw__note">{{ t_flavor }}</span>{%- endif -%}
+              </span>
+            {%- endcapture -%}
+            {%- if s == cur_size -%}
+              <span class="bt-sw__pill bt-sw__pill--size is-current" aria-current="true" role="listitem">{{ inner }}<span class="bt-sw__check">✓</span></span>
+            {%- else -%}
+              <a class="bt-sw__pill bt-sw__pill--size" href="{{ target.url }}" role="listitem">{{ inner }}</a>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if flav_list.size > 1 -%}
+      <div class="bt-sw__group">
+        {%- if bs.label != blank -%}<p class="bt-sw__label">{{ bs.label }}</p>{%- endif -%}
+        <div class="bt-sw__pills" role="list">
+          {%- for f in flav_list -%}
+            {%- liquid
+              assign target = nil
+              assign fallback = nil
+              for p in items
+                if p.metafields.custom.whey_flavor.value == f
+                  if fallback == nil
+                    assign fallback = p
+                  endif
+                  if p.metafields.custom.whey_size.value == cur_size
+                    assign target = p
+                  endif
+                endif
+              endfor
+              if target == nil
+                assign target = fallback
+              endif
+              assign v = target.selected_or_first_available_variant
+              assign t_size = target.metafields.custom.whey_size.value
+              assign card_img = target.metafields.custom.card_image.value | default: target.featured_image
+            -%}
+            {%- capture inner -%}
+              <span class="bt-sw__thumb">
+                {%- if card_img -%}
+                  {{ card_img | image_url: width: 120 | image_tag: loading: 'lazy', widths: '60,90,120', alt: f, class: 'bt-sw__img' }}
+                {%- else -%}<span class="bt-sw__ph">🥤</span>{%- endif -%}
+              </span>
+              <span class="bt-sw__info">
+                <span class="bt-sw__name">{{ f }}</span>
+                {%- if t_size != cur_size -%}
+                  <span class="bt-sw__note">só {{ t_size }}</span>
+                {%- elsif v and bs.show_price -%}
+                  <span class="bt-sw__price">{{ v.price | money }}</span>
+                {%- endif -%}
+              </span>
+            {%- endcapture -%}
+            {%- if f == cur_flavor -%}
+              <span class="bt-sw__pill is-current" aria-current="true" role="listitem">{{ inner }}<span class="bt-sw__check">✓</span></span>
+            {%- else -%}
+              <a class="bt-sw__pill" href="{{ target.url }}" role="listitem">{{ inner }}</a>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .bt-sw { margin: 0 0 20px; display: flex; flex-direction: column; gap: 14px; }
+  .bt-sw__label { font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #6b7080; margin: 0 0 8px; }
+  .bt-sw__pills { display: flex; gap: 10px; flex-wrap: wrap; }
+  .bt-sw__pill { display: flex; align-items: center; gap: 10px; padding: 8px 14px 8px 8px; border: 2px solid #e7e9f2; border-radius: 14px; background: #fff; text-decoration: none; color: #14173a; transition: border-color .15s ease, box-shadow .15s ease, transform .05s ease; position: relative; min-width: 150px; }
+  .bt-sw__pill--size { padding: 10px 14px; min-width: 120px; }
+  .bt-sw__pill:hover { border-color: #c4cae6; }
+  .bt-sw__pill:active { transform: scale(.99); }
+  .bt-sw__pill.is-current { border-color: var(--bt-brand, #15265c); box-shadow: 0 4px 14px rgba(21,38,92,.12); cursor: default; }
+  .bt-sw__thumb { flex: 0 0 auto; width: 42px; height: 42px; border-radius: 10px; overflow: hidden; background: #f2f4fb; display: flex; align-items: center; justify-content: center; }
+  .bt-sw__img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .bt-sw__ph { font-size: 22px; }
+  .bt-sw__info { display: flex; flex-direction: column; line-height: 1.15; }
+  .bt-sw__name { font-weight: 700; font-size: 15px; color: #14173a; }
+  .bt-sw__price { font-weight: 600; font-size: 13px; color: #6b7080; margin-top: 2px; }
+  .bt-sw__note { font-weight: 600; font-size: 12px; color: #9a9fb2; margin-top: 2px; }
+  .bt-sw__check { margin-left: auto; color: var(--bt-brand, #15265c); font-weight: 800; font-size: 15px; padding-left: 8px; }
+  @media (max-width: 480px) {
+    .bt-sw__pills { gap: 8px; }
+    .bt-sw__pill { min-width: 0; flex: 1 1 46%; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Tamanho e Sabor (Whey)",
+  "settings": [
+    { "type": "paragraph", "content": "Aparece nos produtos com os metafields custom.whey_flavors, custom.whey_size e custom.whey_flavor. Mostra duas linhas: tamanho e sabor; cada botão leva à página da combinação." },
+    { "type": "text", "id": "label_size", "label": "Rótulo do tamanho", "default": "Escolha o tamanho" },
+    { "type": "text", "id": "label", "label": "Rótulo do sabor", "default": "Escolha o sabor" },
+    { "type": "checkbox", "id": "show_price", "label": "Mostrar preço no botão", "default": true },
+    { "type": "color", "id": "brand_color", "label": "Cor da marca", "default": "#15265c" }
+  ],
+  "presets": [ { "name": "Tamanho e Sabor (Whey)" } ]
+}
+{% endschema %}
