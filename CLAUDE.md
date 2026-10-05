@@ -26,3 +26,21 @@ Sempre que a tarefa envolver **criar ou editar uma landing page**, leia primeiro
 ## Como o usuário edita uma LP específica (comando pra colar em chat novo)
 
 > "Leia o `PAGINAS.md`, o `botanika-lp-superprompt.md` e a pasta `botanika-lp-kit/` no repo `botanikahub/botanika-desing`. Vou editar a LP do **[produto]**. Me confirma qual pasta/arquivo você vai mexer antes de começar."
+
+## 🎬 Edição de vídeo — skills instaladas (`.claude/skills/`)
+
+Pacote de skills de edição de vídeo, carregado automaticamente em toda sessão do Claude Code neste repo.
+Sempre que a tarefa envolver **edição de vídeo** (criativos, anúncios, Reels/TikTok, Remotion), use a skill que corresponde ao pedido:
+
+| Skill | Quando usar |
+| --- | --- |
+| `cp-extratora-de-referencia` | Analisar um vídeo de referência e gerar o pacote (relatório, CSV de cenas, receita JSON, prompt de recriação) |
+| `cp-estilo-por-referencia` | Aplicar a linguagem de uma referência ao vídeo próprio da Botanika, sem copiar conteúdo de terceiros |
+| `cp-direcao-de-edicao` | Decidir o que mostrar, quando cortar, alternar apresentador / demonstração / apoio visual |
+| `cp-motion-explicativo` | Motion graphics que explicam processos, causa e efeito, comparações (inclui 3D com fallback) |
+| `cp-apresentador-em-cena` | Enquadramento, moldura, tracking e recorte alfa do apresentador |
+| `cp-lettering-com-hierarquia` | Tipografia animada, títulos cinéticos, chamadas e CTA |
+| `cp-variacoes-controladas` | Variações de um criativo aprovado (abertura, título, CTA) com matriz rastreável |
+
+Regras para vídeos da Botanika: usar a identidade visual do produto (mesma fonte da verdade das LPs: Shopify + Google Drive), nunca inventar resultados, depoimentos ou ofertas, e não usar serviços pagos sem autorização.
+Para editar ou adicionar uma skill: altere o `SKILL.md` na pasta correspondente em `.claude/skills/` e faça commit.
