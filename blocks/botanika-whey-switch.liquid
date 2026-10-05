@@ -74,7 +74,6 @@
             {%- capture inner -%}
               <span class="bt-sw__info">
                 <span class="bt-sw__name">{{ s }}</span>
-                {%- if v and bs.show_price -%}<span class="bt-sw__price">{{ v.price | money }}</span>{%- endif -%}
                 {%- if t_flavor != cur_flavor -%}<span class="bt-sw__note">{{ t_flavor }}</span>{%- endif -%}
               </span>
             {%- endcapture -%}
@@ -123,8 +122,6 @@
                 <span class="bt-sw__name">{{ f }}</span>
                 {%- if t_size != cur_size -%}
                   <span class="bt-sw__note">só {{ t_size }}</span>
-                {%- elsif v and bs.show_price -%}
-                  <span class="bt-sw__price">{{ v.price | money }}</span>
                 {%- endif -%}
               </span>
             {%- endcapture -%}
@@ -171,7 +168,7 @@
     { "type": "paragraph", "content": "Aparece nos produtos com os metafields custom.whey_flavors, custom.whey_size e custom.whey_flavor. Mostra duas linhas: tamanho e sabor; cada botão leva à página da combinação." },
     { "type": "text", "id": "label_size", "label": "Rótulo do tamanho", "default": "Escolha o tamanho" },
     { "type": "text", "id": "label", "label": "Rótulo do sabor", "default": "Escolha o sabor" },
-    { "type": "checkbox", "id": "show_price", "label": "Mostrar preço no botão", "default": true },
+    { "type": "checkbox", "id": "show_price", "label": "(sem uso) Preço no botão", "default": false },
     { "type": "color", "id": "brand_color", "label": "Cor da marca", "default": "#15265c" }
   ],
   "presets": [ { "name": "Tamanho e Sabor (Whey)" } ]
