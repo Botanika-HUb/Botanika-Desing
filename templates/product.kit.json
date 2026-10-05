@@ -11,11 +11,12 @@
     "pdp_promo": {
       "type": "pdp-promo-banner",
       "settings": {
-        "image_desktop": "shopify://shop_images/bannerdisplaysemana.png",
-        "image_mobile": "shopify://shop_images/semanamobile.png",
+        "image_desktop": "shopify://shop_images/bannerdisplaysemana_35570a0e-0e62-49f5-9691-5ad2297b3ee1.png",
+        "image_mobile": "shopify://shop_images/novodisplaymobile.png",
         "image_alt": "Quanto mais você compra, mais você ganha",
         "image_link": ""
-      }
+      },
+      "disabled": true
     },
     "main": {
       "type": "main-product-layout-2",
@@ -36,9 +37,9 @@
           "type": "_product-campaign-selo",
           "settings": {
             "show": false,
-            "handles": "tetravit-d,super-omega-3-coq10,super-vitamina-c",
-            "icon": "🛡️",
-            "text": "Semana da Imunidade — 8% OFF neste produto",
+            "handles": "whey-balance-chocolate,creatina-l-carnitina",
+            "icon": "💪",
+            "text": "Semana Fitness — 8% OFF neste produto",
             "bg_color": "#323c91",
             "text_color": "#ffffff"
           },
@@ -79,6 +80,7 @@
         },
         "countdown_timer_QB4Ydn": {
           "type": "_product-countdown-timer",
+          "disabled": true,
           "settings": {
             "timer_style": "default",
             "content": "🔥 Corra! A promoção acaba em:"
@@ -112,11 +114,50 @@
           },
           "blocks": {}
         },
+        "product_quantity_cards_8t79eF": {
+          "type": "_product-quantity-cards",
+          "name": "Quantity discount cards",
+          "settings": {
+            "sp_enabled": false,
+            "sp_rating": "4.9",
+            "sp_text": "+2 mil clientes Botanika",
+            "legend_label": "Seu kit completo:",
+            "installments": 3,
+            "color_active": "#10c322",
+            "color_badge1": "#2d6b22",
+            "color_badge2": "#f97316",
+            "tier1_enabled": true,
+            "tier1_title": "KIT COMPLETO",
+            "tier1_quantity": 1,
+            "tier1_discount": 0,
+            "tier1_subtitle": "NAC + MSM + Coenzima Q10 + Cranberry",
+            "tier1_badge1": "",
+            "tier1_message": "Entrega para todo o Brasil",
+            "tier2_enabled": false,
+            "tier2_image": "",
+            "tier2_title": "2 KITS",
+            "tier2_quantity": 2,
+            "tier2_discount": 0,
+            "tier2_subtitle": "Leve 2 KITS",
+            "tier2_badge1": "Mais vendido",
+            "tier2_message": "",
+            "tier3_enabled": false,
+            "tier3_image": "",
+            "tier3_title": "3 KITS",
+            "tier3_quantity": 3,
+            "tier3_discount": 0,
+            "tier3_subtitle": "Leve 3 KITS",
+            "tier3_badge1": "",
+            "tier3_message": "",
+            "tier3_bonus": "+ Manual da Suplementação"
+          },
+          "blocks": {}
+        },
         "countdown_bar_Cd0f1a": {
           "type": "_product-countdown-bar",
           "settings": {
-            "show": true,
-            "message": "⏳ Preço promocional termina em",
+            "show": false,
+            "message": "⏳ Semana Fitness termina em",
             "bg_color": "#323c91",
             "text_color": "#ffffff"
           },
@@ -132,6 +173,59 @@
           },
           "blocks": {}
         },
+        "depoimentos_prod_Dp1x": {
+          "type": "_product-depoimentos",
+          "settings": {
+            "heading": "O que dizem nossos clientes",
+            "subheading": "Histórias reais de quem já faz parte da Botanika.",
+            "show_stars": true,
+            "p1": "shopify://shop_images/IMG_6444.jpg",
+            "n1": "",
+            "c1": "",
+            "p2": "shopify://shop_images/IMG_6446.jpg",
+            "n2": "",
+            "c2": "",
+            "p3": "shopify://shop_images/IMG_6452.jpg",
+            "n3": "",
+            "c3": "",
+            "p4": "shopify://shop_images/IMG_6448.jpg",
+            "n4": "",
+            "c4": "",
+            "p5": "shopify://shop_images/IMG_6449.jpg",
+            "n5": "",
+            "c5": "",
+            "p6": "shopify://shop_images/IMG_6445.jpg",
+            "n6": "",
+            "c6": "",
+            "n7": "",
+            "c7": "",
+            "n8": "",
+            "c8": ""
+          },
+          "blocks": {}
+        },
+        "pdp_stories_1": {
+          "type": "_product-stories",
+          "settings": {
+            "story1_video": "shopify://files/videos/Creatina 5.MOV",
+            "story1_label": "Creatina",
+            "story2_video": "shopify://files/videos/MGHAIR01.mov",
+            "story2_label": "Hair",
+            "story3_video": "shopify://files/videos/MGTRI01.mov",
+            "story3_label": "Tri [Mg]",
+            "story4_video": "shopify://files/videos/MGTETRA01.mov",
+            "story4_label": "TetraVit D",
+            "story5_video": "shopify://files/videos/Omega 3 1.mov",
+            "story5_label": "Ômega 3",
+            "story6_video": "shopify://files/videos/Vitamina C 1.mov",
+            "story6_label": "Vitamina C",
+            "story7_video": "shopify://files/videos/LARAWHEY01.mov",
+            "story7_label": "Whey",
+            "story8_video": "shopify://files/videos/Unboxing.mov",
+            "story8_label": "Unboxing"
+          },
+          "blocks": {}
+        },
         "trust_triggers_Bt1x9k": {
           "type": "_product-trust-triggers",
           "settings": {
@@ -140,7 +234,7 @@
             "anvisa_sub": "Fórmula segura e regularizada",
             "show_guarantee": true,
             "guarantee_title": "Satisfação garantida",
-            "guarantee_sub": "Seu dinheiro de volta em até 7 dias",
+            "guarantee_sub": "Seu dinheiro de volta em até 14 dias",
             "show_secure": false,
             "secure_title": "Compra 100% segura",
             "secure_sub": "Pagamento criptografado"
@@ -150,7 +244,7 @@
         "shipping_estimate_Fr3t9x": {
           "type": "_product-shipping-estimate",
           "settings": {
-            "enable_calc": true,
+            "enable_calc": false,
             "title": "Calcule o frete e o prazo",
             "subtitle": "Digite seu CEP para ver o valor e o prazo de entrega",
             "placeholder": "00000-000",
@@ -258,9 +352,8 @@
           },
           "blocks": {}
         },
-        "meucorreios_shipping_calculator_LJV9xr": {
-          "type": "shopify://apps/meucorreios-frete-e-rastreio/blocks/shipping-calculator/019ab058-06d3-70e3-ad91-4f10a7e1925e",
-          "disabled": true,
+        "meucorreios_frete_e_rastreio_shipping_calculator_JQkwYG": {
+          "type": "shopify://apps/meucorreios/blocks/shipping-calculator/019ab058-06d3-70e3-ad91-4f10a7e1925e",
           "settings": {
             "show_title": true,
             "title_text": "Frete e prazo de entrega",
@@ -293,8 +386,11 @@
         "variant_picker_tcCihG",
         "product_addons_YRaprz",
         "stock_countdown_JNK9zi",
+        "product_quantity_cards_8t79eF",
         "countdown_bar_Cd0f1a",
         "buy_buttons_LcQGtR",
+        "depoimentos_prod_Dp1x",
+        "pdp_stories_1",
         "trust_triggers_Bt1x9k",
         "shipping_estimate_Fr3t9x",
         "complementary_products_Wip9YG",
@@ -304,7 +400,7 @@
         "product_meta_kiKPhW",
         "delivery_return_iJHeMD",
         "trust_badge_qKXhpg",
-        "meucorreios_shipping_calculator_LJV9xr"
+        "meucorreios_frete_e_rastreio_shipping_calculator_JQkwYG"
       ],
       "settings": {
         "section_width": "container",
@@ -325,71 +421,115 @@
         "reset_spacing": false
       }
     },
-    "pdp_depoimentos": {
-      "type": "pdp-depoimentos",
+    "pdp_ugc": {
+      "type": "ugc-photos",
       "blocks": {
-        "d1": {
-          "type": "depoimento",
+        "video_1": {
+          "type": "video",
           "settings": {
-            "photo": "shopify://shop_images/IMG_6444.jpg",
+            "video": "shopify://files/videos/AlineHair.mov",
             "name": "",
             "caption": ""
           }
         },
-        "depoimento_JPitVC": {
-          "type": "depoimento",
+        "video_6": {
+          "type": "video",
           "settings": {
-            "photo": "shopify://shop_images/IMG_6446.jpg",
+            "video": "shopify://files/videos/DharaTri Mg .mov",
             "name": "",
             "caption": ""
           }
         },
-        "d2": {
-          "type": "depoimento",
+        "video_8qTFXb": {
+          "type": "video",
           "settings": {
-            "photo": "shopify://shop_images/IMG_6452.jpg",
+            "video": "shopify://files/videos/AlineHair BOTANIKA1 .mov",
             "name": "",
             "caption": ""
           }
         },
-        "d3": {
-          "type": "depoimento",
+        "video_11": {
+          "type": "video",
           "settings": {
-            "photo": "shopify://shop_images/IMG_6448.jpg",
+            "video": "shopify://files/videos/LissiaHair.mov",
             "name": "",
             "caption": ""
           }
         },
-        "d4": {
-          "type": "depoimento",
+        "video_3": {
+          "type": "video",
           "settings": {
-            "photo": "shopify://shop_images/IMG_6449.jpg",
+            "video": "shopify://files/videos/AnaHair.MP4",
             "name": "",
             "caption": ""
           }
         },
-        "depoimento_eLm463": {
-          "type": "depoimento",
+        "video_8": {
+          "type": "video",
           "settings": {
-            "photo": "shopify://shop_images/IMG_6445.jpg",
+            "video": "shopify://files/videos/jack02.mov",
+            "name": "",
+            "caption": ""
+          }
+        },
+        "video_4": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/DharaHairBotanika .mov",
+            "name": "",
+            "caption": ""
+          }
+        },
+        "video_13": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/LissiaTriMagnésioComplex.mov",
+            "name": "",
+            "caption": ""
+          }
+        },
+        "video_ugerhair3mov": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Rayssa Külkamp Krüger HAIR 3.mov",
+            "name": "",
+            "caption": ""
+          }
+        },
+        "video_arawhey02mov": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/LARAWHEY02.mov",
+            "name": "",
+            "caption": ""
+          }
+        },
+        "video_arawhey03mov": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/LARAWHEY03.mov",
             "name": "",
             "caption": ""
           }
         }
       },
       "block_order": [
-        "d1",
-        "depoimento_JPitVC",
-        "d2",
-        "d3",
-        "d4",
-        "depoimento_eLm463"
+        "video_ugerhair3mov",
+        "video_arawhey02mov",
+        "video_8",
+        "video_arawhey03mov",
+        "video_4",
+        "video_1",
+        "video_11",
+        "video_6",
+        "video_8qTFXb",
+        "video_13",
+        "video_3"
       ],
       "settings": {
-        "color_scheme": "",
-        "heading": "O que dizem nossos clientes",
-        "subheading": "Histórias reais de quem já faz parte da Botanika.",
-        "show_stars": true
+        "color_scheme": "default",
+        "heading": "A Botanika na sua rotina",
+        "subheading": "Faça da Botanika parte do seu dia a dia."
       }
     },
     "pdp_guarantees": {
@@ -428,7 +568,7 @@
           "type": "guar",
           "settings": {
             "icon": "↩️",
-            "text": "Reembolso garantido em 7 dias"
+            "text": "Reembolso garantido em 14 dias"
           }
         }
       },
@@ -636,6 +776,16 @@
         "padding_bottom": 60
       }
     },
+    "judgeme_avaliacoes": {
+      "type": "judgeme-avaliacoes",
+      "settings": {
+        "heading": "Avaliações de quem já usa",
+        "subheading": "Avaliações reais e verificadas de clientes Botanika.",
+        "max_width": 1100,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
     "botanika_pdp_crosssell": {
       "type": "botanika-pdp-crosssell",
       "settings": {
@@ -653,6 +803,7 @@
     },
     "botanika_pdp_cta": {
       "type": "botanika-pdp-cta",
+      "disabled": true,
       "settings": {
         "section_width": "container",
         "heading": "Treina melhor. Recupera melhor.",
@@ -753,7 +904,7 @@
     "breadcrumb",
     "pdp_promo",
     "main",
-    "pdp_depoimentos",
+    "pdp_ugc",
     "pdp_guarantees",
     "botanika_pdp_manifesto",
     "botanika_pdp_ingredients",
@@ -765,6 +916,7 @@
     "botanika_pdp_quality",
     "1716793714ce89e457",
     "botanika_pdp_faq",
+    "judgeme_avaliacoes",
     "botanika_pdp_crosssell",
     "botanika_pdp_cta",
     "divider_TKLM6L",

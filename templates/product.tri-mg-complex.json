@@ -43,9 +43,10 @@
         },
         "review_and_sold_AAbJC9": {
           "type": "_product-review-sold",
+          "disabled": true,
           "settings": {
             "show_review": true,
-            "show_sold_products": false,
+            "show_sold_products": true,
             "sold": "8,10,12,15,17,22",
             "hours": "10,12,15,16,18,20,24"
           },
@@ -233,23 +234,16 @@
         "pdp_stories_1": {
           "type": "_product-stories",
           "settings": {
-            "exclude_handles": "hair-botanika,tetravit-d,tri-mg-complex,super-omega-3-coq10,super-vitamina-c,whey-balance-chocolate,whey-balance-sem-sabor,whey-balance-910g-chocolate-botanika",
-            "story1_video": "shopify://files/videos/Creatina 5.MOV",
-            "story1_label": "Creatina",
-            "story2_video": "shopify://files/videos/MGHAIR01.mov",
-            "story2_label": "Hair",
-            "story3_video": "shopify://files/videos/MGTRI01.mov",
-            "story3_label": "Tri [Mg]",
-            "story4_video": "shopify://files/videos/MGTETRA01.mov",
-            "story4_label": "TetraVit D",
-            "story5_video": "shopify://files/videos/Omega 3 1.mov",
-            "story5_label": "Ômega 3",
-            "story6_video": "shopify://files/videos/Vitamina C 1.mov",
-            "story6_label": "Vitamina C",
-            "story7_video": "shopify://files/videos/LARAWHEY01.mov",
-            "story7_label": "Whey",
-            "story8_video": "shopify://files/videos/Unboxing.mov",
-            "story8_label": "Unboxing"
+            "story1_video": "shopify://files/videos/TriMgComplex.mov",
+            "story1_label": "O que é",
+            "story2_video": "shopify://files/videos/Tri.mov",
+            "story2_label": "Como tomo",
+            "story3_video": "shopify://files/videos/TriMgComplex2.mov",
+            "story3_label": "Resultado",
+            "story4_video": "shopify://files/videos/Unboxing.mov",
+            "story4_label": "Unboxing",
+            "story5_video": "shopify://files/videos/Omega 3, Hair, Vitamina C.mov",
+            "story5_label": "Resultados"
           },
           "blocks": {}
         },
@@ -417,134 +411,6 @@
             "title_font_size": 14,
             "body_font_size": 12
           }
-        },
-        "pdp_stories_hair": {
-          "type": "_product-stories",
-          "settings": {
-            "only_handles": "hair-botanika",
-            "story1_video": "shopify://files/videos/Hair 3.mov",
-            "story1_label": "Queda",
-            "story2_video": "shopify://files/videos/HairBotanika3.mov",
-            "story2_label": "Como tomo",
-            "story3_video": "shopify://files/videos/Hair 1.MP4",
-            "story3_label": "Minha rotina",
-            "story4_video": "shopify://files/videos/HairBotanika2.mov",
-            "story4_label": "1 mês depois",
-            "story5_video": "shopify://files/videos/Hair 3.MP4",
-            "story5_label": "Resultado",
-            "story6_video": "shopify://files/videos/JRHAIR01.mov",
-            "story6_label": "Avaliação real",
-            "story7_video": "shopify://files/videos/MGHAIR01.mov",
-            "story7_label": "Quem usa",
-            "story8_video": "shopify://files/videos/MGHAIR02.mov",
-            "story8_label": "Resultado real",
-            "story9_video": "shopify://files/videos/Rayssa Külkamp Krüger HAIR 1.mov",
-            "story9_label": "Avaliação real",
-            "story10_video": "shopify://files/videos/Rayssa Külkamp Krüger HAIR 2.mov",
-            "story10_label": "Resultado real",
-            "story11_video": "shopify://files/videos/Unboxing.mov",
-            "story11_label": "Unboxing",
-            "story12_video": "shopify://files/videos/Omega 3, Hair, Vitamina C.mov",
-            "story12_label": "Resultados"
-          },
-          "blocks": {}
-        },
-        "pdp_stories_tetra": {
-          "type": "_product-stories",
-          "settings": {
-            "only_handles": "tetravit-d",
-            "story1_video": "shopify://files/videos/Tetra Vit D .mov",
-            "story1_label": "O que é",
-            "story2_video": "shopify://files/videos/TetraVitD.mov",
-            "story2_label": "Como uso",
-            "story3_video": "shopify://files/videos/TetraVitD2.mov",
-            "story3_label": "Minha rotina",
-            "story4_video": "shopify://files/videos/TetraVit.mov",
-            "story4_label": "Resultado",
-            "story5_video": "shopify://files/videos/MGTETRA01.mov",
-            "story5_label": "Avaliação real",
-            "story6_video": "shopify://files/videos/MGTETRA02.mov",
-            "story6_label": "Resultado real",
-            "story7_video": "shopify://files/videos/Unboxing.mov",
-            "story7_label": "Unboxing",
-            "story8_video": "shopify://files/videos/Omega 3, Hair, Vitamina C.mov",
-            "story8_label": "Resultados"
-          },
-          "blocks": {}
-        },
-        "pdp_stories_tri": {
-          "type": "_product-stories",
-          "settings": {
-            "only_handles": "tri-mg-complex",
-            "story1_video": "shopify://files/videos/TriMgComplex.mov",
-            "story1_label": "O que é",
-            "story2_video": "shopify://files/videos/Tri.mov",
-            "story2_label": "Como tomo",
-            "story3_video": "shopify://files/videos/TriMgComplex2.mov",
-            "story3_label": "Resultado",
-            "story4_video": "shopify://files/videos/JRTRI01.mov",
-            "story4_label": "Avaliação real",
-            "story5_video": "shopify://files/videos/MGTRI01.mov",
-            "story5_label": "Quem usa",
-            "story6_video": "shopify://files/videos/MGTRI02.mov",
-            "story6_label": "Resultado real",
-            "story7_video": "shopify://files/videos/Unboxing.mov",
-            "story7_label": "Unboxing",
-            "story8_video": "shopify://files/videos/Omega 3, Hair, Vitamina C.mov",
-            "story8_label": "Resultados"
-          },
-          "blocks": {}
-        },
-        "pdp_stories_omega": {
-          "type": "_product-stories",
-          "settings": {
-            "only_handles": "super-omega-3-coq10",
-            "story1_video": "shopify://files/videos/Omega 3 1.mov",
-            "story1_label": "O que é",
-            "story2_video": "shopify://files/videos/Omega 3, Hair, Vitamina C.mov",
-            "story2_label": "Minha rotina",
-            "story3_video": "shopify://files/videos/Omega 3.mov",
-            "story3_label": "Resultado",
-            "story4_video": "shopify://files/videos/Unboxing.mov",
-            "story4_label": "Unboxing"
-          },
-          "blocks": {}
-        },
-        "pdp_stories_vitc": {
-          "type": "_product-stories",
-          "settings": {
-            "only_handles": "super-vitamina-c",
-            "story1_video": "shopify://files/videos/Vitamina C 1.mov",
-            "story1_label": "O que é",
-            "story2_video": "shopify://files/videos/Omega 3, Hair, Vitamina C.mov",
-            "story2_label": "Minha rotina",
-            "story3_video": "shopify://files/videos/Vitamina C.mov",
-            "story3_label": "Resultado",
-            "story4_video": "shopify://files/videos/Unboxing.mov",
-            "story4_label": "Unboxing"
-          },
-          "blocks": {}
-        },
-        "pdp_stories_whey": {
-          "type": "_product-stories",
-          "settings": {
-            "only_handles": "whey-balance-chocolate,whey-balance-sem-sabor,whey-balance-910g-chocolate-botanika",
-            "story1_video": "shopify://files/videos/JRWHEY01.mov",
-            "story1_label": "Avaliação real",
-            "story2_video": "shopify://files/videos/JRWHEY03.mov",
-            "story2_label": "Resultado real",
-            "story3_video": "shopify://files/videos/Rayssa Külkamp Krüger WHEY 1.mov",
-            "story3_label": "Minha rotina",
-            "story4_video": "shopify://files/videos/Rayssa Külkamp Krüger WHEY 2.mov",
-            "story4_label": "Como tomo",
-            "story5_video": "shopify://files/videos/Rayssa Külkamp Krüger WHEY 3.mov",
-            "story5_label": "Resultado",
-            "story6_video": "shopify://files/videos/Unboxing.mov",
-            "story6_label": "Unboxing",
-            "story7_video": "shopify://files/videos/Omega 3, Hair, Vitamina C.mov",
-            "story7_label": "Resultados"
-          },
-          "blocks": {}
         }
       },
       "block_order": [
@@ -565,12 +431,6 @@
         "buy_buttons_LcQGtR",
         "depoimentos_prod_Dp1x",
         "pdp_stories_1",
-        "pdp_stories_hair",
-        "pdp_stories_tetra",
-        "pdp_stories_tri",
-        "pdp_stories_omega",
-        "pdp_stories_vitc",
-        "pdp_stories_whey",
         "trust_triggers_Bt1x9k",
         "shipping_estimate_Fr3t9x",
         "complementary_products_Wip9YG",
@@ -604,6 +464,14 @@
     "pdp_ugc": {
       "type": "ugc-photos",
       "blocks": {
+        "video_5": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/DharaTetra Vit D .mov",
+            "name": "",
+            "caption": ""
+          }
+        },
         "video_1": {
           "type": "video",
           "settings": {
@@ -612,10 +480,26 @@
             "caption": ""
           }
         },
+        "video_2": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/AnaCreatina.MOV",
+            "name": "",
+            "caption": ""
+          }
+        },
         "video_8qTFXb": {
           "type": "video",
           "settings": {
             "video": "shopify://files/videos/AlineHair BOTANIKA1 .mov",
+            "name": "",
+            "caption": ""
+          }
+        },
+        "video_9": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/larissaOmega3.mov",
             "name": "",
             "caption": ""
           }
@@ -644,10 +528,34 @@
             "caption": ""
           }
         },
+        "video_7": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/jack01_73cc31ad-30fb-49e6-8715-8cc1c0e17981.mov",
+            "name": "",
+            "caption": ""
+          }
+        },
         "video_8": {
           "type": "video",
           "settings": {
             "video": "shopify://files/videos/jack02.mov",
+            "name": "",
+            "caption": ""
+          }
+        },
+        "video_10": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/LarissaVitaminaC.mov",
+            "name": "",
+            "caption": ""
+          }
+        },
+        "video_12": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/LissiaTetraVitD.mov",
             "name": "",
             "caption": ""
           }
@@ -667,89 +575,23 @@
             "name": "",
             "caption": ""
           }
-        },
-        "carr_jrhair02": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/JRHAIR02.mov",
-            "name": "",
-            "caption": ""
-          }
-        },
-        "carr_mghair03": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/MGHAIR03.mov",
-            "name": "",
-            "caption": ""
-          }
-        },
-        "carr_jrtri02": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/JRTRI02.mov",
-            "name": "",
-            "caption": ""
-          }
-        },
-        "carr_mgtri03": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/MGTRI03.mov",
-            "name": "",
-            "caption": ""
-          }
-        },
-        "carr_mgtetra03": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/MGTETRA03.mov",
-            "name": "",
-            "caption": ""
-          }
-        },
-        "video_ugerhair3mov": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/Rayssa Külkamp Krüger HAIR 3.mov",
-            "name": "",
-            "caption": ""
-          }
-        },
-        "video_arawhey02mov": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/LARAWHEY02.mov",
-            "name": "",
-            "caption": ""
-          }
-        },
-        "video_arawhey03mov": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/LARAWHEY03.mov",
-            "name": "",
-            "caption": ""
-          }
         }
       },
       "block_order": [
-        "video_ugerhair3mov",
-        "video_arawhey02mov",
-        "carr_mghair03",
-        "video_arawhey03mov",
+        "video_5",
         "video_1",
-        "video_11",
-        "video_6",
+        "video_2",
         "video_8qTFXb",
-        "video_13",
+        "video_9",
+        "video_11",
         "video_3",
-        "carr_mgtetra03",
+        "video_6",
+        "video_7",
         "video_8",
-        "carr_jrtri02",
+        "video_10",
+        "video_12",
         "video_4",
-        "carr_mgtri03",
-        "carr_jrhair02"
+        "video_13"
       ],
       "settings": {
         "color_scheme": "default",
@@ -1215,16 +1057,6 @@
         "padding_bottom": 0,
         "reset_spacing": false
       }
-    },
-    "judgeme_avaliacoes": {
-      "type": "judgeme-avaliacoes",
-      "settings": {
-        "heading": "Avaliações de quem já usa",
-        "subheading": "Avaliações reais e verificadas de clientes Botanika.",
-        "max_width": 1100,
-        "padding_top": 48,
-        "padding_bottom": 48
-      }
     }
   },
   "order": [
@@ -1245,7 +1077,6 @@
     "botanika_pdp_quality",
     "1716793714ce89e457",
     "botanika_pdp_faq",
-    "judgeme_avaliacoes",
     "botanika_pdp_crosssell",
     "divider_TKLM6L",
     "related_products",
