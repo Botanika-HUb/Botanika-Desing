@@ -234,7 +234,7 @@ Domingo à noite: confira a agenda da semana, deixe 2 refeições adiantadas e s
 Dormir muito mais tarde no sábado e acordar tarde no domingo bagunça o relógio e deixa a segunda mais pesada. Tente voltar ao horário de sempre hoje.
 
 **📬 Na semana que vem**
-Mais 5 edições sobre saúde e as novidades da Botanika, sempre aqui primeiro.
+Mais uma semana de edições sobre saúde e as novidades da Botanika, sempre aqui primeiro.
 
 Boa semana!
 **Botanika** 🌿
