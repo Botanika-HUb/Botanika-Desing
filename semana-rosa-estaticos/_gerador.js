@@ -32,12 +32,12 @@ const PIECES = [
   { id: 'E02', momento: 'antecipacao', kicker: 'Outubro Rosa', h: 'Cuidar de si não é luxo. <em>É rotina.</em>', sub: 'Exames em dia, rotina em dia.<br>Segunda tem novidade.', art: 'ribbon' },
   { id: 'E03', momento: 'antecipacao', kicker: 'Semana Rosa Botanika', h: 'Coloque <em>você</em> na agenda.', sub: '19 a 25/10', art: 'agenda' },
   { id: 'E04', momento: 'e-amanha', kicker: 'Semana Rosa Botanika', h: 'É <em>amanhã.</em>', sub: 'Abre segunda, 00h', art: 'ribbon', seal: ['100 primeiros', 'frete grátis'] },
-  { id: 'E05', momento: 'e-amanha', kicker: 'Segunda, 00h', h: 'Meia-noite começa a <em>Semana Rosa.</em>', bullets: ['Frete grátis acima de R$ 199', 'Compre 4, leve 5 na Super Vitamina C'], art: 'bottle' },
+  { id: 'E05', momento: 'e-amanha', kicker: 'Segunda, 00h', h: 'Meia-noite começa a <em>Semana Rosa.</em>', bullets: ['Frete grátis acima de R$ 199', 'Compre 4 suplementos, leve 5'], art: 'bottle' },
   { id: 'E06', momento: 'oferta', kicker: 'Semana Rosa Botanika', h: 'Frete grátis acima de <em>R$ 199.</em>', sub: 'Até domingo, 25/10', art: 'ribbon', seal: ['100 primeiros', 'frete grátis sem mínimo'] },
-  { id: 'E07', momento: 'oferta', kicker: 'Super Vitamina C', h: 'Compre 4. <em>Leve 5.</em>', sub: 'Vitamina C + Quercetina + Própolis', art: 'five', seal: ['Frete grátis', 'acima de R$ 199'] },
-  { id: 'E08', momento: 'oferta', kicker: 'Semana Rosa Botanika', h: 'Cuidar de você também é <em>rotina.</em>', bullets: ['Frete grátis acima de R$ 199', 'Compre 4, leve 5 na Super Vitamina C'], art: 'bottle' },
+  { id: 'E07', momento: 'oferta', kicker: 'Semana Rosa', h: 'Compre 4. <em>Leve 5.</em>', sub: 'Escolha 4 suplementos: a Super Vitamina C é presente', art: 'five', seal: ['Frete grátis', 'acima de R$ 199'] },
+  { id: 'E08', momento: 'oferta', kicker: 'Semana Rosa Botanika', h: 'Cuidar de você também é <em>rotina.</em>', bullets: ['Frete grátis acima de R$ 199', 'Compre 4 suplementos, leve 5'], art: 'bottle' },
   { id: 'E09', momento: 'oferta-remarketing', kicker: 'Semana Rosa Botanika', h: 'Seu carrinho ainda está <em>te esperando.</em>', sub: 'Na Semana Rosa, acima de R$ 199<br>o frete é por nossa conta.', art: 'cart' },
-  { id: 'E10', momento: 'ultima-chance', kicker: 'Termina hoje, 23h59', h: 'Última <em>chance.</em>', bullets: ['Frete grátis acima de R$ 199', 'Compre 4, leve 5 na Super Vitamina C'], art: 'bottle', urgent: true },
+  { id: 'E10', momento: 'ultima-chance', kicker: 'Termina hoje, 23h59', h: 'Última <em>chance.</em>', bullets: ['Frete grátis acima de R$ 199', 'Compre 4 suplementos, leve 5'], art: 'bottle', urgent: true },
   { id: 'E11', momento: 'ultima-chance', kicker: 'Semana Rosa Botanika', h: 'Hoje à meia-noite volta tudo <em>ao normal.</em>', sub: 'Aproveite enquanto dá.', art: 'ribbon', urgent: true },
 ];
 
