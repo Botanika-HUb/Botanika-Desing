@@ -28,11 +28,11 @@ const bottles = n => `<div class="bottles">${Array.from({ length: n }, (_, i) =>
 
 // Peças: texto da copy aprovada (Drive: "Semana Rosa Botanika — Copy dos criativos")
 const PIECES = [
-  { id: 'E01', momento: 'antecipacao', kicker: 'Semana Rosa Botanika', h: 'Outubro é sobre <em>você.</em>', sub: 'Começa quinta, 22/10', art: 'ribbon' },
-  { id: 'E02', momento: 'antecipacao', kicker: 'Outubro Rosa', h: 'Cuidar de si não é luxo. <em>É rotina.</em>', sub: 'Exames em dia, rotina em dia.<br>Quinta tem novidade.', art: 'ribbon' },
-  { id: 'E03', momento: 'antecipacao', kicker: 'Semana Rosa Botanika', h: 'Coloque <em>você</em> na agenda.', sub: '22 a 25/10', art: 'agenda' },
-  { id: 'E04', momento: 'e-amanha', kicker: 'Semana Rosa Botanika', h: 'É <em>amanhã.</em>', sub: 'Abre quinta, 00h', art: 'ribbon', seal: ['100 primeiros', 'frete grátis'] },
-  { id: 'E05', momento: 'e-amanha', kicker: 'Quinta, 00h', h: 'Meia-noite começa a <em>Semana Rosa.</em>', bullets: ['Frete grátis acima de R$ 199', 'Compre 4, leve 5 na Super Vitamina C'], art: 'bottle' },
+  { id: 'E01', momento: 'antecipacao', kicker: 'Semana Rosa Botanika', h: 'Outubro é sobre <em>você.</em>', sub: 'Começa segunda, 19/10', art: 'ribbon' },
+  { id: 'E02', momento: 'antecipacao', kicker: 'Outubro Rosa', h: 'Cuidar de si não é luxo. <em>É rotina.</em>', sub: 'Exames em dia, rotina em dia.<br>Segunda tem novidade.', art: 'ribbon' },
+  { id: 'E03', momento: 'antecipacao', kicker: 'Semana Rosa Botanika', h: 'Coloque <em>você</em> na agenda.', sub: '19 a 25/10', art: 'agenda' },
+  { id: 'E04', momento: 'e-amanha', kicker: 'Semana Rosa Botanika', h: 'É <em>amanhã.</em>', sub: 'Abre segunda, 00h', art: 'ribbon', seal: ['100 primeiros', 'frete grátis'] },
+  { id: 'E05', momento: 'e-amanha', kicker: 'Segunda, 00h', h: 'Meia-noite começa a <em>Semana Rosa.</em>', bullets: ['Frete grátis acima de R$ 199', 'Compre 4, leve 5 na Super Vitamina C'], art: 'bottle' },
   { id: 'E06', momento: 'oferta', kicker: 'Semana Rosa Botanika', h: 'Frete grátis acima de <em>R$ 199.</em>', sub: 'Até domingo, 25/10', art: 'ribbon', seal: ['100 primeiros', 'frete grátis sem mínimo'] },
   { id: 'E07', momento: 'oferta', kicker: 'Super Vitamina C', h: 'Compre 4. <em>Leve 5.</em>', sub: 'Vitamina C + Quercetina + Própolis', art: 'five', seal: ['Frete grátis', 'acima de R$ 199'] },
   { id: 'E08', momento: 'oferta', kicker: 'Semana Rosa Botanika', h: 'Cuidar de você também é <em>rotina.</em>', bullets: ['Frete grátis acima de R$ 199', 'Compre 4, leve 5 na Super Vitamina C'], art: 'bottle' },
@@ -114,7 +114,7 @@ function html(p, W, H) {
     ${p.sub ? `<div class="sub">${p.sub}</div>` : ''}
     ${p.bullets ? `<ul>${p.bullets.map(b => `<li>${b}</li>`).join('')}</ul>` : ''}
     ${art.replace(/<\/div>$/, (p.seal ? seal(p.seal[0], p.seal[1], H > 1500 ? 250 : 210) : '') + '</div>')}
-    <div class="foot"><span class="logo">botanika</span><span>${p.urgent ? 'Até hoje, 23h59' : (p.momento.startsWith('oferta') ? 'Até 25/10' : 'Semana Rosa · 22 a 25/10')}</span></div>
+    <div class="foot"><span class="logo">botanika</span><span>${p.urgent ? 'Até hoje, 23h59' : (p.momento.startsWith('oferta') ? 'Até 25/10' : 'Semana Rosa · 19 a 25/10')}</span></div>
   </div>`;
   return `<!doctype html><html><head><meta charset="utf-8"><style>${css(W, H)}</style></head><body class="${p.urgent ? 'urgent' : ''}">${body}</body></html>`;
 }
