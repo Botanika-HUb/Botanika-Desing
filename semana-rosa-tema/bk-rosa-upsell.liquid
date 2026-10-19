@@ -1,0 +1,185 @@
+{%- comment -%}
+  SEMANA ROSA — gaveta do carrinho em um bloco só: "leve mais do mesmo" + presente da Vit C.
+  Substitui, só neste tema, o order bump ("Complete sua rotina") e a gaveta perpétua (bk-gaveta).
+  Uma linha por produto do carrinho, com a escada que existe de verdade no Admin:
+    - Topo: "compre 4, leve 5" — 4 suplementos quaisquer da oferta (mesma lista do bk-rosa-gift) → a Super Vitamina C é presente.
+      Obs.: presente e escada não somam (o "compre 4" não combina com desconto de produto); a Shopify aplica o maior.
+      Por isso, com 4+ itens as linhas dizem "conta para o seu presente" e somem o "+1 = % OFF"; com 3, o +1 leva ao presente.
+    - Principais (Vit C, TetraVit D, Ômega 3, Hair, Tri[Mg], Sleep, Creatina, Whey): 2 un 5% · 3+ un 10%
+    - Lançamentos com escada (NAC, MSM, Flexia, Coenzima Q10): 2+ un 5%
+    - NAC Xarope e Cranberry: sem escada nesta semana (descontos desligados em 16/10 para abrir vaga)
+  Card do presente com a contagem 1-2-3-4-🎁; sem Vit C no carrinho, botão que põe 4 Vit C (o bk-rosa-gift coloca a 5ª).
+  O "+1" usa o JS do bk-semana-rosa ([data-bkup-add] dentro de .bkrs).
+{%- endcomment -%}
+{%- liquid
+  assign rs_vitc = all_products['super-vitamina-c']
+  assign rs_vitc_v = rs_vitc.selected_or_first_available_variant
+  assign rs_main = ',super-vitamina-c,tetravit-d,super-omega-3-coq10,hair-botanika,tri-mg-complex,sleep-inositol,creatina-l-carnitina,'
+  assign rs_whey = ',whey-balance-chocolate,whey-balance-sem-sabor,whey-balance-910g-chocolate-botanika,whey-balance-455g-cappuccino-botanika,'
+  assign rs_new = ',nac-botanika,msm-botanika,flexia-botanika,coenzima-q10-botanika,'
+  assign rs_offer = ',tri-mg-complex,super-vitamina-c,hair-botanika,tetravit-d,sleep-inositol,creatina-l-carnitina,whey-balance-chocolate,whey-balance-sem-sabor,super-omega-3-coq10,kit-da-imunidade,nac-botanika,msm-botanika,coenzima-q10-botanika,cranberry-botanika,nac-xarope-40mg-120ml-morango-botanika,flexia-botanika,whey-balance-910g-chocolate-botanika,whey-balance-455g-cappuccino-botanika,'
+  assign rs_n = 0
+  assign rs_vitc_n = 0
+  assign rs_whey_n = 0
+  assign rs_whey_item = nil
+  for it in cart.items
+    if it.properties['Brinde Semana Rosa'] != blank
+      continue
+    endif
+    if it.product.handle == 'super-vitamina-c'
+      assign rs_vitc_n = rs_vitc_n | plus: it.quantity
+    endif
+    assign k = ',' | append: it.product.handle | append: ','
+    if rs_offer contains k
+      assign rs_n = rs_n | plus: it.quantity
+    endif
+    if rs_whey contains k
+      assign rs_whey_n = rs_whey_n | plus: it.quantity
+      if rs_whey_item == nil
+        assign rs_whey_item = it
+      endif
+    endif
+  endfor
+  assign rs_seen = ','
+-%}
+<div class="bsr bkrs" data-bkrs>
+  <div class="bkrs__head">
+    <span class="bkrs__eye">🎀 Semana Rosa</span>
+    <p class="bkrs__title">Leve mais do mesmo</p>
+  </div>
+
+  {%- if rs_vitc_v -%}
+    {%- liquid
+      assign rs_left = 4 | minus: rs_n
+      assign rs_gift_on = false
+      if rs_n >= 4
+        assign rs_gift_on = true
+      endif
+    -%}
+    <div class="bkrs__promo">
+      <a href="{{ rs_vitc.url }}" class="bkrs__promo-img"><img src="{{ rs_vitc.featured_image | image_url: width: 200 }}" alt="Super Vitamina C" width="72" height="72" loading="lazy"></a>
+      <div class="bkrs__promo-txt">
+        <b>{% if rs_gift_on %}🎁 Sua Super Vitamina C de presente está garantida!{% else %}Compre 4, leve 5{% endif %}</b>
+        <span>{% if rs_gift_on %}Ela entra no carrinho de graça ({{ rs_vitc_v.price | money }} de presente).{% elsif rs_n == 0 %}Leve 4 suplementos quaisquer e a Super Vitamina C é presente.{% else %}Falta{% if rs_left > 1 %}m{% endif %} {{ rs_left }} suplemento{% if rs_left > 1 %}s{% endif %} (qualquer um) para a Super Vitamina C vir de presente.{% endif %}</span>
+      </div>
+      <div class="bkrs__steps bkrs__steps--promo" aria-hidden="true">
+        {%- for i in (1..4) -%}<span class="{% if i <= rs_n %}on{% endif %}">{{ i }}</span>{%- endfor -%}
+        <span class="gift{% if rs_gift_on %} on{% endif %}">🎁</span>
+      </div>
+      {%- if rs_vitc_n == 0 and rs_gift_on == false -%}
+        <button type="button" class="bkrs__btn bkrs__btn--full" data-bkup-add="{{ rs_vitc_v.id }}" data-qty="4">Quero 4 Vit C + 1 de presente · {{ rs_vitc_v.price | times: 4 | money }}</button>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="bkrs__rows">
+    {%- for it in cart.items -%}
+      {%- if it.properties['Brinde Semana Rosa'] != blank -%}{%- continue -%}{%- endif -%}
+      {%- liquid
+        assign h = it.product.handle
+        assign k = ',' | append: h | append: ','
+        assign kind = ''
+        assign u = it.quantity
+        assign nm = it.product.title | split: ' — ' | first
+        if h == 'super-vitamina-c'
+          assign kind = 'main'
+          assign u = rs_vitc_n
+          assign nm = 'Super Vitamina C'
+        elsif rs_main contains k
+          assign kind = 'main'
+        elsif rs_whey contains k
+          assign kind = 'main'
+          assign u = rs_whey_n
+          assign nm = 'Whey Balance'
+          assign k = ',whey,'
+        elsif rs_new contains k
+          assign kind = 'new'
+        endif
+      -%}
+      {%- if kind == '' or rs_seen contains k -%}{%- continue -%}{%- endif -%}
+      {%- assign rs_seen = rs_seen | append: k -%}
+      {%- liquid
+        if kind == 'main'
+          assign steps = 3
+        else
+          assign steps = 2
+        endif
+        assign done = false
+        if u >= steps
+          assign done = true
+        endif
+        assign nxt = u | plus: 1
+      -%}
+      <div class="bkrs__row{% if rs_gift_on %} is-gift{% elsif done %} is-done{% endif %}">
+        <div class="bkrs__rtop">
+          <img src="{{ it.image | image_url: width: 120 }}" alt="" width="40" height="40" loading="lazy">
+          <div class="bkrs__rinfo">
+            <b>{{ nm }}</b>
+            <span>
+              {%- if rs_gift_on -%}🎁 Conta para o seu presente
+              {%- elsif rs_n == 3 -%}+1 unidade e <strong>a Vit C vem de presente</strong>
+              {%- elsif done -%}✓ Desconto máximo aplicado{% if kind == 'main' %} (10% OFF){% else %} (5% OFF){% endif %}
+              {%- elsif kind == 'new' -%}+1 unidade = <strong>5% OFF</strong> nas 2
+              {%- elsif u == 1 -%}+1 unidade = <strong>5% OFF</strong> nas 2
+              {%- else -%}+1 unidade = <strong>10% OFF</strong> nas {{ nxt }}
+              {%- endif -%}
+            </span>
+          </div>
+          {%- unless done or rs_gift_on -%}
+            <button type="button" class="bkrs__btn" data-bkup-add="{{ it.variant_id }}" data-qty="1">+1</button>
+          {%- endunless -%}
+        </div>
+        <div class="bkrs__steps" aria-hidden="true"{% if rs_gift_on %} hidden{% endif %}>
+          {%- for i in (1..steps) -%}
+            <span class="{% if i <= u %}on{% endif %}">
+              {%- if kind == 'main' -%}{%- case i -%}{%- when 2 -%}5%{%- when 3 -%}10%{%- else -%}{{ i }}{%- endcase -%}
+              {%- else -%}{%- if i == 2 -%}5%{%- else -%}{{ i }}{%- endif -%}{%- endif -%}
+            </span>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+<style>
+  .bkrs{padding:14px 0 6px}
+  .bkrs *{box-sizing:border-box}
+  .bkrs__head{display:flex;align-items:baseline;gap:10px;margin:0 0 10px}
+  .bkrs__eye{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:linear-gradient(100deg,#E0457E,#9E2A55);padding:4px 10px;border-radius:999px;white-space:nowrap}
+  .bkrs__title{margin:0;font-size:16px;font-weight:800;color:#4A1430}
+  .bkrs__promo{display:grid;grid-template-columns:72px minmax(0,1fr);gap:10px 12px;align-items:center;padding:12px;margin:0 0 10px;border-radius:16px;color:#fff;background:radial-gradient(120% 140% at 0% 0%,#E86A98 0%,rgba(232,106,152,0) 55%),linear-gradient(120deg,#D2477A 0%,#B2335F 60%,#7E1E45 100%);box-shadow:0 10px 24px rgba(178,51,95,.25)}
+  .bkrs__promo-img{display:block;width:72px;height:72px;border-radius:14px;background:#fff;overflow:hidden}
+  .bkrs__promo-img img{width:100%;height:100%;object-fit:contain}
+  .bkrs__promo-txt b{display:block;font-size:14.5px;line-height:1.25}
+  .bkrs__promo-txt span{display:block;margin-top:3px;font-size:12px;line-height:1.35;opacity:.92}
+  .bkrs__rows{display:grid;gap:8px}
+  .bkrs__row{border:1.5px solid #F1D3DD;background:#fff;border-radius:14px;padding:10px 12px}
+  .bkrs__row.is-gift{border-color:#E0457E;background:linear-gradient(180deg,#FFF5F8 0%,#fff 80%)}
+  .bkrs__steps[hidden]{display:none}
+  .bkrs__row.is-done{border-color:#bfe3c9;background:#f6fbf7}
+  .bkrs__rtop{display:flex;align-items:center;gap:10px}
+  .bkrs__rtop img{flex:none;width:40px;height:40px;object-fit:contain;border-radius:8px;background:#FBF1F3}
+  .bkrs__rinfo{flex:1;min-width:0}
+  .bkrs__rinfo b{display:block;font-size:13.5px;color:#4A1430;line-height:1.2}
+  .bkrs__rinfo span{display:block;font-size:12.5px;color:#8A5A6E;line-height:1.35;margin-top:2px}
+  .bkrs__rinfo strong{color:#B2335F}
+  .bkrs__row.is-done .bkrs__rinfo span{color:#13522a}
+  .bkrs__steps{display:flex;gap:5px;margin-top:9px}
+  .bkrs__steps span{flex:1;height:24px;border-radius:7px;background:#FBEAF0;color:#B2335F;display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800}
+  .bkrs__steps span.on{background:linear-gradient(100deg,#E0457E,#B2335F);color:#fff}
+  .bkrs__row.is-done .bkrs__steps span.on{background:#1a8f3c}
+  .bkrs__steps--promo{grid-column:1/-1;margin-top:0}
+  .bkrs__steps--promo span{background:rgba(255,255,255,.22);color:#fff}
+  .bkrs__steps--promo span.on{background:#fff;color:#B2335F}
+  .bkrs__steps--promo span.gift.on{background:#fff}
+  .bkrs__steps span.gift{flex:0 0 34px;background:#FFE3EC;font-size:14px}
+  .bkrs__steps span.gift.on{background:#1a8f3c;animation:bkrsG 1.6s ease-in-out infinite}
+  @keyframes bkrsG{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+  .bkrs__btn{flex:none;appearance:none;border:0;border-radius:999px;background:#C23B6B;color:#fff;font:inherit;font-size:13.5px;font-weight:800;padding:8px 14px;cursor:pointer;transition:transform .15s,background .15s}
+  .bkrs__btn:hover{background:#9E2A55}
+  .bkrs__btn:active{transform:scale(.96)}
+  .bkrs__btn[disabled]{opacity:.7}
+  .bkrs__btn--full{grid-column:1/-1;width:100%;background:#fff;color:#9E2A55;padding:11px 12px}
+  .bkrs__btn--full:hover{background:#FFE3EC}
+  @media (prefers-reduced-motion:reduce){.bkrs__steps span.gift.on{animation:none}}
+</style>
