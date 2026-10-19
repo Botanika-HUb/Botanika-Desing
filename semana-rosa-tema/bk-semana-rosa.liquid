@@ -1,0 +1,262 @@
+{%- comment -%}
+  SEMANA ROSA Botanika (19 a 25/10). Bloco global, renderizado no theme.liquid antes do cabeçalho.
+  Inspirado no acabamento do Dia D (bk-diad-bar + bk-diad-red), no rosa da campanha:
+  1. Tarja rosa com contagem até dom 25/10 23h59; a mensagem muda sozinha no domingo (última chance).
+  2. Acabamento: títulos com traço rosa, cards do Super Vitamina C brilhando com selo e preço da oferta.
+  3. Página de produto: aviso da oferta embaixo do preço; no Super Vitamina C, card "compre 4, leve 5"
+     com botão que põe 4 potes (o bk-rosa-gift coloca a Vit C de presente). Vale para 4 suplementos quaisquer.
+  4. Carrinho: "+ Adicionar" da vitrine bk-rosa-upsell; esconde o contador falso de "finalize em 2 min".
+  5. Cupom ROSA100 (frete grátis sem mínimo, 100 primeiros) aplicado sozinho em carrinho abaixo de R$ 199.
+  Tudo some depois de 25/10 23h59, mesmo com o tema publicado.
+  Copy: sem porcentagem de desconto; Outubro Rosa como tema de cuidado (nunca ligar suplemento a câncer de mama).
+{%- endcomment -%}
+{%- liquid
+  assign bsr_vitc = all_products['super-vitamina-c']
+  assign bsr_vitc_url = bsr_vitc.url | default: '/products/super-vitamina-c'
+  assign bsr_vitc_price = bsr_vitc.price | default: 8952
+  assign bsr_four = bsr_vitc_price | times: 4
+  assign bsr_each = bsr_four | divided_by: 5
+-%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,560;0,9..144,700;1,9..144,500&display=swap">
+<style>
+  :root{--sr-rose:#C23B6B;--sr-rose2:#9E2A55;--sr-hot:#E0457E;--sr-wine:#4A1430;--sr-muted:#8A5A6E;--sr-blush:#FBF1F3;--sr-blush2:#F6DCE4;--sr-line:#EED3DA;--sr-cream:#FFE3EC;--sr-display:"Fraunces",Georgia,serif}
+  .bsr-off .bsr{display:none!important}
+
+  /* 1. tarja */
+  .bsr-bar{background:linear-gradient(100deg,#D2477A 0%,#B2335F 55%,#8A2350 100%);color:#fff;font-size:13px;line-height:1.3;position:relative;z-index:6}
+  .bsr-bar__in{max-width:1410px;margin:0 auto;padding:8px 14px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;text-align:center}
+  .bsr-bar__msg b{font-weight:900;letter-spacing:.02em}
+  .bsr-bar__msg i{font-family:var(--sr-display);font-style:italic;font-weight:500;font-size:15px}
+  .bsr-bar__msg--m{display:none}
+  .bsr-bar__cd{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+  .bsr-bar__cdl{opacity:.92;font-size:12px}
+  .bsr-bar__clock{background:#fff;color:#9E2A55;font-weight:900;font-variant-numeric:tabular-nums;padding:3px 9px;border-radius:8px;font-size:14px;letter-spacing:.03em}
+  @media (max-width:749px){
+    .bsr-bar__msg{display:none}.bsr-bar__msg--m{display:inline}
+    .bsr-bar__in{padding:7px 10px;gap:8px;flex-wrap:nowrap;font-size:12.5px}
+    .bsr-bar__cdl{display:none}.bsr-bar__clock{font-size:13px;padding:2px 7px}
+  }
+
+  /* 2. acabamento da campanha */
+  html:not(.bsr-off) .section__header-heading,html:not(.bsr-off) .ugc__title,html:not(.bsr-off) .btcar__title,html:not(.bsr-off) .bt-medauth__title,html:not(.bsr-off) .bk__h{position:relative}
+  html:not(.bsr-off) .section__header-heading::after,html:not(.bsr-off) .ugc__title::after,html:not(.bsr-off) .btcar__title::after,html:not(.bsr-off) .bt-medauth__title::after,html:not(.bsr-off) .bk__h::after{
+    content:"";display:block;width:56px;height:3px;margin:10px auto 0;border-radius:3px;background:linear-gradient(90deg,var(--sr-hot),var(--sr-rose2))}
+  html:not(.bsr-off) .bk-vtodos__a{border-color:var(--sr-rose)!important;color:var(--sr-rose)!important}
+  html:not(.bsr-off) .bk-vtodos__a:hover{background:var(--sr-rose)!important;color:#fff!important}
+  html:not(.bsr-off) .product-item.bsr-card{animation:bsrGlow 1.9s ease-in-out infinite!important;border-radius:18px}
+  @keyframes bsrGlow{0%,100%{box-shadow:inset 0 0 0 2px var(--sr-rose),inset 0 0 0 rgba(194,59,107,0)}50%{box-shadow:inset 0 0 0 3px var(--sr-hot),inset 0 0 34px rgba(224,69,126,.30)}}
+  .bsr-ribbon{position:absolute;top:12px;left:12px;z-index:6;display:inline-flex;align-items:center;gap:5px;padding:7px 13px;border-radius:999px;background:linear-gradient(100deg,var(--sr-hot),var(--sr-rose2));color:#fff;font-size:12px;font-weight:800;line-height:1;box-shadow:0 4px 14px rgba(178,51,95,.38);pointer-events:none;white-space:nowrap;overflow:hidden}
+  .bsr-ribbon::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:bsrShine 2.6s ease-in-out infinite}
+  @keyframes bsrShine{0%{left:-60%}55%,100%{left:130%}}
+  .bsr-cardoffer{display:block;margin:6px auto 0;width:max-content;max-width:100%;font-size:12px;font-weight:800;color:var(--sr-rose2);background:var(--sr-blush);border:1px solid var(--sr-line);padding:4px 10px;border-radius:999px;text-align:center}
+  @media(max-width:575px){.bsr-ribbon{top:10px;left:10px;font-size:11px;padding:6px 11px}.bsr-cardoffer{font-size:11px;padding:3px 8px}}
+
+  /* 3. página de produto */
+  .bsr-pnote{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+  .bsr-pnote span{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--sr-rose2);background:var(--sr-blush);border:1px solid var(--sr-line);padding:5px 11px;border-radius:999px}
+  .bsr-pnote span.hot{background:linear-gradient(100deg,var(--sr-hot),var(--sr-rose2));color:#fff;border-color:transparent}
+  .bsr-pdp{box-sizing:border-box;position:relative;overflow:hidden;margin:0 0 18px;border-radius:20px;padding:18px 18px 16px;color:#fff;background:radial-gradient(120% 140% at 0% 0%,#E86A98 0%,rgba(232,106,152,0) 55%),linear-gradient(120deg,#D2477A 0%,#B2335F 60%,#7E1E45 100%);box-shadow:0 14px 34px rgba(178,51,95,.28)}
+  .bsr-pdp *{box-sizing:border-box}
+  .bsr-pdp__top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .bsr-pdp__eye{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.18);padding:5px 11px;border-radius:999px}
+  .bsr-pdp__dot{width:8px;height:8px;border-radius:50%;background:#FFE3EC;animation:bsrP 1.6s infinite}
+  @keyframes bsrP{0%{box-shadow:0 0 0 0 rgba(255,227,236,.8)}70%{box-shadow:0 0 0 8px rgba(255,227,236,0)}100%{box-shadow:0 0 0 0 rgba(255,227,236,0)}}
+  .bsr-pdp__time{font-size:12px;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap;background:#fff;color:#9E2A55;padding:3px 9px;border-radius:8px}
+  .bsr-pdp__big{margin:12px 0 2px;font-family:var(--sr-display);font-weight:700;font-size:30px;line-height:1.02;letter-spacing:-.02em;color:#fff}
+  .bsr-pdp__big em{font-style:italic;font-weight:500;color:#FFE3EC}
+  .bsr-pdp__math{display:flex;align-items:flex-end;gap:12px;margin:10px 0 12px;flex-wrap:wrap}
+  .bsr-pdp__each{font-family:var(--sr-display);font-weight:700;font-size:34px;line-height:1;color:#fff}
+  .bsr-pdp__each small{font-family:inherit;font-size:14px;font-weight:600;opacity:.9}
+  .bsr-pdp__calc{font-size:13px;line-height:1.35;opacity:.95}
+  .bsr-pdp__calc s{opacity:.75}
+  .bsr-pdp__pots{display:flex;gap:6px;margin:0 0 14px}
+  .bsr-pdp__pots span{flex:1;height:30px;border-radius:9px;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+  .bsr-pdp__pots span.gift{background:#FFE3EC;color:#9E2A55}
+  .bsr-pdp__btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:999px;background:#fff;color:#9E2A55;font:inherit;font-weight:900;font-size:15.5px;padding:14px 18px;cursor:pointer;box-shadow:0 8px 18px rgba(0,0,0,.16);transition:transform .15s}
+  .bsr-pdp__btn:active{transform:scale(.98)}
+  .bsr-pdp__btn[disabled]{opacity:.7;cursor:default}
+  .bsr-pdp__list{list-style:none;margin:14px 0 0;padding:12px 0 0;border-top:1px solid rgba(255,255,255,.25);display:grid;gap:6px;font-size:13.5px}
+  .bsr-pdp__list b{color:#FFE3EC}
+  .bsr-pdp__note{margin:10px 0 0;font-size:11.5px;line-height:1.4;opacity:.85}
+  .bsr-pdp--lite{background:var(--sr-blush);color:var(--sr-wine);box-shadow:none;border:1.5px solid var(--sr-line);padding:14px 16px}
+  .bsr-pdp--lite .bsr-pdp__eye{background:#fff;color:var(--sr-rose2)}
+  .bsr-pdp--lite .bsr-pdp__dot{background:var(--sr-rose)}
+  .bsr-pdp--lite .bsr-pdp__time{background:var(--sr-rose2);color:#fff}
+  .bsr-pdp--lite .bsr-pdp__list{border-top-color:var(--sr-line);margin-top:10px}
+  .bsr-pdp--lite .bsr-pdp__list b{color:var(--sr-rose2)}
+  .bsr-pdp--lite a{color:var(--sr-rose2);font-weight:800}
+
+  /* 4. carrinho: contador falso de "finalize em 2 min" fora (o prazo real está na tarja) */
+  html:not(.bsr-off) .cart-countdown-time,html:not(.bsr-off) .cart_page-countdown{display:none!important}
+
+  @media (prefers-reduced-motion:reduce){.product-item.bsr-card,.bsr-ribbon::after,.bsr-pdp__dot{animation:none!important}}
+</style>
+
+<div class="bsr bsr-bar" data-bsr-bar role="region" aria-label="Semana Rosa Botanika">
+  <div class="bsr-bar__in">
+    <span class="bsr-bar__msg" data-bsr-msg><i>Semana Rosa</i> 🎀 · <b>Compre 4 suplementos, leve 5</b>: a Super Vitamina C é presente · frete grátis acima de R$&nbsp;199 · 100 primeiros pedidos com frete grátis sem mínimo</span>
+    <span class="bsr-bar__msg bsr-bar__msg--m" data-bsr-msgm><b>🎀 SEMANA ROSA</b> · Compre 4, leve 5</span>
+    <span class="bsr-bar__cd" aria-live="off"><span class="bsr-bar__cdl">Termina em</span> <span class="bsr-bar__clock" data-bsr-clock>--:--:--</span></span>
+  </div>
+</div>
+
+{%- if template.name == 'product' and product != blank -%}
+  {%- if product.handle == 'super-vitamina-c' -%}
+    <div class="bsr bsr-pdp" data-bsr-pdp hidden>
+      <div class="bsr-pdp__top">
+        <span class="bsr-pdp__eye"><span class="bsr-pdp__dot"></span>Semana Rosa · até dom 23h59</span>
+        <span class="bsr-pdp__time" data-bsr-count>--:--:--</span>
+      </div>
+      <p class="bsr-pdp__big">Compre 4, <em>leve 5.</em></p>
+      <div class="bsr-pdp__math">
+        <span class="bsr-pdp__each">{{ bsr_each | money }} <small>por pote</small></span>
+        <span class="bsr-pdp__calc">5 potes por <b>{{ bsr_four | money }}</b><br><s>{{ bsr_vitc_price | times: 5 | money }}</s> · o 5º é presente</span>
+        <span class="bsr-pdp__calc">Vale misturar: <b>4 suplementos quaisquer</b> e a Super Vitamina C entra de presente</span>
+      </div>
+      <div class="bsr-pdp__pots" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span class="gift">🎁 5º</span></div>
+      <button type="button" class="bsr-pdp__btn" data-bsr-add4 data-variant="{{ product.selected_or_first_available_variant.id }}">Quero 4 + 1 de presente <span aria-hidden="true">→</span></button>
+      <ul class="bsr-pdp__list">
+        <li>🚚 <b>Frete grátis</b> acima de R$&nbsp;199 (os 5 potes já passam)</li>
+        <li>📦 <b>100 primeiros pedidos</b> da semana: frete grátis sem valor mínimo</li>
+      </ul>
+      <p class="bsr-pdp__note">A vitamina C contribui para o funcionamento normal do sistema imune. Outubro Rosa: mantenha seus exames em dia e converse com seu médico.</p>
+    </div>
+  {%- else -%}
+    <div class="bsr bsr-pdp bsr-pdp--lite" data-bsr-pdp hidden>
+      <div class="bsr-pdp__top">
+        <span class="bsr-pdp__eye"><span class="bsr-pdp__dot"></span>Semana Rosa · até dom 23h59</span>
+        <span class="bsr-pdp__time" data-bsr-count>--:--:--</span>
+      </div>
+      <ul class="bsr-pdp__list">
+        <li>🚚 <b>Frete grátis</b> acima de R$&nbsp;199{% if product.price >= 19900 %} · este produto já passa{% else %} · faltam {{ 19900 | minus: product.price | money }} com este produto{% endif %}</li>
+        <li>📦 <b>100 primeiros pedidos</b> da semana: frete grátis sem valor mínimo</li>
+        <li>🎁 <b>Compre 4, leve 5:</b> leve 4 suplementos quaisquer e <a href="{{ bsr_vitc_url }}">a Super Vitamina C é presente →</a></li>
+      </ul>
+    </div>
+  {%- endif -%}
+{%- endif -%}
+
+<script>
+  (function () {
+    var END = Date.parse('2026-10-26T02:59:59Z');        // dom 25/10 23h59 de Brasília
+    var START = Date.parse('2026-10-19T03:00:00Z');      // seg 19/10 00h00
+    if (Date.now() > END) { document.documentElement.classList.add('bsr-off'); return; }
+    function onReady(fn) { if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn); else fn(); }
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+    // 1. tarja + contagem (a mensagem muda no domingo)
+    var bar = document.querySelector('[data-bsr-bar]'), phase = '';
+    function setPhase(now) {
+      var br = new Date(now - 3 * 3600000), p = br.getUTCDate() >= 25 && br.getUTCMonth() === 9 ? 'dom' : 'sem';
+      if (p === phase || !bar) return; phase = p;
+      if (p === 'dom') {
+        bar.querySelector('[data-bsr-msg]').innerHTML = '<b>⏳ ÚLTIMO DIA DA SEMANA ROSA</b> · Compre 4 suplementos, leve 5: a Super Vitamina C é presente · frete grátis acima de R$&nbsp;199 · até hoje, 23h59';
+        bar.querySelector('[data-bsr-msgm]').innerHTML = '<b>⏳ ÚLTIMO DIA</b> · Compre 4, leve 5';
+      }
+    }
+    var clocks = [];
+    function tick() {
+      var now = Date.now(), left = END - now;
+      if (left <= 0) { document.documentElement.classList.add('bsr-off'); return; }
+      setPhase(now);
+      var s = Math.floor(left / 1000), d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60), x = s % 60;
+      var t = (d ? d + 'd ' : '') + pad(h) + ':' + pad(m) + ':' + pad(x);
+      clocks.forEach(function (c) { c.textContent = t; });
+      setTimeout(tick, 1000);
+    }
+    onReady(function () { clocks = [].slice.call(document.querySelectorAll('[data-bsr-clock],[data-bsr-count]')); tick(); });
+
+    // 2. cards do Super Vitamina C: brilho, selo e preço da oferta
+    var OFFER = 'Leve 5 por {{ bsr_four | money }}';
+    function cards() {
+      var links = document.querySelectorAll('.product-item a[href*="/products/super-vitamina-c"]');
+      for (var i = 0; i < links.length; i++) {
+        var card = links[i].closest('.product-item');
+        if (!card || card.classList.contains('bsr-card')) continue;
+        // card pequeno (lista lateral "Conheça também"): imagem estreita, o selo não cabe e sai cortado
+        var img = card.querySelector('img'), imgW = img ? img.offsetWidth : 0;
+        if (imgW && imgW < 160) { card.classList.add('bsr-card', 'bsr-card--sm'); continue; }
+        card.classList.add('bsr-card');
+        var media = card.querySelector('.product-item__inner') || card;
+        if (getComputedStyle(media).position === 'static') media.style.position = 'relative';
+        [].forEach.call(card.querySelectorAll('.camp-ribbon,.camp-badge2'), function (el) { el.style.display = 'none'; });
+        var r = document.createElement('span'); r.className = 'bsr bsr-ribbon'; r.textContent = '🎁 Compre 4, leve 5'; media.appendChild(r);
+        var price = card.querySelector('.price, .card-product-price, .installment-price');
+        if (price && price.parentNode) { var o = document.createElement('span'); o.className = 'bsr bsr-cardoffer'; o.textContent = OFFER; price.parentNode.insertBefore(o, price.nextSibling); }
+      }
+    }
+    onReady(cards);
+    if (window.MutationObserver) new MutationObserver(function () { cards(); }).observe(document.documentElement, { childList: true, subtree: true });
+
+    // 3. página de produto: card da oferta acima do botão de compra + selos embaixo do preço
+    onReady(function () {
+      var pdp = document.querySelector('[data-bsr-pdp]');
+      if (pdp) {
+        var anchor = document.querySelector('#MainContent .product-detail__buy-buttons') || document.querySelector('#MainContent product-form') || document.querySelector('#MainContent form[action*="/cart/add"]');
+        if (anchor && anchor.parentNode) { anchor.parentNode.insertBefore(pdp, anchor); pdp.hidden = false; }
+        var priceBox = document.querySelector('#MainContent .product-detail__price');
+        if (priceBox && !document.querySelector('.bsr-pnote')) {
+          var n = document.createElement('div'); n.className = 'bsr bsr-pnote';
+          n.innerHTML = {% if product.handle == 'super-vitamina-c' %}'<span class="hot">🎁 Compre 4, leve 5 · {{ bsr_each | money }} por pote</span><span>🚚 Frete grátis acima de R$ 199</span>'{% else %}'<span class="hot">🎁 Compre 4, leve 5 · a Vit C é presente</span><span>🚚 Frete grátis acima de R$ 199</span>'{% endif %};
+          priceBox.parentNode.insertBefore(n, priceBox.nextSibling);
+        }
+      }
+    });
+
+    // botão "4 + 1 de presente" (o bk-rosa-gift coloca a 5ª)
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest && e.target.closest('[data-bsr-add4]');
+      if (!b) return;
+      b.disabled = true; var label = b.innerHTML; b.textContent = 'Colocando no carrinho…';
+      fetch('/cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ items: [{ id: Number(b.getAttribute('data-variant')), quantity: 4 }] }) })
+        .then(function (r) { if (!r.ok) throw 0; return new Promise(function (ok) { setTimeout(ok, 1200); }); })
+        .then(function () { window.location.href = '/cart'; })
+        .catch(function () { b.disabled = false; b.innerHTML = label; alert('Não foi possível adicionar agora. Tente de novo.'); });
+    });
+
+    // 4. "+ Adicionar" da vitrine do carrinho (bk-rosa-upsell)
+    function refreshDrawer() {
+      if (/^\/cart\/?$/.test(location.pathname)) { location.reload(); return; }
+      return fetch(location.pathname + '?sections=minicart-form').then(function (r) { return r.json(); }).then(function (s) {
+        var html = s && s['minicart-form'], target = document.getElementById('minicart-form');
+        if (!html || !target) return;
+        var fresh = new DOMParser().parseFromString(html, 'text/html').querySelector('#minicart-form');
+        if (fresh) target.innerHTML = fresh.innerHTML;
+      }).then(function () {
+        return fetch('/cart.js').then(function (r) { return r.json(); }).then(function (c) {
+          if (typeof CartUtils !== 'undefined' && CartUtils.updateCartCount) CartUtils.updateCartCount(c.item_count);
+          document.querySelectorAll('.cart-count-drawer').forEach(function (el) { el.textContent = ' (' + c.item_count + ') '; });
+        });
+      }).catch(function () {});
+    }
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest && e.target.closest('[data-bkup-add]');
+      if (!b || !b.closest('.bkrs')) return;
+      e.preventDefault();
+      b.disabled = true; b.textContent = 'Adicionando…';
+      fetch('/cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ items: [{ id: Number(b.getAttribute('data-bkup-add')), quantity: Number(b.getAttribute('data-qty') || 1) }] }) })
+        .then(function (r) { if (!r.ok) throw 0; b.textContent = '✓ Adicionado'; return new Promise(function (ok) { setTimeout(ok, 1100); }); })
+        .then(refreshDrawer)
+        .catch(function () { b.disabled = false; b.textContent = 'Tentar de novo'; });
+    });
+
+    // 5. ROSA100: frete grátis sem mínimo (100 primeiros), só abaixo de R$ 199 — acima disso o frete já é grátis
+    if (Date.now() >= START && window.fetch) {
+      var applyRosa = function () {
+        fetch('/cart.js', { headers: { Accept: 'application/json' } }).then(function (r) { return r.json(); }).then(function (cart) {
+          if (!cart || !cart.item_count || cart.total_price >= 19900) return;
+          var have = (cart.discount_codes || []).map(function (d) { return String(d.code).toUpperCase(); });
+          if (have.indexOf('ROSA100') > -1 || have.indexOf('BOTANIKAFRETE') > -1) return;
+          return fetch('/cart/update.js', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify({ discount: have.concat(['ROSA100']).join(',') }) });
+        }).catch(function () {});
+      };
+      onReady(applyRosa);
+      document.addEventListener('submit', function (e) { if (e.target && /\/cart/.test(e.target.action || '')) applyRosa(); }, true);
+    }
+  })();
+</script>
