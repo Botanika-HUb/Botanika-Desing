@@ -1,0 +1,60 @@
+{%- comment -%}
+  Botanika: custo por dia logo abaixo do preço na página de produto.
+  - Doses por pote: custom.nutrition_table.porcoes_embalagem (sem esse dado, nada aparece).
+  - Comparador: custom.comparador_dose (json). Só aparece com "verificado": true,
+    depois que alguém conferir os preços dos concorrentes.
+  @param product
+{%- endcomment -%}
+{%- liquid
+  assign bk_nt = product.metafields.custom.nutrition_table.value
+  assign bk_doses = bk_nt.porcoes_embalagem | plus: 0
+  assign bk_price = product.selected_or_first_available_variant.price
+  assign bk_unit = 'por dia'
+  if product.handle contains 'whey'
+    assign bk_unit = 'por dose'
+  endif
+  assign bk_cmp = product.metafields.custom.comparador_dose.value
+-%}
+{%- if bk_doses > 0 and bk_price > 0 -%}
+  {%- assign bk_per = bk_price | divided_by: bk_doses -%}
+  <div class="bk-dose">
+    <p class="bk-dose__line">
+      Sai por <strong>{{ bk_per | money }} {{ bk_unit }}</strong>
+      <span class="bk-dose__sub">· pote com {{ bk_doses }} doses</span>
+    </p>
+    {%- if bk_cmp and bk_cmp.verificado == true and bk_cmp.itens.size > 0 -%}
+      <details class="bk-dose__cmp">
+        <summary>{{ bk_cmp.titulo | default: 'Compare o custo por dia' }}</summary>
+        <table>
+          <tr class="bk-dose__me">
+            <td>Botanika</td>
+            <td>{{ bk_per | money }}</td>
+          </tr>
+          {%- for it in bk_cmp.itens -%}
+            <tr>
+              <td>{{ it.marca }}<span>{{ it.produto }}</span></td>
+              <td>R$ {{ it.dia }}</td>
+            </tr>
+          {%- endfor -%}
+        </table>
+        {%- if bk_cmp.nota != blank -%}<p class="bk-dose__note">{{ bk_cmp.nota }}</p>{%- endif -%}
+        <p class="bk-dose__note">Preços cheios nos sites oficiais em {{ bk_cmp.data }}. Valores podem mudar.</p>
+      </details>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .bk-dose { margin: 6px 0 4px; font-size: 1.4rem; line-height: 1.35; }
+  .bk-dose__line { margin: 0; }
+  .bk-dose__line strong { color: #1a8f3c; }
+  .bk-dose__sub { opacity: .65; }
+  .bk-dose__cmp { margin-top: 6px; }
+  .bk-dose__cmp summary { cursor: pointer; text-decoration: underline; font-size: 1.3rem; }
+  .bk-dose__cmp table { width: 100%; max-width: 360px; margin-top: 8px; border-collapse: collapse; font-size: 1.3rem; }
+  .bk-dose__cmp td { padding: 5px 6px; border-bottom: 1px solid rgba(0,0,0,.08); vertical-align: top; }
+  .bk-dose__cmp td:last-child { text-align: right; white-space: nowrap; }
+  .bk-dose__cmp td span { display: block; font-size: 1.1rem; opacity: .6; }
+  .bk-dose__me td { font-weight: 700; color: #1a8f3c; }
+  .bk-dose__note { margin: 6px 0 0; font-size: 1.1rem; opacity: .6; }
+{% endstylesheet %}
