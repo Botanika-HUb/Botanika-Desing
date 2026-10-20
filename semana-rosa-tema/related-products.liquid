@@ -1,0 +1,575 @@
+{%- liquid
+  assign section_st = section.settings
+  assign section_width = section_st.section_width
+  assign color_scheme = section_st.color_scheme
+  if section_st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+  assign column_gap = section_st.column_gap
+  assign items_to_show = section_st.items_to_show
+  assign heading = section_st.heading
+  assign description = section_st.description
+  assign header_size = ''
+  if section_st.header_size == 'small'
+    assign header_size = 'h3'
+  elsif section_st.header_size == 'large'
+    assign header_size = 'h1-size'
+  endif
+  if section_st.items_per_row_mobile > 1 and section_st.items_per_row_mobile < 2
+    assign data_free_scroll = 'true'
+  endif
+  assign reveal = section_st.reveal
+  assign items_per_row = section_st.items_per_row
+  assign items_per_row_mobile = section_st.items_per_row_mobile
+  assign scroll_animation = settings.scroll_animation
+  assign animate_delay = 0
+
+  comment
+    Botanika: carrossel infinito que desliza sozinho e para quando o cliente
+    interage. Só produtos individuais (nada do tipo "Kit"): primeiro as
+    recomendações do Shopify (máx. 10) e completa com Mais Vendidos +
+    Conheça também, sem repetir.
+  endcomment
+  assign bk_max = 20
+  assign bk_fallback = 'mais-vendidos,home-conheca-tambem' | split: ','
+
+  comment
+    "Quem comprou também levou": os produtos do metafield custom.comprado_junto
+    (pares mais frequentes nos pedidos reais) entram na frente do carrossel.
+  endcomment
+  assign bk_pins = product.metafields.custom.comprado_junto.value
+-%}
+{%- capture style -%}
+    --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};
+  {%- endcapture -%}
+{%- capture col_style -%}
+--col-desktop: {{ items_per_row }};--col-number: {{ items_per_row_mobile }};{% if items_per_row > 3 %}--col-tablet: 3;{% else %}--col-tablet: {{ items_per_row }};{% endif %}
+{% if column_gap < 15 %}--col-gap: {{ column_gap }}px;{% else %}--col-gap: 15px;--col-gap-desktop: {{  column_gap }}px;{% endif %}--repeat: {{ items_to_show }}; --col-mobile: {{ items_per_row_mobile }}
+  {%- endcapture -%}
+<div
+  class="section{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} sec__related-product color-{{ color_scheme }} gradient{{ reset_spacing }}{% if reveal %} overflow-hidden{% endif %}"
+  style="{{ style | strip | strip_newlines }}"
+  data-bk-fbt-root="{{ section.id }}"
+>
+  {%- if section_st.ab_test -%}
+    <script>
+      // Teste A/B "Quem comprou também levou": metade vê o bloco (A), metade não (B).
+      // O grupo fica num cookie por 60 dias e vai para o pedido como atributo _ab_quem_levou.
+      (function () {
+        var root = document.querySelector('[data-bk-fbt-root="{{ section.id }}"]');
+        var m = document.cookie.match(/(?:^|; )bk_fbt_ab=([AB])/);
+        var g = m ? m[1] : (Math.random() < 0.5 ? 'A' : 'B');
+        if (!m) document.cookie = 'bk_fbt_ab=' + g + '; path=/; max-age=5184000; SameSite=Lax';
+        window.bkFbtGroup = g;
+        if (g === 'B' && root) root.style.display = 'none';
+        try {
+          if (sessionStorage.getItem('bk_fbt_sent') === g) return;
+        } catch (e) {}
+        fetch('/cart/update.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ attributes: { _ab_quem_levou: g } })
+        }).then(function () {
+          try { sessionStorage.setItem('bk_fbt_sent', g); } catch (e) {}
+        }).catch(function () {});
+      })();
+    </script>
+  {%- endif -%}
+  <div class="{{ section_width }}">
+    {%- if heading != blank or description != blank -%}
+      <div class="section__header mb-33 mb-sm-20 text-{{ section_st.header_alignment }}{% if section_st.section_width == 'full_width' %} px-20{% endif %}">
+        {%- if heading != blank or description != blank -%}
+          <div class="secion__header-inner">
+            {%- if section_st.heading != blank -%}
+              <motion-element
+                data-motion="{{ scroll_animation }}"
+                data-motion-delay="{{ animate_delay }}"
+                {% if scroll_animation == 'none' %}
+                  hold
+                {% endif %}
+                class="block"
+              >
+                <h2
+                  class="section__header-heading heading-letter-spacing {{ header_size  }} mt-0{% if section_st.description != blank %} mb-10{% else %} mb-0{% endif %}"
+                >
+                  {{ section.settings.heading }}
+                </h2>
+              </motion-element>
+            {% endif %}
+            {%- if section_st.description != blank -%}
+              {%- assign animate_delay = animate_delay | plus: 50 -%}
+              <motion-element
+                data-motion="{{ scroll_animation }}"
+                data-motion-delay="{{ animate_delay }}"
+                {% if scroll_animation == 'none' %}
+                  hold
+                {% endif %}
+                class="section__header-des block rich__text-m0"
+              >
+                {{ section.settings.description }}
+              </motion-element>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+    <product-recommendations
+      data-section-id="{{ section.id }}"
+      data-bk-carousel
+      data-bk-current="{{ product.handle }}"
+      {% if data_free_scroll != blank %}
+        data-free-scroll="{{ data_free_scroll }}"
+      {% endif %}
+      style="{{ col_style | strip | strip_newlines }}"
+      class="bk-rel-track products-grid__items flex flex-cols{% if column_gap < 31 %} row-gap-20 row-gap-md-30{% endif %} flex-wrap {% if section_st.items_per_row_mobile > 1 and section_st.items_per_row_mobile < 2 %} grid_scroll{% endif %}"
+      data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=10"
+      data-arrow-centerimage="1"
+    >
+      {% if recommendations.performed %}
+        {%- assign bk_seen = ',' -%}
+        {%- assign bk_count = 0 -%}
+        {% for recommendation in recommendations.products %}
+          {%- assign bk_type = recommendation.type | downcase -%}
+          {%- if bk_type == 'kit' -%}{%- continue -%}{%- endif -%}
+          {%- assign bk_seen = bk_seen | append: recommendation.id | append: ',' -%}
+          {%- assign bk_count = bk_count | plus: 1 -%}
+          {% render 'product-item',
+            card_product: recommendation,
+            section_id: section.id,
+            is_compare: false,
+            template_enable_action: true,
+            template_enable_product_vendor: true,
+            template_enable_rate: true,
+            template_enable_product_short_description: false,
+            template_enable_color_swatches: true,
+            template_enable_price: true,
+            template_enable_add_cart: true,
+            template_enable_product_badges: true,
+            indexFor: bk_count,
+            scroll_animation: scroll_animation
+          %}
+        {% endfor %}
+        {%- for bk_handle in bk_fallback -%}
+          {%- for bk_p in collections[bk_handle].products -%}
+            {%- if bk_count >= bk_max -%}{%- break -%}{%- endif -%}
+            {%- assign bk_key = ',' | append: bk_p.id | append: ',' -%}
+            {%- assign bk_type = bk_p.type | downcase -%}
+            {%- if bk_p.available == false or bk_type == 'kit' or bk_seen contains bk_key -%}{%- continue -%}{%- endif -%}
+            {%- assign bk_seen = bk_seen | append: bk_p.id | append: ',' -%}
+            {%- assign bk_count = bk_count | plus: 1 -%}
+            {% render 'product-item',
+              card_product: bk_p,
+              section_id: section.id,
+              is_compare: false,
+              template_enable_action: true,
+              template_enable_product_vendor: true,
+              template_enable_rate: true,
+              template_enable_product_short_description: false,
+              template_enable_color_swatches: true,
+              template_enable_price: true,
+              template_enable_add_cart: true,
+              template_enable_product_badges: true,
+              indexFor: bk_count,
+              scroll_animation: scroll_animation
+            %}
+          {%- endfor -%}
+        {%- endfor -%}
+        {%- if bk_count == 0 -%}
+          <p>{{ 'sections.related_products.no_product' | t }}</p>
+        {%- endif -%}
+      {% else %}
+        <p>{{ 'sections.related_products.no_product' | t }}</p>
+      {% endif %}
+    </product-recommendations>
+    {%- if bk_pins != blank -%}
+      <template data-bk-pinned="{{ section.id }}">
+        {%- for bk_pin in bk_pins -%}
+          {%- if bk_pin.available == false or bk_pin.handle == product.handle -%}{%- continue -%}{%- endif -%}
+          {% render 'product-item',
+            card_product: bk_pin,
+            section_id: section.id,
+            is_compare: false,
+            template_enable_action: true,
+            template_enable_product_vendor: true,
+            template_enable_rate: true,
+            template_enable_product_short_description: false,
+            template_enable_color_swatches: true,
+            template_enable_price: true,
+            template_enable_add_cart: true,
+            template_enable_product_badges: true,
+            indexFor: forloop.index,
+            scroll_animation: 'none'
+          %}
+        {%- endfor -%}
+      </template>
+    {%- endif -%}
+  </div>
+</div>
+
+<style>
+  .sec__related-product .bk-rel-track {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: auto !important;
+    scroll-snap-type: none !important;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    padding-bottom: 6px;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+  }
+  @media (max-width: 749px) {
+    .sec__related-product .bk-rel-track {
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 92%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 92%, transparent 100%);
+    }
+  }
+  .sec__related-product .bk-rel-track::-webkit-scrollbar { display: none; }
+  .sec__related-product .bk-rel-track > * { flex-shrink: 0; }
+</style>
+<script>
+  (function () {
+    var el = document.querySelector('[data-section-id="{{ section.id }}"][data-bk-carousel]');
+    if (!el || el.dataset.bkInit) return;
+    if (window.bkFbtGroup === 'B') return; // grupo B do teste A/B: bloco escondido
+    el.dataset.bkInit = '1';
+
+    var current = el.getAttribute('data-bk-current') || '';
+    var pinned = document.querySelector('template[data-bk-pinned="{{ section.id }}"]');
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var speed = window.innerWidth < 750 ? 28 : 38; // px por segundo
+    var RESUME_MS = 4000; // volta a andar sozinho 4 s depois da última interação
+    var pos = 0, last = 0, raf = 0, resumeTimer = 0, scrollTimer = 0;
+    var paused = false, hovering = false, visible = false, ready = false;
+
+    function cards() {
+      return Array.prototype.filter.call(el.children, function (c) { return c.classList.contains('product-item'); });
+    }
+
+    // Coloca os "comprados juntos" na frente, antes das recomendações automáticas.
+    function pin() {
+      if (!pinned || el.querySelector('[data-bk-pin]') || !cards().length) return;
+      var first = el.firstChild;
+      Array.prototype.forEach.call(pinned.content.children, function (c) {
+        var n = c.cloneNode(true);
+        n.setAttribute('data-bk-pin', '');
+        el.insertBefore(n, first);
+      });
+    }
+
+    // Tira o produto da própria página e qualquer repetido.
+    function clean() {
+      var seen = {};
+      cards().forEach(function (c) {
+        var a = c.querySelector('a[href*="/products/"]');
+        var h = a ? a.getAttribute('href').split('?')[0].split('#')[0].split('/products/')[1] : '';
+        if (!h) return;
+        if (h === current || seen[h]) { c.parentNode.removeChild(c); return; }
+        seen[h] = 1;
+      });
+    }
+
+    function step() {
+      var first = cards()[0];
+      if (!first) return 0;
+      var g = parseFloat(getComputedStyle(el).columnGap);
+      return first.getBoundingClientRect().width + (isNaN(g) ? 0 : g);
+    }
+
+    // Faz a fila nunca acabar: o card que sai por um lado entra pelo outro.
+    function wrap() {
+      var w = step();
+      if (!w) return;
+      var max = el.scrollWidth - el.clientWidth;
+      var n = cards().length;
+      for (var i = 0; i < n && el.scrollLeft > max - w * 0.5; i++) {
+        el.appendChild(cards()[0]);
+        el.scrollLeft -= w;
+      }
+      for (var k = 0; k < n && el.scrollLeft < w * 0.5; k++) {
+        var list = cards();
+        el.insertBefore(list[list.length - 1], list[0]);
+        el.scrollLeft += w;
+      }
+      pos = el.scrollLeft;
+    }
+
+    function tick(t) {
+      raf = 0;
+      if (paused || hovering || !visible || document.hidden) { last = 0; return; }
+      if (last) {
+        pos += Math.min(t - last, 64) / 1000 * speed;
+        var w = step();
+        if (w && pos >= w) {
+          el.appendChild(cards()[0]);
+          pos -= w;
+        }
+        el.scrollLeft = pos;
+      }
+      last = t;
+      raf = requestAnimationFrame(tick);
+    }
+
+    function run() {
+      if (!raf && ready && !paused) raf = requestAnimationFrame(tick);
+    }
+
+    // Interação do cliente: para na hora e só volta depois de alguns segundos sem mexer.
+    function interact() {
+      paused = true;
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+      clearTimeout(resumeTimer);
+      if (reduce) return; // quem pediu menos animação no aparelho: fica parado
+      resumeTimer = setTimeout(function () {
+        paused = false;
+        pos = el.scrollLeft;
+        last = 0;
+        run();
+      }, RESUME_MS);
+    }
+
+    function start() {
+      if (ready || !cards().length) return;
+      pin();
+      clean();
+      if (el.scrollWidth <= el.clientWidth + 4) return;
+      ready = true;
+      pos = el.scrollLeft;
+
+      // Toque, clique, arrasto para o lado ou teclado contam como interação.
+      // Rolar a página para cima/baixo por cima do carrossel não conta.
+      ['click', 'focusin', 'keydown'].forEach(function (ev) {
+        el.addEventListener(ev, interact, { passive: true });
+      });
+      el.addEventListener('pointerdown', function (e) { if (e.pointerType === 'mouse') interact(); }, { passive: true });
+      el.addEventListener('wheel', function (e) { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) interact(); }, { passive: true });
+      var tx = null, ty = null;
+      el.addEventListener('touchstart', function (e) {
+        var t = e.touches[0]; tx = t.clientX; ty = t.clientY;
+      }, { passive: true });
+      el.addEventListener('touchmove', function (e) {
+        if (tx === null) return;
+        var t = e.touches[0];
+        var dx = Math.abs(t.clientX - tx), dy = Math.abs(t.clientY - ty);
+        if (dx > dy && dx > 6) { interact(); tx = null; }
+        else if (dy > 6) { tx = null; }
+      }, { passive: true });
+      el.addEventListener('touchend', function () {
+        if (tx !== null) interact();
+        tx = null;
+      }, { passive: true });
+
+      // Quando o próprio cliente arrasta, ao soltar a fila se reorganiza para continuar infinita.
+      el.addEventListener('scroll', function () {
+        if (!paused) return;
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function () { wrap(); interact(); }, 160);
+      }, { passive: true });
+
+      // No computador, segura enquanto o mouse está em cima.
+      el.addEventListener('mouseenter', function () { hovering = true; });
+      el.addEventListener('mouseleave', function () { hovering = false; last = 0; run(); });
+
+      wrap();
+      if (reduce) { paused = true; return; }
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          visible = entries[0].isIntersecting;
+          if (visible) { last = 0; run(); }
+        }, { threshold: 0.2 }).observe(el);
+      } else {
+        visible = true;
+        run();
+      }
+      document.addEventListener('visibilitychange', function () { if (!document.hidden) { last = 0; run(); } });
+    }
+
+    // Os produtos chegam depois (o tema busca as recomendações quando a seção se aproxima da tela).
+    new MutationObserver(function () { start(); }).observe(el, { childList: true });
+    start();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.related-products.name",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:sections.all.section_width.label",
+      "default": "fluid_container",
+      "options": [
+        {
+          "value": "container",
+          "label": "t:sections.all.section_width.container.label"
+        },
+        {
+          "value": "fluid_container",
+          "label": "t:sections.all.section_width.fluid_container.label"
+        },
+        {
+          "value": "stretch_width",
+          "label": "t:sections.all.section_width.stretch_width.label"
+        },
+        {
+          "value": "full_width",
+          "label": "t:sections.all.section_width.full_width.label"
+        }
+      ]
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.color_scheme.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section_header.label"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.all.section_header.heading.label",
+      "default": "Related products"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "t:sections.all.section_header.description.label"
+    },
+    {
+      "type": "select",
+      "id": "header_size",
+      "label": "t:sections.all.section_header.header_size.label",
+      "default": "medium",
+      "options": [
+        {
+          "value": "small",
+          "label": "t:sections.all.section_header.header_size.small.label"
+        },
+        {
+          "value": "medium",
+          "label": "t:sections.all.section_header.header_size.medium.label"
+        },
+        {
+          "value": "large",
+          "label": "t:sections.all.section_header.header_size.large.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "t:sections.all.section_header.alignment.label",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.all.section_header.alignment.left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.all.section_header.alignment.center.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.all.section_header.alignment.right.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.related-products.settings.products.header"
+    },
+    {
+      "type": "range",
+      "id": "items_to_show",
+      "label": "t:sections.all.items.items_to_show.label",
+      "min": 2,
+      "max": 25,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "items_per_row",
+      "label": "t:sections.all.items.items_per_row.label",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "t:sections.all.items.column_gap.label",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "default": 30,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.mobile_options.label"
+    },
+    {
+      "type": "range",
+      "id": "items_per_row_mobile",
+      "label": "t:sections.all.items.items_per_row.label",
+      "min": 1,
+      "max": 2,
+      "step": 0.5,
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section_padding.label"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:sections.all.section_padding.top.label",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:sections.all.section_padding.bottom.label",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "t:sections.all.section_padding.reset_spacing.label",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Teste A/B"
+    },
+    {
+      "type": "checkbox",
+      "id": "ab_test",
+      "label": "Teste A/B ligado (metade dos clientes não vê o bloco)",
+      "info": "O grupo de cada cliente vai para o pedido no atributo _ab_quem_levou (A = viu o bloco, B = não viu).",
+      "default": true
+    }
+  ]
+}
+{% endschema %}
