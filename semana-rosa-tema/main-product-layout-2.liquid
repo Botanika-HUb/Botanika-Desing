@@ -179,6 +179,8 @@
         %}
         {%- comment -%} Botanika: botão Wishlist removido (página não existe, levava a 404) {%- endcomment -%}
         {%- if false -%}
+        {%- comment -%} Botanika: coração de favoritos só aparece se existir a página /pages/wishlist {%- endcomment -%}
+        {%- if wishlist != empty -%}
         {% if wishlist == empty %}
           {% assign action_when_click_added_wishlist = 'remove' %}
         {% endif %}
@@ -198,6 +200,7 @@
             {{- 'products.product.actions.wishlist.add' | t -}}
           </span>
         </button-wishlist>
+        {%- endif -%}
         {%- endif -%}
       </div>
     {% endif %}
