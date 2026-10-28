@@ -1,6 +1,7 @@
 {%- comment -%}
   Botanika: custo por dia logo abaixo do preço na página de produto.
-  - Doses por pote: custom.nutrition_table.porcoes_embalagem (sem esse dado, nada aparece).
+  - Doses por pote: custom.nutrition_table.porcoes_embalagem. Se o produto ainda nao tem
+    tabela nutricional, usa custom.doses_embalagem (sem nenhum dos dois, nada aparece).
   - Comparador: custom.comparador_dose (json). Só aparece com "verificado": true,
     depois que alguém conferir os preços dos concorrentes.
   @param product
@@ -8,6 +9,9 @@
 {%- liquid
   assign bk_nt = product.metafields.custom.nutrition_table.value
   assign bk_doses = bk_nt.porcoes_embalagem | plus: 0
+  if bk_doses == 0
+    assign bk_doses = product.metafields.custom.doses_embalagem.value | plus: 0
+  endif
   assign bk_price = product.selected_or_first_available_variant.price
   assign bk_unit = 'por dia'
   if product.handle contains 'whey'
