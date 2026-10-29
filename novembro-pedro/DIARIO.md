@@ -48,3 +48,4 @@
 - **Estáticos:** em espera. O Pedro ainda não decidiu se fica a versão preta e dourada ou se refaço na identidade azul e verde-limão.
 - **Calendário oficial Botanika November recebido** e registrado na seção 11 do PLANO. A captação começa em 01/11, o único fechamento de site é em 29/11 (Cyber Monday) e a campanha tem identidade visual própria em azul royal e verde-limão neon.
 - **LP de captação alinhada à identidade do calendário** (azul royal + verde-limão neon), com nova imagem exclusiva do Higgsfield (job 5dba9cf1, rótulos conferidos).
+- **LP de captação em versão promocional:** urgência real (o site fecha para clientes novos em 10/11 às 20h e o grupo recebe a oferta 8 horas antes), cartões trancados com a oferta, linha do tempo da noite do 11/11, bloco vermelho 'se você ficar de fora', contadores grandes com vermelho e faixa de alerta com contagem até 10/11 20h. A oferta não é revelada: tudo aparece como 'revelado no grupo'.
