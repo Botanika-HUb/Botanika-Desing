@@ -240,3 +240,16 @@ Legenda: 🔴 prazo duro · 🟡 depende de alguém · 🔵 ritual · ⭐ entrad
 | Whey Balance 455 g Chocolate | **89** | não é brinde, mas está com estoque baixo para a Black Friday |
 
 Obs.: vários produtos ainda têm a tag `8-off` na Shopify. Conferir se ela aciona algum desconto antes de configurar o Esquenta.
+
+## 10. Decisões do Vitor (29/10): valem sobre o que está acima
+1. **Cupons de influenciadora:**
+   - **Todos os cadastrados** passam para **2%** de 01 a 30/11 e acumulam com todas as ofertas do mês (desconto por quantidade, frete e brinde). Em 01/12 voltam para 5%.
+   - ⚠️ Hoje esses cupons **não somam com desconto de pedido** na Shopify. É preciso liberar a combinação com o desconto por quantidade.
+   - A lista de cupons sai do **cadastro das influencers**. Qualquer dúvida, falar com a **Ana**.
+2. **Nenhum outro cupom ativo em novembro.** Desativar: **BOTANIKA, LIVE8, Nova Saúde, primeira compra, roleta e os avulsos RECUPERA10, ANOVA10, ORTOP e JOELHO5**. Reativar todos em 01/12.
+3. **Tema:** implementar as melhorias de growth sugeridas pelo Bernardo (tema "TRABALHO Growth") **junto com o tema da Black Friday**, quando melhorarem o site. Resolve o risco 12.
+4. **Botanika Friday (ficha v3):** **o site não fecha.** A Botanika Week vai até qui 26/11 às 23h59 e a Friday entra direto à 00h de 27/11. Resolve o risco 7.
+   - A tarefa "Fechar o site com o banner do grupo VIP" da Friday perde o sentido. Conferir no Alliance OS se o Vitor já ajustou.
+   - O Vitor pediu para conferir as 5 tarefas da Friday antes de entregar: Site e Shopify, Criativos, Fechar o site, Brindes e Oferta/frete.
+5. **Quiz:** sem cupom de primeira compra em novembro. O quiz mostra a oferta da campanha que estiver no ar e o cupom volta em 01/12. O Vitor avisa a Sarah. Resolve o risco 8, na parte do quiz.
+   - O cupom de uso único para Ex-fiéis e Em risco ainda não foi decidido.

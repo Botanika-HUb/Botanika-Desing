@@ -60,12 +60,11 @@
   - UGC e estáticos da oferta no ar em 21/11, versão de última chance em 26/11
 - **Pode prometer:** oportunidade (novos) e exclusividade dos 2 brindes (recorrentes).
 
-## Botanika Friday (Dia D) · v2 · `camp-1793200080822-023267eb`
+## Botanika Friday (Dia D) · **v3 (29/10)** · `camp-1793200080822-023267eb`
 - **Período:** 27/11 00h → 28/11 23h59
 - **Resumo:** até 30% OFF + frete grátis sem mínimo + vitamina C acima de R$ 500
 - **Sem captação própria:** usa o grupo do 11/11 (agora grupo VIP), o grupo VIP e os grupos antigos. Quem já comprou recebe por API e Gmail.
-- **Site:** fecha **quarta 25/11 às 10h** com o banner do aquecimento e o link do grupo VIP, até a abertura em 27/11 00h.
-  - ⚠️ **Conflito:** nesse horário a Botanika Week ainda está no ar (vai até 26/11 23h59).
+- **Site (v3):** **não fecha.** A Botanika Week vai até 26/11 23h59 e a Friday entra em 27/11 00h, emendadas.
 - **Ainda a definir:** horário de site indisponível para novos e de acesso antecipado para quem já comprou.
 - **Pode prometer:** frete grátis em todos os pedidos, sem mínimo · até 30% de desconto somente durante o Botanika Friday.
 
