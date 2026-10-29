@@ -46,3 +46,4 @@ Estrutura de toda peça:
 | Peça | Job | Observação |
 |---|---|---|
 | U16 | 8e33e464-2a36-4495-a74e-73669bbcd40f | Texto principal certo. A letra miúda dos ingredientes no pote do Sleep saiu inventada. |
+| U16 v3 (estilo pôster da referência do Pedro) | A 82d7021d-59da-4cf5-b295-70ea299e9e81 · B 126930d4-c2c6-4ae7-8ba5-13d42af72bc4 | Fundo azul, palavra gigante "SEU RITUAL NOTURNO", Sleep como herói, camomila, laranja e lavanda. Números: 7 ativos e 350 mg de magnésio (do texto oficial). Textos conferidos. |
