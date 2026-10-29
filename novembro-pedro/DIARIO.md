@@ -77,3 +77,4 @@
   - Tudo liga em 02/11 00h e desliga em 10/11 20h sozinho. A prévia antes da data funciona com `?esquenta=1`.
   - Saíram do tema o cupom BOTANIKA da tarja do topo, o quadro "Gire a roleta" da página de produto e o cupom do bloco "Sua primeira compra" da home.
   - Falta o Pedro publicar a cópia até 31/10.
+- **LP de captação:** o link definitivo do grupo (`sndflw.com/i/botanika11-11`, campanha "Black Friday 11/11" da Botanika no SendFlow) entrou na página no ar e no arquivo do repositório. Os 3 botões foram conferidos ao vivo e levam as UTMs junto.

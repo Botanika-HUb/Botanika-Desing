@@ -12,7 +12,7 @@
 
 | Tarefa | ID | Entrega | Trava no Alliance |
 |---|---|---|---|
-| LP de captação do grupo 11/11 | `mcp-1793219208869-17-9fa23` | https://botanikabrasil.com.br/pages/grupo-vip-11-11 | depende da tarefa da Sarah (link do grupo). Falta trocar o link provisório e mandar ao Otávio |
+| LP de captação do grupo 11/11 | `mcp-1793219208869-17-9fa23` | https://botanikabrasil.com.br/pages/grupo-vip-11-11 | link definitivo já está na página (29/10). Falta a tarefa da Sarah ser concluída no Alliance e o link ser enviado ao Otávio |
 | 10 estáticos de captação 11/11 | `mcp-1793219208869-19-784a4` | arquivos entregues ao Pedro (subir no Drive) | — |
 | 15 primeiros estáticos universais | `mcp-1793220047120-8-702b7` | arquivos entregues ao Pedro (subir no Drive) | — |
 
@@ -28,7 +28,7 @@
 ## Semana 0 · 29/10 – 01/11
 - [—] **29/10** Baixa dos pagamentos da Victoria no Creator Club · `task-1793216704477-q2pen` — **fora do escopo deste chat** (o Pedro resolve com o agente do Creator Club)
 - [x] **30/10 12h** 10 estáticos de captação 11/11 · `mcp-1793219208869-19-784a4`
-- [x] **30/10 12h** LP de captação do grupo 11/11, no ar (🟡 falta o link da Sarah) · `mcp-1793219208869-17-9fa23`
+- [x] **30/10 12h** LP de captação do grupo 11/11, no ar com o link do grupo · `mcp-1793219208869-17-9fa23`
 - [x] **30/10 12h** 15 primeiros estáticos universais · `mcp-1793220047120-8-702b7`
 - [ ] **30/10 18h** Esquenta 11/11 — tema do site · `mcp-1793219208868-12-cbe59`
 - [ ] **30/10 18h** Esquenta 11/11 — oferta, frete, cupons + regras do mês · `mcp-1793219208869-13-2fc37`

@@ -45,12 +45,12 @@
 ### 4. Captação · Grupo VIP 11/11 (Black Friday)
 - **Pasta:** `landing-grupo-vip-11-11/`
 - **Link (no ar, Shopify):** https://botanikabrasil.com.br/pages/grupo-vip-11-11
-- **Como está publicada:** página `grupo-vip-11-11` na Shopify. O tema mostra um iframe em tela cheia, e o HTML vem do arquivo `lp-grupo-vip-1111-v1b.txt` (em base64) em Conteúdo › Arquivos. Para atualizar: gerar a versão nova, subir um .txt novo e trocar a URL no corpo da página.
+- **Como está publicada:** página `grupo-vip-11-11` na Shopify. O tema mostra um iframe em tela cheia, e o HTML vem do arquivo `lp-grupo-vip-1111-v2.txt` (em base64) em Conteúdo › Arquivos. Para atualizar: gerar a versão nova, subir um .txt novo e trocar a URL no corpo da página.
 - **Tipo:** captação para o grupo VIP do 11/11 (sem preço, desconto ou checkout). Tarefa no Alliance OS: `mcp-1793219208869-17-9fa23`.
-- **Destino:** `GRUPO_URL` no script, hoje provisório em `https://sndflw.com/i/botanika-vip`. **Trocar pelo link do grupo 11/11 da Sarah.** UTMs repassadas + `utm_source=lp_grupo_vip_1111`.
+- **Destino:** `GRUPO_URL` no script, `https://sndflw.com/i/botanika11-11` (campanha "Black Friday 11/11" no SendFlow, recebida em 29/10). UTMs repassadas + `utm_source=lp_grupo_vip_1111`.
 - **Rastreio:** GA4 (GT-P8RLSDHK / G-2JFV5TGHCV) + Meta Pixel 828186133708463. Evento `Lead` e `generate_lead` no clique.
 - **Identidade:** formato da LP da Revita adaptado à Botanika: fundo branco, azul #0c298d, urgência em vermelho #e3132b e Instrument Sans. Topo com contador, cartão de oferta secreta, comparação entre quem fica de fora e quem está no grupo, e carrossel de vídeos UGC do site.
-- **Status:** ✅ no ar (falta trocar o link do grupo)
+- **Status:** ✅ no ar com o link definitivo do grupo
 
 <!-- PRÓXIMOS PRODUTOS (modelo — copiar ao criar):
 ### N. <Nome do produto>
