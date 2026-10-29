@@ -85,3 +85,19 @@
 2. A peça 09 cita produtos conferidos no catálogo da Shopify.
 3. **A expressão padrão é "o maior desconto da história da Botanika"**, a mesma dos universais. "Maior oferta do ano" saiu.
 4. Regra geral: seguir o planejamento e a descrição da tarefa. O Claude sempre manda recomendações, mas a descrição prevalece.
+
+## Artes geradas no Higgsfield (29/10) · 4:5 · 2k · gpt_image_2_5
+| Peça | Job | Link (PNG) |
+|---|---|---|
+| 01 | b33a0e9f-a6f4-473f-b4c6-4bb1332ebcc1 | https://d8j0ntlcm91z4.cloudfront.net/user_3G8JflzxGLjgF5BzXPb0aaKiMmm/hf_20261029_165542_b33a0e9f-a6f4-473f-b4c6-4bb1332ebcc1.png |
+| 02 | 8e312bfa-600c-4fcd-a5b4-a8ea5aa5d8ec | https://d8j0ntlcm91z4.cloudfront.net/user_3G8JflzxGLjgF5BzXPb0aaKiMmm/hf_20261029_165542_8e312bfa-600c-4fcd-a5b4-a8ea5aa5d8ec.png |
+| 03 | 89e6c413-627d-4fd8-8d0c-73caa3eae69c | https://d8j0ntlcm91z4.cloudfront.net/user_3G8JflzxGLjgF5BzXPb0aaKiMmm/hf_20261029_165539_89e6c413-627d-4fd8-8d0c-73caa3eae69c.png |
+| 04 | c8c6f689-98b5-4058-b3cc-e3c9232058f1 | https://d8j0ntlcm91z4.cloudfront.net/user_3G8JflzxGLjgF5BzXPb0aaKiMmm/hf_20261029_165543_c8c6f689-98b5-4058-b3cc-e3c9232058f1.png |
+| 05 | 18bfc563-ff77-4542-9cf8-29d4fe7cf857 | https://d8j0ntlcm91z4.cloudfront.net/user_3G8JflzxGLjgF5BzXPb0aaKiMmm/hf_20261029_165540_18bfc563-ff77-4542-9cf8-29d4fe7cf857.png |
+| 06 | e52c1a68-26f0-4672-9893-7b2f8d5d6c8f | https://d8j0ntlcm91z4.cloudfront.net/user_3G8JflzxGLjgF5BzXPb0aaKiMmm/hf_20261029_165115_e52c1a68-26f0-4672-9893-7b2f8d5d6c8f.png |
+| 07 | a2918a07-9eec-4ae2-9c65-ef2ff0e08c38 | (ainda gerando) |
+| 08 | df0ddaa6-57d2-40b0-a4a2-19fa4bbe2f2c | https://d8j0ntlcm91z4.cloudfront.net/user_3G8JflzxGLjgF5BzXPb0aaKiMmm/hf_20261029_165540_df0ddaa6-57d2-40b0-a4a2-19fa4bbe2f2c.png |
+| 09 | 9b03abda-f882-4aae-854e-9b201ff4f36a | https://d8j0ntlcm91z4.cloudfront.net/user_3G8JflzxGLjgF5BzXPb0aaKiMmm/hf_20261029_165540_9b03abda-f882-4aae-854e-9b201ff4f36a.png |
+| 10 | 563fa51d-1ce5-4d12-b8fc-9a846de295c2 | https://d8j0ntlcm91z4.cloudfront.net/user_3G8JflzxGLjgF5BzXPb0aaKiMmm/hf_20261029_165540_563fa51d-1ce5-4d12-b8fc-9a846de295c2.png |
+
+Destino no Drive: pasta "Estáticos" (https://drive.google.com/drive/folders/1g3YwBG0BOWiJLjt7D2koN9hrpZvPxkMe). Upload bloqueado: a rede da sessão recusa o host d8j0ntlcm91z4.cloudfront.net.
