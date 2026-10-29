@@ -7,18 +7,35 @@
 > Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito · `[!]` bloqueado
 > ID = id da tarefa no Alliance OS (`https://alliance-os-sooty.vercel.app/?task=<ID>#tasks`)
 
-## ✅ Feito aqui, falta marcar no Alliance OS
-> O Pedro marca no Alliance OS quando a tarefa liberar.
+## 📍 Onde estamos (29/10, noite)
 
-| Tarefa | ID | Entrega | Trava no Alliance |
+### ✅ Feito (falta só você marcar no Alliance OS)
+| # | Tarefa | Onde está | O que falta |
 |---|---|---|---|
-| LP de captação do grupo 11/11 | `mcp-1793219208869-17-9fa23` | https://botanikabrasil.com.br/pages/grupo-vip-11-11 | link definitivo já está na página (29/10). Falta a tarefa da Sarah ser concluída no Alliance e o link ser enviado ao Otávio |
-| 10 estáticos de captação 11/11 | `mcp-1793219208869-19-784a4` | arquivos entregues ao Pedro (subir no Drive) | — |
-| 15 primeiros estáticos universais | `mcp-1793220047120-8-702b7` | arquivos entregues ao Pedro (subir no Drive) | — |
+| 1 | LP de captação do grupo 11/11 | no ar: botanikabrasil.com.br/pages/grupo-vip-11-11 (link do grupo certo, Meta + GA4) | você testar no celular e mandar o link ao Otávio. O Alliance só libera depois que a Sarah concluir a tarefa dela |
+| 2 | 10 estáticos de captação 11/11 | arquivos enviados no chat | subir no Drive |
+| 3 | 15 estáticos universais (lote 1) | arquivos enviados no chat | subir no Drive |
+| 4 | 15 estáticos universais (lote 2, U16–U30) | aprovados, arquivos enviados no chat | subir no Drive (prazo 04/11) |
 
-## Em andamento agora
-- Esquenta 11/11 na Shopify (tema, oferta/frete/cupons, brindes), com prazo de 30/10 às 18h.
-- O Vitor já respondeu às 3 perguntas (ver PLANO, seção 10).
+### 🟡 Em andamento: Esquenta 11/11 na Shopify (prazo 30/10 18h)
+| # | Parte | Situação | O que falta |
+|---|---|---|---|
+| 5 | Tema | cópia "ESQUENTA 11/11 — cópia do OFICIAL 29/10" pronta e testada | **você publicar até 31/10** |
+| 6 | Oferta, frete e cupons | descontos antigos e 16 cupons já agendados para sair em 01/11 00h | eu crio a escada, o frete e o brinde e passo os cupons para 2% em **01/11 00h05** (lembrete agendado) |
+| 7 | Brindes (cranberry) | regra pronta no roteiro; o tema adiciona o brinde ao carrinho sozinho | sai junto com o item 6 |
+
+### ⛔ Travado em outras pessoas
+| # | Tarefa | Esperando |
+|---|---|---|
+| 8 | Integração da ferramenta de parceiros | Álvaro passar o projeto (mensagem pronta para mandar) |
+| 9 | 20 vídeos universais (02/11) | gravação de 30/10 às 18h |
+| 10 | Selo Reclame Aqui | Sarah recuperar a página |
+
+### 🙋 Pendências com você
+- Publicar o tema do Esquenta até 31/10.
+- Subir os 40 estáticos no Drive (ou eu deixo os links na pasta).
+- Pedir à Ana para conferir a lista dos 53 cupons de influencer.
+- Pedir o OK do Vitor: o cranberry de brinde conta como unidade na escada.
 
 ## Atrasadas / bloqueadas
 - [!] Selo Reclame Aqui + conferir Judge.me — prazo 20/10 — bloqueado: Sarah recuperando a página do RA · `mcp-1792087099653-5-a06bd`
