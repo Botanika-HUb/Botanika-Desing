@@ -61,3 +61,4 @@
   - barra fixa no celular
 
   Validada: tags balanceadas, `node --check` ok e sem rolagem lateral.
+- **LP de captação:** a foto do arco agora é a mesma foto da linha usada na LP do social. A galeria virou um carrossel com 7 vídeos UGC reais tirados do site. Os vídeos tocam sozinhos, sem som, quando aparecem na tela, e o som liga com um toque. Os vídeos não ficam dentro do arquivo, vêm do servidor da loja (Shopify), e a página caiu para cerca de 360 KB.
