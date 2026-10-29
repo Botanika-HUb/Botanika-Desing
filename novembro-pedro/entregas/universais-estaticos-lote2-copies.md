@@ -41,3 +41,8 @@ Estrutura de toda peça:
 - U22 e U23 usam dados que já estão no site: "Nota 4,8/5 em avaliações reais" na tarja do topo e "+1.380 clientes satisfeitos" na página do Tri. Para não arredondar para cima, a U23 diz "mais de mil".
 - U29: o whey chocolate 455 g estava com estoque baixo (89 unidades em 29/10). Vale apontar o anúncio para o sem sabor ou para o 910 g.
 - U27 (presente): sem citar data comemorativa, para rodar o mês todo.
+
+## Peça de teste (29/10)
+| Peça | Job | Observação |
+|---|---|---|
+| U16 | 8e33e464-2a36-4495-a74e-73669bbcd40f | Texto principal certo. A letra miúda dos ingredientes no pote do Sleep saiu inventada. |
