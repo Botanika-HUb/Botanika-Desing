@@ -47,3 +47,36 @@ Estrutura de toda peça:
 |---|---|---|
 | U16 | 8e33e464-2a36-4495-a74e-73669bbcd40f | Texto principal certo. A letra miúda dos ingredientes no pote do Sleep saiu inventada. |
 | U16 v3 (estilo pôster da referência do Pedro) | A 82d7021d-59da-4cf5-b295-70ea299e9e81 · B 126930d4-c2c6-4ae7-8ba5-13d42af72bc4 | Fundo azul, palavra gigante "SEU RITUAL NOTURNO", Sleep como herói, camomila, laranja e lavanda. Números: 7 ativos e 350 mg de magnésio (do texto oficial). Textos conferidos. |
+
+## ✅ Versão final (29/10): estilo pôster da referência do Pedro (U16 versão A aprovada)
+Regra visual: produto herói inclinado, palavras gigantes atrás, ingredientes reais flutuando, 2 números nos cantos (sempre do texto oficial do produto na Shopify), selo "O maior desconto da história", rodapé "O maior desconto da história da Botanika." As peças alternam fundo azul (letras brancas, detalhe verde-limão) e fundo claro off-white (letras azul Botanika, detalhe vermelho), a pedido do Pedro.
+
+| Peça | Fundo | Palavras gigantes | Números | Job |
+|---|---|---|---|---|
+| U16 | azul | SEU RITUAL NOTURNO | 7 ativos · 350 mg magnésio | 82d7021d-59da-4cf5-b295-70ea299e9e81 |
+| U16-claro (opção) | claro | SEU RITUAL NOTURNO | idem | 0775ae95-31da-4f5d-b382-ddd4abb99b5b |
+| U17 Vit C | claro | IMUNIDADE TODO DIA | 600 mg vit. C · 3 ativos | cb6cd2f8-b796-4e5d-9822-9844366b4589 |
+| U18 Hair | azul | BELEZA DE DENTRO PRA FORA | 14 ativos · 60 dias | 6f7131b0-c044-47c5-b103-a6c53b96f872 |
+| U19 Creatina | claro | TREINO PEDE ROTINA | 3 g creatina · + magnésio taurato | 458c75d1-bfdb-4bf9-a1ac-2da5df78577b (refeita) |
+| U20 Flexia | azul | MOVIMENTO É ROTINA | 7 ativos · 300 mg glucosamina | b39ee9eb-e68c-45cc-81dd-d7b212d1efb8 |
+| U21 CoQ10 | claro | ENERGIA QUE VEM DE DENTRO | 100 mg · 1 cápsula | 6bd15993-5665-492f-b776-e150c6c5751e |
+| U22 Tri | azul | NOTA 4,8 DE 5 | 232 mg magnésio · 3 formas | 7ccf5d30-3001-4e1d-87fd-8f7ee8068ba1 |
+| U23 Linha | claro | ROTINA BOTANIKA | nota 4,8/5 · ANVISA | 4d78ee6f-5009-46df-a340-6524bacd2a20 |
+| U24 Ômega x3 | azul | GARANTA OS PRÓXIMOS MESES | 2.124 mg ômega 3 · 90 cápsulas | 0c601675-200b-4b2d-bc92-28cb52cf427c |
+| U25 Kit | claro | MONTE SEU KIT | dia: Tri · noite: Sleep | 7b499c77-326a-4e2c-852a-9e3512f9df23 (refeita) |
+| U26 Cranberry + NAC | azul | NOVIDADE NA LINHA | 60 dias · 600 mg NAC | 8f9ee766-3612-4ea6-93e9-26c65baf39e6 (refeita) |
+| U27 TetraVit D | claro | O PRESENTE QUE CUIDA | 2 gotas · 300 doses | ebc62f2a-1546-4758-9bce-094929deb438 |
+| U28 Ômega | azul | ÔMEGA 3 MAIS COMPLETO | 990 mg EPA · 660 mg DHA | c2417e1f-6bfe-45f3-b602-1230d4ffee69 |
+| U29 Whey | claro | 23G DE PROTEÍNA | 23 g · colágeno C-PURE® | 8713b7e5-c712-4bb1-b1da-c2944934b8af |
+| U30 Linha | azul | BOTANIKA NOVEMBER | toda a linha · 1 mês | c696d63e-ec97-4217-9f5b-27c8fdc73b0e |
+
+O que foi refeito e por quê:
+- U19 e U25: na 1ª versão, o produto cobria demais as palavras gigantes.
+- U26: na 1ª versão saiu "NAÇ" no lugar de "NAC".
+
+As 1ªs versões estão em `universais-lote2/descartadas/`.
+
+Pontos de atenção:
+- U20: tem um grãozinho de cúrcuma encostado no "DESCONTO". É mínimo.
+- A letra miúda dos rótulos repete a das fotos oficiais da loja.
+- A U23 saiu sem o Hair: mostra Tri, Sleep, Ômega e Vit C.
