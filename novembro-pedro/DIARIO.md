@@ -63,3 +63,4 @@
   Validada: tags balanceadas, `node --check` ok e sem rolagem lateral.
 - **LP de captação:** a foto do arco agora é a mesma foto da linha usada na LP do social. A galeria virou um carrossel com 7 vídeos UGC reais tirados do site. Os vídeos tocam sozinhos, sem som, quando aparecem na tela, e o som liga com um toque. Os vídeos não ficam dentro do arquivo, vêm do servidor da loja (Shopify), e a página caiu para cerca de 360 KB.
 - **LP de captação:** a foto do topo foi trocada pela foto da linha que o Pedro mandou (Whey, Creatina, TetraVit, Vit C e Ômega sobre bancada clara), com o corte aproximado nos produtos.
+- **LP de captação publicada na Shopify:** https://botanikabrasil.com.br/pages/grupo-vip-11-11. Testada ao vivo no celular e no desktop: contador, botão com UTMs repassadas e vídeos tocando. Como o tema ativo não aceita escrita pela API, a página carrega a LP em tela cheia a partir de um arquivo na biblioteca da Shopify. O link do grupo ainda é provisório.
