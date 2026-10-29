@@ -1,5 +1,8 @@
 # Plano de execução — Pedro Lage · Botanika · Novembro 2026
 
+> 🔒 **REGRA FIXA (Pedro, 29/10):** este chat cuida **somente das tarefas da BOTANIKA**. Nunca fazer nada da **VermeFree** nem da **Revita** (nem da Shoty). Se o Pedro citar VermeFree ou Revita, **parar na hora e não executar nada**: só avisar e esperar.
+
+
 > Fonte: Alliance OS (Planejamento 2.0 de novembro + tarefas), lido em **29/10/2026**.
 > Regra de ouro: **nada é executado sem o OK do Pedro.**
 > Documentos irmãos:

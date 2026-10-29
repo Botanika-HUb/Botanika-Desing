@@ -1,5 +1,8 @@
 # STATUS — Pedro Lage · Novembro 2026
 
+> 🔒 **REGRA FIXA (Pedro, 29/10):** este chat cuida **somente das tarefas da BOTANIKA**. Nunca fazer nada da **VermeFree** nem da **Revita** (nem da Shoty). Se o Pedro citar VermeFree ou Revita, **parar na hora e não executar nada**: só avisar e esperar.
+
+
 > Atualizado em: **29/10/2026, noite**
 > Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito · `[!]` bloqueado
 > ID = id da tarefa no Alliance OS (`https://alliance-os-sooty.vercel.app/?task=<ID>#tasks`)
@@ -45,7 +48,7 @@
 - [ ] **06/11 18h** 11/11 — fechar site c/ banner grupo VIP (10/11 20h → 11/11 08h) · `mcp-1793219424637-13-45856`
 - [ ] **06/11** Criativos novos da semana — estáticos · `mcp-1793218947745-23-517d4` (recorrente)
 - [ ] **06/11** Criativos novos da semana — vídeos · `mcp-1793218947745-22-eae2c` (recorrente)
-- [ ] **06/11** NOTA FISCAL Botanika (+ VermeFree, Revita, Shoty) · `mcp-1791561348763-9-b16ab`
+- [ ] **06/11** NOTA FISCAL — **só a parte da Botanika** (VermeFree, Revita e Shoty fora deste chat) · `mcp-1791561348763-9-b16ab`
 - [ ] **06/11** Comunicação "bem-estar por rotina" (🟡 validação Vitor/Gabriel) · `mcp-1792087111727-11-b05e7`
 - Mães (fecham quando as filhas fecharem): 30 estáticos `mcp-1793218947745-18-7168d` · 50 vídeos `mcp-1793218947745-17-fa447` · Criativos do mês `mcp-1793216475063-4-508de` · 11/11 Criativos `mcp-1793217991747-1-728a8`
 
