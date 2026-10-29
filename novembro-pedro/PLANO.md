@@ -230,3 +230,13 @@ Legenda: 🔴 prazo duro · 🟡 depende de alguém · 🔵 ritual · ⭐ entrad
   - **Otávio:** tráfego de captação (LP + 10 estáticos), tráfego do 11/11, Friday e Cyber (criativos Dia D), e tráfego de 5 campanhas (50 vídeos + 30 estáticos).
   - **Sarah:** mensagens do cashback.
   - **Lissia:** envio do Recovery.
+
+## 9. Estoque dos brindes (Shopify, 29/10)
+| Brinde | Estoque | Campanhas |
+|---|---|---|
+| Cranberry | 1.258 | Esquenta 11/11, Esquenta BW e BW (1 ou 2 por pedido acima de R$ 400) |
+| Coenzima Q10 100 mg | 1.605 | 11/11 (pedidos acima de R$ 500) |
+| Super Vitamina C | **429** | Friday e Cyber (pedidos acima de R$ 500) **e também é produto vendido**. Pode faltar: avisar o Vitor na tarefa de brindes da Friday |
+| Whey Balance 455 g Chocolate | **89** | não é brinde, mas está com estoque baixo para a Black Friday |
+
+Obs.: vários produtos ainda têm a tag `8-off` na Shopify. Conferir se ela aciona algum desconto antes de configurar o Esquenta.
