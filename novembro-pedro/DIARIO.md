@@ -46,3 +46,4 @@
 - **Publicação bloqueada:** o push para o GitHub dá 403, e o Vercel e o Drive exigem o arquivo inteiro dentro da mensagem (a página tem cerca de 600 KB). Prévia mandada ao Pedro como arquivo.
 - **Recortes dos 13 produtos com fundo transparente** gerados no Higgsfield. Ficam na pasta de trabalho da sessão.
 - **Estáticos:** em espera. O Pedro ainda não decidiu se fica a versão preta e dourada ou se refaço na identidade azul e verde-limão.
+- **Calendário oficial Botanika November recebido** e registrado na seção 11 do PLANO. A captação começa em 01/11, o único fechamento de site é em 29/11 (Cyber Monday) e a campanha tem identidade visual própria em azul royal e verde-limão neon.

@@ -253,3 +253,26 @@ Obs.: vários produtos ainda têm a tag `8-off` na Shopify. Conferir se ela acio
    - O Vitor pediu para conferir as 5 tarefas da Friday antes de entregar: Site e Shopify, Criativos, Fechar o site, Brindes e Oferta/frete.
 5. **Quiz:** sem cupom de primeira compra em novembro. O quiz mostra a oferta da campanha que estiver no ar e o cupom volta em 01/12. O Vitor avisa a Sarah. Resolve o risco 8, na parte do quiz.
    - O cupom de uso único para Ex-fiéis e Em risco ainda não foi decidido.
+
+## 11. Calendário oficial Botanika November (recebido em 29/10, arquivo `Calendario-Botanika-November.pdf`)
+**Período:** 30/10 → 30/11 (32 dias). **Metas:** Meta 1 R$ 1,16 mi · Meta 2 R$ 1,40 mi (+20%) · Meta 3 R$ 1,68 mi (+44%).
+
+| Fase | Datas | O que é |
+|---|---|---|
+| Antecipação | 30/10 – 01/11 | aquece a base para o Esquenta 11/11 e o mês de ofertas |
+| Captação nos grupos | **01/11 – 10/11** | leva gente nova para o grupo, onde o 11/11 é lançado primeiro. Site fecha para novos em 10/11 20h → 11/11 08h; quem já comprou entra às 20h |
+| Esquenta 11/11 | 02/11 – 10/11 | 8%/10%/12% · frete grátis > R$ 249 · cranberry > R$ 400 (2 para recorrentes) · meta R$ 232,7 mil |
+| Dia 11/11 | 11/11 | até 40% OFF · frete grátis sem mínimo · CoQ10 > R$ 500 · cashback 15% para os 100 primeiros (liberado em até 3 dias, expira 30/11) · meta R$ 407,2 mil |
+| Esquenta Botanika Week | 12/11 – 20/11 | 8%/10%/12% · frete > R$ 249 · cranberry · meta R$ 116,3 mil |
+| Recovery Privado | 12/11 – 20/11 | oferta do 11/11 liberada pelo suporte, sem divulgação |
+| Botanika Week | 21/11 – 26/11 | 10%/12%/15% · frete > R$ 249 · cranberry · meta R$ 174,5 mil |
+| Botanika Friday | 27/11 – 28/11 | até 30% OFF · frete grátis sem mínimo · vitamina C > R$ 500 · meta R$ 139,6 mil |
+| Fechar site | 29/11 | preparar o site para o Cyber Monday |
+| Cyber Monday | 30/11 | até 20% OFF · frete grátis sem mínimo · vitamina C > R$ 500 · meta R$ 93,1 mil |
+
+**Vale o mês inteiro:** cupons de influencers 2% (antes 5%), acumulam com tudo. Roleta, cupom BOTANIKA e cupons Nova Saúde retirados.
+
+**O que muda no plano:**
+- Captação começa em **01/11**, e não em 31/10 como dizia a ficha. A LP e o tráfego de captação valem de 01/11 a 10/11.
+- Botanika Friday **sem fechamento de site**, confirmando a decisão do Vitor (ficha v3). O único "Fechar site" é em **29/11**, para o Cyber Monday.
+- **Identidade visual da campanha:** azul royal (≈ #1b2aa0) com verde-limão neon (≈ #c8f04a), cartões brancos e tipografia sans bold. Serve de referência para a LP de captação e para os estáticos do mês.
