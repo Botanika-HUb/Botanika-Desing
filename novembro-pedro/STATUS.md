@@ -1,11 +1,21 @@
 # STATUS — Pedro Lage · Novembro 2026
 
-> Atualizado em: **29/10/2026** (início do acompanhamento)
+> Atualizado em: **29/10/2026, noite**
 > Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito · `[!]` bloqueado
 > ID = id da tarefa no Alliance OS (`https://alliance-os-sooty.vercel.app/?task=<ID>#tasks`)
 
+## ✅ Feito aqui, falta marcar no Alliance OS
+> O Pedro marca no Alliance OS quando a tarefa liberar.
+
+| Tarefa | ID | Entrega | Trava no Alliance |
+|---|---|---|---|
+| LP de captação do grupo 11/11 | `mcp-1793219208869-17-9fa23` | https://botanikabrasil.com.br/pages/grupo-vip-11-11 | depende da tarefa da Sarah (link do grupo). Falta trocar o link provisório e mandar ao Otávio |
+| 10 estáticos de captação 11/11 | `mcp-1793219208869-19-784a4` | arquivos entregues ao Pedro (subir no Drive) | — |
+| 15 primeiros estáticos universais | `mcp-1793220047120-8-702b7` | arquivos entregues ao Pedro (subir no Drive) | — |
+
 ## Em andamento agora
-- Mensagem com as 3 perguntas enviada ao Vitor (29/10): cupons de influenciadora, tema TRABALHO Growth e fechamento do site da Friday. Aguardando resposta.
+- Esquenta 11/11 na Shopify (tema, oferta/frete/cupons, brindes), com prazo de 30/10 às 18h.
+- O Vitor já respondeu às 3 perguntas (ver PLANO, seção 10).
 
 ## Atrasadas / bloqueadas
 - [!] Selo Reclame Aqui + conferir Judge.me — prazo 20/10 — bloqueado: Sarah recuperando a página do RA · `mcp-1792087099653-5-a06bd`
@@ -14,9 +24,9 @@
 
 ## Semana 0 · 29/10 – 01/11
 - [—] **29/10** Baixa dos pagamentos da Victoria no Creator Club · `task-1793216704477-q2pen` — **fora do escopo deste chat** (o Pedro resolve com o agente do Creator Club)
-- [ ] **30/10 12h** 10 estáticos de captação 11/11 · `mcp-1793219208869-19-784a4`
-- [ ] **30/10 12h** LP de captação do grupo 11/11 (🟡 link da Sarah) · `mcp-1793219208869-17-9fa23`
-- [ ] **30/10 12h** 15 primeiros estáticos universais · `mcp-1793220047120-8-702b7`
+- [x] **30/10 12h** 10 estáticos de captação 11/11 · `mcp-1793219208869-19-784a4`
+- [x] **30/10 12h** LP de captação do grupo 11/11, no ar (🟡 falta o link da Sarah) · `mcp-1793219208869-17-9fa23`
+- [x] **30/10 12h** 15 primeiros estáticos universais · `mcp-1793220047120-8-702b7`
 - [ ] **30/10 18h** Esquenta 11/11 — tema do site · `mcp-1793219208868-12-cbe59`
 - [ ] **30/10 18h** Esquenta 11/11 — oferta, frete, cupons + regras do mês · `mcp-1793219208869-13-2fc37`
 - [ ] **30/10 18h** Esquenta 11/11 — brindes (cranberry) · `mcp-1793219208869-14-46ad7`
