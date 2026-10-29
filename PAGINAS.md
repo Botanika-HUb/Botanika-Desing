@@ -48,7 +48,7 @@
 - **Tipo:** captação para o grupo VIP do 11/11 (sem preço, desconto ou checkout). Tarefa no Alliance OS: `mcp-1793219208869-17-9fa23`.
 - **Destino:** `GRUPO_URL` no script, hoje provisório em `https://sndflw.com/i/botanika-vip`. **Trocar pelo link do grupo 11/11 da Sarah.** UTMs repassadas + `utm_source=lp_grupo_vip_1111`.
 - **Rastreio:** GA4 (GT-P8RLSDHK / G-2JFV5TGHCV) + Meta Pixel 828186133708463. Evento `Lead` e `generate_lead` no clique.
-- **Identidade:** a mesma do link da bio (marinho #141d46 + verde-limão #c4d78a, Instrument Sans + Georgia itálico, vidro fosco), com estrutura própria: contagem até 11/11 00h10, frascos recortados flutuando e fundo de poeira de luz que reage ao cursor.
+- **Identidade:** página curta (1 tela no desktop e cerca de 1,5 no celular), fundo claro creme, texto azul-marinho #1b2560, destaque verde-limão #c4d78a, Instrument Sans + Georgia itálico, foto real da linha Botanika (faixa de kits do site), contagem até 11/11 00h10 e 3 garantias.
 - **Status:** ✅ pronta (falta trocar o link do grupo)
 
 <!-- PRÓXIMOS PRODUTOS (modelo — copiar ao criar):
