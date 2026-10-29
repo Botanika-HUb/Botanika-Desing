@@ -79,3 +79,5 @@
   - Falta o Pedro publicar a cópia até 31/10.
 - **LP de captação:** o link definitivo do grupo (`sndflw.com/i/botanika11-11`, campanha "Black Friday 11/11" da Botanika no SendFlow) entrou na página no ar e no arquivo do repositório. Os 3 botões foram conferidos ao vivo e levam as UTMs junto.
 - **Rastreio da LP de captação corrigido:** na versão da Shopify, os pixels estavam dentro do quadro (endereço 'about:srcdoc'), o que perdia o fbclid e a página certa. Passaram para a página da loja: Meta Pixel 828186133708463 com PageView, GA4 da loja e, no clique, Lead + generate_lead + dataLayer. Testado com clique simulado: os 3 eventos dispararam na página principal.
+- **LP de captação:** "a maior condição do ano" virou "a maior condição do mês" nos 2 lugares da página (regra do guia de copy da Black). Versão v4 publicada e conferida ao vivo.
+- **15 estáticos universais restantes (lote 2):** copies escritas em `entregas/universais-estaticos-lote2-copies.md`, na identidade azul + verde-limão (decisão do Pedro). Aguardando aprovação para gerar.
