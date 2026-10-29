@@ -47,3 +47,4 @@
 - **Recortes dos 13 produtos com fundo transparente** gerados no Higgsfield. Ficam na pasta de trabalho da sessão.
 - **Estáticos:** em espera. O Pedro ainda não decidiu se fica a versão preta e dourada ou se refaço na identidade azul e verde-limão.
 - **Calendário oficial Botanika November recebido** e registrado na seção 11 do PLANO. A captação começa em 01/11, o único fechamento de site é em 29/11 (Cyber Monday) e a campanha tem identidade visual própria em azul royal e verde-limão neon.
+- **LP de captação alinhada à identidade do calendário** (azul royal + verde-limão neon), com nova imagem exclusiva do Higgsfield (job 5dba9cf1, rótulos conferidos).

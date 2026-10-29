@@ -48,7 +48,7 @@
 - **Tipo:** captação para o grupo VIP do 11/11 (sem preço, desconto ou checkout). Tarefa no Alliance OS: `mcp-1793219208869-17-9fa23`.
 - **Destino:** `GRUPO_URL` no script, hoje provisório em `https://sndflw.com/i/botanika-vip`. **Trocar pelo link do grupo 11/11 da Sarah.** UTMs repassadas + `utm_source=lp_grupo_vip_1111`.
 - **Rastreio:** GA4 (GT-P8RLSDHK / G-2JFV5TGHCV) + Meta Pixel 828186133708463. Evento `Lead` e `generate_lead` no clique.
-- **Identidade:** página curta (1 tela no desktop e cerca de 1,5 no celular), fundo claro creme, texto azul-marinho #1b2560, destaque verde-limão #c4d78a, Instrument Sans + Georgia itálico, foto real da linha Botanika (faixa de kits do site), contagem até 11/11 00h10 e 3 garantias.
+- **Identidade:** a do calendário Botanika November (azul royal #0c298d, cartões #19368f e #2e53df, verde-limão neon #c8f14b, Instrument Sans bold). Página curta (1 tela no desktop e cerca de 1,6 no celular), faixa de urgência com contagem ao vivo, contador grande em verde-limão e imagem exclusiva do Higgsfield com os frascos reais e presentes verde-limão.
 - **Status:** ✅ pronta (falta trocar o link do grupo)
 
 <!-- PRÓXIMOS PRODUTOS (modelo — copiar ao criar):
