@@ -2,7 +2,11 @@
 
 > Fonte: Alliance OS (Planejamento 2.0 de novembro + tarefas), lido em **29/10/2026**.
 > Regra de ouro: **nada é executado sem o OK do Pedro.**
-> Documentos irmãos: `STATUS.md` (o que está feito / em andamento / falta) e `DIARIO.md` (registro dia a dia).
+> Documentos irmãos:
+> - `STATUS.md`: o que está feito, em andamento e falta
+> - `DIARIO.md`: registro dia a dia
+> - `TAREFAS.md`: as 57 tarefas completas, com descrição, checklist, dependências e entregas
+> - `FICHAS.md`: as 6 fichas da oferta, que são a fonte oficial
 
 ---
 
@@ -13,7 +17,7 @@ Você é o **responsável pelo canal Tráfego pago** no plano (ROAS ≥ 3, CPA �
 
 | Campanha | Datas | Peso | Meta | Oferta (ficha v2) |
 |---|---|---|---|---|
-| Esquenta 11/11 | 02/11 00h → 10/11 20h | 20% | R$ 232,6 mil | 8% (1 un) · 10% (3+) · 12% (5+) · frete grátis > R$ 249 · 1 cranberry > R$ 400 (2 p/ recorrente) |
+| Esquenta 11/11 | 02/11 00h → 10/11 20h (**sem última chance**, emenda com o 11/11) | 20% | R$ 232,6 mil | 8% (1 un) · 10% (3+) · 12% (5+) · frete grátis > R$ 249 · 1 cranberry > R$ 400 (2 p/ recorrente) |
 | **11/11 (Dia D)** | 10/11 20h (antecipado) → 11/11 23h59 | **35%** | **R$ 407 mil** | até 40% · frete grátis sem mínimo · 1 CoQ10 > R$ 500 · cashback 15% nos 100 primeiros pedidos |
 | Esquenta Botanika Week | 12/11 00h → 20/11 23h59 | 10% | R$ 116,3 mil | mesma escada do Esquenta 11/11 + cranberry |
 | Botanika Week | 21/11 00h → 26/11 23h59 | 15% | R$ 174,4 mil | 10% · 12% (3+) · 15% (5+) · frete grátis > R$ 249 · cranberry |
@@ -182,12 +186,47 @@ Legenda: 🔴 prazo duro · 🟡 depende de alguém · 🔵 ritual · ⭐ entrad
 
 ## 6. Riscos e pontos em aberto (levar ao Vitor)
 
-1. **Semana 30/10–06/11 está sobrecarregada**: 40 estáticos + 55 vídeos + LP + 2 campanhas inteiras de Shopify + cashback + NF. Sugestão: negociar ajuda na edição (ou reduzir lote 1) já na daily de 30/10.
-2. **Edição dos 20 vídeos cai no fim de semana** e depende da gravação de sexta 18h.
-3. **5 vídeos do 11/11**: Mafe entrega qua 04/11 18h, você entrega sex 06/11 12h — janela curta.
-4. **Cupons de influenciadoras:** a ficha ainda pergunta quais códigos valem 2% e se vale p/ todos — sem isso não dá para configurar o Esquenta 11/11. Confirmar hoje.
-5. **Margem:** influenciadora 2% acumulativo + 40% + cashback 15% no 11/11 (ponto de atenção do próprio plano).
-6. **Cyber Monday:** frete grátis e vitamina C > R$ 500 copiados da Friday — ainda a confirmar.
-7. Horários de captação/fechamento do site para Friday e Cyber ainda aparecem como "falta definir" no plano, embora as tarefas já tragam horário (25/11 10h e 29/11 00h) — confirmar.
-8. Selo Reclame Aqui está atrasado por causa da Sarah — registrar o bloqueio na tarefa.
-9. **Acesso ao Alliance OS:** a conexão deste chat está autenticada como **Vitor Gutierrez**. Qualquer coisa que eu escrever no sistema (status, comentário) sai no nome dele. Por isso, por padrão, só leio — atualizo status apenas com seu OK explícito.
+1. **A semana de 30/10 a 06/11 está sobrecarregada:** 40 estáticos, 55 vídeos, a LP, 2 campanhas inteiras na Shopify, o cashback e a NF. Sugestão: pedir ajuda na edição (ou reduzir o lote 1) já na daily de 30/10.
+2. **A edição dos 20 vídeos cai no fim de semana** e depende da gravação de sexta às 18h.
+3. **5 vídeos do 11/11:** a Mafe entrega qua 04/11 18h e você entrega sex 06/11 12h. A janela é curta.
+4. **Códigos dos cupons de influenciadoras:** nenhuma ficha lista os códigos. Sem a lista não dá para colocar todos em 2% no Esquenta 11/11. **Confirmar hoje.**
+5. **Margem:** cupom de influenciadora de 2% acumulativo + 40% + cashback de 15% no 11/11. É um ponto de atenção do próprio plano.
+6. ~~Cyber Monday: frete grátis e vitamina C a confirmar~~ → **confirmado na ficha v2.**
+7. **⚠️ Fechamento do site da Botanika Friday em 25/11 às 10h cai dentro da Botanika Week** (que vai até 26/11 23h59; o próprio cronograma da BW diz "00h entra a Botanika Friday"). Fechar o site em 25/11 corta 1,5 dia de venda da BW. Confirmar com o Vitor qual vale.
+8. **⚠️ Cupons pedidos pela Sarah que batem de frente com a regra do mês:**
+   - Cupom de **primeira compra** para a trilha do quiz (tarefa dela, prazo 06/11). Novembro proíbe cupom de primeira compra.
+   - Cupom de **uso único** para a ação de volta de Ex-fiéis e Em risco (tarefa dela, prazo 04/11).
+   - Os dois não estão nas suas tarefas. Precisa da decisão do Vitor.
+9. **Entrada do tema do 11/11:** o checklist manda a entrada para **10/11 às 20h** (acesso antecipado) e a ficha diz que a oferta é de 11/11 00h a 23h59. Entendo que o desconto vale a partir de 10/11 20h só para quem já comprou. Confirmar como configurar isso na Shopify (segmento de clientes).
+10. **Cupom do Recovery:** a ficha diz "nenhum outro cupom no mês" e prevê o Recovery Privado pelo suporte sem dizer que é cupom. A sua tarefa manda criar o cupom. Seguir a tarefa, mas vale registrar.
+11. **Selo do Reclame Aqui:** depende da Sarah ou do Vitor recuperarem a conta. Quando vier, basta colocar o código do selo no rodapé e na página de produto (o Judge.me já está feito).
+12. **Tema de trabalho "TRABALHO Growth":** as mudanças de growth do Vitor (Judge.me etc.) estão num tema separado que **você publica no fim**. Cuidado: os temas de campanha precisam sair desse tema, ou ele precisa ser publicado antes. Senão uma publicação apaga a outra.
+13. **4 avaliações escondidas no Judge.me**, duas da cliente Amanda ("pedido não chegou e ninguém respondeu"). Passar para a Lissia.
+14. **Domínio `creatorclub.app.br`:** a Vanessa pediu em 26/10 e você perguntou onde está hospedado, mas a resposta não veio. Não virou tarefa ("ignorado"). Pode estar pendente com você.
+15. **Nota fiscal:** o histórico da tarefa recorrente está bagunçado (marcada como feita em 09/10, checklist removido). Não muda nada na prática: emitir as 4 notas até 06/11.
+16. **Acesso ao Alliance OS:** a conexão deste chat está autenticada como **Vitor Gutierrez**. Tudo o que eu escrever no sistema (status, comentário) sai no nome dele. Por isso, por padrão, só leio. Atualizo status apenas com o seu OK explícito.
+
+## 7. O que já existe (não refazer)
+- **Judge.me:** feito pelo Vitor em 27/10. Por sua decisão, a contagem de avaliações saiu do site e ficou só no código que o Google lê.
+- **App Pix 5%:** o levantamento já foi feito (entrega do Vitor, 27/10). A loja está no plano **Grow**, então nenhum app aplica desconto *dentro* do checkout. Opções: **SavePay** (grátis), **Scala** (grátis) ou migrar o Pix para o **Pagar.me**. A proposta é instalar o SavePay só para teste. O risco real é o cliente pegar os 5% e pagar no cartão.
+- **SEO Onda 1:** já existe uma proposta de 11 temas ("Pauta SEO Onda 1 — Botanika"), porque na pasta do Bernardo só havia a pauta da VermeFree. Faltam 3 perguntas ao Bernardo.
+- **"Bem-estar por rotina":** o levantamento está pronto ([doc](https://docs.google.com/document/d/1Mk9qkL8qWphXTgaXmlJmOZiaaGHt4JUV84J5qe9fvYw/edit)).
+  - 5 das 7 coleções estão sem texto.
+  - Não existe página "Quem somos" nem página de curadoria médica.
+  - O selo de curadoria não diz quem é o médico.
+  - Fluxo combinado: Vitor valida → Sarah escreve → **você aplica**.
+- **Modelo de campanha:** a Semana Rosa (16/10) já teve tema completo e oferta/frete/brinde na Shopify, todos concluídos. Reaproveitar como base.
+
+## 8. Travas de conclusão (o sistema não deixa fechar sem isso)
+- **Lista de conferência obrigatória:** todas as tarefas de Shopify, tema, brinde, fechar site, LP, cashback, Recovery, integração e growth. Cada uma tem de 3 a 7 itens, quase sempre com **"Pedido de teste feito"** e **"Conferido no celular"**. Os itens estão em `TAREFAS.md`.
+- **Entrega obrigatória** (registrar a entrega no Alliance OS antes de concluir):
+  - 10 estáticos de captação
+  - 30 estáticos universais
+  - 50 vídeos universais
+  - 5 estáticos e 5 vídeos do 11/11
+  - estáticos e vídeos semanais
+  - 5 estáticos e 5 vídeos do Botanika Friday e do Cyber Monday
+- **Quem você bloqueia formalmente no sistema:**
+  - **Otávio:** tráfego de captação (LP + 10 estáticos), tráfego do 11/11, Friday e Cyber (criativos Dia D), e tráfego de 5 campanhas (50 vídeos + 30 estáticos).
+  - **Sarah:** mensagens do cashback.
+  - **Lissia:** envio do Recovery.

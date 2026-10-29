@@ -20,3 +20,16 @@
 - Ítalo: roteiros dos 50 vídeos.
 
 **Próximo passo:** Pedro dá o OK no plano e escolhe por qual tarefa começar.
+
+### Leitura completa (29/10, mesmo dia)
+- Lidas as **6 fichas da oferta** (em `FICHAS.md`) e as **57 tarefas abertas completas**, com checklist, dependências, entregas e histórico (em `TAREFAS.md`).
+- Lidas também as 81 tarefas já feitas, as tarefas dos outros que citam o Pedro e os achados do WhatsApp dos últimos 10 dias.
+- Nenhuma tarefa tem comentário. Nenhum item de checklist está marcado, exceto o do Judge.me.
+- As descobertas foram para as seções 6, 7 e 8 do `PLANO.md`. As principais:
+  - O fechamento do site da Friday (25/11 10h) cai dentro da Botanika Week.
+  - A Sarah vai pedir cupons de primeira compra e de uso único, o que contradiz a regra do mês.
+  - O tema "TRABALHO Growth" ainda não foi publicado.
+  - O app de Pix e a pauta de SEO já foram levantados pelo Vitor.
+  - O Cyber Monday está confirmado.
+  - O Esquenta 11/11 não tem última chance.
+- Push para o GitHub bloqueado (403, só leitura). Os documentos existem só no container até o acesso ser liberado.
