@@ -37,3 +37,5 @@
 ### Decisões do Pedro (29/10)
 - Mensagem com as 3 perguntas enviada ao Vitor.
 - **Escopo deste chat: só as tarefas de novembro da Botanika.** A Victoria e o Creator Club ficam com outro agente do Pedro.
+- **Lembrete diário criado:** todo dia por volta das 9h (horário de Brasília) chega nesta conversa a rotina de fechar o dia anterior aqui, atualizar o STATUS e montar o plano do dia.
+- **Estáticos de captação 11/11:** copies aprovadas (expressão padrão: "o maior desconto da história da Botanika"). Peça de teste 06 gerada no Higgsfield (job `e52c1a68-26f0-4672-9893-7b2f8d5d6c8f`), aguardando aprovação do visual. Referências usadas: fotos da Shopify do Ômega 3, Tri[Mg], Hair e Vitamina C.

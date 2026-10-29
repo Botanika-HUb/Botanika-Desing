@@ -2,7 +2,7 @@
 
 > Tarefa: `mcp-1793219208869-19-784a4` · entrega ao Otávio **sex 30/10 às 12h** · formato **4:5** · artes no **Higgsfield**
 > Destino: landing page do grupo VIP do 11/11 (captação de 31/10 a 10/11)
-> Status: **aguardando aprovação do Pedro**
+> Status: **copies aprovadas pelo Pedro em 29/10** · próximo passo: artes no Higgsfield
 
 ## Regras que todas seguem
 - Chamar para o grupo **sem abrir a oferta**: nada de %, cashback, brinde, frete ou preço.
@@ -18,7 +18,7 @@
 - Título: **O 11/11 da Botanika começa antes para quem está no grupo.**
 - Apoio: A oferta chega lá primeiro, à 00h10.
 - Botão: Entrar no grupo VIP
-- Texto do anúncio: No dia 11/11 a Botanika abre a maior oferta do ano, e quem está no grupo VIP fica sabendo antes de todo mundo. Entre agora: é gratuito e leva 10 segundos.
+- Texto do anúncio: No dia 11/11 chega o maior desconto da história da Botanika, e quem está no grupo VIP fica sabendo antes de todo mundo. Entre agora: é gratuito e leva 10 segundos.
 
 **02**
 - Título: **Lista VIP aberta. 11/11 da Botanika.**
@@ -44,7 +44,7 @@
 - Título: **Faltam poucos dias para o 11/11 da Botanika.**
 - Apoio: Entre no grupo e não perca a abertura.
 - Botão: Entrar no grupo VIP
-- Texto do anúncio: O 11/11 está chegando e vai ser a maior oferta do ano na Botanika. No grupo VIP você recebe primeiro, sem precisar ficar de olho no site.
+- Texto do anúncio: O 11/11 está chegando com o maior desconto da história da Botanika. No grupo VIP você recebe primeiro, sem precisar ficar de olho no site.
 
 **06**
 - Título: **00h10 · 11/11**
@@ -80,7 +80,8 @@
 
 ---
 
-## Para confirmar com o Pedro
-1. Os grupos têm limite de 250 pessoas (com redirecionamento automático). As peças **04** e **05** falam em "vagas limitadas". Pode usar?
-2. A **09** cita ômega 3, magnésio, vitamina C, whey e sono. ✅ Conferido com o catálogo ativo da Shopify (21 produtos) em 29/10.
-3. Podemos usar "maior oferta do ano" (em 01, 05 e 10)? A ficha não proíbe, mas os universais usam "o maior desconto da história da Botanika". Manter as duas expressões ou padronizar numa só?
+## Decisões do Pedro (29/10)
+1. As peças 04 e 05 ("vagas limitadas") ficam como estão.
+2. A peça 09 cita produtos conferidos no catálogo da Shopify.
+3. **A expressão padrão é "o maior desconto da história da Botanika"**, a mesma dos universais. "Maior oferta do ano" saiu.
+4. Regra geral: seguir o planejamento e a descrição da tarefa. O Claude sempre manda recomendações, mas a descrição prevalece.
