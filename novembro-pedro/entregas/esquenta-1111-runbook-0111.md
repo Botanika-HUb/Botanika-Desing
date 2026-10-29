@@ -22,8 +22,8 @@ O teste de 29/10 (rascunho de pedido com cliente de teste) mostrou três coisas:
 | 2 | Automático, pedido | Esquenta 11/11 · +2% (3+ un.) | 2%, mínimo de 3 unidades |
 | 3 | Automático, pedido | Esquenta 11/11 · +2% (5+ un.) | 2%, mínimo de 5 unidades |
 | 4 | Automático, frete grátis | Esquenta 11/11 · Frete grátis acima de R$ 249 | subtotal de R$ 249 ou mais |
-| 5 | Automático, compre X ganhe Y | Esquenta 11/11 · Brinde 1 cranberry (novos) | compra de R$ 400 ou mais na coleção `[CUPONS] Todos os Produtos` (gid 450958688488). Leva 1 Cranberry (produto 9633098957032) com 100% de desconto. Limite de 1 por pedido. Segmento: 0 pedidos |
-| 6 | Automático, compre X ganhe Y | Esquenta 11/11 · Brinde 2 cranberries (recorrentes) | igual ao 5, mas leva 2 unidades. Segmento: 1 pedido ou mais |
+| 5 | Automático, compre X ganhe Y | Esquenta 11/11 · Brinde cranberry | compra de R$ 400 ou mais na coleção `[CUPONS] Todos os Produtos` (gid 450958688488). Leva 1 Cranberry (produto 9633098957032) com 100% de desconto. Limite de 1 por pedido. **Sem segmento (todos)** |
+| 6 | Automático, compre X ganhe Y | Esquenta 11/11 · 2º cranberry (recorrentes) | igual ao 5, 1 unidade a mais. Segmento: 1 pedido ou mais (`number_of_orders >= 1`). **Testar se os dois brindes não disputam a mesma unidade.** |
 
 Os segmentos dos itens 5 e 6 ainda precisam ser criados: "Esquenta · clientes novos (0 pedidos)" com `number_of_orders = 0` e "Esquenta · recorrentes (1+ pedidos)" com `number_of_orders >= 1`.
 
@@ -41,3 +41,9 @@ A lista ainda precisa ser conferida com a Ana (cadastro das influencers).
 ## Volta em 01/12
 - Cupons de influenciadora voltam para 5%, com a configuração de acúmulo que tinham antes (pedido: false, produto e frete: true).
 - Os 16 cupons e os 22 descontos permanentes são reativados (tirar a data de fim).
+
+## Tema (feito em 29/10)
+- A cópia **"ESQUENTA 11/11 — cópia do OFICIAL 29/10"** (id 168113045736) está pronta e ainda **não foi publicada**.
+- Os arquivos estão em `entregas/tema-esquenta-1111/`.
+- O tema adiciona o cranberry ao carrinho sozinho: 1 unidade para todos e 2 para cliente logado que já comprou. Ele **só mantém o brinde se a Shopify zerar o preço dele**. Se a regra de desconto não estiver ativa, ele tira o brinde e para. Por isso a regra 5 não tem segmento: precisa valer no carrinho, antes de o cliente pôr o e-mail.
+- **Teste em 01/11 depois de criar as regras:** abrir a prévia, montar um carrinho acima de R$ 400 e conferir se o cranberry entra a R$ 0.

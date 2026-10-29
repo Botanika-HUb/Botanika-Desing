@@ -1,0 +1,44 @@
+{%- comment -%}
+  CSS global de destaque dos produtos da campanha (cards + PDP).
+  Renderizado uma vez no theme.liquid. Ligado/desligado e cor via
+  Configurações do tema → "Campanha — destaque de produtos".
+{%- endcomment -%}
+{%- if settings.camp_active -%}
+  <style>
+    :root { --camp: {{ settings.camp_color | default: '#323C91' }}; }
+    /* Ribbon / selo no card */
+    .camp-ribbon {
+      position: absolute; top: 10px; left: 10px; z-index: 6;
+      background: var(--camp); color: #fff; font-size: 11px; font-weight: 800;
+      padding: 5px 11px; border-radius: 12px; letter-spacing: .01em; line-height: 1.15;
+      max-width: 72%; box-shadow: 0 2px 8px rgba(0,0,0,.18); pointer-events: none;
+    }
+    /* Card destacado — moldura em volta do produto */
+    .is-camp .product-item__wrapper { border: 2.5px solid var(--camp); border-radius: 18px; padding: 12px; background: #fff; box-shadow: 0 12px 30px rgba(50,60,145,.20); }
+    .is-camp .product-item__inner { border-radius: 12px; }
+    .is-camp .product_submit_button,
+    .is-camp .product-form__submit { background: var(--camp) !important; border-color: var(--camp) !important; }
+    .is-camp .card-product-price .price,
+    .is-camp .price-regular .price { color: var(--camp) !important; }
+    /* PDP destacada */
+    .is-camp-pdp .product-form__submit,
+    .is-camp-pdp .product_submit_button { background: var(--camp) !important; border-color: var(--camp) !important; box-shadow: 0 6px 18px rgba(50,60,145,.28); }
+    .is-camp-pdp .price-regular .price,
+    .is-camp-pdp .price { color: var(--camp) !important; }
+  </style>
+{%- endif -%}
+{%- comment -%} Novembro: sem roleta e sem cupom de 1ª compra (decisão do Vitor). Esconde o quadro "Gire a roleta" da página de produto e o cupom BOTANIKA do bloco "Sua primeira compra" da home. Voltar em 01/12. {%- endcomment -%}
+<style>.botanika-coupon-banner,.bsn__cup{display:none!important}</style>
+{%- comment -%} Esquenta 11/11: durante a janela, os textos fixos "R$349" do site viram "R$249" (a barra do carrinho e a tarja do topo já mudam pelo snippet botanika-freeship-weekend). {%- endcomment -%}
+<script>
+(function(){
+  var n = Date.now(); if (n < 1793588400000 || n >= 1794351600000) return;
+  function fix(){
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null), t;
+    while ((t = w.nextNode())) { if (t.nodeValue.indexOf('349') > -1) t.nodeValue = t.nodeValue.replace(/R\$\s?349(,00)?/g, 'R$249'); }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fix); else fix();
+})();
+</script>
+{%- comment -%} Esquenta 11/11 (02/11 00h → 10/11 20h): tarja, banner, aviso na PDP e brinde automático. Liga e desliga sozinho. {%- endcomment -%}
+{%- render 'bk-esquenta-1111' -%}

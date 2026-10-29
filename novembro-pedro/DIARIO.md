@@ -72,3 +72,8 @@
     - escada, cupom de 2% e cranberry grátis acumularam certo.
   - **Limite da Shopify de 25 descontos automáticos:** as 6 regras do Esquenta só podem ser criadas depois de 01/11 00h. Lembrete agendado para 01/11 00h05 (roteiro em `entregas/esquenta-1111-runbook-0111.md`) e outro para 01/12, para a reversão.
   - Falta: o tema (cópia do OFICIAL com banner, tarja, aviso na página de produto e cranberry entrando sozinho no carrinho), a lista de influencers com a Ana e o aviso ao Vitor sobre o brinde contar como unidade na escada.
+- **Tema do Esquenta 11/11 pronto (não publicado):** "ESQUENTA 11/11 — cópia do OFICIAL 29/10".
+  - Tarja vermelha com contagem, banner na home, aviso na página de produto, frete de R$ 249 na barra do carrinho e na tarja do topo, e cranberry entrando sozinho no carrinho acima de R$ 400.
+  - Tudo liga em 02/11 00h e desliga em 10/11 20h sozinho. A prévia antes da data funciona com `?esquenta=1`.
+  - Saíram do tema o cupom BOTANIKA da tarja do topo, o quadro "Gire a roleta" da página de produto e o cupom do bloco "Sua primeira compra" da home.
+  - Falta o Pedro publicar a cópia até 31/10.
