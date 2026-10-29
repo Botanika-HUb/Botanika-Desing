@@ -64,3 +64,11 @@
 - **LP de captação:** a foto do arco agora é a mesma foto da linha usada na LP do social. A galeria virou um carrossel com 7 vídeos UGC reais tirados do site. Os vídeos tocam sozinhos, sem som, quando aparecem na tela, e o som liga com um toque. Os vídeos não ficam dentro do arquivo, vêm do servidor da loja (Shopify), e a página caiu para cerca de 360 KB.
 - **LP de captação:** a foto do topo foi trocada pela foto da linha que o Pedro mandou (Whey, Creatina, TetraVit, Vit C e Ômega sobre bancada clara), com o corte aproximado nos produtos.
 - **LP de captação publicada na Shopify:** https://botanikabrasil.com.br/pages/grupo-vip-11-11. Testada ao vivo no celular e no desktop: contador, botão com UTMs repassadas e vídeos tocando. Como o tema ativo não aceita escrita pela API, a página carrega a LP em tela cheia a partir de um arquivo na biblioteca da Shopify. O link do grupo ainda é provisório.
+- **Esquenta 11/11 na Shopify, 1ª parte** (decisões do Pedro: pausar os descontos permanentes no mês inteiro, desativar os 8 cupons extras, recorrente = já comprou 1+ vez, tema a partir do OFICIAL):
+  - Agendado o fim de 22 descontos permanentes por quantidade e de 16 cupons para 01/11 00h.
+  - Teste com rascunho de pedido e cliente de teste (tudo apagado depois):
+    - descontos de pedido que acumulam somam sobre a mesma base, então 8 + 2 + 2 dá 8/10/12%;
+    - o brinde "Compre X, ganhe Y" não convive com desconto de produto, então a escada e os cupons ficam como desconto de pedido;
+    - escada, cupom de 2% e cranberry grátis acumularam certo.
+  - **Limite da Shopify de 25 descontos automáticos:** as 6 regras do Esquenta só podem ser criadas depois de 01/11 00h. Lembrete agendado para 01/11 00h05 (roteiro em `entregas/esquenta-1111-runbook-0111.md`) e outro para 01/12, para a reversão.
+  - Falta: o tema (cópia do OFICIAL com banner, tarja, aviso na página de produto e cranberry entrando sozinho no carrinho), a lista de influencers com a Ana e o aviso ao Vitor sobre o brinde contar como unidade na escada.
