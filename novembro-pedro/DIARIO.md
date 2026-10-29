@@ -33,3 +33,7 @@
   - O Cyber Monday está confirmado.
   - O Esquenta 11/11 não tem última chance.
 - Push para o GitHub bloqueado (403, só leitura). Os documentos existem só no container até o acesso ser liberado.
+
+### Decisões do Pedro (29/10)
+- Mensagem com as 3 perguntas enviada ao Vitor.
+- **Escopo deste chat: só as tarefas de novembro da Botanika.** A Victoria e o Creator Club ficam com outro agente do Pedro.

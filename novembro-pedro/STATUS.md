@@ -5,7 +5,7 @@
 > ID = id da tarefa no Alliance OS (`https://alliance-os-sooty.vercel.app/?task=<ID>#tasks`)
 
 ## Em andamento agora
-- (nada iniciado — aguardando OK do Pedro para começar)
+- Mensagem com as 3 perguntas enviada ao Vitor (29/10): cupons de influenciadora, tema TRABALHO Growth e fechamento do site da Friday. Aguardando resposta.
 
 ## Atrasadas / bloqueadas
 - [!] Selo Reclame Aqui + conferir Judge.me — prazo 20/10 — bloqueado: Sarah recuperando a página do RA · `mcp-1792087099653-5-a06bd`
@@ -13,7 +13,7 @@
 ---
 
 ## Semana 0 · 29/10 – 01/11
-- [ ] **29/10** Baixa dos pagamentos da Victoria no Creator Club · `task-1793216704477-q2pen`
+- [—] **29/10** Baixa dos pagamentos da Victoria no Creator Club · `task-1793216704477-q2pen` — **fora do escopo deste chat** (o Pedro resolve com o agente do Creator Club)
 - [ ] **30/10 12h** 10 estáticos de captação 11/11 · `mcp-1793219208869-19-784a4`
 - [ ] **30/10 12h** LP de captação do grupo 11/11 (🟡 link da Sarah) · `mcp-1793219208869-17-9fa23`
 - [ ] **30/10 12h** 15 primeiros estáticos universais · `mcp-1793220047120-8-702b7`
