@@ -3,9 +3,9 @@
   Esquenta 11/11 (02/11 00h → 10/11 20h, horário de Brasília).
   Renderizado uma vez no <head> (via snippets/botanika-campaign-css).
   Tudo vem em <template> e o script coloca na página só dentro da janela:
-    - tarja vermelha com contagem no topo do site
-    - banner da campanha no topo da home
-    - aviso na página de produto
+    - banner da campanha no topo da home (conceito "quanto mais leva, mais esquenta")
+    - o seletor de potes da página de produto troca para 1 pote 8%, 3 potes 10% e 5 potes 12%
+      (isso fica no bloco _product-quantity-cards)
     - cranberry de brinde entrando sozinho no carrinho acima de R$ 400
   Fora da janela nada aparece. Para ver antes: abra qualquer página
   com ?esquenta=1 (fica salvo na aba até fechar).
@@ -18,102 +18,46 @@
   assign esq_start = 1793588400
   assign esq_end = 1794351600
 -%}
-<template id="bk-esq-bar">
-<div class="bk-esq bk-esq-bar">
-  <span class="bk-esq-bar__fire" aria-hidden="true">🔥</span>
-  <span><b>ESQUENTA 11/11</b> · até <b>12% OFF</b> + frete grátis acima de R$249</span>
-  <span class="bk-esq-bar__t">termina em <b data-bk-esq-count>--</b></span>
-  <a class="bk-esq-bar__cta" href="/collections/mais-vendidos">Aproveitar</a>
-</div>
-</template>
-<style>
-  .bk-esq-bar{background:#e3132b;color:#fff;font-size:13px;font-weight:600;line-height:1.25;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 12px;padding:8px 14px;text-align:center}
-  .bk-esq-bar b{font-weight:800}
-  .bk-esq-bar__t b{font-variant-numeric:tabular-nums}
-  .bk-esq-bar__cta{background:#fff;color:#e3132b!important;font-weight:800;border-radius:99px;padding:4px 12px;text-decoration:none;font-size:12px}
-  @media (max-width:749px){.bk-esq-bar{font-size:12px;gap:2px 10px}.bk-esq-bar__fire{display:none}}
-</style>
 {%- if template.name == 'index' -%}
+{%- render 'bk-esquenta-css' -%}
 <template id="bk-esq-home">
-<section class="bk-esq bk-esq-home" aria-label="Esquenta 11/11">
-  <div class="bk-esq-home__in">
-    <div class="bk-esq-home__tx">
-      <span class="bk-esq-home__eye">🔥 Esquenta 11/11 · 02 a 10/11</span>
-      <h2 class="bk-esq-home__h">Quanto mais você leva, <em>mais desconto ganha.</em></h2>
-      <div class="bk-esq-home__tiers">
-        <div><b>8%</b><small>1 unidade</small></div>
-        <div><b>10%</b><small>3+ unidades</small></div>
-        <div class="is-top"><b>12%</b><small>5+ unidades</small></div>
-      </div>
-      <ul class="bk-esq-home__perks">
-        <li>🚚 <b>Frete grátis</b> acima de R$249</li>
-        <li>🎁 <b>Cranberry de brinde</b> acima de R$400 · <b>2 brindes</b> se você já é cliente</li>
-      </ul>
-      <div class="bk-esq-home__row">
-        <a class="bk-esq-home__cta" href="/collections/mais-vendidos">Aproveitar agora</a>
-        <span class="bk-esq-home__t">Termina em <b data-bk-esq-count>--</b></span>
-      </div>
-      <p class="bk-esq-home__note">Desconto aplicado automaticamente no carrinho.</p>
+<section class="bkq" aria-label="Esquenta 11/11">
+  <div class="bkq__in">
+    <div class="bkq__tx">
+      <span class="bkq__eye"><span class="bkq__fl" aria-hidden="true"><i></i><i></i><i></i></span>Esquenta 11/11 · 02 a 10/11</span>
+      <h2 class="bkq__h">Quanto mais leva, <em>mais esquenta.</em></h2>
+      <p class="bkq__p">O desconto sobe junto com o seu carrinho, misturando os produtos que quiser.</p>
     </div>
-    <div class="bk-esq-home__img">
-      <img src="https://cdn.shopify.com/s/files/1/0780/7238/1672/files/lp1111-hero.webp?v=1793298282" alt="Linha Botanika" width="755" height="450" loading="eager">
+    <div class="bkq__vis">
+      <img class="bkq__prod" src="https://cdn.shopify.com/s/files/1/0780/7238/1672/files/lp1111-linha-recorte.webp?v=1793379234&width=900" alt="Linha Botanika" width="1400" height="566" loading="eager">
+      <div class="bkq__lv">
+        <div class="bkq__l bkq__l1"><b>8%</b><small>1 unidade</small></div>
+        <div class="bkq__l bkq__l2"><b>10%</b><small>3+ unidades</small></div>
+        <div class="bkq__l bkq__l3"><b>12%</b><small>5+ unidades</small><span>🔥 temperatura máxima</span></div>
+      </div>
+    </div>
+    <div class="bkq__ft">
+      <div class="bkq__perks">
+        <div class="bkq__perk"><span class="bkq__ico">🚚</span><span><b>Frete grátis</b> acima de R$&nbsp;249</span></div>
+        <div class="bkq__perk"><img src="https://cdn.shopify.com/s/files/1/0780/7238/1672/files/hf_20260911_150202_d733ca0a-dc7b-4c78-ac5e-cb4780f95dd7.png?v=1789140114&width=120" alt="" width="40" height="40"><span><b>Cranberry de brinde</b> acima de R$&nbsp;400<small>2 brindes se você já é cliente</small></span></div>
+      </div>
+      <div class="bkq__row">
+        <a class="bkq__btn" href="/collections/mais-vendidos">Esquentar meu carrinho <span aria-hidden="true">→</span></a>
+        <span class="bkq__t">Termina em <b data-bk-esq-count>--</b></span>
+      </div>
     </div>
   </div>
 </section>
 </template>
-<style>
-  .bk-esq-home{background:#0c298d;color:#fff;overflow:hidden}
-  .bk-esq-home__in{max-width:1320px;margin:0 auto;padding:40px 20px;display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center}
-  .bk-esq-home__eye{display:inline-block;background:#e3132b;color:#fff;font-weight:800;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;padding:7px 13px;border-radius:99px}
-  .bk-esq-home__h{color:#fff;font-size:clamp(28px,3.6vw,46px);line-height:1.05;margin:14px 0 18px;font-weight:800;letter-spacing:-.02em}
-  .bk-esq-home__h em{font-style:normal;color:#c8f14b}
-  .bk-esq-home__tiers{display:flex;gap:10px;margin-bottom:16px}
-  .bk-esq-home__tiers div{background:#19368f;border:1px solid #ffffff26;border-radius:14px;padding:10px 16px;text-align:center;min-width:92px}
-  .bk-esq-home__tiers div.is-top{background:#c8f14b;color:#091b5d;border-color:#c8f14b}
-  .bk-esq-home__tiers b{display:block;font-size:28px;font-weight:800;line-height:1}
-  .bk-esq-home__tiers small{display:block;font-size:11.5px;font-weight:600;opacity:.85;margin-top:4px}
-  .bk-esq-home__perks{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:7px;font-size:15px;color:#dfe6ff}
-  .bk-esq-home__perks b{color:#fff}
-  .bk-esq-home__row{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
-  .bk-esq-home__cta{background:#e3132b;color:#fff!important;text-decoration:none;font-weight:800;font-size:16px;padding:15px 28px;border-radius:99px;box-shadow:0 10px 26px -10px #e3132b}
-  .bk-esq-home__t{font-size:14px;color:#dfe6ff}
-  .bk-esq-home__t b{color:#c8f14b;font-variant-numeric:tabular-nums;font-size:16px}
-  .bk-esq-home__note{font-size:12.5px;color:#b9c6f5;margin:12px 0 0}
-  .bk-esq-home__img img{display:block;width:100%;height:auto;border-radius:22px}
-  @media (max-width:749px){
-    .bk-esq-home__in{grid-template-columns:1fr;padding:26px 16px 30px;gap:20px;text-align:center}
-    .bk-esq-home__img{order:-1}
-    .bk-esq-home__tiers,.bk-esq-home__row{justify-content:center}
-    .bk-esq-home__tiers div{min-width:0;flex:1;padding:9px 6px}
-    .bk-esq-home__cta{width:100%;text-align:center}
-  }
-</style>
 {%- endif -%}
+{%- if template.name == 'product' -%}{%- render 'bk-esquenta-pdp' -%}{%- endif -%}
 {%- liquid
   assign esq_want = 1
   if customer and customer.orders_count > 0
     assign esq_want = 2
   endif
 -%}
-{%- if template.name == 'product' -%}
-<template id="bk-esq-pdp">
-  <div class="bk-esq-pdp">
-    <div class="bk-esq-pdp__h">🔥 <b>Esquenta 11/11</b> · termina em <b data-bk-esq-count>--</b></div>
-    <div class="bk-esq-pdp__tiers"><span><b>8%</b> 1 un.</span><span><b>10%</b> 3+ un.</span><span><b>12%</b> 5+ un.</span></div>
-    <div class="bk-esq-pdp__p">🚚 Frete grátis acima de R$249 · 🎁 Cranberry de brinde acima de R$400</div>
-    <div class="bk-esq-pdp__s">Vale somando produtos diferentes. Desconto aplicado automaticamente no carrinho.</div>
-  </div>
-</template>
-<style>
-  .bk-esq-pdp{border:2px solid #e3132b;border-radius:14px;padding:12px 14px;margin:0 0 14px;background:#fff5f6;color:#091b5d;font-size:13.5px;line-height:1.35}
-  .bk-esq-pdp__h{font-size:14px;margin-bottom:8px}
-  .bk-esq-pdp__h b{color:#e3132b}
-  .bk-esq-pdp__tiers{display:flex;gap:6px;margin-bottom:8px}
-  .bk-esq-pdp__tiers span{flex:1;text-align:center;background:#0c298d;color:#fff;border-radius:10px;padding:6px 4px;font-size:12px}
-  .bk-esq-pdp__tiers b{display:block;font-size:18px}
-  .bk-esq-pdp__s{font-size:12px;color:#55608a;margin-top:4px}
-</style>
-{%- endif -%}
+
 <script>
 (function(){
   if (window.__bkEsq) return; window.__bkEsq = true;
@@ -124,22 +68,15 @@
   function on(){ var n = Date.now(); return (n >= START && n < END) || preview(); }
   if (!on()) return;
 
-  /* mostrar tarja, banner e aviso na página de produto */
+  /* banner da home (sem tarja e sem nada acima do produto: decisão do Pedro em 30/10) */
   function pad(n){ return n < 10 ? '0' + n : '' + n; }
   function show(){
-    var bar = document.getElementById('bk-esq-bar');
-    if (bar && !document.querySelector('.bk-esq-bar')) document.body.insertBefore(bar.content.cloneNode(true), document.body.firstChild);
     var home = document.getElementById('bk-esq-home'), main = document.getElementById('MainContent');
-    if (home && main && !document.querySelector('.bk-esq-home')) main.insertBefore(home.content.cloneNode(true), main.firstChild);
-    var tpl = document.getElementById('bk-esq-pdp');
-    if (tpl && !document.querySelector('.bk-esq-pdp')) {
-      var form = document.querySelector('#MainContent form[action*="/cart/add"]');
-      if (form && form.parentNode) form.parentNode.insertBefore(tpl.content.cloneNode(true), form);
-    }
+    if (home && main && !document.querySelector('.bkq')) main.insertBefore(home.content.cloneNode(true), main.firstChild);
   }
   function tick(){
     var s = Math.max(0, Math.floor((END - Date.now()) / 1000));
-    var t = Math.floor(s / 86400) + 'd ' + pad(Math.floor(s % 86400 / 3600)) + 'h ' + pad(Math.floor(s % 3600 / 60)) + 'm ' + pad(s % 60) + 's';
+    var t = Math.floor(s / 86400) + 'd ' + pad(Math.floor(s % 86400 / 3600)) + 'h ' + pad(Math.floor(s % 3600 / 60)) + 'm';
     document.querySelectorAll('[data-bk-esq-count]').forEach(function(el){ el.textContent = t; });
     if (s > 0) setTimeout(tick, 1000);
   }

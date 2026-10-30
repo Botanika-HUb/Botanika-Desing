@@ -1,0 +1,70 @@
+{%- comment -%}
+  Esquenta 11/11 e Esquenta Botanika Week: seletor de potes da página de produto.
+  Nas janelas da campanha (ou na prévia com ?esquenta=1) troca o seletor padrão
+  (2 potes 5% / 3 potes 10%) pelos níveis da campanha: 5 potes 12% · 3 potes 10% · 1 pote 8%,
+  com frete grátis a partir de R$ 249 e o cranberry de brinde quando passar de R$ 400.
+  Usa o mesmo componente <quantity-discount-cards> do tema (preço, parcelas e quantidade no carrinho).
+  Nada aparece acima da foto do produto.
+{%- endcomment -%}
+<style>
+  .qty2--esq .qty2__opt.qty2__tier{border-color:#e6e8f3}
+  .qty2--esq .qty2__opt.qty2__tier.is-active{border-color:#e3132b;background:linear-gradient(180deg,#fff6f3 0%,#fff 70%);box-shadow:0 12px 28px -14px rgba(227,19,43,.55)}
+  .qty2--esq .qty2__opt.is-active .qty2__check{border-color:#e3132b;background:#e3132b}
+  .qty2--esq .qty2k__ribbon{background:#2a4bd7;letter-spacing:.06em}
+  .qty2--esq .qty2__opt[data-heat="2"] .qty2k__ribbon{background:linear-gradient(90deg,#ff9a1f,#ff6a1a);color:#fff}
+  .qty2--esq .qty2__opt[data-heat="3"] .qty2k__ribbon{background:linear-gradient(90deg,#ff4a3a,#d10f24);color:#fff}
+  .qty2--esq .bkh{display:flex;gap:3px;margin:2px 0 1px}
+  .qty2--esq .bkh i{width:18px;height:6px;border-radius:3px;background:#e5e8f4}
+  .qty2--esq .bkh i.b{background:#3b5ef0}.qty2--esq .bkh i.o{background:#ff9a1f}.qty2--esq .bkh i.r{background:#e3132b}
+  .qty2--esq .bkg{display:inline-flex;align-items:center;gap:6px;margin:0 16px 12px;background:#fff1f2;color:#c10f22;font-weight:800;font-size:12.5px;padding:5px 12px 5px 6px;border-radius:99px}
+  .qty2--esq .bkg img{width:24px;height:24px;object-fit:contain}
+  .qty2--esq .qty2__tier:not(.is-active) .bkg{display:none}
+  .qty2--esq .bkn{margin:10px 2px 0;font-size:12.5px;color:#6b7399;line-height:1.4}
+  .qty2--esq .bkn b{color:#c10f22}
+  .qty2--esq .qty2__ship-fill{background:linear-gradient(90deg,#3b5ef0,#ff9a1f 60%,#e3132b)}
+  .qty2--esq .qty2__ship.is-done .qty2__ship-fill{background:linear-gradient(90deg,#1a8f3c,#37c26e)}
+  @media (max-width:749px){.qty2--esq .bkg{margin:0 14px 12px}}
+</style>
+<script>
+(function(){
+  var W = [[1793588400000, 1794351600000], [1794452400000, 1795229999000]]; /* Esquenta 11/11 · Esquenta Botanika Week */
+  var n = Date.now(), on = W.some(function(w){ return n >= w[0] && n < w[1]; });
+  try { if (/[?&]esquenta=1\b/.test(location.search)) sessionStorage.setItem('bkEsqPreview', '1'); if (sessionStorage.getItem('bkEsqPreview') === '1') on = true; } catch (e) {}
+  if (!on) return;
+  var CRAN = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/hf_20260911_150202_d733ca0a-dc7b-4c78-ac5e-cb4780f95dd7.png?v=1789140114&width=120';
+  var TIERS = [{ q: 5, d: 12, heat: 3, lab: '12% OFF · temperatura máxima' }, { q: 3, d: 10, heat: 2, lab: '10% OFF' }, { q: 1, d: 8, heat: 1, lab: '8% OFF' }];
+  function run(){
+    var old = document.querySelector('quantity-discount-cards.qty2:not(.qty2--esq)');
+    if (!old || old.querySelectorAll('.qty2__tier').length < 2) return; /* kits e produtos sem seletor ficam como estão */
+    var unit = parseInt(old.dataset.unitPrice, 10), inst = parseInt(old.dataset.installments, 10) || 3, fmt = old.dataset.moneyFormat || 'R$ {' + '{amount_with_comma_separator}' + '}';
+    var imgOf = function(t){ var c = old.querySelector('.qty2__tier[data-tier="' + t + '"] img'); return c ? c.getAttribute('src') : ''; };
+    var img3 = imgOf('3') || imgOf('2') || imgOf('1'), img1 = imgOf('1') || img3;
+    function money(c){ var a = (c / 100).toFixed(2).split('.'); return fmt.replace(/\{\{\s*amount_with_comma_separator\s*\}\}/, a[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + a[1]).replace(/\{\{\s*amount\s*\}\}/, (c / 100).toFixed(2)); }
+    var sp = old.querySelector('.qty2__sp'), html = sp ? sp.outerHTML : '';
+    html += '<div class="qty2__ship" data-ship><div class="qty2__ship-top"><span class="qty2__truck">🚚</span><span data-ship-msg></span></div><div class="qty2__ship-track"><div class="qty2__ship-fill" data-ship-fill></div></div><div class="qty2__ship-scale"><span>R$0</span><span class="qty2__ship-goal" data-ship-goal>Frete grátis · R$ 249,00</span></div></div>';
+    html += '<fieldset class="qty2__fs"><legend class="qty2__legend"><span>Escolha sua opção:</span> <b class="qty2__legend-val"></b></legend><div class="qty2__grid">';
+    TIERS.forEach(function(t, i){
+      var total = unit * t.q, damt = Math.floor(total * t.d / 100), price = total - damt, per = Math.floor(price / t.q), free = price >= 24900, gift = price >= 40000;
+      var bars = ''; for (var k = 1; k <= 5; k++) bars += '<i class="' + (k <= (t.heat === 3 ? 5 : t.heat === 2 ? 3 : 1) ? (k <= 2 ? 'b' : k <= 3 ? 'o' : 'r') : '') + '"></i>';
+      html += '<div class="qty2__opt qty2__kit qty2__tier' + (i === 0 ? ' is-active' : '') + '" data-tier="' + (3 - i) + '" data-heat="' + t.heat + '" data-quantity="' + t.q + '" data-discount="' + t.d + '" role="radio" aria-checked="' + (i === 0) + '" tabindex="0">'
+        + '<div class="qty2k__ribbon">' + t.lab + '</div>'
+        + '<div class="qty2k__top"><div class="qty2k__img">' + ((t.q > 1 ? img3 : img1) ? '<img class="qty2__img" loading="lazy" alt="" src="' + (t.q > 1 ? img3 : img1) + '">' : '') + '</div>'
+        + '<div class="qty2k__head"><span class="qty2__q qty2k__name">' + t.q + (t.q > 1 ? ' potes' : ' pote') + '</span><div class="bkh" aria-hidden="true">' + bars + '</div>'
+        + '<div class="qty2k__pills"><span class="qty2k__pill qty2k__pill--free" data-freeship' + (free ? '' : ' hidden') + '>🚚 Frete grátis</span></div></div><span class="qty2__check"></span></div>'
+        + '<div class="qty2k__price"><s class="qty2k__cmp" data-compare>' + money(total) + '</s><div class="qty2k__big"><span class="qty2k__x">' + inst + 'x de</span> <b data-installment>' + money(Math.floor(price / inst)) + '</b> <span class="qty2k__sj">sem juros</span></div>'
+        + '<div class="qty2k__inst">ou <b data-total>' + money(price) + '</b> à vista' + (t.q > 1 ? ' · <span data-perunit>' + money(per) + '/pote</span>' : '') + '</div></div>'
+        + '<div class="qty2k__save" data-savebox>✓ Você economiza ' + money(damt) + (free ? ' + frete grátis' : '') + '</div>'
+        + (gift ? '<div class="bkg"><img src="' + CRAN + '" alt="">+ Cranberry de brinde</div>' : '')
+        + '</div>';
+    });
+    html += '</div></fieldset><p class="bkn">🔥 <b>Esquenta 11/11:</b> vale misturando produtos diferentes. O desconto entra sozinho no carrinho.</p>';
+    var el = document.createElement('quantity-discount-cards');
+    el.className = 'qty2 qty2--esq';
+    ['unitPrice', 'installments', 'moneyFormat'].forEach(function(k){ el.dataset[k] = old.dataset[k]; });
+    el.dataset.freeShip = '24900';
+    el.innerHTML = html;
+    old.parentNode.replaceChild(el, old);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+})();
+</script>
