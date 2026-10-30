@@ -108,3 +108,4 @@
   Bug corrigido: quando um quadro do overlay vinha sem transparência, o ffmpeg reiniciava o filtro e o vídeo virava fundo azul. A correção foi usar `-reinit_filter 0`.
 - **Vídeos do Esquenta, v3:** legenda reduzida de 78 para 62 e baixada até o limite da área segura, para sair de cima da boca (pedido do Pedro). O botão "Comprar agora" desceu junto.
 - **3 vídeos do Esquenta: registrados como feitos** (v3 aprovada; o Pedro sobe na pasta do Drive). Próxima tarefa: 5 estáticos de venda do 11/11 (prazo 06/11 12h).
+- **5 estáticos de venda do 11/11 gerados** (paleta preto + vermelho, aprovada): V1 linha, V2 frete, V3 cashback, V4 Q10 de presente, V5 últimas horas. V3, V4 e V5 foram refeitas por defeitos de texto ou embalagem. Conferido na Shopify: o Whey Balance 455 g é pote. Aguardando aprovação final do Pedro.

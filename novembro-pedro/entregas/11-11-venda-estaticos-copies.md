@@ -2,7 +2,7 @@
 
 > Tarefa: `mcp-1793219208870-33-7767c` · entrega ao Otávio **sex 06/11 às 12h** · formato 4:5
 > Visual: o mesmo estilo pôster aprovado nos universais (produto herói inclinado, palavras gigantes atrás, 2 números nos cantos), na paleta do 11/11.
-> Status: **aguardando aprovação do Pedro**
+> Status: **copies aprovadas pelo Pedro em 30/10** (paleta preto + vermelho, detalhe azul) · artes geradas, aguardando aprovação final
 
 ## Regras (ficha da oferta do 11/11 v2, aprovada pelo Vitor)
 - Oferta: até 40% OFF **só no dia 11/11**, frete grátis em todos os pedidos sem mínimo, 1 Coenzima Q10 de brinde acima de R$ 500 e cashback de 15% nos 100 primeiros pedidos.
@@ -28,3 +28,12 @@ Botão em todas: **Comprar agora**
 - Paleta do 11/11: sugestão **preto + vermelho** (data e urgência), com detalhe azul Botanika. Mantém o azul da marca e diferencia dos universais. Se preferir, uso o mesmo azul dos universais.
 - O "até 40%" depende de quais produtos chegam a 40% na Shopify. A arte não mostra preço por produto.
 - O "acesso antecipado às 20h de 10/11" é só para quem já comprou, então fica de fora das artes.
+
+## Artes (30/10) · pasta `11-11-venda/`
+| Peça | Job | Observação |
+|---|---|---|
+| V1 | 5c58e0b6-aa0b-4532-ba12-e88a9eac69bf | Linha (Ômega, Tri, Hair, Whey). Whey em pote, igual ao site. |
+| V2 | cfcdde94-3aae-4d90-a18f-cffd0fef843b | Frete grátis |
+| V3 | bfddebc3-396a-4a82-b939-39b7bf8adfdd (refeita) | Rodapé ajustado para "Ganhe 15% de volta na próxima compra." A 1ª versão saiu com a linha vermelha borrada. |
+| V4 | ea192cc0-9c3e-41fd-a1b0-7ee751e7b805 (refeita) | Na 1ª versão o pote cobria o Q e lia "+010". Rodapé: "Compras acima de R$ 500 ganham a Q10 de presente." |
+| V5 | 0b3eaf25-f516-473f-86d4-6df58285a900 (refeita) | Na 1ª versão o pote cobria o "O" de HORAS e o whey saiu como pacote. |
