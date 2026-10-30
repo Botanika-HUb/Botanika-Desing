@@ -284,6 +284,39 @@ footer img{height:20px;width:auto;margin:0 auto 10px}
   <div class="t">A oferta abre em<b class="js-mini">--</b></div>
   <a class="cta js-group" data-label="sticky" href="https://sndflw.com/i/botanika11-11">Entrar no grupo</a>
 </div>
+<style>
+.lm{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(9,20,66,.62);backdrop-filter:blur(3px)}
+.lm.open{display:flex}
+.lm__box{position:relative;width:100%;max-width:420px;background:#fff;border-radius:24px;padding:28px 22px 22px;box-shadow:0 30px 70px -20px rgba(9,20,66,.5);animation:lmIn .28s cubic-bezier(.2,1.2,.3,1)}
+@keyframes lmIn{from{transform:translateY(18px) scale(.97);opacity:0}to{transform:none;opacity:1}}
+.lm__x{position:absolute;top:10px;right:12px;width:36px;height:36px;border:0;border-radius:50%;background:#f1f3fb;color:#091b5d;font-size:20px;line-height:1;cursor:pointer}
+.lm__eye{display:inline-block;background:#fde8ea;color:#e3132b;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:99px}
+.lm__h{margin:12px 0 6px;color:#0c298d;font-size:24px;line-height:1.12;font-weight:800;letter-spacing:-.02em}
+.lm__p{margin:0 0 16px;color:#55608a;font-size:14.5px;line-height:1.45}
+.lm form{display:grid;gap:10px}
+.lm input{width:100%;box-sizing:border-box;border:1.5px solid #dfe3f3;border-radius:12px;padding:14px 15px;font:inherit;font-size:16px;color:#091b5d;background:#fbfcff}
+.lm input:focus{outline:none;border-color:#0c298d;background:#fff}
+.lm__err{display:none;margin:0;color:#e3132b;font-size:13px;text-align:center}
+.lm__err.on{display:block}
+.lm button[type=submit]{border:0;cursor:pointer;margin-top:4px;width:100%;background:#e3132b;color:#fff;font:inherit;font-weight:800;font-size:16.5px;padding:16px;border-radius:99px;box-shadow:0 12px 26px -12px #e3132b}
+.lm__s{margin:12px 0 0;text-align:center;color:#8a93b6;font-size:12px}
+</style>
+<div class="lm" id="lm" role="dialog" aria-modal="true" aria-labelledby="lm-h">
+  <div class="lm__box">
+    <button type="button" class="lm__x" aria-label="Fechar">×</button>
+    <span class="lm__eye">Grupo VIP · 11/11</span>
+    <h3 class="lm__h" id="lm-h">Falta só um passo para entrar no grupo</h3>
+    <p class="lm__p">Deixe seus dados e você já vai direto para o Grupo VIP no WhatsApp. É lá que a oferta chega primeiro, às 00h10.</p>
+    <form novalidate>
+      <input name="fullname" type="text" autocomplete="name" placeholder="Seu nome" required>
+      <input name="email" type="email" autocomplete="email" inputmode="email" placeholder="Seu e-mail" required>
+      <input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="WhatsApp com DDD" required>
+      <p class="lm__err">Confira o nome, o e-mail e o WhatsApp com DDD.</p>
+      <button type="submit">Entrar no Grupo VIP</button>
+    </form>
+    <p class="lm__s">🔒 Seus dados ficam só com a Botanika. Sem spam.</p>
+  </div>
+</div>
 <script>
 (function(){
   var GRUPO_URL = 'https://sndflw.com/i/botanika11-11'; // link do grupo VIP 11/11 (Sarah)
@@ -301,13 +334,43 @@ footer img{height:20px;width:auto;margin:0 auto 10px}
   }
   document.querySelectorAll('.js-group').forEach(function(a){
     var label=a.getAttribute('data-label');
-    a.href=linkGrupo(label);a.target='_blank';a.rel='noopener';
-    a.addEventListener('click',function(){
+    a.href=linkGrupo(label);
+    a.addEventListener('click',function(ev){
+      ev.preventDefault();
       var T=window;try{if(window.top&&window.top.document)T=window.top;}catch(_){}
       try{(T.dataLayer=T.dataLayer||[]).push({event:'grupo_vip_click',cta:label});}catch(_){}
-      try{if(T.gtag)T.gtag('event','generate_lead',{method:'grupo_vip_1111',cta:label});}catch(_){}
-      try{if(T.fbq)T.fbq('track','Lead',{content_name:'Grupo VIP 11/11',cta:label});}catch(_){}
+      abrir(label);
     });
+  });
+
+  /* pop-up: nome, e-mail e WhatsApp vão para o ActiveCampaign (formulário 4, lista "11/11 · Site fechado — Leads") e a pessoa segue para o grupo */
+  var lm=document.getElementById('lm'), lf=lm.querySelector('form'), lerr=lm.querySelector('.lm__err'), atual='hero';
+  function topo(){var T=window;try{if(window.top&&window.top.document)T=window.top;}catch(_){}return T;}
+  function ir(label){var url=linkGrupo(label),T=topo();try{T.location.href=url;}catch(_){location.href=url;}}
+  function abrir(label){
+    atual=label;
+    try{if(localStorage.getItem('bkVipLead')==='1'){ir(label);return;}}catch(_){}
+    lm.classList.add('open');setTimeout(function(){lf.fullname.focus();},60);
+  }
+  function fechar(){lm.classList.remove('open');}
+  lm.querySelector('.lm__x').addEventListener('click',fechar);
+  lm.addEventListener('click',function(e){if(e.target===lm)fechar();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')fechar();});
+  lf.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var name=lf.fullname.value.trim(), email=lf.email.value.trim(), d=lf.phone.value.replace(/\D/g,'');
+    if(d.length===10||d.length===11)d='55'+d;
+    var bad=name.length<2||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)||d.length<12||d.length>13;
+    lerr.classList.toggle('on',bad); if(bad)return;
+    var q='u=4&f=4&s=&c=0&m=0&act=sub&v=2&or=&jsonp=true&fullname='+encodeURIComponent(name)+'&email='+encodeURIComponent(email)+'&phone='+encodeURIComponent('+'+d);
+    var sc=document.createElement('script');sc.src='https://botanika1.activehosted.com/proc.php?'+q;sc.async=true;document.body.appendChild(sc);
+    var T=topo();
+    try{if(T.gtag)T.gtag('event','generate_lead',{method:'grupo_vip_1111',cta:atual});}catch(_){}
+    try{if(T.fbq)T.fbq('track','Lead',{content_name:'Grupo VIP 11/11',cta:atual});}catch(_){}
+    try{(T.dataLayer=T.dataLayer||[]).push({event:'grupo_vip_lead',cta:atual});}catch(_){}
+    try{localStorage.setItem('bkVipLead','1');}catch(_){}
+    lf.querySelector('button').textContent='Abrindo o grupo...';
+    setTimeout(function(){ir(atual);},700);
   });
 
   function pad(n){return n<10?'0'+n:''+n}
