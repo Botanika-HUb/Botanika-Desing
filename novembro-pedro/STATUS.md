@@ -3,52 +3,49 @@
 > 🔒 **REGRA FIXA (Pedro, 29/10):** este chat cuida **somente das tarefas da BOTANIKA**. Nunca fazer nada da **VermeFree** nem da **Revita** (nem da Shoty). Se o Pedro citar VermeFree ou Revita, **parar na hora e não executar nada**: só avisar e esperar.
 
 
-> Atualizado em: **30/10/2026, manhã**
+> Atualizado em: **30/10/2026, 14h30**
 > Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito · `[!]` bloqueado
 > ID = id da tarefa no Alliance OS (`https://alliance-os-sooty.vercel.app/?task=<ID>#tasks`)
 
-## 📍 Onde estamos (30/10, manhã)
+## 📍 Onde estamos (30/10, 14h30)
 
-> Alliance OS (30/10, 9h): as 7 tarefas da Botanika que vencem hoje ainda estão "a fazer" lá. A do grupo VIP da Sarah também (6 itens da lista em aberto), por isso a LP não pode ser concluída ainda.
+### ✅ Pronto (falta só você marcar no Alliance)
+| Tarefa (prazo) | Onde está |
+|---|---|
+| LP de captação do grupo (30/10) | https://vip.botanikabrasil.com.br (+ reserva na Shopify), com pop-up de cadastro para o ActiveCampaign, Meta e GA4. O Alliance só libera depois da tarefa da Sarah |
+| 10 estáticos de captação (30/10) | você subiu no Drive |
+| 15 universais, lote 1 (30/10) | você subiu no Drive |
+| 15 universais, lote 2 (04/11) | aprovados, zip enviado |
+| 5 estáticos de venda do 11/11 (06/11) | aprovados, você subiu no Drive |
+| 3 vídeos UGC do Esquenta | aprovados (v3), enviados |
+| Tema do Esquenta 11/11 (30/10) | cópia pronta. **Você publica até 01/11** |
+| Tema do 11/11 + fechar o site (06/11) | na mesma cópia: tela fechada com cadastro, tarja, banner, Q10 no carrinho |
+| Frete grátis + brinde Q10 do 11/11 (06/11) | agendados na Shopify |
 
-### ✅ Feito (falta só você marcar no Alliance OS)
-| # | Tarefa | Onde está | O que falta |
+### 🟡 Já agendado, roda sozinho
+- **01/11 00h05:** eu crio a escada 8/10/12%, o frete acima de R$ 249 e o cranberry do Esquenta, e passo os 53 cupons de influencer para 2%. Depois aviso você.
+- **01/12:** reversão de tudo.
+
+### 🔜 Próximos passos, em ordem de eficiência
+| # | O quê | Prazo | Depende de |
 |---|---|---|---|
-| 1 | LP de captação do grupo 11/11 | no ar: botanikabrasil.com.br/pages/grupo-vip-11-11 (link do grupo certo, Meta + GA4) | você testar no celular e mandar o link ao Otávio. O Alliance só libera depois que a Sarah concluir a tarefa dela |
-| 2 | 10 estáticos de captação 11/11 | arquivos enviados no chat | subir no Drive |
-| 3 | 15 estáticos universais (lote 1) | arquivos enviados no chat | subir no Drive |
-| 4 | 15 estáticos universais (lote 2, U16–U30) | aprovados, arquivos enviados no chat (zips em 30/10) | subir no Drive (prazo 04/11) |
-| 4c | 5 estáticos de venda do 11/11 (V1–V5) | aprovados em 30/10, zip enviado, você subiu no Drive | marcar no Alliance (`mcp-1793219208870-33-7767c`) |
-| 4b | 3 vídeos UGC do Esquenta 11/11 (Hair, Creatina, Hair + Creatina) | v3 aprovada pelo Pedro em 30/10, enviada no chat (versão cheia e versão leve) | subir na pasta do Drive do Otávio. Os dois Esquentas usam os mesmos criativos |
+| 1 | **Cashback 15% do 11/11** (100 primeiros, uso em até 3 dias, expira 01/12) | 05/11 | escolher a ferramenta com a Sarah. Eu levanto as opções e já testo a mais barata (Shopify Flow + vale-presente, sem app pago) |
+| 2 | **Esquenta Botanika Week** (tema, oferta e brindes, 12–20/11) | 09/11 | nada: é a mesma mecânica do Esquenta 11/11 |
+| 3 | Cupom privado do Recovery (12–20/11) | 09/11 | nada |
+| 4 | Pesquisa de app para 5% no Pix | 10/11 | depois, aprovação do Vitor |
+| 5 | 10 vídeos de captação + 10 vídeos de venda do 11/11 | 05 e 06/11 | material da Mafe (a gravação foi hoje às 18h) |
+| 6 | Nota fiscal da Botanika | 06/11 | você |
 
-### 🟡 Em andamento: Esquenta 11/11 na Shopify (prazo 30/10 18h)
-| # | Parte | Situação | O que falta |
-|---|---|---|---|
-| 5 | Tema | cópia "ESQUENTA 11/11 — cópia do OFICIAL 29/10" pronta e testada | **você publicar até 31/10** |
-| 6 | Oferta, frete e cupons | descontos antigos e 16 cupons já agendados para sair em 01/11 00h | eu crio a escada, o frete e o brinde e passo os cupons para 2% em **01/11 00h05** (lembrete agendado) |
-| 7 | Brindes (cranberry) | regra pronta no roteiro; o tema adiciona o brinde ao carrinho sozinho | sai junto com o item 6 |
-
-### 🟡 Em andamento: site do 11/11 (prazo 06/11 18h) · detalhes em `entregas/11-11-site.md`
-| Parte | Situação | O que falta |
-|---|---|---|
-| Frete grátis sem mínimo | ✅ agendado (10/11 20h → 11/11 23h59) | nada |
-| Brinde Q10 acima de R$ 500 | ✅ agendado, e o tema coloca a Q10 no carrinho | testar com pedido de teste quando o 40% estiver definido |
-| Fechar o site 10/11 20h → 11/11 8h | ✅ tela cheia com Grupo VIP e login no tema (prévia `?onze=1`) | você publicar o tema (o mesmo do Esquenta) |
-| Tema (tarja, banner, página de produto, últimas horas) | ✅ pronto na cópia (prévia `?onze=2`) | idem |
-| Oferta "até 40%" | ⛔ esperando o Vitor: quais produtos e quanto | configurar quando chegar |
-
-### ⛔ Travado em outras pessoas
-| # | Tarefa | Esperando |
-|---|---|---|
-| 8 | Integração da ferramenta de parceiros | Álvaro passar o projeto (mensagem pronta para mandar) |
-| 9 | 20 vídeos universais (02/11) | gravação de 30/10 às 18h |
-| 10 | Selo Reclame Aqui | Sarah recuperar a página |
-
-### 🙋 Pendências com você
-- Publicar o tema do Esquenta até 31/10.
-- Subir os 40 estáticos no Drive (ou eu deixo os links na pasta).
-- Pedir à Ana para conferir a lista dos 53 cupons de influencer.
-- Pedir o OK do Vitor: o cranberry de brinde conta como unidade na escada.
+### ⛔ Esperando outras pessoas
+| O quê | Quem |
+|---|---|
+| "Até 40%": quais produtos e quanto | Vitor |
+| Lista dos 53 cupons de influencer | Ana |
+| Cranberry conta como unidade na escada? | Vitor |
+| Grupo VIP no Alliance (destrava a LP) e selo do Reclame Aqui | Sarah |
+| Ferramenta de parceiros | Álvaro |
+| "Bem-estar por rotina" no site (06/11) | Gabriel validar |
+| SEO, 11 artigos (13/11) | pauta do Bernardo |
 
 ## Atrasadas / bloqueadas
 - [!] Selo Reclame Aqui + conferir Judge.me — prazo 20/10 — bloqueado: Sarah recuperando a página do RA · `mcp-1792087099653-5-a06bd`
