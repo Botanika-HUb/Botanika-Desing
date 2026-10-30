@@ -35,7 +35,18 @@
     <h2 class="bk-onze-gate__h">O maior desconto da história da Botanika <em>abre às 8h.</em></h2>
     <p class="bk-onze-gate__p">Até <b>40% OFF</b> e <b>frete grátis em todos os pedidos</b>, só no dia 11/11.</p>
     <div class="bk-onze-gate__count">Abre em <b data-bk-onze-open>--</b></div>
-    <a class="bk-onze-gate__cta" href="https://sndflw.com/i/botanika11-11?utm_source=site&amp;utm_medium=tela_fechada&amp;utm_campaign=11-11">Entrar no Grupo VIP e receber o link</a>
+    <form class="bk-onze-gate__form" data-bk-onze-form novalidate>
+      <p class="bk-onze-gate__ft">Deixe seus dados e receba o link do 11/11 no Grupo VIP:</p>
+      <input name="fullname" type="text" autocomplete="name" placeholder="Seu nome" required>
+      <input name="email" type="email" autocomplete="email" inputmode="email" placeholder="Seu e-mail" required>
+      <input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Celular com DDD" required>
+      <p class="bk-onze-gate__err" data-bk-onze-err hidden>Confira o nome, o e-mail e o celular com DDD.</p>
+      <button type="submit" class="bk-onze-gate__cta">Liberar o link do Grupo VIP</button>
+    </form>
+    <div class="bk-onze-gate__ok" data-bk-onze-ok hidden>
+      <p class="bk-onze-gate__ft">Pronto! Agora é só entrar no grupo:</p>
+      <a class="bk-onze-gate__cta" href="https://sndflw.com/i/botanika11-11?utm_source=site&amp;utm_medium=tela_fechada&amp;utm_campaign=11-11" target="_blank" rel="noopener">Entrar no Grupo VIP</a>
+    </div>
     {%- if customer -%}
       <p class="bk-onze-gate__s">O acesso antecipado é para quem já comprou na Botanika. Para você, o 11/11 abre às 8h, e quem está no Grupo VIP recebe o aviso primeiro.</p>
     {%- else -%}
@@ -132,7 +143,28 @@
     if (n >= OPEN && document.querySelector('.bk-onze-gate')) show();
     if (n < END) setTimeout(tick, 1000);
   }
-  function start(){ show(); tick(); }
+  /* cadastro na tela fechada: nome, e-mail e celular vão para o ActiveCampaign (lista "11/11 · Site fechado — Leads", formulário 3) e liberam o link */
+  function lead(){
+    var f = document.querySelector('[data-bk-onze-form]'), ok = document.querySelector('[data-bk-onze-ok]');
+    if (!f || f.__bk) return; f.__bk = true;
+    function done(){ f.hidden = true; ok.hidden = false; }
+    try { if (localStorage.getItem('bkOnzeLead') === '1') { done(); return; } } catch (e) {}
+    f.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      var name = f.fullname.value.trim(), email = f.email.value.trim(), digits = f.phone.value.replace(/\D/g, '');
+      if (digits.length === 10 || digits.length === 11) digits = '55' + digits;
+      var bad = name.length < 2 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || digits.length < 12 || digits.length > 13;
+      document.querySelector('[data-bk-onze-err]').hidden = !bad;
+      if (bad) return;
+      var q = 'u=3&f=3&s=&c=0&m=0&act=sub&v=2&or=&jsonp=true&fullname=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email) + '&phone=' + encodeURIComponent('+' + digits);
+      var sc = document.createElement('script'); sc.src = 'https://botanika1.activehosted.com/proc.php?' + q; sc.async = true; document.body.appendChild(sc);
+      try { if (window.fbq) fbq('track', 'Lead', { content_name: '11/11 site fechado' }); } catch (e) {}
+      try { if (window.gtag) gtag('event', 'generate_lead', { method: '11-11_site_fechado' }); (window.dataLayer = window.dataLayer || []).push({ event: 'onze_lead' }); } catch (e) {}
+      try { localStorage.setItem('bkOnzeLead', '1'); } catch (e) {}
+      done();
+    });
+  }
+  function start(){ show(); lead(); tick(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 
   /* Coenzima Q10 de brinde acima de R$ 500 (mesma lógica do cranberry do Esquenta) */
