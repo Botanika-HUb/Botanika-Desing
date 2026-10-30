@@ -1,0 +1,106 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:IS;src:url(InstrumentSans-SemiBold.woff2)}
+@font-face{font-family:IDB;src:url(InterDisplay-Black.otf)}
+@font-face{font-family:IDX;src:url(InterDisplay-ExtraBold.otf)}
+html,body{margin:0;width:1080px;height:1920px;background:transparent;overflow:hidden}
+*{box-sizing:border-box}
+.L{position:absolute;inset:0;display:none}
+/* hook */
+#hook{top:290px;bottom:auto;height:auto;display:none;flex-direction:column;align-items:center}
+.hl{font:86px/1.02 IDB;color:#fff;letter-spacing:-1.5px;text-align:center;-webkit-text-stroke:0;text-shadow:0 6px 24px rgba(0,0,0,.45),0 2px 4px rgba(0,0,0,.4);display:flex;gap:20px;overflow:hidden;padding:4px 10px}
+.hl span{display:inline-block;position:relative}
+.hl span.em{color:#0c298d;background:#c8f14b;padding:0 14px;border-radius:14px;text-shadow:none}
+/* captions */
+#cap{top:auto;bottom:auto;height:auto;top:1035px;display:flex;justify-content:center;flex-wrap:wrap;padding:0 40px}
+.cw{font:78px/1 IDB;color:#fff;letter-spacing:-1px;margin:0 12px;display:inline-block;padding:10px 14px;border-radius:16px;
+  text-shadow:0 0 2px #000,0 4px 0 rgba(0,0,0,.55),0 8px 22px rgba(0,0,0,.45)}
+.cw.on{color:#0c298d;background:#c8f14b;text-shadow:none}
+.cw.hot{color:#fff;background:#e2231a;text-shadow:none}
+/* scenes */
+.sc{background:#0c298d}
+.sc .t{position:absolute;left:0;right:0;text-align:center;color:#fff}
+#prod .name{top:300px;font:110px/0.95 IDB;letter-spacing:-2px}
+#prod .sub{top:530px;font:44px/1 IS;color:#c8f14b}
+#prod img{position:absolute;left:50%;top:640px;height:820px;transform-origin:50% 100%}
+#pct .t1{top:300px;font:44px/1 IDX;color:#c8f14b;letter-spacing:2px}
+#pct .t2{top:360px;font:150px/1 IDB;letter-spacing:-3px}
+.bars{position:absolute;left:150px;right:150px;bottom:700px;height:520px;display:flex;align-items:flex-end;gap:40px}
+.bar{flex:1;background:#fff;border-radius:22px 22px 0 0;position:relative;display:flex;flex-direction:column;align-items:center}
+.bar b{font:72px/1 IDB;color:#0c298d;margin-top:26px}
+.bar i{position:absolute;bottom:-62px;font:36px/1 IS;color:#fff;font-style:normal;white-space:nowrap}
+.bar.top{background:#c8f14b}
+#gift{background:#f3efe6}
+#gift img{position:absolute;left:50%;top:560px;height:860px}
+#gift .g1{top:300px;font:118px/1 IDB;color:#0c298d;letter-spacing:-2px}
+#gift .stamp{position:absolute;left:640px;top:520px;background:#e2231a;color:#fff;font:52px/1 IDB;padding:22px 30px;border-radius:999px;transform-origin:50% 50%}
+#gift .g2{top:440px;font:44px/1 IS;color:#0c298d}
+/* cta */
+#cta{top:1160px;bottom:auto;height:auto;display:none;justify-content:center}
+.ct{background:#e2231a;color:#fff;font:44px/1 IDB;padding:22px 38px;border-radius:999px;display:flex;align-items:center;gap:14px;box-shadow:0 12px 30px rgba(0,0,0,.25)}
+/* end */
+#end{background:#0c298d;flex-direction:column;align-items:center;justify-content:center;padding-bottom:260px}
+#end img{width:540px}
+#end .k{font:54px/1 IDX;color:#c8f14b;margin-top:56px;letter-spacing:2px}
+#end .n{font:210px/1 IDB;color:#fff;margin-top:20px;letter-spacing:-4px}
+#end .o{font:124px/1 IDB;color:#fff;margin-top:-6px}
+#end .r{font:40px/1.5 IS;color:#fff}
+#end .r b{color:#c8f14b;font-weight:normal}
+#end .p{margin-top:44px;background:#e2231a;color:#fff;font:58px/1 IDB;padding:26px 56px;border-radius:999px}
+</style></head><body>
+<div id="prod" class="L sc"><div class="t name" id="pn"></div><div class="t sub" id="ps"></div><img id="pi"></div>
+<div id="pct" class="L sc"><div class="t t1">ESQUENTA 11/11 · QUANTO MAIS LEVA</div><div class="t t2">ATÉ 12% OFF</div>
+ <div class="bars"><div class="bar" id="b0"><b>8%</b><i>1 unidade</i></div><div class="bar" id="b1"><b>10%</b><i>3 unidades</i></div><div class="bar top" id="b2"><b>12%</b><i>5 unidades</i></div></div></div>
+<div id="gift" class="L"><div class="t g1" style="position:absolute;left:0;right:0;text-align:center">+ CRANBERRY</div><div class="t g2" style="position:absolute;left:0;right:0;text-align:center">de brinde nas compras acima de R$ 400</div><img src="cran.png" id="gi"><div class="stamp" id="gs">GRÁTIS</div></div>
+<div id="hook" class="L"></div>
+<div id="cap" class="L"></div>
+<div id="cta" class="L"><div class="ct">Toque em Comprar agora <span id="arr" style="display:inline-block">↓</span></div></div>
+<div id="end" class="L"><img src="logo-w.png"><div class="k">ESQUENTA 11/11</div><div class="n" id="en">ATÉ 12%</div><div class="o">OFF</div>
+ <div class="r" style="margin-top:34px">8% em 1 un. · <b>10%</b> a partir de 3 · <b>12%</b> a partir de 5</div>
+ <div class="r">Frete grátis acima de R$ 249</div><div class="r">Cranberry de brinde acima de R$ 400</div>
+ <div class="p">SÓ ATÉ 10/11</div></div>
+<script>
+function spring(t,w=14,z=0.55){if(t<=0)return 0;const wd=w*Math.sqrt(1-z*z);return 1-Math.exp(-z*w*t)*(Math.cos(wd*t)+(z*w/wd)*Math.sin(wd*t));}
+function ease(t){t=Math.min(1,Math.max(0,t));return 1-Math.pow(1-t,3);}
+const $=id=>document.getElementById(id);
+let C,chunks=[];
+function setup(cfg){C=cfg;
+ const h=$('hook');cfg.hook.lines.forEach(l=>{const d=document.createElement('div');d.className='hl';l.split(' ').forEach(w=>{const s=document.createElement('span');s.textContent=w;if(cfg.hook.em.includes(w))s.className='em';d.appendChild(s)});h.appendChild(d)});
+ // chunk words: up to 3 words / 15 chars, break after punctuation
+ let cur=[];cfg.words.forEach((w,i)=>{cur.push(w);const txt=cur.map(x=>x.w).join(' ');
+  if(/[.,!?]$/.test(w.w)||cur.length>=3||txt.length>=13){chunks.push(cur);cur=[]}});if(cur.length)chunks.push(cur);
+ chunks.forEach((c,i)=>{c.a=c[0].t;c.b=i+1<chunks.length?Math.min(chunks[i+1][0].t,c[c.length-1].t+0.9):c[c.length-1].t+0.9});}
+function seek(t){
+ // scenes (opaque cutaways)
+ let inScene=null;
+ for(const s of C.scenes){const on=t>=s.a&&t<s.b;const el=$(s.kind);if(on){inScene=s;break}}
+ ['prod','pct','gift'].forEach(k=>$(k).style.display=(inScene&&inScene.kind==k)?'block':'none');
+ if(inScene){const u=t-inScene.a,el=$(inScene.kind);
+  el.style.clipPath=`inset(${(1-ease(u/0.18))*50}% 0 ${(1-ease(u/0.18))*50}% 0)`;
+  if(inScene.kind=='prod'){$('pn').innerHTML=inScene.name;$('ps').textContent=inScene.sub;$('pi').src=inScene.img;
+   const s=spring(u-0.05,11,0.5);$('pi').style.transform=`translateX(-50%) translateY(${(1-s)*700}px) rotate(${(1-s)*-14+Math.sin(u*2)*1.5}deg) scale(${1+u*0.03})`;
+   $('pn').style.transform=`translateY(${(1-spring(u,14,0.6))*-80}px)`;$('pn').style.opacity=Math.min(1,u*6);$('ps').style.opacity=Math.min(1,Math.max(0,(u-0.2)*5));}
+  if(inScene.kind=='pct'){const hs=[0.62,0.8,1];[0,1,2].forEach(i=>{const s=spring(u-0.12-i*0.16,13,0.55);$('b'+i).style.height=(hs[i]*100*Math.max(0,s))+'%';$('b'+i).style.opacity=Math.min(1,s*3)});
+   $('pct').querySelector('.t2').style.transform=`scale(${0.7+0.3*spring(u,13,0.5)})`;}
+  if(inScene.kind=='gift'){const s=spring(u-0.04,11,0.45);$('gi').style.transform=`translateX(-50%) translateY(${(1-s)*-900}px) rotate(${(1-s)*20}deg)`;
+   const st=spring(u-0.35,16,0.4);$('gs').style.transform=`rotate(-12deg) scale(${Math.max(0,st)*1})`;}
+ }
+ // hook
+ const H=C.hook,hk=$('hook');const hon=t>=H.a&&t<=H.b+0.2&&!inScene;hk.style.display=hon?'flex':'none';
+ if(hon){let i=0;const o=t>H.b?ease((t-H.b)/0.2):0;hk.style.opacity=1-o;hk.querySelectorAll('span').forEach(sp=>{const s=spring(t-H.a-i*0.06,16,0.55);sp.style.transform=`translateY(${(1-s)*110}%)`;i++;});}
+ // captions
+ const cap=$('cap');const ch=chunks.find(c=>t>=c.a&&t<c.b);
+ if(ch&&!(t>=C.end)&&!inScene){cap.style.display='flex';cap.innerHTML='';const s0=spring(t-ch.a,18,0.6);
+  ch.forEach(w=>{const sp=document.createElement('span');sp.className='cw';sp.textContent=w.w.replace(/[.,]$/,'');
+   const nx=ch[ch.indexOf(w)+1];if(t>=w.t&&(!nx||t<nx.t)){sp.classList.add(C.hot.some(h=>w.w.toLowerCase().startsWith(h))?'hot':'on');const ws=spring(t-w.t,20,0.5);sp.style.transform=`scale(${0.9+0.1*ws})`;}
+   cap.appendChild(sp)});cap.style.transform=`translateY(${(1-s0)*30}px) scale(${0.92+0.08*s0})`;cap.style.opacity=Math.min(1,s0*2);}
+ else cap.style.display='none';
+ // cta
+ const K=C.cta,ct=$('cta');const con=t>=K.a&&t<K.b&&!inScene;ct.style.display=con?'flex':'none';
+ if(con){const s=spring(t-K.a,14,0.45);const p=1+0.035*Math.sin((t-K.a)*2*Math.PI*1.4);ct.firstElementChild.style.transform=`scale(${(0.4+0.6*s)*p})`;
+  $('arr').style.transform=`translateY(${Math.abs(Math.sin((t-K.a)*Math.PI*2.2))*-12}px)`;}
+ // end card
+ const en=$('end');en.style.display=t>=C.end?'flex':'none';
+ if(t>=C.end){const u=t-C.end;[...en.children].forEach((k,j)=>{const s=spring(u-0.05*j,14,0.6);k.style.transform=`translateY(${(1-s)*50}px)`;k.style.opacity=Math.min(1,s*1.6);});
+  en.style.clipPath=`circle(${ease(u/0.35)*120}% at 50% 60%)`;const e=ease((u-0.2)/0.6);$('en').textContent='ATÉ '+(e<0.34?8:e<0.67?10:12)+'%';}
+}
+</script></body></html>

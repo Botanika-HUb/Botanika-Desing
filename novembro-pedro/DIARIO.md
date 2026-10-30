@@ -99,3 +99,10 @@
   - efeitos sonoros sintetizados (sem áudio de terceiros).
   
   Os arquivos para refazer estão em `entregas/videos-esquenta/`.
+- **Vídeos do Esquenta, v3** (o Pedro achou que a v2 estava igual à v1):
+  - Legenda palavra por palavra, só a palavra falada destacada. Verde-limão no geral; vermelho em 12%, grátis, brinde e desconto. O texto vem da transcrição automática do Google Drive, corrigida: Botanika, cranberry.
+  - Zoom rápido nas falas fortes.
+  - Cenas de corte em tela cheia: o produto entrando com efeito de mola, a escada 8/10/12% com barras subindo e o cranberry caindo com o selo "GRÁTIS".
+  - Gancho maior no topo.
+
+  Bug corrigido: quando um quadro do overlay vinha sem transparência, o ffmpeg reiniciava o filtro e o vídeo virava fundo azul. A correção foi usar `-reinit_filter 0`.
