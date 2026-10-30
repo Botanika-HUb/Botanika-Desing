@@ -17,7 +17,7 @@
   {%- assign v = p.selected_or_first_available_variant -%}
   {%- if v.available and v.price > 0 -%}
     {%- if bk_n > 0 -%},{%- endif -%}
-    {"n":{{ p.title | split: ' — ' | first | json }},"v":{{ v.id }},"p":{{ v.price }},"i":{{ p.featured_image | image_url: width: 160 | json }}}
+    {%- render 'bk-esq-item', p: p, v: v -%}
     {%- assign bk_seen = bk_seen | append: p.handle | append: ',' -%}
     {%- assign bk_n = bk_n | plus: 1 -%}
   {%- endif -%}
@@ -28,7 +28,7 @@
   {%- assign tl = p.title | downcase -%}
   {%- unless bk_seen contains key or tl contains 'kit' or tl contains 'combo' or tl contains 'brinde' or tl contains 'cart' or v.price == 0 or v.available == false or bk_n >= 16 -%}
     {%- if bk_n > 0 -%},{%- endif -%}
-    {"n":{{ p.title | split: ' — ' | first | json }},"v":{{ v.id }},"p":{{ v.price }},"i":{{ p.featured_image | image_url: width: 160 | json }}}
+    {%- render 'bk-esq-item', p: p, v: v -%}
     {%- assign bk_n = bk_n | plus: 1 -%}
   {%- endunless -%}
 {%- endfor -%}
@@ -59,22 +59,45 @@
   .bkx__chip{flex:none;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#fff;font:inherit;font-size:14px;font-weight:700;padding:10px 14px;border-radius:99px;cursor:pointer}
   .bkx__chip.on{background:#fff;color:#0a1240;border-color:#fff}
   .bkx__grid{display:grid;grid-template-columns:1fr;gap:18px}
-  .bkx__list{display:grid;gap:8px}
-  .bkx__row{display:grid;grid-template-columns:56px 1fr auto;align-items:center;gap:12px;padding:8px 10px 8px 8px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);transition:background .3s,border-color .3s}
-  .bkx__row.has{background:rgba(255,138,26,.12);border-color:rgba(255,138,26,.45)}
-  .bkx__row img{width:56px;height:56px;object-fit:contain;border-radius:12px;background:#fff}
-  .bkx__nm{font-size:14.5px;font-weight:700;line-height:1.2}
-  .bkx__pr{font-size:13px;color:#aab3e6;margin-top:3px}
-  .bkx__st{display:flex;align-items:center;gap:4px}
-  .bkx__st button{width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;font-size:20px;line-height:1;cursor:pointer}
-  .bkx__st button[data-a="+"]{background:#fff;color:#0a1240}
-  .bkx__st b{min-width:22px;text-align:center;font-size:16px;font-variant-numeric:tabular-nums}
+  .bkx__list{display:grid;gap:0;border-radius:22px;overflow:hidden;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03)}
+  .bkx__row{position:relative;display:grid;grid-template-columns:104px 1fr;gap:14px;padding:18px 16px 18px 14px;border-top:1px solid rgba(255,255,255,.08);transition:background .35s}
+  .bkx__row:first-child{border-top:0}
+  .bkx__row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:transparent;transition:background .35s}
+  .bkx__row.has{background:linear-gradient(90deg,rgba(227,19,43,.16),rgba(227,19,43,.04))}
+  .bkx__row.has::before{background:linear-gradient(180deg,#ff9a1f,#e3132b)}
+  .bkx__img{position:relative;display:block;width:104px;height:104px;border-radius:18px;background:#fff;align-self:start}
+  .bkx__img img{width:100%;height:100%;object-fit:contain;border-radius:18px}
+  .bkx__top{position:absolute;left:-6px;top:-8px;padding:3px 8px;border-radius:99px;background:#e3132b;color:#fff;font-size:9.5px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;box-shadow:0 4px 10px rgba(227,19,43,.4)}
+  .bkx__eb{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#ffb02e;margin-bottom:3px}
+  .bkx__nm{display:inline-block;font-size:17px;font-weight:800;line-height:1.2;color:#fff!important;text-decoration:none!important}
+  .bkx__nm span{color:#ff6a1a;margin-left:4px}
+  .bkx__rt{font-size:12px;color:#aab3e6;margin-top:3px}
+  .bkx__rt b{color:#ffcf4a;letter-spacing:1px}
+  .bkx__pr{display:flex;align-items:center;gap:6px;margin-top:8px;font-size:13px;color:#8b93c4}
+  .bkx__pr s{opacity:.8}
+  .bkx__off{padding:2px 7px;border-radius:99px;background:#e3132b;color:#fff;font-size:11.5px;font-weight:900;transition:transform .3s}
+  .bkx__off.pop{animation:bkpop .5s ease}
+  @keyframes bkpop{40%{transform:scale(1.35)}}
+  .bkx__in3{font-size:13px;color:#ff8a5a;font-weight:700;margin-top:2px}
+  .bkx__in3 b{font-size:22px;color:#fff;font-weight:900;letter-spacing:-.02em;margin-left:2px}
+  .bkx__cash{font-size:12.5px;color:#aab3e6}
+  .bkx__cash b{color:#fff}
+  .bkx__ft{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-top:12px}
+  .bkx__st{display:inline-flex;align-items:center;gap:2px;padding:4px;border-radius:99px;border:1.5px solid rgba(255,255,255,.18);background:rgba(0,0,0,.25);transition:border-color .3s,box-shadow .3s}
+  .bkx__row.has .bkx__st{border-color:#ff3b2a;box-shadow:0 0 18px rgba(255,59,42,.35)}
+  .bkx__st button{width:38px;height:38px;border-radius:50%;border:0;background:transparent;color:#ff5a3a;font-size:22px;font-weight:700;line-height:1;cursor:pointer}
+  .bkx__st b{min-width:26px;text-align:center;font-size:17px;font-weight:900;font-variant-numeric:tabular-nums}
+  .bkx__lk{font-size:13px;font-weight:700;color:#fff!important;text-decoration:none!important;padding:9px 14px;border-radius:99px;border:1px solid rgba(255,255,255,.18)}
   .bkx__more{display:block;margin:6px auto 0;background:none;border:0;color:#ffb02e;font:inherit;font-weight:800;font-size:14px;cursor:pointer}
   .bkx__pan{position:sticky;bottom:0;z-index:20;margin:0 -16px -48px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(7,10,51,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,.1);display:grid;grid-template-columns:auto 1fr;gap:6px 12px;align-items:center}
-  .bkx__pan .bkorb{--s:46px;grid-row:span 2}
-  .bkx__st1{font-size:13px;color:#c9d0f3;line-height:1.3}
+  .bkx__pan .bkorb{--s:46px;grid-row:span 3}
+  .bkx__st1{font-size:13px;color:#c9d0f3;line-height:1.3;text-align:left}
   .bkx__st1 b{color:#fff;font-size:15px}
-  .bkx__tot{font-size:13px;color:#c9d0f3}
+  .bkx__up{grid-column:2;height:0;overflow:hidden;font-size:13px;font-weight:900;color:#ffb02e;transition:height .3s}
+  .bkx__up.on{height:18px}
+  .bkorb.flare{animation:bkflare .7s ease}
+  @keyframes bkflare{40%{transform:scale(1.25);filter:brightness(1.5)}}
+  .bkx__tot{grid-column:2;font-size:13px;color:#c9d0f3;text-align:left}
   .bkx__tot s{opacity:.6;margin-right:6px}
   .bkx__tot strong{color:#fff;font-size:18px;font-weight:900}
   .bkx__seg{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
@@ -86,7 +109,8 @@
     .bkx{padding:80px 24px 80px}
     .bkx__chips{justify-content:center;margin:0;padding-left:2px}
     .bkx__grid{grid-template-columns:1fr 380px;gap:28px;align-items:start}
-    .bkx__list{grid-template-columns:1fr 1fr}
+    .bkx__row{grid-template-columns:120px 1fr;padding:20px 22px}
+    .bkx__img{width:120px;height:120px}
     .bkx__pan{position:sticky;top:110px;bottom:auto;margin:0;border-radius:24px;padding:24px;border:1px solid rgba(255,255,255,.12);grid-template-columns:auto 1fr;gap:10px 16px}
     .bkx__pan .bkorb{--s:72px}
   }
@@ -109,7 +133,7 @@
       <div><div class="bkx__list" data-list></div><button type="button" class="bkx__more" data-more hidden>Ver todos os produtos ↓</button></div>
       <div class="bkx__pan">
         <span class="bkorb" data-orb data-heat="0"></span>
-        <div class="bkx__st1" data-s1></div>
+        <div class="bkx__st1" data-s1></div><div class="bkx__up" data-up></div>
         <div class="bkx__tot" data-tot></div>
         <div class="bkx__seg"><i></i><i></i><i></i><i></i><i></i></div>
         <button type="button" class="bkx__go" data-go disabled>Escolha seus produtos</button>
@@ -145,13 +169,24 @@
     var frag = tpl.content.cloneNode(true), x = frag.querySelector('.bkx'), z = frag.querySelector('.bkz');
     hero.parentNode.insertBefore(x, hero.nextSibling);
     var main = document.getElementById('MainContent'); main.appendChild(z);
-    var q = data.map(function(){ return 0; }), list = x.querySelector('[data-list]'), SHOW = 8, open = false;
+    var q = data.map(function(){ return 0; }), list = x.querySelector('[data-list]'), SHOW = 6, KEY = 'bkM5';
+    /* a montagem fica guardada: o cliente pode abrir a página do produto e voltar sem perder nada */
+    try { var saved = JSON.parse(localStorage.getItem(KEY) || '{}'); data.forEach(function(p, i){ q[i] = saved[p.v] || 0; }); } catch (e) {}
+    function stars(r){ r = parseFloat(r) || 0; var o = ''; for (var k = 1; k <= 5; k++) o += k <= Math.round(r) ? '★' : '☆'; return o; }
     list.innerHTML = data.map(function(p, i){
-      return '<div class="bkx__row" data-i="' + i + '"' + (i >= SHOW ? ' hidden' : '') + '><img src="' + p.i + '" alt="" loading="lazy" width="56" height="56"><div><div class="bkx__nm">' + p.n + '</div><div class="bkx__pr">' + money(p.p) + '</div></div>'
-        + '<div class="bkx__st"><button type="button" data-a="-" aria-label="Tirar um">−</button><b>0</b><button type="button" data-a="+" aria-label="Pôr mais um">+</button></div></div>';
+      var eb = String(p.e || '').replace(/^[^A-Za-zÀ-ú]+/, '');
+      return '<div class="bkx__row" data-i="' + i + '"' + (i >= SHOW && !q[i] ? ' hidden' : '') + '>'
+        + '<a class="bkx__img" href="' + p.u + '"><img src="' + p.i + '" alt="' + p.n + '" loading="lazy" width="104" height="104">' + (i === 0 ? '<span class="bkx__top">Mais escolhido</span>' : '') + '</a>'
+        + '<div>' + (eb ? '<div class="bkx__eb">' + eb + '</div>' : '')
+        + '<a class="bkx__nm" href="' + p.u + '">' + p.n + '<span>›</span></a>'
+        + (+p.c > 0 ? '<div class="bkx__rt"><b>' + stars(p.r) + '</b> ' + String(Math.round(p.r * 10) / 10).replace('.', ',') + ' (' + p.c + ')</div>' : '')
+        + '<div class="bkx__pr"><s>' + money(p.p) + '</s><span class="bkx__off" data-off>-8%</span></div>'
+        + '<div class="bkx__in3">3x <b data-in3></b></div><div class="bkx__cash">sem juros · ou <b data-cash></b> à vista</div>'
+        + '<div class="bkx__ft"><div class="bkx__st"><button type="button" data-a="-" aria-label="Tirar um">−</button><b data-q>0</b><button type="button" data-a="+" aria-label="Pôr mais um">+</button></div>'
+        + '<a class="bkx__lk" href="' + p.u + '">Conhecer o produto →</a></div></div></div>';
     }).join('');
     var more = x.querySelector('[data-more]');
-    if (data.length > SHOW) { more.hidden = false; more.onclick = function(){ open = true; list.querySelectorAll('[hidden]').forEach(function(r){ r.hidden = false; }); more.hidden = true; }; }
+    if (list.querySelector('[hidden]')) { more.hidden = false; more.onclick = function(){ list.querySelectorAll('[hidden]').forEach(function(r){ r.hidden = false; }); more.hidden = true; }; }
     list.addEventListener('click', function(e){
       var b = e.target.closest('button[data-a]'); if (!b) return;
       var i = +b.closest('[data-i]').dataset.i; q[i] = Math.max(0, Math.min(20, q[i] + (b.dataset.a === '+' ? 1 : -1)));
@@ -163,17 +198,31 @@
       if (!hits.length) return;
       var c = document.createElement('button'); c.type = 'button'; c.className = 'bkx__chip'; c.textContent = pr[0];
       c.onclick = function(){
-        q = q.map(function(){ return 0; }); hits.forEach(function(h){ q[h[0]] += h[1]; if (h[0] >= SHOW) list.querySelector('[data-i="' + h[0] + '"]').hidden = false; });
+        q = q.map(function(){ return 0; }); hits.forEach(function(h){ q[h[0]] += h[1]; list.querySelector('[data-i="' + h[0] + '"]').hidden = false; });
         chips.querySelectorAll('.on').forEach(function(o){ o.classList.remove('on'); }); c.classList.add('on'); paint();
       };
       chips.appendChild(c);
     });
-    var go = x.querySelector('[data-go]');
+    var go = x.querySelector('[data-go]'), orb = x.querySelector('[data-orb]'), up = x.querySelector('[data-up]'), lastP = -1, upT = null;
     function paint(){
-      var n = 0, sub = 0;
-      q.forEach(function(k, i){ n += k; sub += k * data[i].p; var r = list.querySelector('[data-i="' + i + '"]'); r.classList.toggle('has', k > 0); r.querySelector('b').textContent = k; });
-      var p = pct(n), off = Math.floor(sub * p / 100), h = heat(n);
-      x.querySelector('[data-orb]').setAttribute('data-heat', h);
+      var n = 0, sub = 0, keep = {};
+      q.forEach(function(k, i){ n += k; sub += k * data[i].p; if (k) keep[data[i].v] = k; });
+      try { localStorage.setItem(KEY, JSON.stringify(keep)); } catch (e) {}
+      var p = pct(n), off = Math.floor(sub * p / 100), h = heat(n), shown = pct(Math.max(n, 1));
+      /* o preço de cada produto acompanha a temperatura da montagem */
+      q.forEach(function(k, i){
+        var r = list.querySelector('[data-i="' + i + '"]'), d = data[i], each = d.p - Math.floor(d.p * shown / 100), o = r.querySelector('[data-off]');
+        r.classList.toggle('has', k > 0); r.querySelector('[data-q]').textContent = k;
+        r.querySelector('[data-in3]').textContent = money(Math.floor(each / 3)); r.querySelector('[data-cash]').textContent = money(each);
+        if (o.textContent !== '-' + shown + '%') { o.textContent = '-' + shown + '%'; if (lastP >= 0) { o.classList.remove('pop'); void o.offsetWidth; o.classList.add('pop'); } }
+      });
+      orb.setAttribute('data-heat', h);
+      if (lastP >= 0 && p > lastP && p > 8) {
+        orb.classList.remove('flare'); void orb.offsetWidth; orb.classList.add('flare');
+        up.textContent = '🔥 Esquentou! Agora é ' + p + '% em tudo'; up.classList.add('on'); clearTimeout(upT); upT = setTimeout(function(){ up.classList.remove('on'); }, 2200);
+        try { navigator.vibrate && navigator.vibrate(25); } catch (e) {}
+      }
+      lastP = p;
       x.querySelectorAll('.bkx__seg i').forEach(function(s, k){ s.classList.toggle('on', k < n); });
       x.querySelector('[data-s1]').innerHTML = !n ? 'Sua brasa está apagada. <b>Comece pelo +</b>'
         : '<b>' + n + (n > 1 ? ' itens · ' : ' item · ') + p + '% OFF</b>' + (n < 5 ? '<br>+' + (n < 3 ? 3 - n : 5 - n) + ' e vai pra ' + (n < 3 ? 10 : 12) + '%' : '<br>temperatura máxima 🔥');
@@ -184,7 +233,7 @@
       var items = []; q.forEach(function(k, i){ if (k) items.push({ id: data[i].v, quantity: k }); });
       if (!items.length) return; go.disabled = true; go.textContent = 'Esquentando…';
       fetch('/cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ items: items }) })
-        .then(function(r){ if (!r.ok) throw 0; location.href = '/cart'; })
+        .then(function(r){ if (!r.ok) throw 0; try { localStorage.removeItem(KEY); } catch (e) {} location.href = '/cart'; })
         .catch(function(){ go.disabled = false; go.textContent = 'Não deu certo, tente de novo'; });
     };
     paint();

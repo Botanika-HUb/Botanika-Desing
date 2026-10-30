@@ -1,0 +1,32 @@
+{%- comment -%}
+  Um produto do "Monte seus 5" (bk-esq-home) em JSON: nome, variante, preço, foto, link,
+  categoria (mesma do balãozinho do card) e nota das avaliações.
+{%- endcomment -%}
+{%- liquid
+  assign eb = p.metafields.custom.card_badge
+  if eb == blank
+    case p.handle
+      when 'tri-mg-complex'
+        assign eb = 'Sono e relaxamento'
+      when 'sleep-inositol'
+        assign eb = 'Noites tranquilas'
+      when 'tetravit-d'
+        assign eb = 'Imunidade e ossos'
+      when 'super-omega-3-coq10'
+        assign eb = 'Saúde do coração'
+      when 'super-vitamina-c'
+        assign eb = 'Reforça a imunidade'
+      when 'creatina-l-carnitina'
+        assign eb = 'Energia e força'
+      when 'hair-botanika'
+        assign eb = 'Cabelo, unhas e pele'
+      when 'whey-balance-chocolate'
+        assign eb = 'Proteína e colágeno'
+      else
+        assign eb = p.type
+    endcase
+  endif
+  assign rt = p.metafields.reviews.rating.value.rating | default: 0
+  assign rc = p.metafields.reviews.rating_count | default: 0
+-%}
+{"n":{{ p.title | split: ' — ' | first | json }},"v":{{ v.id }},"p":{{ v.price }},"i":{{ p.featured_image | image_url: width: 260 | json }},"u":{{ p.url | json }},"e":{{ eb | json }},"r":{{ rt | json }},"c":{{ rc | json }}}
