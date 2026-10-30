@@ -3,11 +3,13 @@
 > 🔒 **REGRA FIXA (Pedro, 29/10):** este chat cuida **somente das tarefas da BOTANIKA**. Nunca fazer nada da **VermeFree** nem da **Revita** (nem da Shoty). Se o Pedro citar VermeFree ou Revita, **parar na hora e não executar nada**: só avisar e esperar.
 
 
-> Atualizado em: **29/10/2026, noite**
+> Atualizado em: **30/10/2026, manhã**
 > Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito · `[!]` bloqueado
 > ID = id da tarefa no Alliance OS (`https://alliance-os-sooty.vercel.app/?task=<ID>#tasks`)
 
-## 📍 Onde estamos (29/10, noite)
+## 📍 Onde estamos (30/10, manhã)
+
+> Alliance OS (30/10, 9h): as 7 tarefas da Botanika que vencem hoje ainda estão "a fazer" lá. A do grupo VIP da Sarah também (6 itens da lista em aberto), por isso a LP não pode ser concluída ainda.
 
 ### ✅ Feito (falta só você marcar no Alliance OS)
 | # | Tarefa | Onde está | O que falta |

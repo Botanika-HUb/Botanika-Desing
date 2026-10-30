@@ -83,3 +83,8 @@
 - **15 estáticos universais restantes (lote 2):** copies escritas em `entregas/universais-estaticos-lote2-copies.md`, na identidade azul + verde-limão (decisão do Pedro). Aguardando aprovação para gerar.
 - **Estáticos do lote 2:** o Pedro reprovou o visual azul e verde-limão gerado no Higgsfield e pediu o visual da LP de captação. Refiz a U16 em HTML no visual da LP (branco, azul, vermelho, arco), com os recortes dos frascos e o texto exato. A letra miúda do pote do Sleep é igual à da foto oficial da Shopify.
 - **Lote 2 dos estáticos universais (U16–U30) pronto** no estilo pôster da referência do Pedro. Alterna fundo azul e fundo claro. Textos revisados em resolução cheia. U19, U25 e U26 foram refeitas. Arquivos em `entregas/universais-lote2/`, enviados ao Pedro para aprovar e subir no Drive.
+
+- **Fechamento de 29/10:** LP no ar com link e rastreio certos, tema do Esquenta pronto (não publicado), descontos e cupons antigos agendados para sair em 01/11, lote 2 (U16–U30) aprovado. Ficou pendente: subir os arquivos no Drive (o conector não aceita os PNGs grandes).
+
+## Sex 30/10
+- **Rotina das 9h:** Alliance OS consultado (só leitura). Vencem hoje 12h: LP de captação, 10 estáticos de captação, 15 universais do lote 1 (todos prontos, falta Drive e marcar). Vencem hoje 18h: tema, oferta e brindes do Esquenta (tema pronto; oferta entra em 01/11 00h05) e ferramenta de parceiros (travada no Álvaro). Grupo VIP da Sarah segue "a fazer" no Alliance. Agenda: Daily/apresentação do planejamento 9h20, revisão com a Vanessa 14h, gravação dos vídeos 18h.
