@@ -1,0 +1,125 @@
+{%- comment -%}
+  Esquenta 11/11 e Esquenta Botanika Week: o resto do site acompanha o Esquentômetro.
+    - tarja do topo: uma das mensagens vira "seu carrinho está em X% · +N e vai pra Y%"
+    - carrinho (gaveta e página): faixa de calor 8% / 10% / 12% com quanto falta pra próxima
+    - cards de produto: etiqueta "🔥 até 12%" no canto da foto
+    - páginas de coleção: faixa fina com a escada, abaixo do título
+  Só aparece nas janelas da campanha ou na prévia com ?esquenta=1. Usado pelo bk-esquenta-1111.
+{%- endcomment -%}
+<style>
+  .bkchip{position:absolute;top:10px;right:10px;z-index:3;display:inline-flex;align-items:center;gap:3px;padding:4px 8px;border-radius:999px;background:linear-gradient(100deg,#ff6a1a,#e3132b);color:#fff;font-size:11px;font-weight:800;line-height:1.1;box-shadow:0 2px 8px rgba(227,19,43,.35);pointer-events:none}
+  .bkesc{margin:0 0 14px;padding:12px 14px 12px;border-radius:16px;background:linear-gradient(180deg,#eaf0ff,#fff);border:1px solid #e1e6f7;color:#0a1240;transition:background .4s,color .4s}
+  .bkesc[data-heat="2"]{background:linear-gradient(180deg,#fff0e2,#fff);border-color:#ffd9bf}
+  .bkesc[data-heat="3"]{background:radial-gradient(120% 120% at 50% 0%,#ff6a1a 0%,#d10f24 60%,#7a0618 100%);border-color:transparent;color:#fff}
+  .bkesc__t{font-size:13.5px;line-height:1.35;margin:0 0 9px}
+  .bkesc__t b{font-weight:900}
+  .bkesc__bar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px}
+  .bkesc__s{height:8px;border-radius:99px;background:rgba(10,18,64,.1);transition:background .4s}
+  .bkesc[data-heat="3"] .bkesc__s{background:rgba(255,255,255,.28)}
+  .bkesc__s.on:nth-child(1){background:#3b5ef0}.bkesc__s.on:nth-child(2){background:#ff9a1f}.bkesc__s.on:nth-child(3){background:#fff}
+  .bkesc__l{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin-top:5px;font-size:11px;font-weight:800;opacity:.75}
+  .minicart__wrapper .bkesc{margin:12px 20px 0}
+  .bkcolstrip{max-width:1180px;margin:0 auto 18px;padding:0 16px}
+  .bkcolstrip__in{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px 14px;padding:11px 16px;border-radius:14px;color:#fff;font-size:13.5px;line-height:1.3;background:linear-gradient(135deg,#0a1240 0%,#0f1d63 60%,#3d0c22 100%)}
+  .bkcolstrip__in b{font-weight:900}
+  .bkcolstrip__lv{display:inline-flex;gap:6px}
+  .bkcolstrip__lv span{padding:3px 9px;border-radius:99px;font-size:12px;font-weight:800}
+  .bkcolstrip__lv span:nth-child(1){background:#3b5ef0}.bkcolstrip__lv span:nth-child(2){background:#ff8a1a}.bkcolstrip__lv span:nth-child(3){background:#e3132b}
+  @media (max-width:749px){.bkcolstrip__in{font-size:12.5px;padding:10px 12px}.bkchip{top:36px;left:8px;right:auto;font-size:10.5px;padding:3px 7px}}
+</style>
+<script>
+(function(){
+  if (window.__bkEsqX) return; window.__bkEsqX = true;
+  var W = [[1793588400000, 1794351600000], [1794452400000, 1795229999000]]; /* Esquenta 11/11 · Esquenta Botanika Week */
+  var n = Date.now(), on = W.some(function(w){ return n >= w[0] && n < w[1]; });
+  try { if (/[?&]esquenta=1\b/.test(location.search)) sessionStorage.setItem('bkEsqPreview', '1'); if (sessionStorage.getItem('bkEsqPreview') === '1') on = true; } catch (e) {}
+  if (!on) return;
+  var units = null; /* null até ler o carrinho */
+  function pct(q){ return q >= 5 ? 12 : q >= 3 ? 10 : 8; }
+  function heat(q){ return q >= 5 ? 3 : q >= 3 ? 2 : 1; }
+  function next(q){ return q >= 5 ? null : q >= 3 ? { need: 5 - q, p: 12 } : { need: 3 - q, p: 10 }; }
+  function plural(k){ return k + (k > 1 ? ' produtos' : ' produto'); }
+
+  /* tarja do topo: a mensagem da ANVISA (ou a última que não é de frete) vira o termômetro do carrinho */
+  var tbx = null;
+  function topbar(){
+    if (!tbx) {
+      var root = document.querySelector('[data-ttb]'); if (!root) return;
+      var msgs = [].slice.call(root.querySelectorAll('[data-ttb-msg]')).filter(function(m){ return !m.querySelector('[data-ttb-fs],[data-ttb-copy]'); });
+      var m = msgs.filter(function(x){ return /ANVISA/i.test(x.textContent); })[0] || msgs[msgs.length - 1]; if (!m) return;
+      m.innerHTML = '<span class="ttb__ic" aria-hidden="true">🔥</span><span class="ttb__tx" data-bk-tb></span>';
+      tbx = m.querySelector('[data-bk-tb]');
+      root.style.setProperty('--ttb-hl', '#ffb02e');
+    }
+    if (units === null) return;
+    var x = next(units);
+    tbx.innerHTML = !units ? '<b>Esquenta:</b> até 12% OFF levando mais'
+      : !x ? '<b>12% OFF</b> no carrinho · temperatura máxima'
+      : 'Seu carrinho: <b>' + pct(units) + '% OFF</b> · +' + x.need + ' e vai pra ' + x.p + '%';
+  }
+
+  /* carrinho: faixa de calor */
+  function cartHTML(){
+    var x = next(units), h = heat(units);
+    var t = !units ? 'Esquenta 11/11: leve mais e o desconto <b>esquenta</b> 🔥'
+      : !x ? '🔥 <b>Temperatura máxima: 12% OFF</b> no seu carrinho'
+      : 'Seu carrinho está em <b>' + pct(units) + '% OFF</b>. Mais <b>' + plural(x.need) + '</b> e vai pra <b>' + x.p + '%</b>';
+    return '<p class="bkesc__t">' + t + '</p><div class="bkesc__bar"><i class="bkesc__s' + (units ? ' on' : '') + '"></i><i class="bkesc__s' + (h >= 2 ? ' on' : '') + '"></i><i class="bkesc__s' + (h >= 3 ? ' on' : '') + '"></i></div>'
+      + '<div class="bkesc__l"><span>1 un. · 8%</span><span>3 un. · 10%</span><span>5+ un. · 12%</span></div>';
+  }
+  function cart(){
+    if (units === null) return;
+    var spots = [];
+    var drawer = document.querySelector('.minicart__wrapper free-ship-progress-bar');
+    if (drawer) spots.push(drawer);
+    var page = document.querySelector('cart-items .bgc') || document.querySelector('cart-items');
+    if (page && document.body.classList.contains('template-cart')) spots.push(page);
+    spots.forEach(function(s){
+      var box = s.previousElementSibling && s.previousElementSibling.classList.contains('bkesc') ? s.previousElementSibling : null;
+      if (s.tagName === 'CART-ITEMS') box = s.querySelector(':scope > .bkesc');
+      if (!box) { box = document.createElement('div'); box.className = 'bkesc'; if (s.tagName === 'CART-ITEMS') s.insertBefore(box, s.firstChild); else s.parentNode.insertBefore(box, s); }
+      var html = cartHTML(); if (box.__h === html) return; box.__h = html;
+      box.setAttribute('data-heat', units ? heat(units) : 1);
+      box.innerHTML = html;
+    });
+  }
+
+  /* cards de produto */
+  function chips(){
+    document.querySelectorAll('.product-item__inner:not([data-bkchip])').forEach(function(c){
+      c.setAttribute('data-bkchip', '1');
+      var s = document.createElement('span'); s.className = 'bkchip'; s.textContent = '🔥 até 12%'; c.appendChild(s);
+    });
+  }
+
+  /* coleções */
+  function strip(){
+    if (!document.body.classList.contains('collection') || document.querySelector('.bkcolstrip')) return;
+    var head = document.querySelector('#MainContent > .page-title') || document.querySelector('#MainContent > *'); if (!head) return;
+    var d = document.createElement('div'); d.className = 'bkcolstrip';
+    d.innerHTML = '<div class="bkcolstrip__in"><span>🔥 <b>Esquenta 11/11:</b> quanto mais leva, mais esquenta</span><span class="bkcolstrip__lv"><span>1 un. 8%</span><span>3 un. 10%</span><span>5+ un. 12%</span></span></div>';
+    head.parentNode.insertBefore(d, head.nextSibling);
+  }
+
+  function paint(){ topbar(); cart(); }
+  function load(){
+    return fetch('/cart.js', { headers: { Accept: 'application/json' } }).then(function(r){ return r.json(); }).then(function(c){
+      units = (c.items || []).reduce(function(a, it){ return a + (it.properties && it.properties._brinde ? 0 : it.quantity); }, 0);
+      paint();
+    }).catch(function(){});
+  }
+  var of = window.fetch, t1 = null;
+  window.fetch = function(u){
+    var p = of.apply(this, arguments);
+    try { var url = typeof u === 'string' ? u : (u && u.url) || ''; if (/\/cart\/(add|change|update|clear)/.test(url)) p.then(function(){ clearTimeout(t1); t1 = setTimeout(load, 300); }).catch(function(){}); } catch (e) {}
+    return p;
+  };
+  function boot(){
+    strip(); chips(); load();
+    var t2 = null;
+    new MutationObserver(function(){ clearTimeout(t2); t2 = setTimeout(function(){ chips(); cart(); }, 250); }).observe(document.body, { childList: true, subtree: true });
+    document.addEventListener('visibilitychange', function(){ if (!document.hidden) load(); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+})();
+</script>

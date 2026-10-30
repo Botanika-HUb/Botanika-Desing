@@ -125,3 +125,5 @@
 - Home: bloco "Quanto mais leva, mais esquenta" com o Esquentômetro (arrasta 1→5+, desconto 8/10/12%, cor esquenta).
 - Página de produto: troca os cartões de potes pelo Esquentômetro, abaixo do preço; nada acima da foto. Testado: quantidade do formulário acompanha e o botão adiciona ao carrinho.
 - Prévia: `?preview_theme_id=168113045736&esquenta=1`. Aguardando aprovação do Pedro.
+- Resto do tema (novo `bk-esq-extra`): tarja do topo com o termômetro do carrinho, faixa de calor no carrinho (gaveta e página), etiqueta "🔥 até 12%" nos cards e faixa da escada nas coleções. Frete do tema já vira R$ 249 sozinho em 02/11 (botanika-freeship-weekend).
+- Conferido na Shopify: a escada 8/10/12%, o frete do Esquenta e o cranberry de brinde ainda NÃO existem como desconto.

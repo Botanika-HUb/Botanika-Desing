@@ -35,6 +35,7 @@
 </template>
 {%- endif -%}
 {%- if template.name == 'product' -%}{%- render 'bk-esq-meter' -%}{%- render 'bk-esquenta-pdp' -%}{%- endif -%}
+{%- render 'bk-esq-extra' -%}
 {%- liquid
   assign esq_want = 1
   if customer and customer.orders_count > 0
