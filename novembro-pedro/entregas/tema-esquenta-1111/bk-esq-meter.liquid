@@ -49,6 +49,25 @@
   .bkm__cta{display:block;width:100%;margin-top:16px;border:0;cursor:pointer;text-align:center;font:inherit;font-weight:900;font-size:16.5px;padding:16px;border-radius:99px;background:#0a1240;color:#fff!important;text-decoration:none!important;transition:background .3s,color .3s}
   .bkm[data-heat="3"] .bkm__cta{background:#fff;color:#c10f22!important}
   .bkm__nt{margin:10px 0 0;font-size:12px;opacity:.7;text-align:center}
+  .bkm--pdp .bkm__rng,.bkm--pdp .bkm__ticks{display:none}
+  .bkm__hint{font-size:13px;font-weight:700;opacity:.8;margin:14px 0 8px}
+  .bkm__pots{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:0 0 4px}
+  .bkm__pot{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 2px 7px;border-radius:14px;border:1.5px dashed rgba(10,18,64,.22);background:rgba(255,255,255,.5);color:inherit;font:inherit;cursor:pointer;transition:background .25s,border-color .25s,transform .15s}
+  .bkm__pot:active{transform:scale(.94)}
+  .bkm__pot img{width:100%;max-width:44px;height:44px;object-fit:contain;filter:grayscale(1);opacity:.35;transition:filter .25s,opacity .25s,transform .25s}
+  .bkm__pot b{font-size:12px;font-weight:900;line-height:1}
+  .bkm__pot small{font-size:10.5px;font-weight:800;line-height:1;opacity:.55}
+  .bkm__pot.on{border-style:solid;border-color:var(--bkm-acc);background:#fff}
+  .bkm__pot.on img{filter:none;opacity:1}
+  .bkm__pot.cur{box-shadow:0 0 0 3px var(--bkm-acc),0 10px 22px -10px rgba(0,0,0,.45)}
+  .bkm__pot.cur img{transform:scale(1.08)}
+  .bkm__pot.st small{opacity:1;color:#e3132b}
+  .bkm[data-heat="3"] .bkm__pot{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.1)}
+  .bkm[data-heat="3"] .bkm__pot.on{background:#fff;color:#c10f22;border-color:#fff}
+  .bkm[data-heat="3"] .bkm__pot.cur{box-shadow:0 0 0 3px #ffd27a,0 10px 24px -8px rgba(0,0,0,.5)}
+  .bkm__pot.on b,.bkm__pot.on small{color:#0a1240}
+  .bkm[data-heat="3"] .bkm__pot.on b,.bkm[data-heat="3"] .bkm__pot.on small{color:#c10f22}
+  html.bk-esq-pdpm .product-detail__buy-buttons .product-form__buttons{display:none!important}
   @media (prefers-reduced-motion:reduce){.bkm,.bkm__big,.bkm__knob,.bkm__u{transition:none}}
 </style>
 <script>
@@ -63,11 +82,17 @@
       if (this.__ok) return; this.__ok = true;
       var pdp = this.dataset.mode === 'pdp', self = this;
       this.unit = parseInt(this.dataset.unit, 10) || 9940; this.inst = parseInt(this.dataset.installments, 10) || 3; this.name = this.dataset.name || '';
-      this.innerHTML = '<div class="bkm" data-heat="1"><div class="bkm__fl" aria-hidden="true"><i></i><i></i><i></i></div>'
+      var img = this.dataset.img || '';
+      if (pdp && !img) { try { var pj = JSON.parse(this.section().querySelector('.productJson').textContent); img = pj.featured_image || ''; } catch (e) {} }
+      if (img && img.indexOf('width=') < 0) img += (img.indexOf('?') < 0 ? '?' : '&') + 'width=120';
+      var pots = '';
+      if (pdp) { for (var k = 1; k <= 5; k++) pots += '<button type="button" class="bkm__pot" role="radio" data-n="' + k + '" aria-label="' + k + (k > 1 ? ' potes' : ' pote') + '">' + (img ? '<img src="' + img + '" alt="">' : '') + '<b>' + k + (k > 1 ? ' potes' : ' pote') + '</b><small>' + pct(k) + '%</small></button>'; }
+      this.innerHTML = '<div class="bkm' + (pdp ? ' bkm--pdp' : '') + '" data-heat="1"><div class="bkm__fl" aria-hidden="true"><i></i><i></i><i></i></div>'
         + '<div class="bkm__k" data-k></div><div class="bkm__q">' + (pdp ? 'Quantos potes você vai levar?' : 'Quantos produtos você vai levar?') + '</div>'
         + '<div class="bkm__big" aria-live="polite"><span data-p>8</span><small>% OFF</small></div><div class="bkm__lab" data-lab></div>'
         + '<div class="bkm__rng"><input type="range" min="1" max="5" step="1" value="' + (pdp ? 3 : 1) + '" aria-label="Quantidade"><span class="bkm__knob" data-knob></span></div>'
         + '<div class="bkm__ticks"><span>1</span><span>2</span><span>3</span><span>4</span><span>5+</span></div>'
+        + (pdp ? '<div class="bkm__hint">👇 Toque em quantos potes você quer levar</div><div class="bkm__pots" role="radiogroup" aria-label="Quantidade de potes">' + pots + '</div>' : '')
         + '<div class="bkm__sv" data-sv></div>'
         + '<div class="bkm__un"><div class="bkm__u" data-u1><i>🚚</i><span data-u1t></span></div><div class="bkm__u" data-u2><img src="' + CRAN + '" alt=""><span data-u2t></span></div></div>'
         + (pdp ? '<button type="button" class="bkm__cta" data-cta></button>' : '<a class="bkm__cta" href="/collections/mais-vendidos" data-cta>Esquentar meu carrinho →</a>')
@@ -75,6 +100,8 @@
       this.box = this.querySelector('.bkm'); this.r = this.querySelector('input');
       this.r.addEventListener('input', function(){ self.render(); });
       this.querySelectorAll('.bkm__ticks span').forEach(function(s, i){ s.addEventListener('click', function(){ self.r.value = i + 1; self.render(); }); });
+      this.querySelectorAll('.bkm__pot').forEach(function(b){ b.addEventListener('click', function(){ self.r.value = b.dataset.n; self.render(); }); });
+      if (pdp) document.documentElement.classList.add('bk-esq-pdpm');
       if (pdp) {
         this.querySelector('[data-cta]').addEventListener('click', function(){ self.addToCart(); });
         this.watchVariant();
@@ -86,6 +113,7 @@
       var total = this.unit * q, save = Math.floor(total * p / 100), price = total - save;
       this.box.setAttribute('data-heat', h);
       this.r.style.setProperty('--p', ((q - 1) / 4 * 100) + '%');
+      this.querySelectorAll('.bkm__pot').forEach(function(b){ var n = +b.dataset.n; b.classList.toggle('on', n <= q); b.classList.toggle('cur', n === q); b.classList.toggle('st', n === 3 || n === 5); b.setAttribute('aria-checked', n === q); });
       var knob = this.querySelector('[data-knob]'); knob.textContent = q === 5 && !pdp ? '5+' : q; knob.style.left = 'calc(20px + (100% - 40px) * ' + ((q - 1) / 4) + ')';
       this.querySelector('[data-p]').textContent = p;
       this.querySelector('[data-k]').textContent = 'Esquenta 11/11 · ' + (h === 3 ? 'temperatura máxima' : 'Esquentômetro');
