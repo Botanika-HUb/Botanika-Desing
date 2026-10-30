@@ -33,6 +33,14 @@
     assign esq_fs = true
     assign active = true
   endif
+  comment
+    11/11: frete grátis em todos os pedidos, sem mínimo, de 10/11 20h a 11/11 23h59 (Brasília).
+  endcomment
+  assign onze_fs = false
+  if bk_now >= 1794351600 and bk_now <= 1794452399
+    assign onze_fs = true
+    assign active = true
+  endif
   assign normal_label = settings.fs_normal_label | default: 'R$349'
   assign promo_label = settings.fs_promo_label | default: 'R$199,99'
   assign normal_min = settings.free_shipping_minimum | default: 0
@@ -40,6 +48,10 @@
   if esq_fs
     assign promo_label = 'R$249'
     assign promo_min = 249
+  endif
+  if onze_fs
+    assign promo_label = 'R$0'
+    assign promo_min = 0
   endif
 
   case mode

@@ -1,0 +1,201 @@
+{%- comment -%}
+  ============================================================
+  11/11 da Botanika (horário de Brasília). Renderizado uma vez no <head>
+  (via snippets/botanika-campaign-css), igual ao bk-esquenta-1111.
+    10/11 20h → 11/11 08h  site FECHADO para clientes novos:
+                           tela cheia com o Grupo VIP e "entrar na conta".
+                           Quem está logado e já comprou navega normal
+                           (acesso antecipado).
+    10/11 20h → 11/11 23h59  tarja com contagem, banner na home, aviso na
+                           página de produto e Coenzima Q10 de brinde
+                           entrando sozinha no carrinho acima de R$ 500.
+    11/11 18h → 23h59      tarja e banner viram "últimas horas".
+  Para ver antes da data: ?onze=1 simula a madrugada (site fechado) e
+  ?onze=2 simula o dia 11 aberto (fica salvo na aba; ?onze=0 desliga).
+  O desconto, o frete grátis e o brinde em si são regras da Shopify;
+  este arquivo só mostra, bloqueia e adiciona o brinde ao carrinho.
+  ============================================================
+{%- endcomment -%}
+{%- liquid
+  assign onze_early = 1794351600
+  assign onze_open = 1794394800
+  assign onze_last = 1794430800
+  assign onze_end = 1794452399
+  assign onze_buyer = false
+  if customer and customer.orders_count > 0
+    assign onze_buyer = true
+  endif
+  assign onze_page = request.path
+-%}
+<template id="bk-onze-gate">
+<div class="bk-onze-gate" role="dialog" aria-modal="true" aria-label="O 11/11 abre às 8h">
+  <div class="bk-onze-gate__box">
+    <img class="bk-onze-gate__logo" src="https://cdn.shopify.com/s/files/1/0780/7238/1672/files/logo-c.png" alt="Botanika" width="180" height="34">
+    <span class="bk-onze-gate__eye">11/11 · só 24 horas</span>
+    <h2 class="bk-onze-gate__h">O maior desconto da história da Botanika <em>abre às 8h.</em></h2>
+    <p class="bk-onze-gate__p">Até <b>40% OFF</b> e <b>frete grátis em todos os pedidos</b>, só no dia 11/11.</p>
+    <div class="bk-onze-gate__count">Abre em <b data-bk-onze-open>--</b></div>
+    <a class="bk-onze-gate__cta" href="https://sndflw.com/i/botanika11-11?utm_source=site&amp;utm_medium=tela_fechada&amp;utm_campaign=11-11">Entrar no Grupo VIP e receber o link</a>
+    {%- if customer -%}
+      <p class="bk-onze-gate__s">O acesso antecipado é para quem já comprou na Botanika. Para você, o 11/11 abre às 8h, e quem está no Grupo VIP recebe o aviso primeiro.</p>
+    {%- else -%}
+      <a class="bk-onze-gate__login" href="/account/login?return_url={{ onze_page | url_encode }}">Já comprou com a gente? <b>Entre na sua conta</b> e compre agora</a>
+    {%- endif -%}
+  </div>
+</div>
+</template>
+{%- render 'bk-1111-css' -%}
+<template id="bk-onze-bar">
+<div class="bk-onze bk-onze-bar">
+  <span class="bk-onze-bar__tag" data-bk-onze-tag>11/11</span>
+  <span>até <b>40% OFF</b> · frete grátis sem mínimo · Q10 de brinde acima de R$500</span>
+  <span class="bk-onze-bar__t">termina em <b data-bk-onze-count>--</b></span>
+  <a class="bk-onze-bar__cta" href="/collections/mais-vendidos">Comprar</a>
+</div>
+</template>
+{%- if template.name == 'index' -%}
+<template id="bk-onze-home">
+<section class="bk-onze bk-onze-home" aria-label="11/11 Botanika">
+  <div class="bk-onze-home__in">
+    <div class="bk-onze-home__tx">
+      <span class="bk-onze-home__eye" data-bk-onze-tag>11/11 · só hoje</span>
+      <h2 class="bk-onze-home__h">Até <em>40% OFF</em> no maior desconto da história da Botanika.</h2>
+      <ul class="bk-onze-home__perks">
+        <li>🚚 <b>Frete grátis em todos os pedidos</b>, sem mínimo</li>
+        <li>🎁 <b>Coenzima Q10 de presente</b> nas compras acima de R$500</li>
+        <li>💸 <b>15% de cashback</b> para a próxima compra nos 100 primeiros pedidos</li>
+      </ul>
+      <div class="bk-onze-home__row">
+        <a class="bk-onze-home__cta" href="/collections/mais-vendidos">Comprar agora</a>
+        <span class="bk-onze-home__t">Termina em <b data-bk-onze-count>--</b></span>
+      </div>
+      <p class="bk-onze-home__note">Só no dia 11/11, até 23h59. Desconto aplicado automaticamente.</p>
+    </div>
+    <div class="bk-onze-home__img">
+      <img src="https://cdn.shopify.com/s/files/1/0780/7238/1672/files/lp1111-hero.webp?v=1793298282" alt="Linha Botanika" width="755" height="450" loading="eager">
+    </div>
+  </div>
+</section>
+</template>
+{%- endif -%}
+{%- if template.name == 'product' -%}
+<template id="bk-onze-pdp">
+  <div class="bk-onze-pdp">
+    <div class="bk-onze-pdp__h"><b data-bk-onze-tag>11/11</b> · termina em <b data-bk-onze-count>--</b></div>
+    <div class="bk-onze-pdp__p">Até <b>40% OFF</b> · 🚚 frete grátis sem mínimo · 🎁 Q10 de brinde acima de R$500 · 💸 15% de cashback nos 100 primeiros pedidos</div>
+    <div class="bk-onze-pdp__s">Desconto aplicado automaticamente no carrinho.</div>
+  </div>
+</template>
+{%- endif -%}
+<script>
+(function(){
+  if (window.__bkOnze) return; window.__bkOnze = true;
+  var EARLY = {{ onze_early }} * 1000, OPEN = {{ onze_open }} * 1000, LAST = {{ onze_last }} * 1000, END = {{ onze_end }} * 1000;
+  var BUYER = {{ onze_buyer }};
+  var GIFT = 48988885745896, MIN = 50000;
+  /* prévia: ?onze=1 madrugada (fechado), ?onze=2 dia 11 aberto, ?onze=0 desliga */
+  try { var m = location.search.match(/[?&]onze=([012])\b/); if (m) { if (m[1] === '0') sessionStorage.removeItem('bkOnze'); else sessionStorage.setItem('bkOnze', m[1]); } } catch (e) {}
+  var shift = 0;
+  try { var pv = sessionStorage.getItem('bkOnze'); if (pv === '1') shift = (EARLY + 3600e3) - Date.now(); else if (pv === '2') shift = (OPEN + 3600e3) - Date.now(); } catch (e) {}
+  function now(){ return Date.now() + shift; }
+  function on(){ var n = now(); return n >= EARLY && n <= END; }
+  if (!on()) return;
+
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+  function fmt(ms){ var s = Math.max(0, Math.floor(ms / 1000)); return pad(Math.floor(s / 3600)) + 'h ' + pad(Math.floor(s % 3600 / 60)) + 'm ' + pad(s % 60) + 's'; }
+  var path = location.pathname;
+  var exempt = /^\/(account|challenge|password|policies|pages\/grupo-vip-11-11)/.test(path);
+  function closed(){ return now() < OPEN && !BUYER && !exempt; }
+
+  function show(){
+    if (closed()) {
+      var g = document.getElementById('bk-onze-gate');
+      if (g && !document.querySelector('.bk-onze-gate')) { document.body.appendChild(g.content.cloneNode(true)); document.documentElement.classList.add('bk-onze-locked'); }
+      return;
+    }
+    var gate = document.querySelector('.bk-onze-gate'); if (gate) { gate.remove(); document.documentElement.classList.remove('bk-onze-locked'); }
+    var bar = document.getElementById('bk-onze-bar');
+    if (bar && !document.querySelector('.bk-onze-bar')) document.body.insertBefore(bar.content.cloneNode(true), document.body.firstChild);
+    var home = document.getElementById('bk-onze-home'), main = document.getElementById('MainContent');
+    if (home && main && !document.querySelector('.bk-onze-home')) main.insertBefore(home.content.cloneNode(true), main.firstChild);
+    var tpl = document.getElementById('bk-onze-pdp');
+    if (tpl && !document.querySelector('.bk-onze-pdp')) {
+      var form = document.querySelector('#MainContent form[action*="/cart/add"]');
+      if (form && form.parentNode) form.parentNode.insertBefore(tpl.content.cloneNode(true), form);
+    }
+  }
+  function tick(){
+    var n = now();
+    document.querySelectorAll('[data-bk-onze-open]').forEach(function(el){ el.textContent = fmt(OPEN - n); });
+    document.querySelectorAll('[data-bk-onze-count]').forEach(function(el){ el.textContent = fmt(END - n); });
+    if (n >= LAST) document.querySelectorAll('[data-bk-onze-tag]').forEach(function(el){ el.textContent = '11/11 · últimas horas'; });
+    if (n >= OPEN && document.querySelector('.bk-onze-gate')) show();
+    if (n < END) setTimeout(tick, 1000);
+  }
+  function start(){ show(); tick(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+
+  /* Coenzima Q10 de brinde acima de R$ 500 (mesma lógica do cranberry do Esquenta) */
+  var of = window.fetch.bind(window), busy = false, timer = null;
+  try { if (sessionStorage.getItem('bkOnzeGiftOff') === '1') return; } catch (e) {}
+  function isCart(){ return document.body.classList.contains('template-cart') || /\/cart(\/|$|\?)/.test(location.pathname); }
+  function post(url, body){
+    if (!isCart()) { body.sections = ['minicart-form']; body.sections_url = location.pathname; }
+    return of(url, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(body) }).then(function(r){ return r.json(); });
+  }
+  function refresh(data){
+    if (isCart()) { location.reload(); return; }
+    var html = data && data.sections && data.sections['minicart-form'];
+    var target = document.getElementById('minicart-form');
+    if (html && target) {
+      var fresh = new DOMParser().parseFromString(html, 'text/html').querySelector('#minicart-form');
+      if (fresh) target.innerHTML = fresh.innerHTML;
+      var cn = document.querySelector('cart-notification');
+      if (cn && typeof cn.cartAction === 'function') { try { cn.cartAction(); } catch (e) {} }
+      if (typeof BlsLazyloadImg !== 'undefined' && BlsLazyloadImg.init) BlsLazyloadImg.init();
+    }
+    of('/cart.json').then(function(r){ return r.json(); }).then(function(cart){
+      document.querySelectorAll('.cart-count').forEach(function(el){ el.innerHTML = el.classList.contains('cart-count-drawer') ? '(' + cart.item_count + ')' : cart.item_count; });
+      var ht = document.querySelector('header-total-price'); if (ht && ht.updateTotal) ht.updateTotal(cart);
+      var fs = document.querySelector('free-ship-progress-bar'); if (fs && fs.init) fs.init(cart.items_subtotal_price);
+    }).catch(function(){});
+  }
+  function toast(msg){
+    try { if (window.CartUtils && CartUtils.showToast) { CartUtils.showToast(msg, 'success'); return; } if (typeof showToast === 'function') showToast(msg, 3000, 'modal-success'); } catch (e) {}
+  }
+  function reconcile(){
+    if (busy || !on() || closed() || shift) return; busy = true;
+    of('/cart.js', { headers: { Accept: 'application/json' } }).then(function(r){ return r.json(); }).then(function(cart){
+      var paid = 0, gift = null, giftQty = 0, q10Other = 0;
+      (cart.items || []).forEach(function(it){
+        var isGift = it.properties && it.properties._brinde;
+        if (isGift) { if (!gift) gift = it; giftQty += it.quantity; }
+        else { paid += it.final_line_price; if (it.variant_id === GIFT) q10Other += it.quantity; }
+      });
+      if (gift && gift.final_line_price > 0) {
+        try { sessionStorage.setItem('bkOnzeGiftOff', '1'); } catch (e) {}
+        return post('/cart/change.js', { id: gift.key, quantity: 0 }).then(refresh);
+      }
+      var need = paid >= MIN ? Math.max(0, 1 - q10Other) : 0;
+      if (need === giftQty) return;
+      var p = gift ? post('/cart/change.js', { id: gift.key, quantity: need })
+                   : post('/cart/add.js', { items: [{ id: GIFT, quantity: need, properties: { _brinde: '11/11' } }] });
+      return p.then(function(data){
+        if (data && data.status) return;
+        if (need > giftQty) toast('🎁 Você ganhou a Coenzima Q10 de brinde!');
+        refresh(data);
+        setTimeout(reconcile, 900);
+      });
+    }).catch(function(){}).then(function(){ busy = false; });
+  }
+  window.fetch = function(u){
+    var p = of.apply(window, arguments);
+    try {
+      var url = typeof u === 'string' ? u : (u && u.url) || '';
+      if (/\/cart\/(add|change|update|clear)/.test(url)) p.then(function(){ clearTimeout(timer); timer = setTimeout(reconcile, 600); }).catch(function(){});
+    } catch (e) {}
+    return p;
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', reconcile); else reconcile();
+})();
+</script>

@@ -42,3 +42,16 @@
 </script>
 {%- comment -%} Esquenta 11/11 (02/11 00h → 10/11 20h): tarja, banner, aviso na PDP e brinde automático. Liga e desliga sozinho. {%- endcomment -%}
 {%- render 'bk-esquenta-1111' -%}
+{%- comment -%} 11/11 (10/11 20h → 11/11 23h59): "frete grátis acima de R$349" vira "frete grátis em todos os pedidos". {%- endcomment -%}
+<script>
+(function(){
+  var n = Date.now(); if (n < 1794351600000 || n > 1794452399000) return;
+  function fix(){
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null), t;
+    while ((t = w.nextNode())) { if (t.nodeValue.indexOf('349') > -1) t.nodeValue = t.nodeValue.replace(/acima de R\$\s?349(,00)?/gi, 'em todos os pedidos').replace(/R\$\s?349(,00)?/g, 'R$0'); }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fix); else fix();
+})();
+</script>
+{%- comment -%} 11/11: site fechado para clientes novos de 10/11 20h a 11/11 08h, tarja, banner, aviso na PDP e Q10 de brinde. Liga e desliga sozinho. {%- endcomment -%}
+{%- render 'bk-1111' -%}

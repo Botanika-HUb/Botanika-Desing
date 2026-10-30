@@ -28,6 +28,15 @@
 | 6 | Oferta, frete e cupons | descontos antigos e 16 cupons já agendados para sair em 01/11 00h | eu crio a escada, o frete e o brinde e passo os cupons para 2% em **01/11 00h05** (lembrete agendado) |
 | 7 | Brindes (cranberry) | regra pronta no roteiro; o tema adiciona o brinde ao carrinho sozinho | sai junto com o item 6 |
 
+### 🟡 Em andamento: site do 11/11 (prazo 06/11 18h) · detalhes em `entregas/11-11-site.md`
+| Parte | Situação | O que falta |
+|---|---|---|
+| Frete grátis sem mínimo | ✅ agendado (10/11 20h → 11/11 23h59) | nada |
+| Brinde Q10 acima de R$ 500 | ✅ agendado, e o tema coloca a Q10 no carrinho | testar com pedido de teste quando o 40% estiver definido |
+| Fechar o site 10/11 20h → 11/11 8h | ✅ tela cheia com Grupo VIP e login no tema (prévia `?onze=1`) | você publicar o tema (o mesmo do Esquenta) |
+| Tema (tarja, banner, página de produto, últimas horas) | ✅ pronto na cópia (prévia `?onze=2`) | idem |
+| Oferta "até 40%" | ⛔ esperando o Vitor: quais produtos e quanto | configurar quando chegar |
+
 ### ⛔ Travado em outras pessoas
 | # | Tarefa | Esperando |
 |---|---|---|
