@@ -17,7 +17,8 @@
 | 1 | LP de captação do grupo 11/11 | no ar: botanikabrasil.com.br/pages/grupo-vip-11-11 (link do grupo certo, Meta + GA4) | você testar no celular e mandar o link ao Otávio. O Alliance só libera depois que a Sarah concluir a tarefa dela |
 | 2 | 10 estáticos de captação 11/11 | arquivos enviados no chat | subir no Drive |
 | 3 | 15 estáticos universais (lote 1) | arquivos enviados no chat | subir no Drive |
-| 4 | 15 estáticos universais (lote 2, U16–U30) | aprovados, arquivos enviados no chat | subir no Drive (prazo 04/11) |
+| 4 | 15 estáticos universais (lote 2, U16–U30) | aprovados, arquivos enviados no chat (zips em 30/10) | subir no Drive (prazo 04/11) |
+| 4b | 3 vídeos UGC do Esquenta 11/11 (Hair, Creatina, Hair + Creatina) | v3 aprovada pelo Pedro em 30/10, enviada no chat (versão cheia e versão leve) | subir na pasta do Drive do Otávio. Os dois Esquentas usam os mesmos criativos |
 
 ### 🟡 Em andamento: Esquenta 11/11 na Shopify (prazo 30/10 18h)
 | # | Parte | Situação | O que falta |
