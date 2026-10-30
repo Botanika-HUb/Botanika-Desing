@@ -44,6 +44,7 @@
 
 ### 4. Captação · Grupo VIP 11/11 (Black Friday)
 - **Pasta:** `landing-grupo-vip-11-11/`
+- **Endereço principal desde 30/10: https://vip.botanikabrasil.com.br** (Vercel, projeto botanika-vip; DNS com CNAME na GoDaddy). Carrega `lp-vip-1111-v1.txt` da Shopify. A página da Shopify continua no ar como reserva.
 - **Link (no ar, Shopify):** https://botanikabrasil.com.br/pages/grupo-vip-11-11
 - **Como está publicada:** página `grupo-vip-11-11` na Shopify. O tema mostra um iframe em tela cheia, e o HTML vem do arquivo `lp-grupo-vip-1111-v8.txt` (em base64) em Conteúdo › Arquivos. Para atualizar: gerar a versão nova, subir um .txt novo e trocar a URL no corpo da página.
 - **Tipo:** captação para o grupo VIP do 11/11 (sem preço, desconto ou checkout). Tarefa no Alliance OS: `mcp-1793219208869-17-9fa23`.

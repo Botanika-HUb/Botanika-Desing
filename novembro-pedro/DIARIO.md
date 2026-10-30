@@ -117,3 +117,4 @@
 - **LP de captação v7 (opção C, escolhida pelo Pedro):** topo em pódio, com faixa azul '11.11 · SÓ 24 HORAS', logo branco e a linha sobre um pódio claro. Conferida ao vivo.
 - **LP de captação v8: pop-up de cadastro** (pedido do Pedro). Qualquer botão da LP abre o pop-up com nome, e-mail e WhatsApp com DDD. Ao enviar: o contato vai para o ActiveCampaign (formulário 4 '11/11 · LP Grupo VIP (pop-up)', lista 13), disparam Lead no Meta, generate_lead e grupo_vip_lead, e a pessoa vai direto para o grupo (mesma aba, com as UTMs). Quem já se cadastrou no aparelho vai direto, sem o pop-up. Testado ao vivo.
 - **vip.botanikabrasil.com.br:** a LP de captação foi publicada no Vercel (projeto botanika-vip) e o domínio foi adicionado. Falta criar na GoDaddy o CNAME vip → 667a43143419fd9b.vercel-dns-016.com.
+- **vip.botanikabrasil.com.br no ar:** o Pedro criou o CNAME na GoDaddy, e o Vercel confirmou a configuração sem erro.
