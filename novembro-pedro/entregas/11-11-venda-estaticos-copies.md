@@ -2,7 +2,7 @@
 
 > Tarefa: `mcp-1793219208870-33-7767c` · entrega ao Otávio **sex 06/11 às 12h** · formato 4:5
 > Visual: o mesmo estilo pôster aprovado nos universais (produto herói inclinado, palavras gigantes atrás, 2 números nos cantos), na paleta do 11/11.
-> Status: **copies aprovadas pelo Pedro em 30/10** (paleta preto + vermelho, detalhe azul) · artes geradas, aguardando aprovação final
+> Status: **copies aprovadas pelo Pedro em 30/10** (paleta preto + vermelho, detalhe azul) · **artes aprovadas e entregues em 30/10**
 
 ## Regras (ficha da oferta do 11/11 v2, aprovada pelo Vitor)
 - Oferta: até 40% OFF **só no dia 11/11**, frete grátis em todos os pedidos sem mínimo, 1 Coenzima Q10 de brinde acima de R$ 500 e cashback de 15% nos 100 primeiros pedidos.
