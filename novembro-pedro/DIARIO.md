@@ -127,3 +127,4 @@
 - Prévia: `?preview_theme_id=168113045736&esquenta=1`. Aguardando aprovação do Pedro.
 - Resto do tema (novo `bk-esq-extra`): tarja do topo com o termômetro do carrinho, faixa de calor no carrinho (gaveta e página), etiqueta "🔥 até 12%" nos cards e faixa da escada nas coleções. Frete do tema já vira R$ 249 sozinho em 02/11 (botanika-freeship-weekend).
 - Conferido na Shopify: a escada 8/10/12%, o frete do Esquenta e o cranberry de brinde ainda NÃO existem como desconto.
+- Pedro reprovou o "modo Esquenta" pintando os blocos do tema ("replicando o tema"). Home abaixo do topo refeita do zero (`bk-esq-home`): "Monte seus 5" com + e −, brasa que acende, atalhos por objetivo e botão que leva tudo pro carrinho; fechamento "O Esquenta esfria em…". Blocos antigos da home escondidos (ficam vídeos e avaliações).

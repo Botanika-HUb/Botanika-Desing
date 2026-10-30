@@ -1,0 +1,198 @@
+{%- comment -%}
+  Esquenta 11/11: a home abaixo do Esquentômetro, feita do zero (só na home, só na campanha ou com ?esquenta=1).
+    1. "Monte seus 5": lista de produtos com + e −, a brasa acende conforme a quantidade
+       (1–2 un. 8% · 3–4 un. 10% · 5+ un. 12%) e um botão leva tudo pro carrinho de uma vez.
+       Atalhos prontos por objetivo (cabelo, imunidade, treino, sono) preenchem a lista.
+    2. "O Esquenta esfria em…": fechamento com a brasa grande, contagem e botão.
+  Os blocos antigos da home ficam escondidos, menos os vídeos e as avaliações de clientes.
+  Produtos: primeiro os Mais Vendidos, depois o resto do catálogo (sem kits e brindes).
+  Usado pelo bk-esquenta-1111.
+{%- endcomment -%}
+{%- liquid
+  assign bk_seen = ','
+  assign bk_n = 0
+-%}
+<script type="application/json" id="bk-m5-data">[
+{%- for p in collections['mais-vendidos'].products limit: 16 -%}
+  {%- assign v = p.selected_or_first_available_variant -%}
+  {%- if v.available and v.price > 0 -%}
+    {%- if bk_n > 0 -%},{%- endif -%}
+    {"n":{{ p.title | split: ' — ' | first | json }},"v":{{ v.id }},"p":{{ v.price }},"i":{{ p.featured_image | image_url: width: 160 | json }}}
+    {%- assign bk_seen = bk_seen | append: p.handle | append: ',' -%}
+    {%- assign bk_n = bk_n | plus: 1 -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- for p in collections.all.products limit: 40 -%}
+  {%- assign v = p.selected_or_first_available_variant -%}
+  {%- assign key = ',' | append: p.handle | append: ',' -%}
+  {%- assign tl = p.title | downcase -%}
+  {%- unless bk_seen contains key or tl contains 'kit' or tl contains 'combo' or tl contains 'brinde' or tl contains 'cart' or v.price == 0 or v.available == false or bk_n >= 16 -%}
+    {%- if bk_n > 0 -%},{%- endif -%}
+    {"n":{{ p.title | split: ' — ' | first | json }},"v":{{ v.id }},"p":{{ v.price }},"i":{{ p.featured_image | image_url: width: 160 | json }}}
+    {%- assign bk_n = bk_n | plus: 1 -%}
+  {%- endunless -%}
+{%- endfor -%}
+]</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap" rel="stylesheet">
+<style>
+  html.bk-esq-home [id*="template--"][id*="__"]:not([id*="ugc_galeria"]):not([id*="judgeme_carrossel"]):not([id*="home_polish"]){display:none!important}
+  html.bk-esq-home [id*="ugc_galeria"],html.bk-esq-home [id*="judgeme_carrossel"]{background:#fff}
+  .bkq__h,.bkx-h{font-family:"Bricolage Grotesque",inherit!important;font-weight:800!important;letter-spacing:-.035em!important}
+  /* a brasa */
+  .bkorb{--s:64px;width:var(--s);height:var(--s);flex:none;border-radius:50%;position:relative;background:radial-gradient(circle at 38% 34%,#8ea2ff 0%,#3b5ef0 45%,#1a2a8a 100%);box-shadow:0 0 0 1px rgba(255,255,255,.08),0 0 18px rgba(59,94,240,.35);transition:background .6s,box-shadow .6s}
+  .bkorb::after{content:"";position:absolute;inset:18%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.55),rgba(255,255,255,0) 70%)}
+  .bkorb[data-heat="0"]{background:radial-gradient(circle at 38% 34%,#3a4170 0%,#1d2350 60%,#11153a 100%);box-shadow:0 0 0 1px rgba(255,255,255,.08)}
+  .bkorb[data-heat="0"]::after{opacity:.15}
+  .bkorb[data-heat="2"]{background:radial-gradient(circle at 38% 34%,#ffe0a0 0%,#ff9a1f 40%,#c2410c 100%);box-shadow:0 0 28px rgba(255,138,26,.55),0 0 70px rgba(255,106,26,.25)}
+  .bkorb[data-heat="3"]{background:radial-gradient(circle at 38% 34%,#fff6e0 0%,#ffb02e 22%,#ff3b2a 55%,#8a0614 100%);box-shadow:0 0 34px rgba(255,59,42,.75),0 0 110px rgba(227,19,43,.45);animation:bkpulse 1.6s ease-in-out infinite}
+  @keyframes bkpulse{50%{box-shadow:0 0 44px rgba(255,59,42,.95),0 0 140px rgba(227,19,43,.6)}}
+  /* monte seus 5 */
+  .bkx{background:radial-gradient(70% 40% at 50% 0%,rgba(61,12,34,.9) 0%,rgba(61,12,34,0) 70%),#070a33;color:#fff;padding:56px 16px 48px}
+  .bkx__in{max-width:1180px;margin:0 auto}
+  .bkx-eye{display:block;text-align:center;font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:#ffb02e}
+  .bkx-h{margin:10px 0 10px;text-align:center;color:#fff!important;font-size:clamp(38px,6vw,72px);line-height:.95}
+  .bkx-h em{font-style:normal;background:linear-gradient(90deg,#ffb02e,#ff6a1a 45%,#ff3b4a);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .bkx-p{margin:0 auto 22px;max-width:34em;text-align:center;color:#c9d0f3;font-size:16px;line-height:1.45}
+  .bkx__chips{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 14px;margin:0 -16px;padding-left:16px;scrollbar-width:none;justify-content:flex-start}
+  .bkx__chips::-webkit-scrollbar{display:none}
+  .bkx__chip{flex:none;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#fff;font:inherit;font-size:14px;font-weight:700;padding:10px 14px;border-radius:99px;cursor:pointer}
+  .bkx__chip.on{background:#fff;color:#0a1240;border-color:#fff}
+  .bkx__grid{display:grid;grid-template-columns:1fr;gap:18px}
+  .bkx__list{display:grid;gap:8px}
+  .bkx__row{display:grid;grid-template-columns:56px 1fr auto;align-items:center;gap:12px;padding:8px 10px 8px 8px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);transition:background .3s,border-color .3s}
+  .bkx__row.has{background:rgba(255,138,26,.12);border-color:rgba(255,138,26,.45)}
+  .bkx__row img{width:56px;height:56px;object-fit:contain;border-radius:12px;background:#fff}
+  .bkx__nm{font-size:14.5px;font-weight:700;line-height:1.2}
+  .bkx__pr{font-size:13px;color:#aab3e6;margin-top:3px}
+  .bkx__st{display:flex;align-items:center;gap:4px}
+  .bkx__st button{width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;font-size:20px;line-height:1;cursor:pointer}
+  .bkx__st button[data-a="+"]{background:#fff;color:#0a1240}
+  .bkx__st b{min-width:22px;text-align:center;font-size:16px;font-variant-numeric:tabular-nums}
+  .bkx__more{display:block;margin:6px auto 0;background:none;border:0;color:#ffb02e;font:inherit;font-weight:800;font-size:14px;cursor:pointer}
+  .bkx__pan{position:sticky;bottom:0;z-index:20;margin:0 -16px -48px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(7,10,51,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,.1);display:grid;grid-template-columns:auto 1fr;gap:6px 12px;align-items:center}
+  .bkx__pan .bkorb{--s:46px;grid-row:span 2}
+  .bkx__st1{font-size:13px;color:#c9d0f3;line-height:1.3}
+  .bkx__st1 b{color:#fff;font-size:15px}
+  .bkx__tot{font-size:13px;color:#c9d0f3}
+  .bkx__tot s{opacity:.6;margin-right:6px}
+  .bkx__tot strong{color:#fff;font-size:18px;font-weight:900}
+  .bkx__seg{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+  .bkx__seg i{height:6px;border-radius:99px;background:rgba(255,255,255,.12);transition:background .4s}
+  .bkx__seg i.on:nth-child(-n+2){background:#3b5ef0}.bkx__seg i.on:nth-child(n+3){background:#ff9a1f}.bkx__seg i.on:nth-child(5){background:#ff3b2a}
+  .bkx__go{grid-column:1/-1;border:0;border-radius:99px;padding:15px;font:inherit;font-size:16px;font-weight:900;color:#fff;background:linear-gradient(90deg,#ff9a1f,#ff6a1a 40%,#e3132b);cursor:pointer;box-shadow:0 12px 30px -12px #e3132b}
+  .bkx__go:disabled{background:rgba(255,255,255,.12);box-shadow:none;color:#aab3e6;cursor:default}
+  @media (min-width:900px){
+    .bkx{padding:80px 24px 80px}
+    .bkx__chips{justify-content:center;margin:0;padding-left:2px}
+    .bkx__grid{grid-template-columns:1fr 380px;gap:28px;align-items:start}
+    .bkx__list{grid-template-columns:1fr 1fr}
+    .bkx__pan{position:sticky;top:110px;bottom:auto;margin:0;border-radius:24px;padding:24px;border:1px solid rgba(255,255,255,.12);grid-template-columns:auto 1fr;gap:10px 16px}
+    .bkx__pan .bkorb{--s:72px}
+  }
+  /* fechamento */
+  .bkz{background:radial-gradient(50% 60% at 50% 40%,rgba(227,19,43,.28) 0%,rgba(227,19,43,0) 70%),#070a33;color:#fff;text-align:center;padding:72px 20px 80px}
+  .bkz .bkorb{--s:150px;margin:0 auto 26px}
+  .bkz .bkx-h{font-size:clamp(36px,6vw,68px)}
+  .bkz p{margin:0 auto 26px;max-width:30em;color:#c9d0f3;font-size:16px;line-height:1.5}
+  .bkz a{display:inline-block;padding:17px 34px;border-radius:99px;color:#fff!important;text-decoration:none!important;font-weight:900;font-size:17px;background:linear-gradient(90deg,#ff9a1f,#ff6a1a 40%,#e3132b);box-shadow:0 16px 40px -14px #e3132b}
+  @media (prefers-reduced-motion:reduce){.bkorb{animation:none!important}}
+</style>
+<template id="bk-esq-below">
+<section class="bkx" id="monte-seus-5" aria-label="Monte seus 5">
+  <div class="bkx__in">
+    <span class="bkx-eye">Esquenta 11/11 · monte o seu</span>
+    <h2 class="bkx-h">Monte seus 5.<br><em>Leve 12%.</em></h2>
+    <p class="bkx-p">Misture o que quiser. A cada pote a brasa acende: 3 já dão 10%, 5 chegam a 12%.</p>
+    <div class="bkx__chips" data-chips></div>
+    <div class="bkx__grid">
+      <div><div class="bkx__list" data-list></div><button type="button" class="bkx__more" data-more hidden>Ver todos os produtos ↓</button></div>
+      <div class="bkx__pan">
+        <span class="bkorb" data-orb data-heat="0"></span>
+        <div class="bkx__st1" data-s1></div>
+        <div class="bkx__tot" data-tot></div>
+        <div class="bkx__seg"><i></i><i></i><i></i><i></i><i></i></div>
+        <button type="button" class="bkx__go" data-go disabled>Escolha seus produtos</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="bkz" aria-label="O Esquenta termina">
+  <span class="bkorb" data-heat="3"></span>
+  <h2 class="bkx-h">O Esquenta esfria em <em data-zc>--</em>.</h2>
+  <p>Depois disso os potes voltam ao preço cheio. Até lá, quanto mais você leva, mais desconto entra sozinho no carrinho.</p>
+  <a href="#monte-seus-5">Montar meus 5</a>
+</section>
+</template>
+<script>
+(function(){
+  if (!document.documentElement.classList.contains('bk-esq')) return;
+  document.documentElement.classList.add('bk-esq-home');
+  var PRESETS = [
+    ['💇 Cabelo e pele', [[/hair/i, 3], [/vitamina c/i, 1], [/msm/i, 1]]],
+    ['🛡️ Imunidade', [[/tetravit/i, 2], [/vitamina c/i, 2], [/nac/i, 1]]],
+    ['💪 Treino', [[/whey/i, 2], [/creatina/i, 2], [/tri\[?mg/i, 1]]],
+    ['😴 Sono', [[/sleep/i, 2], [/tri\[?mg/i, 2], [/ômega|omega/i, 1]]]
+  ];
+  function pct(q){ return q >= 5 ? 12 : q >= 3 ? 10 : q ? 8 : 0; }
+  function heat(q){ return q >= 5 ? 3 : q >= 3 ? 2 : q ? 1 : 0; }
+  function money(c){ var a = (c / 100).toFixed(2).split('.'); return 'R$ ' + a[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + a[1]; }
+  function pad(x){ return x < 10 ? '0' + x : '' + x; }
+  function boot(){
+    var tpl = document.getElementById('bk-esq-below'), hero = document.querySelector('.bkq'), data;
+    if (!tpl || !hero || document.querySelector('.bkx')) return;
+    try { data = JSON.parse(document.getElementById('bk-m5-data').textContent); } catch (e) { return; }
+    var frag = tpl.content.cloneNode(true), x = frag.querySelector('.bkx'), z = frag.querySelector('.bkz');
+    hero.parentNode.insertBefore(x, hero.nextSibling);
+    var main = document.getElementById('MainContent'); main.appendChild(z);
+    var q = data.map(function(){ return 0; }), list = x.querySelector('[data-list]'), SHOW = 8, open = false;
+    list.innerHTML = data.map(function(p, i){
+      return '<div class="bkx__row" data-i="' + i + '"' + (i >= SHOW ? ' hidden' : '') + '><img src="' + p.i + '" alt="" loading="lazy" width="56" height="56"><div><div class="bkx__nm">' + p.n + '</div><div class="bkx__pr">' + money(p.p) + '</div></div>'
+        + '<div class="bkx__st"><button type="button" data-a="-" aria-label="Tirar um">−</button><b>0</b><button type="button" data-a="+" aria-label="Pôr mais um">+</button></div></div>';
+    }).join('');
+    var more = x.querySelector('[data-more]');
+    if (data.length > SHOW) { more.hidden = false; more.onclick = function(){ open = true; list.querySelectorAll('[hidden]').forEach(function(r){ r.hidden = false; }); more.hidden = true; }; }
+    list.addEventListener('click', function(e){
+      var b = e.target.closest('button[data-a]'); if (!b) return;
+      var i = +b.closest('[data-i]').dataset.i; q[i] = Math.max(0, Math.min(20, q[i] + (b.dataset.a === '+' ? 1 : -1)));
+      chips.querySelectorAll('.on').forEach(function(c){ c.classList.remove('on'); }); paint();
+    });
+    var chips = x.querySelector('[data-chips]');
+    PRESETS.forEach(function(pr){
+      var hits = pr[1].map(function(r){ var k = -1; data.some(function(p, i){ if (r[0].test(p.n)) { k = i; return true; } }); return [k, r[1]]; }).filter(function(h){ return h[0] >= 0; });
+      if (!hits.length) return;
+      var c = document.createElement('button'); c.type = 'button'; c.className = 'bkx__chip'; c.textContent = pr[0];
+      c.onclick = function(){
+        q = q.map(function(){ return 0; }); hits.forEach(function(h){ q[h[0]] += h[1]; if (h[0] >= SHOW) list.querySelector('[data-i="' + h[0] + '"]').hidden = false; });
+        chips.querySelectorAll('.on').forEach(function(o){ o.classList.remove('on'); }); c.classList.add('on'); paint();
+      };
+      chips.appendChild(c);
+    });
+    var go = x.querySelector('[data-go]');
+    function paint(){
+      var n = 0, sub = 0;
+      q.forEach(function(k, i){ n += k; sub += k * data[i].p; var r = list.querySelector('[data-i="' + i + '"]'); r.classList.toggle('has', k > 0); r.querySelector('b').textContent = k; });
+      var p = pct(n), off = Math.floor(sub * p / 100), h = heat(n);
+      x.querySelector('[data-orb]').setAttribute('data-heat', h);
+      x.querySelectorAll('.bkx__seg i').forEach(function(s, k){ s.classList.toggle('on', k < n); });
+      x.querySelector('[data-s1]').innerHTML = !n ? 'Sua brasa está apagada. <b>Comece pelo +</b>'
+        : '<b>' + n + (n > 1 ? ' itens · ' : ' item · ') + p + '% OFF</b>' + (n < 5 ? '<br>+' + (n < 3 ? 3 - n : 5 - n) + ' e vai pra ' + (n < 3 ? 10 : 12) + '%' : '<br>temperatura máxima 🔥');
+      x.querySelector('[data-tot]').innerHTML = n ? '<s>' + money(sub) + '</s><strong>' + money(sub - off) + '</strong>' : '';
+      go.disabled = !n; go.textContent = n ? 'Levar ' + n + (n > 1 ? ' itens' : ' item') + ' pro carrinho' : 'Escolha seus produtos';
+    }
+    go.onclick = function(){
+      var items = []; q.forEach(function(k, i){ if (k) items.push({ id: data[i].v, quantity: k }); });
+      if (!items.length) return; go.disabled = true; go.textContent = 'Esquentando…';
+      fetch('/cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ items: items }) })
+        .then(function(r){ if (!r.ok) throw 0; location.href = '/cart'; })
+        .catch(function(){ go.disabled = false; go.textContent = 'Não deu certo, tente de novo'; });
+    };
+    paint();
+    var END = window.__bkEsqEnd || 0, zc = z.querySelector('[data-zc]');
+    (function tick(){ var s = Math.max(0, Math.floor((END - Date.now()) / 1000)); zc.textContent = (s >= 86400 ? Math.floor(s / 86400) + 'd ' : '') + pad(Math.floor(s % 86400 / 3600)) + 'h ' + pad(Math.floor(s % 3600 / 60)) + 'm'; if (s > 0) setTimeout(tick, 30000); })();
+  }
+  /* espera o banner do topo entrar (o bk-esquenta-1111 coloca no DOMContentLoaded) */
+  function wait(){ if (document.querySelector('.bkq')) boot(); else setTimeout(wait, 60); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wait); else wait();
+})();
+</script>
