@@ -68,12 +68,22 @@
   .bkesc[data-heat="3"] .bkesc__s{background:rgba(255,255,255,.28)}
   .bkesc__s.on:nth-child(1){background:#3b5ef0}.bkesc__s.on:nth-child(2){background:#ff9a1f}.bkesc__s.on:nth-child(3){background:#fff}
   .bkesc__l{margin-top:5px;font-size:11px;font-weight:800;opacity:.75}
-  .minicart__wrapper .bkesc{margin:12px 20px 0}
+  /* gaveta do carrinho no Esquenta: uma faixa só (desconto + frete), sem sugestões de produtos */
+  html.bk-esq .minicart__wrapper free-ship-progress-bar,html.bk-esq .botanika-ob,html.bk-esq order-bump-cards.obp,html.bk-esq .bkg__prog,html.bk-esq .bkg__h,html.bk-esq .bkg__row{display:none!important}
+  .minicart__wrapper .bkesc{margin:0 16px 4px;padding:10px 12px;border-radius:14px;box-sizing:border-box;width:auto;max-width:calc(100% - 32px)}
+  @media (max-width:749px){html.bk-esq .minicart__wrapper{max-width:100vw!important;box-sizing:border-box}}
+  .minicart__wrapper .bkesc .bkesc__t{font-size:13px;margin:0 0 7px}
+  .minicart__wrapper .bkesc .bkesc__l{display:none}
+  .minicart__wrapper .bkesc__s{height:6px}
+  .bkesc__f{margin:7px 0 0;font-size:12.5px;font-weight:700;opacity:.85}
+  .bkesc__f b{font-weight:900}
+  @media (max-width:749px){html.bk-esq .minicart__wrapper .drawer-bottom a.btn-outline{display:none!important}}
+  html.bk-esq .minicart__wrapper .btn-checkout{background:var(--bk-fire)!important;border-color:transparent!important;color:#fff!important;box-shadow:0 10px 24px -12px #e3132b}
 </style>
 <script>
 (function(){
   if (window.__bkEsqX || !document.documentElement.classList.contains('bk-esq')) return; window.__bkEsqX = true;
-  var END = window.__bkEsqEnd, units = null; /* null até ler o carrinho */
+  var END = window.__bkEsqEnd, units = null, total = 0; /* null até ler o carrinho */
   function pct(q){ return q >= 5 ? 12 : q >= 3 ? 10 : 8; }
   function heat(q){ return q >= 5 ? 3 : q >= 3 ? 2 : 1; }
   function next(q){ return q >= 5 ? null : q >= 3 ? { need: 5 - q, p: 12 } : { need: 3 - q, p: 10 }; }
@@ -151,7 +161,12 @@
       : !x ? '🔥 <b>Temperatura máxima: 12% OFF</b> no seu carrinho'
       : 'Seu carrinho está em <b>' + pct(units) + '% OFF</b>. Mais <b>' + plural(x.need) + '</b> e vai pra <b>' + x.p + '%</b>';
     return '<p class="bkesc__t">' + t + '</p><div class="bkesc__bar"><i class="bkesc__s' + (units ? ' on' : '') + '"></i><i class="bkesc__s' + (h >= 2 ? ' on' : '') + '"></i><i class="bkesc__s' + (h >= 3 ? ' on' : '') + '"></i></div>'
-      + '<div class="bkesc__l"><span>1 un. · 8%</span><span>3 un. · 10%</span><span>5+ un. · 12%</span></div>';
+      + '<div class="bkesc__l"><span>1 un. · 8%</span><span>3 un. · 10%</span><span>5+ un. · 12%</span></div>' + frete();
+  }
+  function frete(){
+    var fs = document.querySelector('free-ship-progress-bar'), min = Math.round(parseFloat(fs && fs.dataset.feAmount || '349') * 100);
+    if (!units) return '';
+    return '<p class="bkesc__f">🚚 ' + (min <= 0 || total >= min ? '<b>Frete grátis</b> garantido' : 'Faltam <b>' + money(min - total) + '</b> pro frete grátis') + '</p>';
   }
   function cart(){
     if (units === null) return;
@@ -171,6 +186,7 @@
   function paint(){ topbar(); line(); cart(); }
   function load(){
     return fetch('/cart.js', { headers: { Accept: 'application/json' } }).then(function(r){ return r.json(); }).then(function(c){
+      total = c.total_price || 0;
       units = (c.items || []).reduce(function(a, it){ return a + (it.properties && it.properties._brinde ? 0 : it.quantity); }, 0);
       paint();
     }).catch(function(){});
