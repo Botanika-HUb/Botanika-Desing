@@ -90,3 +90,12 @@
 - **Rotina das 9h:** Alliance OS consultado (só leitura). Vencem hoje 12h: LP de captação, 10 estáticos de captação, 15 universais do lote 1 (todos prontos, falta Drive e marcar). Vencem hoje 18h: tema, oferta e brindes do Esquenta (tema pronto; oferta entra em 01/11 00h05) e ferramenta de parceiros (travada no Álvaro). Grupo VIP da Sarah segue "a fazer" no Alliance. Agenda: Daily/apresentação do planejamento 9h20, revisão com a Vanessa 14h, gravação dos vídeos 18h.
 - **Estáticos:** zips das 3 levas (captação, lote 1 e lote 2) mandados ao Pedro, que vai subir no Drive.
 - **3 criativos em vídeo do Esquenta editados** (brutos da pasta "Brutos" do Drive: Hair, Creatina e Hair + Creatina). Pausas cortadas com zoom alternado, gancho no topo, etiqueta do produto, cartão da oferta (até 12% OFF, frete grátis e cranberry de brinde), botão "Toque em Comprar agora", cartão final com as regras (8/10/12%, frete acima de R$ 249, brinde acima de R$ 400, só até 10/11). Os textos ficam fora dos 14% de cima e dos 35% de baixo. Não tem legenda palavra por palavra, porque o transcritor não roda nesta sessão. Script em `entregas/videos-esquenta/build.py`.
+- **Vídeos do Esquenta, v2:** biblioteca `awesome-opus5-5-videos` (MIT) guardada em `botanika-lp-kit/prompts/`, só como referência. Com a técnica dela (textos animados quadro a quadro, com efeito de mola), refiz os textos dos 3 vídeos:
+  - gancho entrando palavra por palavra, com a palavra-chave em vermelho;
+  - etiqueta do produto deslizando;
+  - cartão da oferta com a porcentagem subindo de 8 para 10 e depois 12% (os degraus reais da oferta);
+  - botão pulsando;
+  - cartão final animado;
+  - efeitos sonoros sintetizados (sem áudio de terceiros).
+  
+  Os arquivos para refazer estão em `entregas/videos-esquenta/`.

@@ -25,3 +25,6 @@
 - **Pipeline Three.js procedural** (06–11): `WebGL1Renderer` + 3 `EffectComposer` (torus/bloom/final) trocando `camera.layers` por frame; **FinalPass** desenha bg + corner flames e soma bloom/torus/diffuse; **motes** presos à câmera dirigem `iTime`; **repel do ponteiro** projetado no plano z=0 e aplicado no vertex shader; **scroll double-damped** (dois lerps).
 - **Interação com ponteiro** (04, 06–08, 10): repulsão/atração por distância com falloff `smoothstep`, sempre com `activity` que decai após ocioso.
 - **Commerce/UX Botanika** (nossas LPs): toggle de kit com painel dinâmico, count-up de números, botões magnéticos (gsap.quickTo), tilt+glow em cards, barra de compra fixa no mobile.
+
+## awesome-opus5-5-videos/ (MIT, yihui-dev)
+Biblioteca com 703 prompts de vídeos em motion graphics feitos com código (HTML, Canvas, SVG, Three.js). **Só como referência de técnica**: animação calculada por `seek(t)` quadro a quadro, springs de forma fechada, tipografia cinética, cartão final. Usada na edição dos vídeos do Esquenta 11/11 (`novembro-pedro/entregas/videos-esquenta/`). Nunca copiar um desses vídeos para a Botanika.
