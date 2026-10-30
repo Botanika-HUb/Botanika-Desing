@@ -3,9 +3,8 @@
   Esquenta 11/11 (02/11 00h → 10/11 20h, horário de Brasília).
   Renderizado uma vez no <head> (via snippets/botanika-campaign-css).
   Tudo vem em <template> e o script coloca na página só dentro da janela:
-    - banner da campanha no topo da home (conceito "quanto mais leva, mais esquenta")
-    - o seletor de potes da página de produto troca para 1 pote 8%, 3 potes 10% e 5 potes 12%
-      (isso fica no bloco _product-quantity-cards)
+    - Esquentômetro (snippet bk-esq-meter) no topo da home e no lugar do seletor de potes
+      da página de produto (bk-esquenta-pdp): arrasta a quantidade e o desconto esquenta 8/10/12%
     - cranberry de brinde entrando sozinho no carrinho acima de R$ 400
   Fora da janela nada aparece. Para ver antes: abra qualquer página
   com ?esquenta=1 (fica salvo na aba até fechar).
@@ -20,37 +19,22 @@
 -%}
 {%- if template.name == 'index' -%}
 {%- render 'bk-esquenta-css' -%}
+{%- render 'bk-esq-meter' -%}
 <template id="bk-esq-home">
 <section class="bkq" aria-label="Esquenta 11/11">
   <div class="bkq__in">
     <div class="bkq__tx">
-      <span class="bkq__eye"><span class="bkq__fl" aria-hidden="true"><i></i><i></i><i></i></span>Esquenta 11/11 · 02 a 10/11</span>
+      <span class="bkq__eye">Esquenta 11/11 · 02 a 10/11</span>
       <h2 class="bkq__h">Quanto mais leva, <em>mais esquenta.</em></h2>
-      <p class="bkq__p">O desconto sobe junto com o seu carrinho, misturando os produtos que quiser.</p>
-    </div>
-    <div class="bkq__vis">
+      <p class="bkq__p">Arraste o Esquentômetro e veja o seu desconto subir. Vale misturando os produtos que quiser.</p>
       <img class="bkq__prod" src="https://cdn.shopify.com/s/files/1/0780/7238/1672/files/lp1111-linha-recorte.webp?v=1793379234&width=900" alt="Linha Botanika" width="1400" height="566" loading="eager">
-      <div class="bkq__lv">
-        <div class="bkq__l bkq__l1"><b>8%</b><small>1 unidade</small></div>
-        <div class="bkq__l bkq__l2"><b>10%</b><small>3+ unidades</small></div>
-        <div class="bkq__l bkq__l3"><b>12%</b><small>5+ unidades</small><span>🔥 temperatura máxima</span></div>
-      </div>
     </div>
-    <div class="bkq__ft">
-      <div class="bkq__perks">
-        <div class="bkq__perk"><span class="bkq__ico">🚚</span><span><b>Frete grátis</b> acima de R$&nbsp;249</span></div>
-        <div class="bkq__perk"><img src="https://cdn.shopify.com/s/files/1/0780/7238/1672/files/hf_20260911_150202_d733ca0a-dc7b-4c78-ac5e-cb4780f95dd7.png?v=1789140114&width=120" alt="" width="40" height="40"><span><b>Cranberry de brinde</b> acima de R$&nbsp;400<small>2 brindes se você já é cliente</small></span></div>
-      </div>
-      <div class="bkq__row">
-        <a class="bkq__btn" href="/collections/mais-vendidos">Esquentar meu carrinho <span aria-hidden="true">→</span></a>
-        <span class="bkq__t">Termina em <b data-bk-esq-count>--</b></span>
-      </div>
-    </div>
+    <bk-esq-meter data-mode="home" data-unit="9940" data-installments="3" data-name="Hair Botanika"></bk-esq-meter>
   </div>
 </section>
 </template>
 {%- endif -%}
-{%- if template.name == 'product' -%}{%- render 'bk-esquenta-pdp' -%}{%- endif -%}
+{%- if template.name == 'product' -%}{%- render 'bk-esq-meter' -%}{%- render 'bk-esquenta-pdp' -%}{%- endif -%}
 {%- liquid
   assign esq_want = 1
   if customer and customer.orders_count > 0

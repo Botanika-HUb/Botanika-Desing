@@ -119,3 +119,9 @@
 - **vip.botanikabrasil.com.br:** a LP de captação foi publicada no Vercel (projeto botanika-vip) e o domínio foi adicionado. Falta criar na GoDaddy o CNAME vip → 667a43143419fd9b.vercel-dns-016.com.
 - **vip.botanikabrasil.com.br no ar:** o Pedro criou o CNAME na GoDaddy, e o Vercel confirmou a configuração sem erro.
 - **Tema do Esquenta refeito** (o Pedro reprovou a v1: era cópia da Semana Rosa, a tarja de 2 linhas aparecia acima do produto no celular e o seletor mostrava 5%/10%). Na v2: sai a tarja e o aviso da página de produto. A home ganha o banner novo 'Quanto mais leva, mais esquenta', com o termômetro 8/10/12%, a linha de produtos em recorte, frete e cranberry. Na página de produto, nada fica acima da foto: o seletor de potes vira 5 potes 12% (com cranberry quando passa de R$ 400), 3 potes 10% e 1 pote 8%, frete grátis a partir de R$ 249, e vale também no Esquenta Botanika Week (12–20/11). Arquivos: bk-esquenta-1111, bk-esquenta-css e bk-esquenta-pdp. A v1 ficou guardada em bk-esquenta-1111.v1.liquid.
+
+### 30/10 — Esquentômetro no tema do Esquenta (v3)
+- Subido no tema não publicado 168113045736: `bk-esq-meter` (novo), `bk-esquenta-1111`, `bk-esquenta-pdp`, `bk-esquenta-css`.
+- Home: bloco "Quanto mais leva, mais esquenta" com o Esquentômetro (arrasta 1→5+, desconto 8/10/12%, cor esquenta).
+- Página de produto: troca os cartões de potes pelo Esquentômetro, abaixo do preço; nada acima da foto. Testado: quantidade do formulário acompanha e o botão adiciona ao carrinho.
+- Prévia: `?preview_theme_id=168113045736&esquenta=1`. Aguardando aprovação do Pedro.
