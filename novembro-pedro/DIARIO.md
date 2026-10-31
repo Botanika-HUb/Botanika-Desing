@@ -131,3 +131,12 @@
 - Seletores do "Monte seus 5" refeitos (referência de estilo enviada pelo Pedro, só como ideia): foto grande, categoria, nome com link pra página do produto, nota, preço riscado + % do momento, 3x e à vista, + e − em pílula, "Conhecer o produto", selo "Mais escolhido". Extras: preço de todos os produtos acompanha a faixa da montagem, aviso "Esquentou!" com brasa piscando e vibração no celular, montagem guardada ao abrir um produto e voltar. Testado: link abre a página do produto, volta com a montagem, botão leva os itens ao carrinho.
 - Página de produto: a barra de arrastar virou 5 potes clicáveis (foto do próprio produto, "1 pote 8%" … "5 potes 12%"); os potes escolhidos acendem. O "− 5 + / Comprar" do tema fica escondido no Esquenta (o botão do Esquentômetro já adiciona). Testado: 5 potes → 5 no carrinho + cranberry de brinde.
 - Pedido do Pedro: tirar produtos sugeridos e limpar o carrinho no celular. No Esquenta: some "Complete sua rotina" (página do produto) e, na gaveta do carrinho, o "Complete sua rotina", "Leve mais e economize" e a barra de frete do tema. Fica uma faixa só (desconto + quanto falta pro frete), os produtos aparecem logo, e um único botão "Finalizar compra" em brasa (o "Ver carrinho" sai no celular).
+
+#### Fechamento de 30/10
+- **Feito:** tema do Esquenta refeito do zero e testado na prévia (Esquentômetro na home e nas páginas de produto, "Monte seus 5", potes clicáveis, carrinho do celular sem sugestões e com uma faixa só). Também ficaram prontos a LP vip.botanikabrasil.com.br no ar com pop-up, os 5 estáticos de venda do 11/11 e os 3 vídeos do Esquenta.
+- **Correção:** a escada 8/10/12%, o frete acima de R$ 249 e o cranberry **já estão no roteiro agendado para 01/11 00h05**, aprovado pelo Pedro em 29/10. Não é preciso um novo "ok". Os descontos de quantidade de hoje (por exemplo, "Hair: 3 potes 10%") vencem em 01/11 00h, então não brigam com o Esquenta.
+- **Pendente:** o Pedro aprovar a versão final do tema e publicar até 01/11; marcar no Alliance as entregas prontas; um cadastro real de teste na lista 13 do ActiveCampaign.
+- **Respostas recebidas:** nenhuma nova do Vitor ("até 40%" e se o cranberry conta como unidade), da Sarah, do Ítalo, da Mafe ou do Otávio.
+- **Push no GitHub:** continua dando erro 403.
+
+### 31/10 (sábado)

@@ -3,11 +3,16 @@
 > 🔒 **REGRA FIXA (Pedro, 29/10):** este chat cuida **somente das tarefas da BOTANIKA**. Nunca fazer nada da **VermeFree** nem da **Revita** (nem da Shoty). Se o Pedro citar VermeFree ou Revita, **parar na hora e não executar nada**: só avisar e esperar.
 
 
-> Atualizado em: **30/10/2026, 14h30**
+> Atualizado em: **31/10/2026, 9h**
 > Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito · `[!]` bloqueado
 > ID = id da tarefa no Alliance OS (`https://alliance-os-sooty.vercel.app/?task=<ID>#tasks`)
 
-## 📍 Onde estamos (30/10, 14h30)
+## 📍 Onde estamos (31/10, 9h)
+
+**Esquenta 11/11 começa segunda, 02/11, às 00h.**
+- Tema: pronto na prévia (`?preview_theme_id=168113045736&esquenta=1`). Falta você aprovar a versão final e **publicar até domingo, 01/11**. Ele só acende na janela da campanha.
+- Oferta, frete e cranberry: o roteiro roda **domingo 01/11 00h05** (aprovado em 29/10). Depois aviso você.
+- No Alliance aparecem como atrasadas (30/10 18h): tema (cbe59), oferta (2fc37) e brindes (46ad7). Elas fecham depois da publicação e do roteiro.
 
 ### ✅ Pronto (falta só você marcar no Alliance)
 | Tarefa (prazo) | Onde está |
@@ -18,7 +23,7 @@
 | 15 universais, lote 2 (04/11) | aprovados, zip enviado |
 | 5 estáticos de venda do 11/11 (06/11) | aprovados, você subiu no Drive |
 | 3 vídeos UGC do Esquenta | aprovados (v3), enviados |
-| Tema do Esquenta 11/11 (30/10) | cópia pronta. **Você publica até 01/11** |
+| Tema do Esquenta 11/11 (30/10) | refeito: Esquentômetro, Monte seus 5, potes clicáveis, carrinho enxuto. **Você aprova e publica até 01/11** |
 | Tema do 11/11 + fechar o site (06/11) | na mesma cópia: tela fechada com cadastro, tarja, banner, Q10 no carrinho |
 | Frete grátis + brinde Q10 do 11/11 (06/11) | agendados na Shopify |
 
