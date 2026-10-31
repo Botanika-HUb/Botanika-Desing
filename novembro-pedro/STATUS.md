@@ -7,6 +7,15 @@
 > Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito · `[!]` bloqueado
 > ID = id da tarefa no Alliance OS (`https://alliance-os-sooty.vercel.app/?task=<ID>#tasks`)
 
+## 🔄 MUDANÇA DO VITOR (30/10): Botanika SEM captação no 11/11
+- Não há grupo do 11/11, LP de captação, tráfego de captação nem criativos de captação.
+- Até 10/11 às 20h, o site segue normal com o Esquenta.
+- De 10/11 às 20h até 11/11 às 08h, só entra quem já comprou (acesso antecipado com brindes). Para o cliente novo aparece um banner que diz que o site reabre na quarta, 11/11, às 08h, com o link do **grupo VIP da Sarah**.
+- A partir de 09/11, aviso leve só para quem já é cliente, por API, Gmail e grupo VIP.
+- Tarefas arquivadas no Alliance: LP de captação, 15 estáticos de captação, 15 vídeos de captação, 20 e 30 vídeos universais e os criativos semanais.
+- Tarefas novas: 16 vídeos do 1º lote (06/11), 9 estáticos universais do 1º lote (06/11). Os criativos de venda do 11/11 subiram para 10 estáticos e 10 vídeos.
+- **A desfazer (aguardando o ok do Pedro):** tirar do ar vip.botanikabrasil.com.br e a página /pages/grupo-vip-11-11; trocar na tela fechada o link do grupo do 11/11 (sndflw.com/i/botanika11-11) pelo link do grupo VIP da Sarah; mudar o texto para "reabre quarta, 11/11, às 08h".
+
 ## 📍 Onde estamos (31/10, 9h)
 
 **Esquenta 11/11 começa segunda, 02/11, às 00h.**

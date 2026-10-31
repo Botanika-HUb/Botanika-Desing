@@ -140,3 +140,4 @@
 - **Push no GitHub:** continua dando erro 403.
 
 ### 31/10 (sábado)
+- **Mudança do Vitor (30/10), recebida às 9h:** a Botanika fica sem captação no 11/11. Fiz o levantamento do que muda (está no STATUS). Ainda no ar e contra a nova regra: a LP vip.botanikabrasil.com.br e o link do grupo do 11/11 na tela fechada. Aguardando o ok do Pedro para desfazer.
