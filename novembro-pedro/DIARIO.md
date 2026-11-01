@@ -151,3 +151,7 @@
 ### 01/11 (tarde)
 - Estáticos 11/11 V6–V10 gerados e conferidos (oferta conferida; Whey em pote). Jobs no arquivo de copies.
 - 01/11: LP vip.botanikabrasil.com.br fica no ar por enquanto (decisão do Pedro; nunca foi divulgada, captação cancelada antes de rodar).
+- Alliance (com o ok do Pedro): tema, brindes e 15 estáticos universais marcados como feitos, com as listas de conferência completas. Na tarefa de oferta e frete, 6 de 7 itens estão marcados. "Pedido de teste feito" fica aberto e é o Pedro quem fecha.
+- Antes de marcar, conferi na Shopify: o cupom BOTANIKA está expirado e não há desconto ativo de primeira compra, Nova Saúde ou roleta.
+- **Regra nova do Pedro:** não adiantar tarefas futuras, porque as mudanças são frequentes. O teste das 00h15 virou só conferência: não mexe em nada nem no Alliance.
+- Fim do dia: nada para entregar em 01/11 nem em 02/11.

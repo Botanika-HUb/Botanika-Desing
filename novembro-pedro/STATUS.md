@@ -3,7 +3,7 @@
 > 🔒 **REGRA FIXA (Pedro, 29/10):** este chat cuida **somente das tarefas da BOTANIKA**. Nunca fazer nada da **VermeFree** nem da **Revita** (nem da Shoty). Se o Pedro citar VermeFree ou Revita, **parar na hora e não executar nada**: só avisar e esperar.
 
 
-> Atualizado em: **31/10/2026, 9h**
+> Atualizado em: **01/11/2026, fim do dia**
 > Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito · `[!]` bloqueado
 > ID = id da tarefa no Alliance OS (`https://alliance-os-sooty.vercel.app/?task=<ID>#tasks`)
 
@@ -14,9 +14,35 @@
 - A partir de 09/11, aviso leve só para quem já é cliente, por API, Gmail e grupo VIP.
 - Tarefas arquivadas no Alliance: LP de captação, 15 estáticos de captação, 15 vídeos de captação, 20 e 30 vídeos universais e os criativos semanais.
 - Tarefas novas: 16 vídeos do 1º lote (06/11), 9 estáticos universais do 1º lote (06/11). Os criativos de venda do 11/11 subiram para 10 estáticos e 10 vídeos.
-- **A desfazer (aguardando o ok do Pedro):** tirar do ar vip.botanikabrasil.com.br e a página /pages/grupo-vip-11-11; trocar na tela fechada o link do grupo do 11/11 (sndflw.com/i/botanika11-11) pelo link do grupo VIP da Sarah; mudar o texto para "reabre quarta, 11/11, às 08h".
+- **Decisão do Pedro (01/11):** a LP vip.botanikabrasil.com.br **fica no ar por enquanto** (nunca foi divulgada).
+- **Pendente:** trocar na tela fechada o link do grupo do 11/11 (sndflw.com/i/botanika11-11) pelo link do grupo VIP da Sarah; mudar o texto para "reabre quarta, 11/11, às 08h".
 
-## 📍 Onde estamos (31/10, 9h)
+## 📍 Onde estamos (01/11, fim do dia)
+
+**Regra nova do Pedro (01/11): não adiantar tarefas futuras.** Fazer cada entrega perto do prazo, porque as mudanças são frequentes.
+
+**Esquenta 11/11 entra no ar segunda, 02/11, às 00h, e tudo já está programado.**
+- O tema "ESQUENTA 11/11" (168113045736) tem a publicação programada pelo Pedro.
+- As 6 regras de desconto estão criadas para 02/11 00h → 10/11 20h, e os 55 cupons de influenciadora estão em 2%. A auditoria do tema contra o checkout está ok.
+- **02/11 00h15 (automático):** eu só confiro as regras com elas valendo e o site publicado, sem alterar nada, e aviso o Pedro de manhã.
+
+**Alliance (01/11, com o ok do Pedro):**
+- Marcadas como feitas: o tema (cbe59), os brindes (46ad7) e os 15 primeiros estáticos universais (702b7).
+- A de oferta e frete (2fc37) tem 6 de 7 itens marcados. Falta "Pedido de teste feito", e quem fecha é o Pedro.
+
+**Entregue hoje:** os estáticos de venda do 11/11 V6–V10, aprovados ("top demais"). Com isso, os 10 estáticos de venda estão completos.
+
+**Para 02/11:** nenhuma entrega do Pedro.
+
+**Esperando outras pessoas:**
+- O link do grupo VIP da Sarah, para a tela do site fechado (até 10/11).
+- O material da Mafe, para os vídeos.
+
+**Fora deste chat:**
+- A baixa dos pagamentos da Victoria fica com o agente do Creator Club.
+- A ferramenta de pedidos de parceiros depende do Álvaro.
+
+## 📍 Onde estamos (31/10, 9h) — histórico
 
 **Esquenta 11/11 começa segunda, 02/11, às 00h.**
 - Tema: pronto na prévia (`?preview_theme_id=168113045736&esquenta=1`). Falta você aprovar a versão final e **publicar até domingo, 01/11**. Ele só acende na janela da campanha.
