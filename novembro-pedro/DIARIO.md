@@ -150,3 +150,4 @@
 
 ### 01/11 (tarde)
 - Estáticos 11/11 V6–V10 gerados e conferidos (oferta conferida; Whey em pote). Jobs no arquivo de copies.
+- 01/11: LP vip.botanikabrasil.com.br fica no ar por enquanto (decisão do Pedro; nunca foi divulgada, captação cancelada antes de rodar).
