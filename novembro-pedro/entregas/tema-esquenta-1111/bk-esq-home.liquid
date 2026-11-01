@@ -1,7 +1,8 @@
 {%- comment -%}
   Esquenta 11/11: a home abaixo do Esquentômetro, feita do zero (só na home, só na campanha ou com ?esquenta=1).
     1. "Monte seus 5": lista de produtos com + e −, a brasa acende conforme a quantidade
-       (1–2 un. 8% · 3–4 un. 10% · 5+ un. 12%) e um botão leva tudo pro carrinho de uma vez.
+       (1–2 un. 8% · 3–4 un. 10% · 5+ un. 12%) e cada + e − já mexe no carrinho
+       (conta também o que entrou por outras páginas). O botão leva direto para o pagamento.
        Atalhos prontos por objetivo (cabelo, imunidade, treino, sono) preenchem a lista.
     2. "O Esquenta esfria em…": fechamento com a brasa grande, contagem e botão.
   Os blocos antigos da home ficam escondidos, menos os vídeos e as avaliações de clientes.
@@ -169,9 +170,8 @@
     var frag = tpl.content.cloneNode(true), x = frag.querySelector('.bkx'), z = frag.querySelector('.bkz');
     hero.parentNode.insertBefore(x, hero.nextSibling);
     var main = document.getElementById('MainContent'); main.appendChild(z);
-    var q = data.map(function(){ return 0; }), list = x.querySelector('[data-list]'), SHOW = 6, KEY = 'bkM5';
-    /* a montagem fica guardada: o cliente pode abrir a página do produto e voltar sem perder nada */
-    try { var saved = JSON.parse(localStorage.getItem(KEY) || '{}'); data.forEach(function(p, i){ q[i] = saved[p.v] || 0; }); } catch (e) {}
+    /* a lista espelha o carrinho de verdade: cada + e − já mexe no carrinho, e o que entrou por outras páginas conta junto */
+    var q = data.map(function(){ return 0; }), keys = {}, other = 0, list = x.querySelector('[data-list]'), SHOW = 6, queue = Promise.resolve();
     function stars(r){ r = parseFloat(r) || 0; var o = ''; for (var k = 1; k <= 5; k++) o += k <= Math.round(r) ? '★' : '☆'; return o; }
     list.innerHTML = data.map(function(p, i){
       var eb = String(p.e || '').replace(/^[^A-Za-zÀ-ú]+/, '');
@@ -189,8 +189,9 @@
     if (list.querySelector('[hidden]')) { more.hidden = false; more.onclick = function(){ list.querySelectorAll('[hidden]').forEach(function(r){ r.hidden = false; }); more.hidden = true; }; }
     list.addEventListener('click', function(e){
       var b = e.target.closest('button[data-a]'); if (!b) return;
-      var i = +b.closest('[data-i]').dataset.i; q[i] = Math.max(0, Math.min(20, q[i] + (b.dataset.a === '+' ? 1 : -1)));
-      chips.querySelectorAll('.on').forEach(function(c){ c.classList.remove('on'); }); paint();
+      var i = +b.closest('[data-i]').dataset.i, nq = Math.max(0, Math.min(20, q[i] + (b.dataset.a === '+' ? 1 : -1)));
+      if (nq === q[i]) return;
+      q[i] = nq; chips.querySelectorAll('.on').forEach(function(c){ c.classList.remove('on'); }); paint(); setQty(i, nq);
     });
     var chips = x.querySelector('[data-chips]');
     PRESETS.forEach(function(pr){
@@ -198,16 +199,15 @@
       if (!hits.length) return;
       var c = document.createElement('button'); c.type = 'button'; c.className = 'bkx__chip'; c.textContent = pr[0];
       c.onclick = function(){
-        q = q.map(function(){ return 0; }); hits.forEach(function(h){ q[h[0]] += h[1]; list.querySelector('[data-i="' + h[0] + '"]').hidden = false; });
+        hits.forEach(function(h){ if (q[h[0]] < h[1]) { q[h[0]] = h[1]; setQty(h[0], h[1]); } list.querySelector('[data-i="' + h[0] + '"]').hidden = false; });
         chips.querySelectorAll('.on').forEach(function(o){ o.classList.remove('on'); }); c.classList.add('on'); paint();
       };
       chips.appendChild(c);
     });
     var go = x.querySelector('[data-go]'), orb = x.querySelector('[data-orb]'), up = x.querySelector('[data-up]'), lastP = -1, upT = null;
     function paint(){
-      var n = 0, sub = 0, keep = {};
-      q.forEach(function(k, i){ n += k; sub += k * data[i].p; if (k) keep[data[i].v] = k; });
-      try { localStorage.setItem(KEY, JSON.stringify(keep)); } catch (e) {}
+      var n = other.units, sub = other.price;
+      q.forEach(function(k, i){ n += k; sub += k * data[i].p; });
       var p = pct(n), off = Math.floor(sub * p / 100), h = heat(n), shown = pct(Math.max(n, 1));
       /* o preço de cada produto acompanha a temperatura da montagem */
       q.forEach(function(k, i){
@@ -225,18 +225,36 @@
       lastP = p;
       x.querySelectorAll('.bkx__seg i').forEach(function(s, k){ s.classList.toggle('on', k < n); });
       x.querySelector('[data-s1]').innerHTML = !n ? 'Sua brasa está apagada. <b>Comece pelo +</b>'
-        : '<b>' + n + (n > 1 ? ' itens · ' : ' item · ') + p + '% OFF</b>' + (n < 5 ? '<br>+' + (n < 3 ? 3 - n : 5 - n) + ' e vai pra ' + (n < 3 ? 10 : 12) + '%' : '<br>temperatura máxima 🔥');
+        : '<b>' + n + (n > 1 ? ' itens no carrinho · ' : ' item no carrinho · ') + p + '% OFF</b>' + (n < 5 ? '<br>+' + (n < 3 ? 3 - n : 5 - n) + ' e vai pra ' + (n < 3 ? 10 : 12) + '%' : '<br>temperatura máxima 🔥');
       x.querySelector('[data-tot]').innerHTML = n ? '<s>' + money(sub) + '</s><strong>' + money(sub - off) + '</strong>' : '';
-      go.disabled = !n; go.textContent = n ? 'Levar ' + n + (n > 1 ? ' itens' : ' item') + ' pro carrinho' : 'Escolha seus produtos';
+      go.disabled = !n; go.textContent = n ? 'Finalizar compra · ' + n + (n > 1 ? ' itens' : ' item') : 'Escolha seus produtos';
     }
-    go.onclick = function(){
-      var items = []; q.forEach(function(k, i){ if (k) items.push({ id: data[i].v, quantity: k }); });
-      if (!items.length) return; go.disabled = true; go.textContent = 'Esquentando…';
-      fetch('/cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ items: items }) })
-        .then(function(r){ if (!r.ok) throw 0; try { localStorage.removeItem(KEY); } catch (e) {} location.href = '/cart'; })
-        .catch(function(){ go.disabled = false; go.textContent = 'Não deu certo, tente de novo'; });
-    };
-    paint();
+    function post(url, body){ return fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(body) }).then(function(r){ return r.json(); }); }
+    /* uma alteração por vez, na ordem dos toques; depois relê o carrinho */
+    function setQty(i, nq){
+      var v = data[i].v;
+      queue = queue.then(function(){
+        return keys[v] ? post('/cart/change.js', { id: keys[v], quantity: nq }) : (nq > 0 ? post('/cart/add.js', { items: [{ id: v, quantity: nq }] }) : null);
+      }).catch(function(){}).then(sync);
+    }
+    function sync(){
+      return fetch('/cart.js', { headers: { Accept: 'application/json' } }).then(function(r){ return r.json(); }).then(function(c){
+        var nq = data.map(function(){ return 0; }); keys = {}; other = { units: 0, price: 0 };
+        (c.items || []).forEach(function(it){
+          if (it.properties && it.properties._brinde) return;
+          var i = -1; data.some(function(p, k){ if (p.v === it.variant_id) { i = k; return true; } });
+          if (i < 0) { other.units += it.quantity; other.price += it.original_line_price; return; }
+          nq[i] += it.quantity; if (!keys[it.variant_id]) keys[it.variant_id] = it.key;
+        });
+        q = nq;
+        q.forEach(function(k, i){ if (k) list.querySelector('[data-i="' + i + '"]').hidden = false; });
+        paint();
+      }).catch(function(){});
+    }
+    go.onclick = function(){ go.disabled = true; go.textContent = 'Abrindo o pagamento…'; queue.then(function(){ location.href = '/checkout'; }); };
+    other = { units: 0, price: 0 }; paint(); sync();
+    window.addEventListener('pageshow', function(e){ if (e.persisted) sync(); });
+    document.addEventListener('visibilitychange', function(){ if (!document.hidden) sync(); });
     var END = window.__bkEsqEnd || 0, zc = z.querySelector('[data-zc]');
     (function tick(){ var s = Math.max(0, Math.floor((END - Date.now()) / 1000)); zc.textContent = (s >= 86400 ? Math.floor(s / 86400) + 'd ' : '') + pad(Math.floor(s % 86400 / 3600)) + 'h ' + pad(Math.floor(s % 3600 / 60)) + 'm'; if (s > 0) setTimeout(tick, 30000); })();
   }

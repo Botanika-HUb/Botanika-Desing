@@ -141,3 +141,7 @@
 
 ### 31/10 (sábado)
 - **Mudança do Vitor (30/10), recebida às 9h:** a Botanika fica sem captação no 11/11. Fiz o levantamento do que muda (está no STATUS). Ainda no ar e contra a nova regra: a LP vip.botanikabrasil.com.br e o link do grupo do 11/11 na tela fechada. Aguardando o ok do Pedro para desfazer.
+
+### 01/11 (domingo)
+- **Roteiro do Esquenta executado às 12h** (o aviso das 00h05 chegou atrasado): 6 regras criadas para 02/11 00h → 10/11 20h e 55 cupons de influenciadora em 2%, somando com tudo. Detalhes e IDs no runbook. O teste com pedido fica para 02/11 às 00h15, quando as regras entram no ar.
+- **Correção do "Monte seus 5"** (o Pedro testou: o que ele colocou pela página do produto não somava com a home). Agora a lista é o próprio carrinho: cada + e − já mexe no carrinho, conta o que entrou por outras páginas e o botão vai direto para o pagamento. Testado: 2 Tri[Mg] pela página do produto + 3 itens pela home = 5 itens e 12%; tirar 1 desce para 4.

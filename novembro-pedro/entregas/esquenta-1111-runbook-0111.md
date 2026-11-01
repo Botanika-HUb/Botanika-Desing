@@ -47,3 +47,16 @@ A lista ainda precisa ser conferida com a Ana (cadastro das influencers).
 - Os arquivos estão em `entregas/tema-esquenta-1111/`.
 - O tema adiciona o cranberry ao carrinho sozinho: 1 unidade para todos e 2 para cliente logado que já comprou. Ele **só mantém o brinde se a Shopify zerar o preço dele**. Se a regra de desconto não estiver ativa, ele tira o brinde e para. Por isso a regra 5 não tem segmento: precisa valer no carrinho, antes de o cliente pôr o e-mail.
 - **Teste em 01/11 depois de criar as regras:** abrir a prévia, montar um carrinho acima de R$ 400 e conferir se o cranberry entra a R$ 0.
+
+## Executado em 01/11 (12h, horário de Brasília; o aviso agendado para 00h05 chegou atrasado)
+- Conferido: os 22 descontos automáticos permanentes venceram. Ficaram só o Upsell.com e os 2 agendados do 11/11.
+- Criadas as 6 regras, todas de 02/11 00h a 10/11 20h:
+  - 8% OFF (1594327957736)
+  - +2% para 3 un. ou mais (1594327990504)
+  - +2% para 5 un. ou mais (1594328023272)
+  - Frete grátis acima de R$ 249 (1594328154344). Acumula com pedido e produto; com frete a Shopify não aceita.
+  - Cranberry acima de R$ 400 para todos (1594328088808)
+  - 2º cranberry para recorrentes (1594328187112), com o segmento "Esquenta · recorrentes (1+ pedidos)" (Segment 583901446376)
+- Cupons: **55** cupons de código ativos, todos de influenciadora (53 da lista + KAMI e GABRIELTESTE5 do Creator Club). Todos foram para 2%, desconto de pedido, acumulando com tudo.
+- **Reversão em 01/12:** os 44 primeiros (VICTORIA … SUZANA e "Creator Botanika") estavam com acúmulo `pedido:false, produto:true, frete:true`. Os 11 do "Creator Club" (NUTRICAROL, KEYLLAINDICA, GIUPERSONAL, GABIS, CORREDOR, DRVICTOR, KAMILLA5, MONIKNUTRI, BRUNASC, GABRIELTESTE5 e KAMI) estavam com tudo `true`. Todos estavam em 5%.
+- O teste com rascunho de pedido só funciona depois que as regras entram no ar. Ficou agendado para 02/11 às 00h15.
