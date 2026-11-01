@@ -147,3 +147,6 @@
 - **Correção do "Monte seus 5"** (o Pedro testou: o que ele colocou pela página do produto não somava com a home). Agora a lista é o próprio carrinho: cada + e − já mexe no carrinho, conta o que entrou por outras páginas e o botão vai direto para o pagamento. Testado: 2 Tri[Mg] pela página do produto + 3 itens pela home = 5 itens e 12%; tirar 1 desce para 4.
 - **Prévia no celular:** a Shopify apagava o `?esquenta=1` do link, e por isso o Pedro via o tema padrão. Agora o tema liga o Esquenta sozinho quando é aberto em prévia (não publicado). Quando estiver publicado, segue as datas. `?esquenta=0` desliga na prévia. Testado: link puro da prévia mostra tudo; o site no ar continua normal.
 - **Auditoria tema × checkout** (pedido do Pedro): 9 cenários testados com rascunho de pedido. Foram 4 diferenças, todas corrigidas: arredondamento, cranberry antes do desconto, brinde contando na escada e 2º cranberry dos recorrentes (a regra agora dá 2 unidades). Relatório em entregas/esquenta-1111-auditoria-0111.md. As regras de teste e o cliente de teste foram apagados.
+
+### 01/11 (tarde)
+- Estáticos 11/11 V6–V10 gerados e conferidos (oferta conferida; Whey em pote). Jobs no arquivo de copies.

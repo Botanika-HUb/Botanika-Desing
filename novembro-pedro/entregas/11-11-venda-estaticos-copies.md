@@ -37,3 +37,15 @@ Botão em todas: **Comprar agora**
 | V3 | bfddebc3-396a-4a82-b939-39b7bf8adfdd (refeita) | Rodapé ajustado para "Ganhe 15% de volta na próxima compra." A 1ª versão saiu com a linha vermelha borrada. |
 | V4 | ea192cc0-9c3e-41fd-a1b0-7ee751e7b805 (refeita) | Na 1ª versão o pote cobria o Q e lia "+010". Rodapé: "Compras acima de R$ 500 ganham a Q10 de presente." |
 | V5 | 0b3eaf25-f516-473f-86d4-6df58285a900 (refeita) | Na 1ª versão o pote cobria o "O" de HORAS e o whey saiu como pacote. |
+
+## V6–V10 (01/11)
+
+| Peça | Ângulo | Título | Produtos | Job |
+|---|---|---|---|---|
+| V6 | abertura | **ABRIU** · O 11/11 começou: até 40% OFF | Linha no pódio | 34cdb481-9a62-4755-b20a-6e9b469ee433 |
+| V7 | rotina | **ROTINA** · Sua rotina completa com até 40% OFF | Hair, Vit C, TetraVit | 024460c5-deb8-45d7-8515-073f7dcc8d46 |
+| V8 | 4 vantagens | **4 EM 1** · 40% OFF, frete grátis, Q10 acima de R$ 500, 15% de volta | Q10, Ômega, Tri[Mg] | b03b7362-384a-4fd6-a8e2-b6d053eb99e6 |
+| V9 | prova social | **4,8★** · Os favoritos de quem já usa | Hair + Whey (pote) | 84385999-6440-4071-95c0-54142a86c482 |
+| V10 | histórico | **HISTÓRICO** · O maior desconto da história da Botanika | Ômega | 84b7547c-753d-42ce-86b3-29d8a54c0363 |
+
+Observação: no V10, o texto miúdo do rótulo do Ômega saiu com erro ("Fácilmente o ajudentar em cápsulas"). Só dá para ver com zoom. Refazer se o Pedro pedir.
