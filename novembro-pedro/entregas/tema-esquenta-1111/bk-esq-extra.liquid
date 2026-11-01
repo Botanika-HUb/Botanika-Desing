@@ -12,7 +12,8 @@
 (function(){
   var W = [[1793588400000, 1794351600000], [1794452400000, 1795229999000]]; /* Esquenta 11/11 · Esquenta Botanika Week */
   var n = Date.now(), w = W.filter(function(x){ return n >= x[0] && n < x[1]; })[0];
-  try { if (/[?&]esquenta=1\b/.test(location.search)) sessionStorage.setItem('bkEsqPreview', '1'); if (!w && sessionStorage.getItem('bkEsqPreview') === '1') w = W[0]; } catch (e) {}
+  /* prévia: liga sozinho quando o tema é aberto sem estar publicado (a Shopify apaga o ?esquenta=1 do link); ?esquenta=0 desliga, ?esquenta=1 liga */
+  if (!w && (function(){ try { var m = location.search.match(/[?&]esquenta=([01])\b/); if (m) sessionStorage.setItem('bkEsqPreview', m[1]); var v = sessionStorage.getItem('bkEsqPreview'); if (v) return v === '1'; } catch (e) {} return !!(window.Shopify && Shopify.theme && Shopify.theme.role === 'unpublished'); })()) w = W[0];
   if (w) { document.documentElement.classList.add('bk-esq'); window.__bkEsqEnd = w[1]; }
 })();
 </script>

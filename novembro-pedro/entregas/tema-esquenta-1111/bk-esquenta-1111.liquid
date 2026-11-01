@@ -48,8 +48,9 @@
   if (window.__bkEsq) return; window.__bkEsq = true;
   var START = {{ esq_start }} * 1000, END = {{ esq_end }} * 1000;
   var GIFT = 49035962122472, MIN = 40000, WANT = {{ esq_want }};
-  try { if (/[?&]esquenta=1\b/.test(location.search)) sessionStorage.setItem('bkEsqPreview', '1'); } catch (e) {}
-  function preview(){ try { return sessionStorage.getItem('bkEsqPreview') === '1'; } catch (e) { return false; } }
+  /* prévia: liga sozinho quando o tema é aberto sem estar publicado (a Shopify apaga o ?esquenta=1 do link); ?esquenta=0 desliga, ?esquenta=1 liga */
+  var PREV = (function(){ try { var m = location.search.match(/[?&]esquenta=([01])\b/); if (m) sessionStorage.setItem('bkEsqPreview', m[1]); var v = sessionStorage.getItem('bkEsqPreview'); if (v) return v === '1'; } catch (e) {} return !!(window.Shopify && Shopify.theme && Shopify.theme.role === 'unpublished'); })();
+  function preview(){ return PREV; }
   function on(){ var n = Date.now(); return (n >= START && n < END) || preview(); }
   if (!on()) return;
 
