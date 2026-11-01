@@ -76,6 +76,8 @@
   var CRAN = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/hf_20260911_150202_d733ca0a-dc7b-4c78-ac5e-cb4780f95dd7.png?v=1789140114&width=80';
   function pct(q){ return q >= 5 ? 12 : q >= 3 ? 10 : 8; }
   function heat(q){ return q >= 5 ? 3 : q >= 3 ? 2 : 1; }
+  function disc(t, u){ return Math.floor(t * 8 / 100) + (u >= 3 ? Math.floor(t * 2 / 100) : 0) + (u >= 5 ? Math.floor(t * 2 / 100) : 0); } /* igual à Shopify: 8% + 2% + 2% sobre o mesmo valor, cada parte arredondada para baixo */
+  function want(){ var w = window.__bkEsqWant; return w == null ? 1 : w; } /* cranberries de brinde: 1, ou 2 para quem já comprou; contam como unidade na escada */
   function money(c){ var a = (c / 100).toFixed(2).split('.'); return 'R$ ' + a[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + a[1]; }
   class BkEsqMeter extends HTMLElement {
     connectedCallback(){
@@ -109,28 +111,28 @@
       this.render();
     }
     render(){
-      var q = parseInt(this.r.value, 10), p = pct(q), h = heat(q), pdp = this.dataset.mode === 'pdp';
-      var total = this.unit * q, save = Math.floor(total * p / 100), price = total - save;
+      var q = parseInt(this.r.value, 10), pdp = this.dataset.mode === 'pdp', unit = this.unit;
+      var total = unit * q, g = total >= 40000, gu = g ? want() : 0, u = q + gu, p = pct(u), h = heat(u), save = disc(total, u), price = total - save;
       this.box.setAttribute('data-heat', h);
       this.r.style.setProperty('--p', ((q - 1) / 4 * 100) + '%');
-      this.querySelectorAll('.bkm__pot').forEach(function(b){ var n = +b.dataset.n; b.classList.toggle('on', n <= q); b.classList.toggle('cur', n === q); b.classList.toggle('st', n === 3 || n === 5); b.setAttribute('aria-checked', n === q); });
+      this.querySelectorAll('.bkm__pot').forEach(function(b){ var n = +b.dataset.n; b.classList.toggle('on', n <= q); b.classList.toggle('cur', n === q); b.classList.toggle('st', n === 3 || n === 5); b.setAttribute('aria-checked', n === q); var s = b.querySelector('small'); if (s) s.textContent = pct(n + (unit * n >= 40000 ? want() : 0)) + '%'; });
       var knob = this.querySelector('[data-knob]'); knob.textContent = q === 5 && !pdp ? '5+' : q; knob.style.left = 'calc(20px + (100% - 40px) * ' + ((q - 1) / 4) + ')';
       this.querySelector('[data-p]').textContent = p;
       this.querySelector('[data-k]').textContent = 'Esquenta 11/11 · ' + (h === 3 ? 'temperatura máxima' : 'Esquentômetro');
       if (pdp) {
         this.querySelector('[data-lab]').innerHTML = '<b>' + q + (q > 1 ? ' potes' : ' pote') + '</b> por <b>' + money(price) + '</b>' + (q > 1 ? ' · ' + money(Math.floor(price / q)) + ' cada' : '') + ' · ' + this.inst + 'x de ' + money(Math.floor(price / this.inst));
-        this.querySelector('[data-sv]').innerHTML = 'Você economiza <b>' + money(save) + '</b>' + (q < 5 ? ' · com ' + (q < 3 ? 3 : 5) + ' potes vai para ' + (q < 3 ? 10 : 12) + '%' : '');
+        this.querySelector('[data-sv]').innerHTML = 'Você economiza <b>' + money(save) + '</b>' + (gu && pct(u) > pct(q) ? ' · 🎁 o cranberry de brinde conta na escada' : u < 5 ? ' · com ' + (u < 3 ? 3 - gu : 5 - gu) + ' potes vai para ' + (u < 3 ? 10 : 12) + '%' : '');
         this.querySelector('[data-cta]').textContent = 'Adicionar ' + q + (q > 1 ? ' potes' : ' pote') + ' ao carrinho';
         this.setQty(q);
       } else {
         this.querySelector('[data-lab]').innerHTML = 'levando <b>' + (q === 5 ? '5 ou mais' : q + (q > 1 ? ' produtos' : ' produto')) + '</b>, misturando o que quiser';
         this.querySelector('[data-sv]').innerHTML = q === 1 ? 'Arraste e veja o desconto <b>esquentar</b> 🔥' : 'Exemplo com ' + q + ' potes de ' + this.name + ': você economiza <b>' + money(save) + '</b>';
       }
-      var f = price >= 24900, g = price >= 40000;
+      var f = price >= 24900; /* frete: depois dos descontos · cranberry: antes dos descontos (como a Shopify confere) */
       this.querySelector('[data-u1]').classList.toggle('on', f);
       this.querySelector('[data-u2]').classList.toggle('on', g);
       this.querySelector('[data-u1t]').textContent = f ? 'Frete grátis desbloqueado' : (pdp ? 'Faltam ' + money(24900 - price) + ' para o frete grátis' : 'Frete grátis acima de R$ 249');
-      this.querySelector('[data-u2t]').textContent = g ? 'Cranberry de brinde desbloqueado 🎁' : (pdp ? 'Faltam ' + money(40000 - price) + ' para o cranberry de brinde' : 'Cranberry de brinde acima de R$ 400');
+      this.querySelector('[data-u2t]').textContent = g ? 'Cranberry de brinde desbloqueado 🎁' : (pdp ? 'Faltam ' + money(40000 - total) + ' para o cranberry de brinde' : 'Cranberry de brinde acima de R$ 400');
     }
     section(){ return this.closest('[id^="shopify-section-"]') || document; }
     setQty(q){

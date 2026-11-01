@@ -161,6 +161,8 @@
   ];
   function pct(q){ return q >= 5 ? 12 : q >= 3 ? 10 : q ? 8 : 0; }
   function heat(q){ return q >= 5 ? 3 : q >= 3 ? 2 : q ? 1 : 0; }
+  function disc(t, u){ return Math.floor(t * 8 / 100) + (u >= 3 ? Math.floor(t * 2 / 100) : 0) + (u >= 5 ? Math.floor(t * 2 / 100) : 0); } /* igual à Shopify: 8% + 2% + 2% sobre o mesmo valor, cada parte arredondada para baixo */
+  function want(){ var w = window.__bkEsqWant; return w == null ? 1 : w; } /* cranberries de brinde: 1, ou 2 para quem já comprou; contam como unidade na escada */
   function money(c){ var a = (c / 100).toFixed(2).split('.'); return 'R$ ' + a[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + a[1]; }
   function pad(x){ return x < 10 ? '0' + x : '' + x; }
   function boot(){
@@ -208,10 +210,11 @@
     function paint(){
       var n = other.units, sub = other.price;
       q.forEach(function(k, i){ n += k; sub += k * data[i].p; });
-      var p = pct(n), off = Math.floor(sub * p / 100), h = heat(n), shown = pct(Math.max(n, 1));
+      var gu = n && sub >= 40000 ? want() : 0; n += gu;
+      var p = pct(n), off = disc(sub, n), h = heat(n), shown = pct(Math.max(n, 1));
       /* o preço de cada produto acompanha a temperatura da montagem */
       q.forEach(function(k, i){
-        var r = list.querySelector('[data-i="' + i + '"]'), d = data[i], each = d.p - Math.floor(d.p * shown / 100), o = r.querySelector('[data-off]');
+        var r = list.querySelector('[data-i="' + i + '"]'), d = data[i], each = d.p - disc(d.p, Math.max(n, 1)), o = r.querySelector('[data-off]');
         r.classList.toggle('has', k > 0); r.querySelector('[data-q]').textContent = k;
         r.querySelector('[data-in3]').textContent = money(Math.floor(each / 3)); r.querySelector('[data-cash]').textContent = money(each);
         if (o.textContent !== '-' + shown + '%') { o.textContent = '-' + shown + '%'; if (lastP >= 0) { o.classList.remove('pop'); void o.offsetWidth; o.classList.add('pop'); } }
@@ -225,7 +228,7 @@
       lastP = p;
       x.querySelectorAll('.bkx__seg i').forEach(function(s, k){ s.classList.toggle('on', k < n); });
       x.querySelector('[data-s1]').innerHTML = !n ? 'Sua brasa está apagada. <b>Comece pelo +</b>'
-        : '<b>' + n + (n > 1 ? ' itens no carrinho · ' : ' item no carrinho · ') + p + '% OFF</b>' + (n < 5 ? '<br>+' + (n < 3 ? 3 - n : 5 - n) + ' e vai pra ' + (n < 3 ? 10 : 12) + '%' : '<br>temperatura máxima 🔥');
+        : '<b>' + n + (n > 1 ? ' itens no carrinho · ' : ' item no carrinho · ') + p + '% OFF</b>' + (gu ? ' <small>(com ' + gu + ' cranberry' + (gu > 1 ? 's' : '') + ' de brinde)</small>' : '') + (n < 5 ? '<br>+' + (n < 3 ? 3 - n : 5 - n) + ' e vai pra ' + (n < 3 ? 10 : 12) + '%' : '<br>temperatura máxima 🔥');
       x.querySelector('[data-tot]').innerHTML = n ? '<s>' + money(sub) + '</s><strong>' + money(sub - off) + '</strong>' : '';
       go.disabled = !n; go.textContent = n ? 'Finalizar compra · ' + n + (n > 1 ? ' itens' : ' item') : 'Escolha seus produtos';
     }
@@ -254,6 +257,9 @@
     go.onclick = function(){ go.disabled = true; go.textContent = 'Abrindo o pagamento…'; queue.then(function(){ location.href = '/checkout'; }); };
     other = { units: 0, price: 0 }; paint(); sync();
     window.addEventListener('pageshow', function(e){ if (e.persisted) sync(); });
+    /* mudanças feitas na gaveta do carrinho também atualizam a lista */
+    var of = window.fetch, ts = null;
+    window.fetch = function(u){ var r = of.apply(this, arguments); try { var url = typeof u === 'string' ? u : (u && u.url) || ''; if (/\/cart\/(change|update|clear)/.test(url)) r.then(function(){ clearTimeout(ts); ts = setTimeout(sync, 700); }).catch(function(){}); } catch (e) {} return r; };
     document.addEventListener('visibilitychange', function(){ if (!document.hidden) sync(); });
     var END = window.__bkEsqEnd || 0, zc = z.querySelector('[data-zc]');
     (function tick(){ var s = Math.max(0, Math.floor((END - Date.now()) / 1000)); zc.textContent = (s >= 86400 ? Math.floor(s / 86400) + 'd ' : '') + pad(Math.floor(s % 86400 / 3600)) + 'h ' + pad(Math.floor(s % 3600 / 60)) + 'm'; if (s > 0) setTimeout(tick, 30000); })();

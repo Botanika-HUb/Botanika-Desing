@@ -87,6 +87,8 @@
   var END = window.__bkEsqEnd, units = null, total = 0; /* null até ler o carrinho */
   function pct(q){ return q >= 5 ? 12 : q >= 3 ? 10 : 8; }
   function heat(q){ return q >= 5 ? 3 : q >= 3 ? 2 : 1; }
+  function disc(t, u){ return Math.floor(t * 8 / 100) + (u >= 3 ? Math.floor(t * 2 / 100) : 0) + (u >= 5 ? Math.floor(t * 2 / 100) : 0); } /* igual à Shopify: 8% + 2% + 2% sobre o mesmo valor, cada parte arredondada para baixo */
+  function want(){ var w = window.__bkEsqWant; return w == null ? 1 : w; } /* cranberries de brinde: 1, ou 2 para quem já comprou; contam como unidade na escada */
   function next(q){ return q >= 5 ? null : q >= 3 ? { need: 5 - q, p: 12 } : { need: 3 - q, p: 10 }; }
   function plural(k){ return k + (k > 1 ? ' produtos' : ' produto'); }
   function money(c){ var a = (c / 100).toFixed(2).split('.'); return 'R$ ' + a[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + a[1]; }
@@ -141,7 +143,7 @@
       var cash = c.querySelector('.installment-price__cash'); if (!cash) return;
       c.setAttribute('data-bkc', '1');
       var m = cash.textContent.match(/R\$\s*([\d.]+),(\d{2})/); if (!m) return;
-      var unit = parseInt(m[1].replace(/\./g, '') + m[2], 10), each = unit - Math.floor(unit * 12 / 100);
+      var unit = parseInt(m[1].replace(/\./g, '') + m[2], 10), each = unit - disc(unit, 5);
       var el = document.createElement('div'); el.className = 'bkc5';
       el.innerHTML = '🔥 5 un.: <b>' + money(each) + '</b> cada';
       var price = c.querySelector('.product-item__price'); (price || cash).insertAdjacentElement('afterend', el);
@@ -188,7 +190,9 @@
   function load(){
     return fetch('/cart.js', { headers: { Accept: 'application/json' } }).then(function(r){ return r.json(); }).then(function(c){
       total = c.total_price || 0;
-      units = (c.items || []).reduce(function(a, it){ return a + (it.properties && it.properties._brinde ? 0 : it.quantity); }, 0);
+      var paid = 0; units = 0;
+      (c.items || []).forEach(function(it){ if (it.properties && it.properties._brinde) return; units += it.quantity; paid += it.final_line_price; });
+      if (units && paid >= 40000) units += want(); /* o cranberry de brinde conta na escada da Shopify */
       paint();
     }).catch(function(){});
   }
