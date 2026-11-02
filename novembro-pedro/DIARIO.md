@@ -185,3 +185,13 @@
 ### 02/11 — Estáticos do Esquenta pro Otávio
 - O Otávio só tinha recebido os de captação (cancelados) e os V1–V5 (venda do 11/11), que estão na pasta "Estáticos" do Drive. Os 30 universais (U01–U30) não estavam no Drive.
 - O lote 1 foi baixado de novo da Higgsfield. Mandei ao Pedro um zip com os 30 (124 MB) pra ele subir em "01. Antecipação + Esquenta 11/11" e mandar o link ao Otávio.
+
+### 02/11 (tarde) — Tema Black do Esquenta, pedido do Gabriel
+- Base: tema "OFICIAL 16/10 — cópia avaliações 29/10" (168106000616), que tem o bloco de avaliações melhorado.
+- O layout ficou o padrão. Mudaram as cores (azul royal com verde-limão, preto e vermelho nos preços), a tarja do topo com contagem, os banners da home e das coleções, os cartões de quantidade (8/10/12
+### 02/11 (tarde) — Tema Black do Esquenta, pedido do Gabriel
+- Base: tema "OFICIAL 16/10 — cópia avaliações 29/10" (168106000616), que tem o bloco de avaliações melhorado.
+- O layout ficou o padrão. Mudaram as cores (azul royal com verde-limão, preto e vermelho nos preços), a tarja do topo com contagem, os banners da home e das coleções, os cartões de quantidade (8/10/12%, frete acima de R$ 249) e o cranberry automático.
+- Também levei para esse tema o que é do 11/11: o bk-1111 (site fechado e Q10), o frete do 11/11 e o topo sem o cupom BOTANIKA.
+- Arquivos em entregas/tema-black-esquenta/ (bk-bf-skin). Os banners estão na Shopify Files com os nomes esquenta-1111-hero-mobile, esquenta-1111-hero-desktop e esquenta-1111-colecao.
+- Prévia conferida no celular e no computador. Os cartões batem com o checkout (3 Hair = R$ 268,39). Falta a aprovação do Pedro e a publicação, que é ele quem faz pelo admin.
