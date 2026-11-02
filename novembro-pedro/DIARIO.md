@@ -212,3 +212,13 @@
   - Testado: 1 un. = 8%, 3 un. = 10% (−R$ 29,81), 5 un. = 12% (−R$ 59,64).
   - O checkout continua mostrando as linhas separadas, porque não é do tema.
 - O push pro GitHub deu 403 (acesso caiu). Os arquivos do tema subiram direto na Shopify (TEXT) e os checksums conferem com a pasta tema-black-esquenta/.
+
+### 02/11 (noite) — Versão preto e vermelho (pedido do Vitor e do Gabriel no grupo)
+- Orientação do Vitor: não mexer em widgets. Só mudar banner, cor de fundo e texto, e avisar no grupo quando terminar.
+- Duplicado o tema publicado (Black) → "ESQUENTA PRETO E VERMELHO — cópia 02/11" (168242708712), ainda não publicado.
+- Novo snippet bk-bf-pv (por cima do bk-bf-skin):
+  - Botões vermelhos; faixa de selos, "Mais Vendidos", menu e rodapé com fundo preto.
+  - Título "Mais vendidos com até 12% OFF" com a etiqueta "Tá rolando o Esquenta 11/11".
+  - Faixa do Esquenta com contagem na página de produto; seletor de potes em preto e vermelho.
+  - Banners novos em preto e vermelho, em Files com os nomes esquenta-1111-preto-*.
+- Link na bio: foi feito no ChatGPT. Mandei ao Pedro o comando pra colar lá.
