@@ -208,3 +208,7 @@
   - Conferi as 21 páginas de produto: escada 5/3/1 certa em todas e os kits com +8%.
   - Calculadora da Shopify bate com o site: Kit Sono R$ 171,57, Kit Imunidade R$ 332,78, Whey 910 ×5 R$ 1.114,08, NAC xarope ×3 R$ 103,15, MSM ×5 R$ 302,72.
   - Menus (Promoções Relâmpago, Kits com Desconto, Combos, Lançamentos) sem promessa errada. Roleta, diagnóstico e "antes de sair" seguem desligados.
+- Resumo do carrinho (gaveta e página): as linhas 8% + 2% + 2% agora aparecem como uma só ("Esquenta 11/11 · 10% OFF −R$ 29,81"). Isso está no snippet bk-bf-merge, renderizado pelo campaign-css.
+  - Testado: 1 un. = 8%, 3 un. = 10% (−R$ 29,81), 5 un. = 12% (−R$ 59,64).
+  - O checkout continua mostrando as linhas separadas, porque não é do tema.
+- O push pro GitHub deu 403 (acesso caiu). Os arquivos do tema subiram direto na Shopify (TEXT) e os checksums conferem com a pasta tema-black-esquenta/.
