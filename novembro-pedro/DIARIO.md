@@ -202,3 +202,9 @@
   - O carrinho (página e gaveta) ganhou uma caixa só: faixa da escada contando o brinde, frete depois do desconto e cranberry. Saíram a barra antiga de R$ 349 e a do tema, que calculava antes do desconto.
   - O rodapé deixou de oferecer o cupom BOTANIKA e o bloco "Sua primeira compra" deixou de prometer desconto.
 - Conferido na prévia: 5 Hair = R$ 437,36 (−R$ 59,64), 3 Hair = R$ 268,39, Kit Sono = R$ 171,57, e 4 Ômega + cranberry = 5 itens com 12% (−R$ 78,27). Tudo igual ao checkout.
+- Segunda rodada da auditoria (o Pedro mandou print da gaveta):
+  - Escondi da gaveta e do carrinho duas ofertas que não valem: "Oferta exclusiva do carrinho −10%" e "Leve mais do mesmo: 5%/10%" (escada antiga, acabou em 01/11). O tema do Esquenta já escondia as duas.
+  - Rodapé sem a frase do cupom BOTANIKA no mês inteiro (via campaign-css).
+  - Conferi as 21 páginas de produto: escada 5/3/1 certa em todas e os kits com +8%.
+  - Calculadora da Shopify bate com o site: Kit Sono R$ 171,57, Kit Imunidade R$ 332,78, Whey 910 ×5 R$ 1.114,08, NAC xarope ×3 R$ 103,15, MSM ×5 R$ 302,72.
+  - Menus (Promoções Relâmpago, Kits com Desconto, Combos, Lançamentos) sem promessa errada. Roleta, diagnóstico e "antes de sair" seguem desligados.
