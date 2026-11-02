@@ -195,3 +195,10 @@
 - Também levei para esse tema o que é do 11/11: o bk-1111 (site fechado e Q10), o frete do 11/11 e o topo sem o cupom BOTANIKA.
 - Arquivos em entregas/tema-black-esquenta/ (bk-bf-skin). Os banners estão na Shopify Files com os nomes esquenta-1111-hero-mobile, esquenta-1111-hero-desktop e esquenta-1111-colecao.
 - Prévia conferida no celular e no computador. Os cartões batem com o checkout (3 Hair = R$ 268,39). Falta a aprovação do Pedro e a publicação, que é ele quem faz pelo admin.
+- Auditoria do tema Black contra a promoção (pedido do Pedro). Corrigi:
+  - O seletor agora tem 5 potes (12%), 3 potes (10%) e 1 pote (8%). Saiu o de 2 potes, que repetia os 8%.
+  - O cartão mostra o Cranberry de brinde quando passa de R$ 400.
+  - Nos kits, as 3x e o à vista ficaram com os 8% do Esquenta.
+  - O carrinho (página e gaveta) ganhou uma caixa só: faixa da escada contando o brinde, frete depois do desconto e cranberry. Saíram a barra antiga de R$ 349 e a do tema, que calculava antes do desconto.
+  - O rodapé deixou de oferecer o cupom BOTANIKA e o bloco "Sua primeira compra" deixou de prometer desconto.
+- Conferido na prévia: 5 Hair = R$ 437,36 (−R$ 59,64), 3 Hair = R$ 268,39, Kit Sono = R$ 171,57, e 4 Ômega + cranberry = 5 itens com 12% (−R$ 78,27). Tudo igual ao checkout.
