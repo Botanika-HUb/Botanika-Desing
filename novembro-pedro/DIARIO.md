@@ -166,3 +166,18 @@
   - 3 Hair + cupom VICTORIA: +2% (R$ 5,96) somando com a escada → R$ 262,43. ✅
 - Site ao vivo no celular: tarja "até 12% OFF", topo do Esquenta, Esquentômetro e "Monte seus 5" na home, e Esquentômetro na página de produto. Prints em tema-esquenta-1111/previa-esquentometro/ao-vivo-0211-*.png.
 - Alliance não foi mexido. A tarefa de oferta e frete continua com "Pedido de teste feito" em aberto, e o Pedro decide se fecha.
+
+### 02/11 (segunda) — plano do dia (9h)
+- **Fechamento de 01/11:**
+  - Feito: estáticos V6–V10 (aprovados), 3 tarefas fechadas no Alliance e Esquenta no ar conferido às 00h15.
+  - Decisões do Pedro: a LP do VIP fica no ar e não vamos adiantar tarefas.
+  - Respostas recebidas: nenhuma nova do Vitor, da Sarah, do Ítalo, da Mafe ou do Otávio.
+- **Alliance (só leitura), tarefas abertas do Pedro:**
+  - Atrasadas: oferta e frete do Esquenta (falta só "Pedido de teste feito", o Pedro decide), baixa da Victoria (fora deste chat) e ferramenta de parceiros (depende do Álvaro).
+  - Nada vence de 02 a 04/11.
+  - 05/11 18h: cashback do 11/11.
+  - 06/11: 10 estáticos de venda do 11/11 (prontos), 10 vídeos de venda e 16 do 1º lote (material da Mafe), 9 estáticos universais do 1º lote, tema/oferta/brindes/fechamento do site do 11/11, "bem-estar por rotina" no site e nota fiscal.
+- **Rituais:**
+  - Hoje: daily às 9h20.
+  - Terça 03/11: reunião de CRO/Site às 13h.
+- **Marco:** o Vitor marcou a "Revisão antes de começar" do Esquenta às 8h.
