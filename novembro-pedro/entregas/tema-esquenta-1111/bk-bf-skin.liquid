@@ -148,7 +148,7 @@ html.bk-bf .menu_label{background:var(--bf-red)!important}
       };
     }
     document.querySelectorAll('quantity-discount-cards.qty2').forEach(function(el){
-      if (el.__bkbf || !el.cards) return; el.__bkbf = true;
+      if (el.__bkbfDone || !el.cards) return; el.__bkbfDone = true;
       el.freeShip = 24900;
       var goal = el.querySelector('[data-ship-goal]'); if (goal) goal.textContent = 'Frete grátis · R$ 249,00';
       el.cards.forEach(function(card){
