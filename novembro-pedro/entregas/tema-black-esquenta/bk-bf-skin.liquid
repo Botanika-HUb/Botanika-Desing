@@ -52,12 +52,15 @@ html.bk-bf .bkbf-bar{display:flex;align-items:center;justify-content:center;gap:
 /* banners */
 .bkbf-hero,.bkbf-col{display:none}
 html.bk-bf .bkbf-hero,html.bk-bf .bkbf-col{display:block;background:var(--bf-navy);line-height:0}
-.bkbf-hero img,.bkbf-col img{width:100%;height:auto;display:block}
+html.bk-bf .bkbf-hero{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden}
+@media (min-width:750px){html.bk-bf .bkbf-hero{aspect-ratio:21/9}}
+html.bk-bf .bkbf-col{position:relative;width:100%;aspect-ratio:21/9;overflow:hidden}
+html.bk-bf .bkbf-hero picture,html.bk-bf .bkbf-hero img,html.bk-bf .bkbf-col img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover;display:block!important;transform:none!important;opacity:1!important}
 html.bk-bf .bkbf-col{background:#f4f1ea}
 /* botões de compra: verde-limão com texto azul */
-html.bk-bf .product__add-cart,html.bk-bf .bkc__btn,html.bk-bf .btn.btn-primary,html.bk-bf .bkp__cta,html.bk-bf .product-form__submit,html.bk-bf .product_submit_button,html.bk-bf .bkm__wpp,html.bk-bf .bf__btn,html.bk-bf .bsn__copy{background:var(--bf-lime)!important;border-color:var(--bf-lime)!important;color:var(--bf-navy)!important;font-weight:800!important;box-shadow:0 6px 16px rgba(200,241,75,.35)}
+html.bk-bf .product-item .product__add-cart.morden-style,html.bk-bf .product-item .product__add-cart,html.bk-bf .product__add-cart,html.bk-bf .bkc__btn,html.bk-bf .btn.btn-primary,html.bk-bf .bkp__cta,html.bk-bf .product-form__submit,html.bk-bf .product_submit_button,html.bk-bf .bkm__wpp,html.bk-bf .bf__btn,html.bk-bf .bsn__copy{background:var(--bf-lime)!important;border-color:var(--bf-lime)!important;color:var(--bf-navy)!important;font-weight:800!important;box-shadow:0 6px 16px rgba(200,241,75,.35)}
 html.bk-bf .product__add-cart *,html.bk-bf .bkc__btn *,html.bk-bf .btn.btn-primary *,html.bk-bf .bkp__cta *{color:var(--bf-navy)!important}
-html.bk-bf .product__add-cart:hover,html.bk-bf .bkc__btn:hover,html.bk-bf .btn.btn-primary:hover{background:#b5e02f!important}
+html.bk-bf .product-item .product__add-cart.morden-style:hover,html.bk-bf .product__add-cart:hover,html.bk-bf .bkc__btn:hover,html.bk-bf .btn.btn-primary:hover{background:#b5e02f!important}
 /* preços e descontos: preto e vermelho */
 html.bk-bf .installment-price__parc{color:var(--bf-red)!important;font-weight:800}
 html.bk-bf .installment-price__tag,html.bk-bf .qty2k__sj{background:var(--bf-black)!important;color:#fff!important}
