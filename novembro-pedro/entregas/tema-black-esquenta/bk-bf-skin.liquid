@@ -80,6 +80,17 @@ html.bk-bf .qty2__ship [data-ship-msg] .amt{color:var(--bf-red)!important}
 /* cabeçalho do menu e rodapé no azul royal */
 html.bk-bf .submenu-horizontal,html.bk-bf nav.mobile,html.bk-bf footer.bf{background:var(--bf-navy)!important}
 html.bk-bf .menu_label{background:var(--bf-red)!important}
+html.bk-bf .bgc,html.bk-bf free-ship-progress-bar{display:none!important}
+.bkbf-cb{display:none}
+html.bk-bf .bkbf-cb{display:grid;gap:4px;background:#0b0b0f;color:#fff;border-radius:14px;padding:12px 14px;margin:0 0 14px;font:600 13px/1.35 'Instrument Sans',system-ui,sans-serif}
+.bkbf-cb b{color:#c8f14b}
+.bkbf-cb__pct{background:#e3132b;color:#fff;border-radius:6px;padding:1px 7px;font-weight:800}
+.bkbf-cb__s{color:#c9c9d3;font-weight:600}
+.bkbf-cb__n{color:#d6d6de;font-size:12.5px}
+.bkbf-cb__ok{color:#c8f14b;font-size:12.5px;font-weight:800}
+html.bk-bf .bkbf-gift{margin:6px 16px 0;display:inline-block;background:#fff2f3;color:#b30f22;border:1px dashed #e3132b;border-radius:10px;padding:5px 10px;font-weight:800;font-size:12px}
+html.bk-bf .bkbf-kitpill{background:#0b0b0f;color:#fff}
+html.bk-bf .bkbf-img5 img{transform:scale(1.08)}
 </style>
 <template id="bkbf-bar">
   <div class="bkbf-bar" role="region" aria-label="Esquenta 11/11">
@@ -130,7 +141,21 @@ html.bk-bf .menu_label{background:var(--bf-red)!important}
     if (s > 0) setTimeout(tick, 30000);
   }
 
-  /* cartões de quantidade: escada real 8/10/12% e frete grátis acima de R$ 249 (depois do desconto) */
+  /* cartões de quantidade: 5 potes 12%, 3 potes 10%, 1 pote 8% (a escada real) e frete grátis acima de R$ 249 depois do desconto */
+  function setCard(card, unit, self){
+    var q = parseInt(card.dataset.quantity), t = unit * q, d = disc(t, q), price = t - d, free = price >= self.freeShip;
+    var set = function(s, v){ var el = card.querySelector(s); if (el) el.textContent = v; };
+    var kit = !card.classList.contains('qty2__tier');
+    if (kit) { var kb = card.querySelector('.qty2k__big b'); if (kb) kb.textContent = money(Math.floor(price / self.installments)); }
+    set('[data-installment]', money(Math.floor(price / self.installments))); set('[data-total]', money(price));
+    if (!kit) { set('[data-compare]', money(t)); set('[data-perunit]', money(Math.floor(price / q)) + '/pote'); }
+    var sv = card.querySelector('[data-savebox]') || card.querySelector('.qty2k__save');
+    if (sv) { sv.hidden = false; sv.textContent = '✓ Você economiza ' + money(d + (kit ? (parseInt(card.dataset.kitSave || '0')) : 0)) + (free ? ' + frete grátis' : ''); }
+    var fs = card.querySelector('[data-freeship]'); if (fs) fs.hidden = !free;
+    var g = card.querySelector('.bkbf-gift');
+    if (t >= 40000) { if (!g) { g = document.createElement('div'); g.className = 'bkbf-gift'; var pr = card.querySelector('.qty2k__price'); if (pr) pr.parentNode.insertBefore(g, pr.nextSibling); } g.textContent = '🎁 + ' + (B.want > 1 ? '2 Cranberries' : 'Cranberry') + ' de brinde'; }
+    else if (g) g.remove();
+  }
   function fixCards(C){
     var P = C.prototype;
     if (!P.__bkbf) {
@@ -139,14 +164,7 @@ html.bk-bf .menu_label{background:var(--bf-red)!important}
       var rep = P.reprice;
       P.reprice = function(unit){
         var self = this; rep.call(this, unit);
-        this.cards.forEach(function(card){
-          var q = parseInt(card.dataset.quantity), t = unit * q, d = disc(t, q), price = t - d, free = price >= self.freeShip;
-          var set = function(s, v){ var el = card.querySelector(s); if (el) el.textContent = v; };
-          set('[data-installment]', money(Math.floor(price / self.installments))); set('[data-total]', money(price));
-          set('[data-compare]', money(t)); set('[data-perunit]', money(Math.floor(price / q)) + '/pote');
-          var sv = card.querySelector('[data-savebox]'); if (sv) { sv.hidden = false; sv.textContent = '✓ Você economiza ' + money(d) + (free ? ' + frete grátis' : ''); }
-          var fs = card.querySelector('[data-freeship]'); if (fs) fs.hidden = !free;
-        });
+        this.cards.forEach(function(card){ setCard(card, unit, self); });
         var a = this.querySelector('.qty2__opt.is-active'); if (a) this.updateShip(a);
       };
     }
@@ -154,25 +172,87 @@ html.bk-bf .menu_label{background:var(--bf-red)!important}
       if (el.__bkbfDone || !el.cards) return; el.__bkbfDone = true;
       el.freeShip = 24900;
       var goal = el.querySelector('[data-ship-goal]'); if (goal) goal.textContent = 'Frete grátis · R$ 249,00';
-      el.cards.forEach(function(card){
-        if (!card.classList.contains('qty2__tier')) return;
-        var q = parseInt(card.dataset.quantity), p = pct(q);
-        card.dataset.discount = p;
+      var tiers = el.cards.filter(function(c){ return c.classList.contains('qty2__tier'); });
+      var kitc = el.cards.filter(function(c){ return !c.classList.contains('qty2__tier'); });
+      kitc.forEach(function(card){
+        var cmp = card.querySelector('.qty2k__cmp'), unit = parseInt(el.dataset.unitPrice);
+        if (cmp) { var v = parseInt(cmp.textContent.replace(/\D/g, '')); if (v > unit) card.dataset.kitSave = v - unit; }
         var rib = card.querySelector('.qty2k__ribbon');
-        if (!rib) { rib = document.createElement('div'); rib.className = 'qty2k__ribbon'; card.insertBefore(rib, card.firstChild); }
-        var name = rib.textContent.replace(/^\s*🏷️\s*/, '').split('·')[0].trim();
-        if (/% OFF$/.test(name)) name = '';
-        rib.innerHTML = '🔥 ' + (name ? name + ' · ' : 'Esquenta · ') + '<span class="bkbf-pct">' + p + '% OFF</span>';
-        card.querySelectorAll('.qty2k__pill--reg, .qty2k__sub').forEach(function(x){ x.remove(); });
-        var pr = card.querySelector('.qty2k__price');
-        if (pr && !pr.querySelector('[data-compare]')) { var s = document.createElement('s'); s.className = 'qty2k__cmp'; s.setAttribute('data-compare', ''); pr.insertBefore(s, pr.firstChild); }
+        if (rib) rib.innerHTML = rib.innerHTML.replace(/\s*$/, '') + ' <span class="bkbf-pct">+8% Esquenta</span>';
+        var pill = card.querySelector('.qty2k__pill--off'); if (pill && !card.querySelector('.bkbf-kitpill')) { var x = document.createElement('span'); x.className = 'qty2k__pill bkbf-kitpill'; x.textContent = '+8% Esquenta'; pill.parentNode.insertBefore(x, pill.nextSibling); }
       });
+      if (tiers.length >= 2) {
+        /* o cartão de 2 potes (mesmos 8% de 1 pote) vira 5 potes com 12% */
+        var by = {}; tiers.forEach(function(c){ by[c.dataset.quantity] = c; });
+        var c2 = by['2'], c3 = by['3'], c1 = by['1'];
+        if (c2 && !by['5']) {
+          c2.dataset.quantity = 5;
+          var nm = c2.querySelector('.qty2__q'); if (nm) nm.textContent = '5 potes';
+          var im = c2.querySelector('.qty2k__img'), im3 = c3 && c3.querySelector('.qty2k__img');
+          if (im && im3) { im.innerHTML = im3.innerHTML; im.classList.add('bkbf-img5'); }
+          var grid = c2.parentNode; if (grid) grid.insertBefore(c2, grid.firstChild);
+        }
+        var names = { '5': 'Maior desconto', '3': 'Mais vendido', '1': 'Esquenta' };
+        tiers.forEach(function(card){
+          var q = card.dataset.quantity, p = pct(parseInt(q));
+          card.dataset.discount = p;
+          var rib = card.querySelector('.qty2k__ribbon');
+          if (!rib) { rib = document.createElement('div'); rib.className = 'qty2k__ribbon'; card.insertBefore(rib, card.firstChild); }
+          rib.innerHTML = '🔥 ' + (names[q] || 'Esquenta') + ' · <span class="bkbf-pct">' + p + '% OFF</span>';
+          card.querySelectorAll('.qty2k__pill--reg, .qty2k__sub').forEach(function(x){ x.remove(); });
+          var pr = card.querySelector('.qty2k__price');
+          if (pr && !pr.querySelector('[data-compare]')) { var s = document.createElement('s'); s.className = 'qty2k__cmp'; s.setAttribute('data-compare', ''); pr.insertBefore(s, pr.firstChild); }
+          if (!pr.querySelector('[data-perunit]') && parseInt(q) > 1) { var inst = pr.querySelector('.qty2k__inst'); if (inst) { var sp = document.createElement('span'); sp.setAttribute('data-perunit', ''); inst.appendChild(document.createTextNode(' · ')); inst.appendChild(sp); } }
+        });
+        el.cards = Array.prototype.slice.call(el.querySelectorAll('.qty2__opt'));
+        var act = el.querySelector('.qty2__opt.is-active');
+        if (act) { el.apply(act); el.legend(act); }
+      }
       el.reprice(parseInt(el.dataset.unitPrice));
     });
   }
   function cards(){ if (window.customElements) customElements.whenDefined('quantity-discount-cards').then(function(){ fixCards(customElements.get('quantity-discount-cards')); }); }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ place(); cards(); }); else { place(); cards(); }
+  /* carrinho (gaveta e página): uma caixa só com a faixa do Esquenta, o frete (depois do desconto) e o cranberry */
+  var cartFetch = window.fetch.bind(window), boxTimer = null, lastCart = null;
+  function boxHTML(cart){
+    var u = 0, paid = 0;
+    (cart.items || []).forEach(function(it){ if (!(it.properties && it.properties._brinde)) { u += it.quantity; paid += it.final_line_price; } });
+    if (!u) return '';
+    var d = disc(paid, u), after = paid - d, p = pct(u), h = '';
+    h += '<div class="bkbf-cb__l">🔥 <b>Esquenta:</b> ' + u + (u > 1 ? ' itens' : ' item') + ' = <span class="bkbf-cb__pct">' + p + '% OFF</span> <span class="bkbf-cb__s">(− ' + money(d) + ')</span></div>';
+    if (u < 3) h += '<div class="bkbf-cb__n">Leve mais ' + (3 - u) + ' e ganhe <b>10%</b> · com 5, <b>12%</b></div>';
+    else if (u < 5) h += '<div class="bkbf-cb__n">Leve mais ' + (5 - u) + ' e ganhe <b>12%</b></div>';
+    h += after >= 24900 ? '<div class="bkbf-cb__ok">🚚 Frete grátis garantido</div>' : '<div class="bkbf-cb__n">🚚 Faltam <b>' + money(24900 - after) + '</b> para o frete grátis</div>';
+    h += paid >= 40000 ? '<div class="bkbf-cb__ok">🎁 ' + (B.want > 1 ? '2 Cranberries' : 'Cranberry') + ' de brinde no seu pedido</div>' : '<div class="bkbf-cb__n">🎁 Faltam <b>' + money(40000 - paid) + '</b> para ganhar ' + (B.want > 1 ? '2 Cranberries' : 'o Cranberry') + '</div>';
+    return h;
+  }
+  function paintBox(){
+    if (!lastCart) return;
+    var html = boxHTML(lastCart);
+    [document.getElementById('minicart-form'), document.querySelector('#main-cart-items cart-items')].forEach(function(host){
+      if (!host) return;
+      var box = host.querySelector('.bkbf-cb');
+      if (!html) { if (box) box.remove(); return; }
+      if (!box) { box = document.createElement('div'); box.className = 'bkbf-cb'; host.insertBefore(box, host.firstChild); }
+      if (box.innerHTML !== html) box.innerHTML = html;
+    });
+  }
+  function loadCart(){ cartFetch('/cart.js', { headers: { Accept: 'application/json' } }).then(function(r){ return r.json(); }).then(function(c){ lastCart = c; paintBox(); }).catch(function(){}); }
+  function watchCart(){
+    loadCart();
+    new MutationObserver(function(){ clearTimeout(boxTimer); boxTimer = setTimeout(function(){
+      var need = false; [document.getElementById('minicart-form'), document.querySelector('#main-cart-items cart-items')].forEach(function(h){ if (h && !h.querySelector('.bkbf-cb')) need = true; });
+      if (need) paintBox();
+    }, 250); }).observe(document.body, { childList: true, subtree: true });
+  }
+  /* textos fixos que prometem cupom de 1ª compra (não vale em novembro) */
+  function texts(){
+    var n = document.querySelector('.bf__note'); if (n) n.textContent = '🔥 Esquenta 11/11: até 12% OFF, vale misturando os produtos.';
+    var b = document.querySelector('.bsn__sub'); if (b) b.textContent = 'Escolha seus suplementos e receba em casa. No Esquenta 11/11: até 12% OFF misturando os produtos e frete grátis acima de R$ 249.';
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ place(); cards(); watchCart(); texts(); }); else { place(); cards(); watchCart(); texts(); }
 
   /* Cranberry de brinde acima de R$ 400 (2 para quem já comprou) */
   var GIFT = 49035962122472, MIN = 40000, WANT = B.want;
@@ -216,7 +296,7 @@ html.bk-bf .menu_label{background:var(--bf-red)!important}
   }
   window.fetch = function(u){
     var p = of.apply(window, arguments);
-    try { var url = typeof u === 'string' ? u : (u && u.url) || ''; if (/\/cart\/(add|change|update|clear)/.test(url)) p.then(function(){ clearTimeout(timer); timer = setTimeout(reconcile, 600); }).catch(function(){}); } catch (e) {}
+    try { var url = typeof u === 'string' ? u : (u && u.url) || ''; if (/\/cart\/(add|change|update|clear)/.test(url)) p.then(function(){ clearTimeout(timer); timer = setTimeout(reconcile, 600); setTimeout(loadCart, 400); setTimeout(loadCart, 2200); }).catch(function(){}); } catch (e) {}
     return p;
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', reconcile); else reconcile();
