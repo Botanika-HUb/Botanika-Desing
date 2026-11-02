@@ -155,3 +155,14 @@
 - Antes de marcar, conferi na Shopify: o cupom BOTANIKA está expirado e não há desconto ativo de primeira compra, Nova Saúde ou roleta.
 - **Regra nova do Pedro:** não adiantar tarefas futuras, porque as mudanças são frequentes. O teste das 00h15 virou só conferência: não mexe em nada nem no Alliance.
 - Fim do dia: nada para entregar em 01/11 nem em 02/11.
+
+### 02/11 (00h15) — Esquenta no ar: só conferência, nada foi alterado
+- O tema ESQUENTA 11/11 está publicado e as 6 regras estão ativas desde 00h.
+- Rascunhos de pedido calculados com as regras valendo. Nada foi salvo:
+  - 1 Vit C (R$ 89,52): 8% = R$ 7,16 → R$ 82,36. Sem frete grátis. ✅
+  - 3 Hair (R$ 298,20): 8% + 2% = R$ 29,81 → R$ 268,39. Frete grátis aplicado. ✅
+  - 5 Ômega + 1 cranberry (R$ 815,60): 8% + 2% + 2% = R$ 97,86 → R$ 717,74. Cranberry R$ 0. Frete R$ 0. ✅
+  - Cliente recorrente, 3 Ômega + 2 cranberries: 2 cranberries grátis. Os brindes contam na escada (5 un. = 12%) → R$ 430,66. Frete R$ 0. ✅
+  - 3 Hair + cupom VICTORIA: +2% (R$ 5,96) somando com a escada → R$ 262,43. ✅
+- Site ao vivo no celular: tarja "até 12% OFF", topo do Esquenta, Esquentômetro e "Monte seus 5" na home, e Esquentômetro na página de produto. Prints em tema-esquenta-1111/previa-esquentometro/ao-vivo-0211-*.png.
+- Alliance não foi mexido. A tarefa de oferta e frete continua com "Pedido de teste feito" em aberto, e o Pedro decide se fecha.
