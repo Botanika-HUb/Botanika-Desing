@@ -217,7 +217,7 @@ html.bk-bf .bkbf-img5 img{transform:scale(1.08)}
   var cartFetch = window.fetch.bind(window), boxTimer = null, lastCart = null;
   function boxHTML(cart){
     var u = 0, paid = 0;
-    (cart.items || []).forEach(function(it){ if (!(it.properties && it.properties._brinde)) { u += it.quantity; paid += it.final_line_price; } });
+    (cart.items || []).forEach(function(it){ u += it.quantity; if (!(it.properties && it.properties._brinde)) paid += it.final_line_price; }); /* o brinde também conta na escada, igual no checkout */
     if (!u) return '';
     var d = disc(paid, u), after = paid - d, p = pct(u), h = '';
     h += '<div class="bkbf-cb__l">🔥 <b>Esquenta:</b> ' + u + (u > 1 ? ' itens' : ' item') + ' = <span class="bkbf-cb__pct">' + p + '% OFF</span> <span class="bkbf-cb__s">(− ' + money(d) + ')</span></div>';
