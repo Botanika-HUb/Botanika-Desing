@@ -240,34 +240,13 @@ html.bk-bf .bkbf-img5 img{transform:scale(1.08)}
       if (box.innerHTML !== html) box.innerHTML = html;
     });
   }
-  function loadCart(){ cartFetch('/cart.js', { headers: { Accept: 'application/json' } }).then(function(r){ return r.json(); }).then(function(c){ lastCart = c; paintBox(); mergeDisc(); }).catch(function(){}); }
+  function loadCart(){ cartFetch('/cart.js', { headers: { Accept: 'application/json' } }).then(function(r){ return r.json(); }).then(function(c){ lastCart = c; paintBox(); }).catch(function(){}); }
   function watchCart(){
     loadCart();
     new MutationObserver(function(){ clearTimeout(boxTimer); boxTimer = setTimeout(function(){
       var need = false; [document.getElementById('minicart-form'), document.querySelector('#main-cart-items cart-items')].forEach(function(h){ if (h && !h.querySelector('.bkbf-cb')) need = true; });
       if (need) paintBox();
-      mergeDisc();
     }, 250); }).observe(document.body, { childList: true, subtree: true });
-  }
-  /* resumo do carrinho: as 2 ou 3 linhas da escada (8% + 2% + 2%) viram uma só, "Esquenta 11/11 · 10% OFF" */
-  function mergeDisc(){
-    document.querySelectorAll('ul.cart-discounts').forEach(function(ul){
-      var lis = Array.prototype.filter.call(ul.querySelectorAll(':scope > li'), function(li){ var l = li.querySelector('.discount-code'); return l && /Esquenta 11\/11 · (8% OFF|\+2%)/.test(l.textContent); });
-      if (lis.length < 2 && !(lis.length === 1 && lis[0].dataset.bkbfMerged)) return;
-      if (lis.length === 1) return;
-      var total = 0;
-      lis.forEach(function(li){
-        var l = li.querySelector('.discount-code'), rest = li.textContent.replace(l.textContent, '');
-        var m = rest.match(/R\$\s?([\d.]+,\d{2})/); if (m) total += parseInt(m[1].replace(/\D/g, ''), 10);
-      });
-      var p = lis.length >= 3 ? 12 : 10, first = lis[0], lab = first.querySelector('.discount-code');
-      var tn = Array.prototype.filter.call(lab.childNodes, function(n){ return n.nodeType === 3 && /Esquenta/.test(n.nodeValue); })[0];
-      if (tn) tn.nodeValue = tn.nodeValue.replace(/Esquenta 11\/11 · .*/, 'Esquenta 11/11 · ' + p + '% OFF'); else lab.appendChild(document.createTextNode('Esquenta 11/11 · ' + p + '% OFF'));
-      var w = document.createTreeWalker(first, NodeFilter.SHOW_TEXT), n;
-      while ((n = w.nextNode())) { if (!lab.contains(n) && /R\$/.test(n.nodeValue)) { n.nodeValue = n.nodeValue.replace(/R\$\s?[\d.]+,\d{2}/, money(total).replace('R$ ', 'R$ ')); break; } }
-      first.dataset.bkbfMerged = '1';
-      for (var i = 1; i < lis.length; i++) lis[i].remove();
-    });
   }
   /* textos fixos que prometem cupom de 1ª compra (não vale em novembro) */
   function texts(){
