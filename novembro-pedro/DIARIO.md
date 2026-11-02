@@ -181,3 +181,7 @@
   - Hoje: daily às 9h20.
   - Terça 03/11: reunião de CRO/Site às 13h.
 - **Marco:** o Vitor marcou a "Revisão antes de começar" do Esquenta às 8h.
+
+### 02/11 — Estáticos do Esquenta pro Otávio
+- O Otávio só tinha recebido os de captação (cancelados) e os V1–V5 (venda do 11/11), que estão na pasta "Estáticos" do Drive. Os 30 universais (U01–U30) não estavam no Drive.
+- O lote 1 foi baixado de novo da Higgsfield. Mandei ao Pedro um zip com os 30 (124 MB) pra ele subir em "01. Antecipação + Esquenta 11/11" e mandar o link ao Otávio.
