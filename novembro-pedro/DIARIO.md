@@ -374,3 +374,16 @@
 - **Checkout testado (03/11, 14h39):** entrando com o e-mail no checkout, aparece "Usar crédito na loja R$ 2,51". Com a opção marcada, o total foi de R$ 105,63 para R$ 103,12. O pedido não foi finalizado.
 - **Alliance:** tarefa "Configurar o cashback na Shopify" com os 6/6 itens marcados e **concluída**, antes do prazo de 05/11.
 - **GitHub:** o Pedro reconectou em 03/11 e o push voltou a funcionar. Os 20 commits acumulados desde 02/11 foram enviados.
+
+### 03/11 · fechamento do dia
+- **Feito:**
+  - tema com preço com desconto, publicado;
+  - tema com a imagem de 5 potes, publicado;
+  - cashback configurado, testado e fechado no Alliance;
+  - teste do cupom #6990 (decisão: deixar como está);
+  - temas antigos marcados (3 apagados);
+  - GitHub reconectado.
+- **Pendente:**
+  - recados ao grupo, ao Vitor e à Sarah;
+  - apagar os temas "Dia D 10/10" e "ESQUENTA PRETO E VERMELHO — cópia 02/11".
+- **Amanhã (04/11):** nenhuma entrega do Pedro vence. Próximo prazo: 06/11.

@@ -3,7 +3,7 @@
 > 🔒 **REGRA FIXA (Pedro, 29/10):** este chat cuida **somente das tarefas da BOTANIKA**. Nunca fazer nada da **VermeFree** nem da **Revita** (nem da Shoty). Se o Pedro citar VermeFree ou Revita, **parar na hora e não executar nada**: só avisar e esperar.
 
 
-> Atualizado em: **03/11/2026, fim da tarde** (tema com preço com desconto publicado)
+> Atualizado em: **03/11/2026, noite** (tema 5 potes no ar, cashback pronto, GitHub ok)
 > Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito · `[!]` bloqueado
 > ID = id da tarefa no Alliance OS (`https://alliance-os-sooty.vercel.app/?task=<ID>#tasks`)
 
@@ -17,17 +17,45 @@
 - **Decisão do Pedro (01/11):** a LP vip.botanikabrasil.com.br **fica no ar por enquanto** (nunca foi divulgada).
 - **Pendente:** trocar na tela fechada o link do grupo do 11/11 (sndflw.com/i/botanika11-11) pelo link do grupo VIP da Sarah; mudar o texto para "reabre quarta, 11/11, às 08h".
 
-## 📍 Onde estamos (03/11, fim da tarde)
-- **No ar:** o tema "ESQUENTA PV — preço c/ desconto 03/11" (168270889192), publicado pelo Pedro e conferido ao vivo.
+## 📍 Onde estamos (03/11, noite) ← COMECE POR AQUI
+- **Site no ar:** tema "ESQUENTA PV — imagem 5 potes" (168272953576), conferido ao vivo.
   - preço já com desconto em tudo (produto, cards, potes e gaveta);
+  - cartão de 5 potes com a imagem de 5;
   - brilho vermelho nos cards e home preta e vermelha;
   - sem a contagem de avaliações e sem o contador falso.
-  - Detalhes em `entregas/tema-pv-preco/README.md`.
-- **Reserva:** ESQUENTA PRETO E VERMELHO (168242708712). **Volta em 01/12:** ✅ MANTER — OFICIAL c/ avaliações (168106000616). **Falta apagar:** Dia D 10/10.
-- **Cupons de influenciadora:** dá para acumular 2 cupons (#6990). A trava testada tira o cupom de quem ganha o Cranberry, então fica como está até 30/11. O Vitor decide a comissão do #6990.
-- **Reclame Aqui:** não há conta. A tarefa (atrasada desde 20/10) depende de abrir a conta.
-- **GitHub:** push com 403 desde 02/11. O Pedro precisa reconectar.
-- **Próximos prazos:** 05/11 cashback · 06/11 entregas do 11/11 e dos lotes universais.
+  - Detalhes em `entregas/tema-pv-preco/` e `entregas/tema-pv-5potes/`.
+- **Temas guardados:**
+  - "ESQUENTA PV — preço c/ desconto 03/11": reserva, a versão anterior.
+  - "✅ MANTER — OFICIAL c/ avaliações" (168106000616): volta em 01/12.
+  - **Apagar:** "🗑️ Dia D 10/10" e "ESQUENTA PRETO E VERMELHO — cópia 02/11".
+- **Cashback do 11/11: ✅ pronto e fechado no Alliance.**
+  - Flow "Cashback 11/11" ativo. Testado com crédito, e-mail e checkout.
+  - **Lembrete em 12/11 às 9h:** lista dos 100 pedidos para o Pedro aprovar, depois aplicar as tags `cashback-1111-<centavos>`.
+- **Cupons de influenciadora:** dá para acumular 2 (#6990). A trava testada tira o cupom de quem ganha o Cranberry, então fica como está até 30/11. O Vitor decide a comissão do #6990.
+- **Reclame Aqui:** não há conta. A tarefa, atrasada desde 20/10, depende de abrir a conta. O Judge.me já foi resolvido.
+- **GitHub:** reconectado em 03/11. Push ok.
+- **Recados pendentes:**
+  - grupo: imagem dos 5 potes no ar;
+  - Vitor: cupom #6990, Reclame Aqui e cashback pronto;
+  - Sarah: cashback pronto e a frase "entre com o e-mail da compra no checkout".
+- **Próximos prazos (não adiantar):**
+  - **06/11:** 11/11 (tema, oferta e frete, brindes, fechamento do site, 10 estáticos e 10 vídeos), 9 estáticos universais, 16 vídeos do 1º lote, "bem-estar por rotina" e nota fiscal.
+  - **12/11:** cashback.
+
+## 🧭 Decisões que mudaram no mês (para não se perder)
+| Data | Quem | Decisão | Onde aplica |
+|---|---|---|---|
+| 29/10 | Pedro | Só Botanika. Nada de VermeFree, Revita ou Shoty | tudo |
+| 30/10 | Vitor | Sem captação no 11/11: sem grupo, LP ou tráfego de captação. Site fecha para novos em 10/11 às 20h, com o banner do grupo VIP | 11/11 |
+| 01/11 | Pedro | Não adiantar tarefas futuras | tudo |
+| 01/11 | Pedro | A LP vip.botanikabrasil.com.br fica no ar, sem divulgar | 11/11 |
+| 01/11 | Ficha | Influenciadoras a 2% acumulando com tudo, até 30/11. Volta a 5% em 01/12 | cupons |
+| 02/11 | Vitor | Não mexer em widgets, só banner, cor e texto. Preto e vermelho. Avisar no grupo antes de publicar | tema |
+| 02/11 | Ficha | Esquenta: 8% / 10% (3+) / 12% (5+), frete grátis > R$ 249, Cranberry > R$ 400 (2 para recorrentes) | Esquenta |
+| 03/11 | Pedro | Preço com desconto em tudo, brilho nos cards, home preta, sem contagem de avaliações e sem contador | tema |
+| 03/11 | Gabriel | Cartão de 5 potes com a imagem de 5 | tema |
+| 03/11 | Pedro | Cupons de influenciadora seguem como estão (a trava tiraria o cupom de quem ganha o brinde) | cupons |
+| 03/11 | Pedro | Cashback por Flow com crédito de loja. Lista dos 100 em 12/11, com OK antes de aplicar | 11/11 |
 
 ## 📍 Onde estamos (01/11, fim do dia)
 
