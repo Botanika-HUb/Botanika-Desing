@@ -329,7 +329,7 @@
   - 05/11 18h: cashback do 11/11.
   - 06/11: 11/11 (tema, oferta e frete, brindes, fechamento do site, 10 estáticos e 10 vídeos), 9 estáticos universais, 16 vídeos do 1º lote, "bem-estar por rotina" e nota fiscal.
 
-## 04/11 · imagem do cartão de 5 potes
+## 03/11 (fim da tarde) · imagem do cartão de 5 potes
 - O Gabriel pediu no grupo (IA & Tecnologia) para ajustar a imagem dos 5 potes, que mostrava 3. O resto ele aprovou.
 - Tema duplicado como "ESQUENTA PV — imagem 5 potes" (168272953576). O site agora monta a imagem com a foto de 1 pote de cada produto: 3 potes atrás e 2 na frente.
   - Testado nos 21 produtos: 17 certos; os 4 kits não têm cartão de 5 potes.
@@ -348,11 +348,11 @@
   | ✅ MANTER — OFICIAL c/ avaliações | volta em 01/12 |
   | 🗑️ Dia D 10/10 | falta apagar |
 
-## 04/11 · cashback do 11/11 (prazo 05/11 18h)
+## 03/11 (noite) · cashback do 11/11 (prazo 05/11 18h)
 - **Modelo (igual ao da VermeFree, pelo briefing do agente de lá):**
   - Flow com gatilho *Customer tags added*;
   - condição "Começa com" `cashback-1111-`;
   - *Send Admin API request* com `storeCreditAccountCredit`. O valor em centavos vem na tag, a validade é `2026-12-01T02:59:59Z` e `notify: true`.
 - **Seleção dos 100 pedidos fica fora do Flow.** Em 12/11 de manhã eu listo os pedidos pagos de 11/11, das 00h às 23h59 de Brasília, sem cancelados e sem pedidos de teste. O cashback é 15% dos produtos já com desconto, sem frete. Mostro a lista ao Pedro e só aplico as tags com o OK dele.
-- **Teste:** na conta do Pedro (pedrogustavolage@gmail.com, Customer/9455654437096), coloquei a tag `cashback-teste-100` (R$ 1,00) em 04/11. Falta o Pedro conferir o crédito no admin. Depois vem a tag `cashback-teste-150`.
+- **Teste:** na conta do Pedro (pedrogustavolage@gmail.com, Customer/9455654437096), coloquei a tag `cashback-teste-100` (R$ 1,00) em 03/11. Falta o Pedro conferir o crédito no admin. Depois vem a tag `cashback-teste-150`.
 - Depois dos testes: remover as tags de teste e desativar o fluxo de teste.
