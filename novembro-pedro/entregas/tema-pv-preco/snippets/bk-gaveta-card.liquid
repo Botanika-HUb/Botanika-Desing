@@ -1,0 +1,120 @@
+{%- comment -%}
+  Botanika — card da vitrine da gaveta.
+  Params: p (product), launch (bool), more (bool: card "leve +1 do mesmo"), variant (opcional: variante do carrinho)
+  Preço/desconto vêm SEMPRE de bk-regras (espelho do Admin — escada por produto + bumps). Nada fixo aqui.
+  Esquenta 11/11 (03/11): o card também traz a versão do Esquenta (.bkg-bf, 8% em tudo).
+  Ela só aparece com a classe bk-bf no <html>; a versão normal (.bkg-std) some nesse período.
+{%- endcomment -%}
+{%- liquid
+  assign v = variant | default: p.selected_or_first_available_variant
+  capture c_rule
+    render 'bk-regras', mode: 'pct', product: p
+  endcapture
+  assign c_parts = c_rule | strip | split: '|'
+  assign c_pct = c_parts[0] | plus: 0
+  assign c_kind = c_parts[1]
+  assign c_has = c_parts[2] | plus: 0
+  assign c_after = c_parts[3] | plus: 0
+  assign c_by = c_parts[4]
+
+  assign c_price = v.price
+  assign c_off = c_price | times: c_pct | divided_by: 100
+  assign c_final = c_price | minus: c_off
+  assign c_strike = 0
+  if c_pct > 0
+    assign c_strike = c_price
+  elsif v.compare_at_price > c_price
+    assign c_strike = v.compare_at_price
+  endif
+  assign c_parc = c_final | divided_by: 3
+
+  assign bf_off = c_price | times: 8 | divided_by: 100
+  assign bf_final = c_price | minus: bf_off
+  assign bf_parc = bf_final | divided_by: 3
+
+  assign c_name = p.metafields.custom.bk_nome.value | default: p.title
+  assign c_name = c_name | split: ' — ' | first
+
+  assign c_by_name = ''
+  if c_kind == 'bump'
+    for c_it in cart.items
+      if c_it.product.handle == c_by
+        assign c_by_name = c_it.product.metafields.custom.bk_nome.value | default: c_it.product.title
+        assign c_by_name = c_by_name | split: ' — ' | first
+        break
+      endif
+    endfor
+  endif
+
+  assign c_multi = false
+  if p.variants.size > 1 and variant == blank
+    assign c_multi = true
+  endif
+-%}
+<div class="bkg__card{% if more %} is-more{% elsif c_kind == 'bump' %} is-bump{% endif %}">
+  <span class="bkg-std">
+  {%- if more and c_pct > 0 -%}
+    <span class="bkg__tag bkg__tag--more">🔥 +1 e {% if c_after >= 3 %}os {{ c_after }}{% else %}os 2{% endif %} ficam −{{ c_pct }}%</span>
+  {%- elsif c_kind == 'bump' -%}
+    <span class="bkg__tag bkg__tag--bump">🔥 −{{ c_pct }}% com seu {{ c_by_name }}</span>
+  {%- elsif c_kind == 'escada' -%}
+    <span class="bkg__tag bkg__tag--esc">📦 {{ c_after }}º pote · −{{ c_pct }}%</span>
+  {%- elsif launch -%}
+    <span class="bkg__tag bkg__tag--new">✨ Lançamento</span>
+  {%- elsif p.type == 'Kit' -%}
+    <span class="bkg__tag bkg__tag--kit">🎁 Kit</span>
+  {%- else -%}
+    <span class="bkg__tag bkg__tag--base">Combina com você</span>
+  {%- endif -%}
+  </span>
+  <span class="bkg-bf"><span class="bkg__tag bkg__tag--bf">{% if more %}🔥 +1 no Esquenta{% else %}🔥 Esquenta <span data-bkpv-pct>−8%</span>{% endif %}</span></span>
+  <a class="bkg__img" href="{{ p.url }}" aria-label="{{ c_name | escape }}">
+    {%- if p.featured_image != blank -%}
+      <img
+        src="{{ p.featured_image | image_url: width: 240 }}"
+        srcset="{{ p.featured_image | image_url: width: 160 }} 160w, {{ p.featured_image | image_url: width: 240 }} 240w"
+        sizes="120px"
+        width="240"
+        height="240"
+        alt="{{ c_name | escape }}"
+        loading="lazy"
+      >
+    {%- endif -%}
+  </a>
+  <a class="bkg__name" href="{{ p.url }}">{% if more %}Mais 1 {% endif %}{{ c_name }}</a>
+  <div class="bkg-std">
+    <div class="bkg__strike">{% if c_strike > 0 %}<s>{{ c_strike | money }}</s>{% endif %}</div>
+    <div class="bkg__inst"><b>3x de {{ c_parc | money }}</b></div>
+    <span class="bkg__sj">sem juros</span>
+    <div class="bkg__cash">ou {{ c_final | money }} à vista</div>
+    {%- if c_kind == 'bump' -%}
+      <div class="bkg__ok">✓ combo com desconto</div>
+    {%- elsif c_pct > 0 -%}
+      <div class="bkg__ok">✓ {% if c_after >= 3 %}−{{ c_pct }}% nas {{ c_after }} unidades{% else %}−{{ c_pct }}% nas 2 unidades{% endif %}</div>
+    {%- elsif c_has == 1 -%}
+      <div class="bkg__ok bkg__ok--hint">Leve 2 e ganhe 5%</div>
+    {%- else -%}
+      <div class="bkg__ok bkg__ok--mute">&nbsp;</div>
+    {%- endif -%}
+  </div>
+  <div class="bkg-bf" data-bkpv-price="{{ c_price }}">
+    <div class="bkg__strike"><s>3x {{ c_price | divided_by: 3 | money }}</s></div>
+    <div class="bkg__inst"><b data-bkpv-parc>3x de {{ bf_parc | money }}</b></div>
+    <span class="bkg__sj">sem juros</span>
+    <div class="bkg__cash" data-bkpv-cash>ou {{ bf_final | money }} à vista</div>
+  </div>
+  {%- if c_multi -%}
+    <a class="bkg__add bkg__add--link" href="{{ p.url }}">Escolher sabor</a>
+  {%- else -%}
+    <button
+      type="button"
+      class="bkg__add"
+      data-botanika-ob-add
+      data-variant-id="{{ v.id }}"
+      data-label-loading="Adicionando..."
+      aria-label="Adicionar {{ c_name | escape }}"
+    >
+      <span data-ob-btn-label>{% if more %}+ Mais 1{% else %}+ Adicionar{% endif %}</span>
+    </button>
+  {%- endif -%}
+</div>
