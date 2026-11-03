@@ -1,0 +1,30 @@
+{%- comment -%}
+  03/11 · home inteira preta e vermelha da faixa "Mais vendidos" para baixo (pedido do Pedro).
+  Só a cor de fundo e do texto muda: os cards (avaliações, kits, produtos) continuam brancos.
+  Só vale com a classe bk-bf no <html> (janela do Esquenta ou preview) e só na home.
+{%- endcomment -%}
+{%- if template.name == 'index' -%}
+<style>
+html.bk-bf body.index,html.bk-bf body.index main{background:#0b0b0f!important}
+html.bk-bf body.index main > .shopify-section{background:#0b0b0f!important}
+html.bk-bf body.index main > .shopify-section > .gradient,html.bk-bf body.index .ugc-wrap,html.bk-bf body.index .sec__custom-liquid,html.bk-bf body.index .sec__products-carousel,html.bk-bf body.index .bt-medauth,html.bk-bf body.index [id$="__botanika_medical_authority"] > *{background:transparent!important}
+/* títulos e subtítulos das seções */
+html.bk-bf body.index :is(.ugc__title,.btcar__title,.btcol-title,.bt-medauth__title,.bkmed__h,.bk__h,.bkcat__h),html.bk-bf body.index [id$="__featured_collection_Pd7APa"] .section__header-heading{color:#fff!important}
+html.bk-bf body.index :is(.ugc__sub,.btcol-sub,.bk__sub,.bkcat__sub),html.bk-bf body.index [id$="__botanika_medical_authority"] .bkmed__head p,html.bk-bf body.index [id$="__featured_collection_Pd7APa"] .section__header-des{color:#c9c9d3!important}
+/* selinhos acima dos títulos (Depoimentos, Autoridade médica, Combos) */
+html.bk-bf body.index :is(.bkmed__eb,.btcol-tag,[class*="eyebrow"],[class*="__eb"],[class*="__kicker"]){color:#ff5a6b!important;border-color:rgba(255,90,107,.6)!important;background:transparent!important}
+/* médicos: depoimento em branco, nome em vermelho */
+html.bk-bf body.index .bkmed__quote{color:#fff!important}
+html.bk-bf body.index .bkmed__quote :is(b,strong,em){color:#ff5a6b!important}
+html.bk-bf body.index .bkmed__name{color:#ff5a6b!important}
+html.bk-bf body.index .bkmed__who :not(.bkmed__name){color:#c9c9d3!important}
+html.bk-bf body.index [id$="__botanika_medical_authority"] [class*="quote-mark"]{color:rgba(255,90,107,.45)!important}
+/* links "ver todos" e bolinhas dos carrosséis */
+html.bk-bf body.index .bk__all a,html.bk-bf body.index [id$="__mv_ver_todos"] a{color:#fff!important;border-color:#fff!important}
+html.bk-bf body.index .ugc__dots *{background:rgba(255,255,255,.3)}
+html.bk-bf body.index .ugc__dots [class*="on"],html.bk-bf body.index .ugc__dots [aria-current="true"]{background:#e3132b!important}
+/* Lançamentos igual aos Mais vendidos: card branco */
+html.bk-bf body.index [id$="__featured_collection_Pd7APa"] .product-item__wrapper{background:#fff;border-radius:18px;padding:10px 10px 14px}
+html.bk-bf body.index .bkmed__pill.is-active{background:#e3132b!important;border-color:#e3132b!important}
+</style>
+{%- endif -%}

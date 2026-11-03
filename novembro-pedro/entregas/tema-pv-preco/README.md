@@ -22,3 +22,4 @@ Conferido em 03/11:
 03/11, mais tarde:
 - Brilho vermelho pulsando em volta dos cards de produto (desliga para quem pede menos movimento).
 - Escondida a contagem "10 avaliações" na página de produto (no topo, nos potes e no resumo das avaliações). A nota 5,0 e as estrelas continuam.
+- Home preta e vermelha da faixa "Mais vendidos" para baixo (snippet novo `bk-pv-home.liquid`, chamado no `botanika-campaign-css.liquid`). Também some a faixa branca depois dos produtos.
