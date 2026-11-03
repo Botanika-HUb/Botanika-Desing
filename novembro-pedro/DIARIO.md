@@ -366,3 +366,8 @@
   - calcular 15% dos produtos já com desconto, sem frete, somando os pedidos repetidos da mesma cliente;
   - mostrar a lista ao Pedro e, só com o OK dele, aplicar as tags `cashback-1111-<centavos>`.
 - A Sarah manda o WhatsApp com: "entre com o e-mail da compra no checkout que o crédito aparece".
+- **Alliance (OK do Pedro):**
+  - comentário com a ferramenta e os testes, publicado na tarefa do cashback;
+  - 4 de 6 itens do checklist marcados.
+  - Faltam "Saldo aparece no checkout" e "Pedido de teste feito", que dependem de o Pedro testar o checkout logado. A tarefa só fecha depois disso.
+- **Lembrete criado:** 12/11 às 9h, para montar a lista dos 100 pedidos.
