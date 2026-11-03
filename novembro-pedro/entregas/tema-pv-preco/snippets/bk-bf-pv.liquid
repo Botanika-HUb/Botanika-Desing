@@ -96,6 +96,11 @@ html.bk-bf .bkpv-pdp{display:flex;align-items:center;justify-content:space-betwe
 html.bk-bf .qty2k__cmp{display:block!important;font-size:1.25rem;color:#8a8a96;font-weight:600;margin:0 0 2px}
 /* selo do card (ex.: "Magnésio 3 em 1") não fica mais em cima do selo do tema */
 html.bk-bf .product-item__inner:has(.card-benefit-badge) .product__badges{top:42px!important}
+/* 03/11 · brilho vermelho pulsando em volta de cada card de produto (pedido do Pedro) */
+@keyframes bkpvGlow{0%,100%{box-shadow:0 0 0 1px rgba(227,19,43,.35),0 0 10px 0 rgba(227,19,43,.25)}50%{box-shadow:0 0 0 2px rgba(227,19,43,.85),0 0 26px 4px rgba(227,19,43,.55)}}
+html.bk-bf .product-item .product-item__wrapper{border-radius:18px;animation:bkpvGlow 2.4s ease-in-out infinite}
+html.bk-bf .product-item:hover .product-item__wrapper{animation-duration:1.2s}
+@media (prefers-reduced-motion:reduce){html.bk-bf .product-item .product-item__wrapper{animation:none;box-shadow:0 0 0 2px rgba(227,19,43,.7),0 0 18px 2px rgba(227,19,43,.4)}}
 /* gaveta: vitrine com preço do Esquenta */
 /* o skin esconde tudo que começa com "bkg"; aqui a vitrine volta, sem a barra da escada antiga */
 html.bk-bf div.bkg[data-bkg]{display:block!important}

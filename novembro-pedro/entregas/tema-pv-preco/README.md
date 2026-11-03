@@ -18,3 +18,7 @@ Conferido em 03/11:
 - Hair 1 un. = R$ 91,45.
 - 2 Hair: −8%, subtotal R$ 182,90.
 - 2 Hair + TetraVit: −10%, subtotal R$ 284,34. A soma das linhas dá R$ 284,35, diferença de 1 centavo.
+
+03/11, mais tarde:
+- Brilho vermelho pulsando em volta dos cards de produto (desliga para quem pede menos movimento).
+- Escondida a contagem "10 avaliações" na página de produto (no topo, nos potes e no resumo das avaliações). A nota 5,0 e as estrelas continuam.

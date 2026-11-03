@@ -70,4 +70,7 @@
   html.bk-bf p.bk-dose--bf { display: block !important; }
   html.bk-bf span.bk-dose--bf { display: inline !important; }
   html.bk-bf .bk-dose__line strong, html.bk-bf .bk-dose__me td { color: #e3132b; }
+  /* 03/11 (pedido do Pedro): esconder a contagem "10 avaliações" na página de produto.
+     Muitos pedidos e poucas avaliações atrapalham a conversão. A nota 5,0 e as estrelas continuam. */
+  .bksp__rate .bksp__sep, .bksp__rate [data-bksp-reviews], .qty2__sptx, .bkjm__count { display: none !important; }
 {% endstylesheet %}
