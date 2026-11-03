@@ -253,3 +253,12 @@
 - Mas, com o Cranberry de brinde no carrinho (acima de R$ 400), o cupom no formato novo **some inteiro**. A Shopify não aplica desconto de produto nos itens que liberam o brinde. ❌
 - Conclusão: não converter os 55 cupons, porque a influenciadora perderia a venda nos pedidos grandes. Cupons temporários apagados. Nada mudou nos cupons reais.
 - Temas: o Pedro apagou Semana Rosa, ESQUENTA azul e Tema Padrão; "Dia D 10/10" ainda está lá. O MAIN não mudou depois da cópia, então dá para publicar a "ESQUENTA PV — preço c/ desconto 03/11".
+- 03/11: o Pedro publicou a "ESQUENTA PV — preço c/ desconto 03/11" (168270889192). Conferido ao vivo no iPhone:
+  - home preta com brilho nos cards;
+  - página do produto com 3x R$ 30,48 e sem a contagem de avaliações;
+  - potes com desconto;
+  - gaveta: 3 Hair, -10- 03/11: o Pedro publicou a "ESQUENTA PV — preço c/ desconto 03/11" (168270889192). Conferido ao vivo no iPhone:
+  - home preta com brilho nos cards;
+  - página do produto com 3x R$ 30,48 e sem a contagem de avaliações;
+  - potes com desconto;
+  - gaveta: 3 Hair, −10%, R$ 268,39, vitrine ligada e sem o contador.
