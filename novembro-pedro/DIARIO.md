@@ -222,3 +222,27 @@
   - Faixa do Esquenta com contagem na página de produto; seletor de potes em preto e vermelho.
   - Banners novos em preto e vermelho, em Files com os nomes esquenta-1111-preto-*.
 - Link na bio: foi feito no ChatGPT. Mandei ao Pedro o comando pra colar lá.
+
+### 03/11 (terça) — fechamento de 02/11 e plano do dia (9h)
+- **Feito em 02/11:**
+  - Esquenta conferido no ar às 00h15.
+  - Zip com os 30 universais pro Otávio.
+  - 10 estáticos do Esquenta com a oferta (estilo lote 2), aprovados.
+  - Tema Black publicado pelo Pedro (OFICIAL cópia avaliações).
+  - Auditoria completa tema × checkout (seletor 5/3/1, carrinho, kits, cupons).
+  - Linhas da escada juntas no carrinho.
+  - Versão preto e vermelho na cópia 168242708712 (prévia).
+- **Pendências de 02/11:**
+  - Aprovação do grupo (Vitor e Gabriel) pra versão preto e vermelho, e publicação.
+  - Link na bio: o Pedro cola no ChatGPT o comando que mandei.
+  - GitHub: o push dá 403 desde 02/11 à tarde (4 commits só aqui).
+- **Decisões e respostas:**
+  - Vitor: manter os widgets e mudar só banner, cor e texto; preto e vermelho; avisar no grupo antes de publicar.
+  - Sem resposta da Sarah (link do grupo VIP) e da Mafe (material dos vídeos).
+- **Alliance:** "Criar o tema completo do Esquenta" voltou a aparecer como "a fazer" (atrasada desde 30/10). Provavelmente foi reaberta por causa da troca de tema.
+- **Hoje:**
+  - Nenhuma entrega vence.
+  - 13h: Reunião de CRO/Site, onde dá pra mostrar o preto e vermelho.
+- **Próximos prazos:**
+  - 05/11 18h: cashback do 11/11.
+  - 06/11: tema, oferta, brindes e fechamento do site do 11/11, 9 universais, vídeos (Mafe), "bem-estar por rotina" no site e nota fiscal.
