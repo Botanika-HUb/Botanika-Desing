@@ -356,3 +356,13 @@
 - **Seleção dos 100 pedidos fica fora do Flow.** Em 12/11 de manhã eu listo os pedidos pagos de 11/11, das 00h às 23h59 de Brasília, sem cancelados e sem pedidos de teste. O cashback é 15% dos produtos já com desconto, sem frete. Mostro a lista ao Pedro e só aplico as tags com o OK dele.
 - **Teste:** na conta do Pedro (pedrogustavolage@gmail.com, Customer/9455654437096), coloquei a tag `cashback-teste-100` (R$ 1,00) em 03/11. Falta o Pedro conferir o crédito no admin. Depois vem a tag `cashback-teste-150`.
 - Depois dos testes: remover as tags de teste e desativar o fluxo de teste.
+- **Testes do cashback em 03/11, todos ✅:**
+  - teste 1: `cashback-teste-100` = R$ 1,00;
+  - teste 2: `cashback-teste-150` = +R$ 1,50, saldo de R$ 2,50. Validade dos dois: 05/11.
+  - fluxo real "Cashback 11/11": `cashback-1111-1` = R$ 0,01, com **vencimento em 30/11 às 23h59 (−03)** e e-mail enviado.
+- As tags de teste foram removidas. O fluxo de teste foi desativado pelo Pedro, e o "Cashback 11/11" está ativo.
+- **12/11 de manhã:**
+  - listar os 100 primeiros pedidos pagos de 11/11 (00h–23h59 de Brasília, sem cancelados e sem teste);
+  - calcular 15% dos produtos já com desconto, sem frete, somando os pedidos repetidos da mesma cliente;
+  - mostrar a lista ao Pedro e, só com o OK dele, aplicar as tags `cashback-1111-<centavos>`.
+- A Sarah manda o WhatsApp com: "entre com o e-mail da compra no checkout que o crédito aparece".
