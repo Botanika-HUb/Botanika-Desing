@@ -246,3 +246,10 @@
 - **Próximos prazos:**
   - 05/11 18h: cashback do 11/11.
   - 06/11: tema, oferta, brindes e fechamento do site do 11/11, 9 universais, vídeos (Mafe), "bem-estar por rotina" no site e nota fiscal.
+
+## 03/11 (tarde) · cupons de influenciadora acumulando (#6990)
+- Simulação de pedido: ISRAEL + VICTORIA somam (2% + 2%) por cima do Esquenta. O erro se repete.
+- Teste com 2 cupons temporários no formato "desconto no produto": só 1 vale. ✅
+- Mas, com o Cranberry de brinde no carrinho (acima de R$ 400), o cupom no formato novo **some inteiro**. A Shopify não aplica desconto de produto nos itens que liberam o brinde. ❌
+- Conclusão: não converter os 55 cupons, porque a influenciadora perderia a venda nos pedidos grandes. Cupons temporários apagados. Nada mudou nos cupons reais.
+- Temas: o Pedro apagou Semana Rosa, ESQUENTA azul e Tema Padrão; "Dia D 10/10" ainda está lá. O MAIN não mudou depois da cópia, então dá para publicar a "ESQUENTA PV — preço c/ desconto 03/11".
