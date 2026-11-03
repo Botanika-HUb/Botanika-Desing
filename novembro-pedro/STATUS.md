@@ -34,10 +34,7 @@
 - **Cupons de influenciadora:** dá para acumular 2 (#6990). A trava testada tira o cupom de quem ganha o Cranberry, então fica como está até 30/11. O Vitor decide a comissão do #6990.
 - **Reclame Aqui:** não há conta. A tarefa, atrasada desde 20/10, depende de abrir a conta. O Judge.me já foi resolvido.
 - **GitHub:** reconectado em 03/11. Push ok.
-- **Recados pendentes:**
-  - grupo: imagem dos 5 potes no ar;
-  - Vitor: cupom #6990, Reclame Aqui e cashback pronto;
-  - Sarah: cashback pronto e a frase "entre com o e-mail da compra no checkout".
+- **Recados enviados em 03/11 (Vitor, Sarah e grupo).** Esperando a resposta do Vitor sobre a comissão do #6990 e o Reclame Aqui.
 - **Próximos prazos (não adiantar):**
   - **06/11:** 11/11 (tema, oferta e frete, brindes, fechamento do site, 10 estáticos e 10 vídeos), 9 estáticos universais, 16 vídeos do 1º lote, "bem-estar por rotina" e nota fiscal.
   - **12/11:** cashback.

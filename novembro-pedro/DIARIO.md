@@ -387,3 +387,4 @@
   - recados ao grupo, ao Vitor e à Sarah;
   - apagar os temas "Dia D 10/10" e "ESQUENTA PRETO E VERMELHO — cópia 02/11".
 - **Amanhã (04/11):** nenhuma entrega do Pedro vence. Próximo prazo: 06/11.
+- **Recados enviados pelo Pedro (03/11, noite):** Vitor (cupom #6990, Reclame Aqui e cashback), Sarah (cashback) e grupo (5 potes). Aguardando a resposta do Vitor.
