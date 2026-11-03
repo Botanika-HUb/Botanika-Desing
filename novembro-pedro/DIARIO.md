@@ -328,3 +328,22 @@
 - **Próximos prazos (sem adiantar):**
   - 05/11 18h: cashback do 11/11.
   - 06/11: 11/11 (tema, oferta e frete, brindes, fechamento do site, 10 estáticos e 10 vídeos), 9 estáticos universais, 16 vídeos do 1º lote, "bem-estar por rotina" e nota fiscal.
+
+## 04/11 · imagem do cartão de 5 potes
+- O Gabriel pediu no grupo (IA & Tecnologia) para ajustar a imagem dos 5 potes, que mostrava 3. O resto ele aprovou.
+- Tema duplicado como "ESQUENTA PV — imagem 5 potes" (168272953576). O site agora monta a imagem com a foto de 1 pote de cada produto: 3 potes atrás e 2 na frente.
+  - Testado nos 21 produtos: 17 certos; os 4 kits não têm cartão de 5 potes.
+  - Arquivos em `entregas/tema-pv-5potes/`.
+- **Publicado pelo Pedro e conferido ao vivo:**
+  - Hair, TetraVit e Ômega com a imagem nova;
+  - preços iguais aos de antes;
+  - 5 Hair na gaveta: −12%, R$ 437,36 e Cranberry grátis entrando sozinho.
+- **Temas agora:**
+
+  | Tema | Papel |
+  |---|---|
+  | ESQUENTA PV — imagem 5 potes | no ar |
+  | ESQUENTA PV — preço c/ desconto 03/11 | reserva |
+  | ESQUENTA PRETO E VERMELHO — cópia 02/11 | pode apagar |
+  | ✅ MANTER — OFICIAL c/ avaliações | volta em 01/12 |
+  | 🗑️ Dia D 10/10 | falta apagar |
