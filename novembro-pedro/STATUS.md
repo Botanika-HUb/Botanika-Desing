@@ -3,7 +3,7 @@
 > 🔒 **REGRA FIXA (Pedro, 29/10):** este chat cuida **somente das tarefas da BOTANIKA**. Nunca fazer nada da **VermeFree** nem da **Revita** (nem da Shoty). Se o Pedro citar VermeFree ou Revita, **parar na hora e não executar nada**: só avisar e esperar.
 
 
-> Atualizado em: **02/11/2026, 9h** (Esquenta no ar e conferido)
+> Atualizado em: **03/11/2026, fim da tarde** (tema com preço com desconto publicado)
 > Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito · `[!]` bloqueado
 > ID = id da tarefa no Alliance OS (`https://alliance-os-sooty.vercel.app/?task=<ID>#tasks`)
 
@@ -16,6 +16,18 @@
 - Tarefas novas: 16 vídeos do 1º lote (06/11), 9 estáticos universais do 1º lote (06/11). Os criativos de venda do 11/11 subiram para 10 estáticos e 10 vídeos.
 - **Decisão do Pedro (01/11):** a LP vip.botanikabrasil.com.br **fica no ar por enquanto** (nunca foi divulgada).
 - **Pendente:** trocar na tela fechada o link do grupo do 11/11 (sndflw.com/i/botanika11-11) pelo link do grupo VIP da Sarah; mudar o texto para "reabre quarta, 11/11, às 08h".
+
+## 📍 Onde estamos (03/11, fim da tarde)
+- **No ar:** o tema "ESQUENTA PV — preço c/ desconto 03/11" (168270889192), publicado pelo Pedro e conferido ao vivo.
+  - preço já com desconto em tudo (produto, cards, potes e gaveta);
+  - brilho vermelho nos cards e home preta e vermelha;
+  - sem a contagem de avaliações e sem o contador falso.
+  - Detalhes em `entregas/tema-pv-preco/README.md`.
+- **Reserva:** ESQUENTA PRETO E VERMELHO (168242708712). **Volta em 01/12:** ✅ MANTER — OFICIAL c/ avaliações (168106000616). **Falta apagar:** Dia D 10/10.
+- **Cupons de influenciadora:** dá para acumular 2 cupons (#6990). A trava testada tira o cupom de quem ganha o Cranberry, então fica como está até 30/11. O Vitor decide a comissão do #6990.
+- **Reclame Aqui:** não há conta. A tarefa (atrasada desde 20/10) depende de abrir a conta.
+- **GitHub:** push com 403 desde 02/11. O Pedro precisa reconectar.
+- **Próximos prazos:** 05/11 cashback · 06/11 entregas do 11/11 e dos lotes universais.
 
 ## 📍 Onde estamos (01/11, fim do dia)
 

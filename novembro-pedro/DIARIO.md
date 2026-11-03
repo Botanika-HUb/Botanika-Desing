@@ -247,18 +247,84 @@
   - 05/11 18h: cashback do 11/11.
   - 06/11: tema, oferta, brindes e fechamento do site do 11/11, 9 universais, vídeos (Mafe), "bem-estar por rotina" no site e nota fiscal.
 
-## 03/11 (tarde) · cupons de influenciadora acumulando (#6990)
-- Simulação de pedido: ISRAEL + VICTORIA somam (2% + 2%) por cima do Esquenta. O erro se repete.
-- Teste com 2 cupons temporários no formato "desconto no produto": só 1 vale. ✅
-- Mas, com o Cranberry de brinde no carrinho (acima de R$ 400), o cupom no formato novo **some inteiro**. A Shopify não aplica desconto de produto nos itens que liberam o brinde. ❌
-- Conclusão: não converter os 55 cupons, porque a influenciadora perderia a venda nos pedidos grandes. Cupons temporários apagados. Nada mudou nos cupons reais.
-- Temas: o Pedro apagou Semana Rosa, ESQUENTA azul e Tema Padrão; "Dia D 10/10" ainda está lá. O MAIN não mudou depois da cópia, então dá para publicar a "ESQUENTA PV — preço c/ desconto 03/11".
-- 03/11: o Pedro publicou a "ESQUENTA PV — preço c/ desconto 03/11" (168270889192). Conferido ao vivo no iPhone:
-  - home preta com brilho nos cards;
-  - página do produto com 3x R$ 30,48 e sem a contagem de avaliações;
-  - potes com desconto;
-  - gaveta: 3 Hair, -10- 03/11: o Pedro publicou a "ESQUENTA PV — preço c/ desconto 03/11" (168270889192). Conferido ao vivo no iPhone:
-  - home preta com brilho nos cards;
-  - página do produto com 3x R$ 30,48 e sem a contagem de avaliações;
-  - potes com desconto;
-  - gaveta: 3 Hair, −10%, R$ 268,39, vitrine ligada e sem o contador.
+## 03/11 (tarde): cupom do #6990, tema com preço já com desconto e tema publicado
+
+### 1. Cupons de influenciadora acumulando (pedido #6990, aviso do Vitor às 8h)
+- **O que houve:** o #6990 (02/11) usou ISRAEL + VICTORIA. Os dois deram 2% cada, por cima do Esquenta 8%. A loja deu R$ 5,06 a mais de desconto. Foi o único caso nos últimos 50 pedidos.
+- **Causa:** em 01/11 os 55 cupons passaram a "acumular com tudo", para somar com o Esquenta. Cupom e Esquenta são do mesmo tipo na Shopify (desconto de pedido), então um cupom que soma com o Esquenta também soma com outro cupom.
+- **Teste (OK do Pedro), em simulação de pedido e com 2 cupons temporários:**
+
+  | Cenário | Resultado |
+  |---|---|
+  | Como está hoje (ISRAEL + VICTORIA) | os dois somam ❌ (erro reproduzido) |
+  | Cupons no formato "desconto no produto", 2 juntos | só 1 vale ✅ |
+  | Formato novo, 5 potes | 12% + 2% ✅ |
+  | Formato novo, acima de R$ 400, com o Cranberry de brinde | **o cupom some inteiro** ❌ |
+
+- **Decisão:** não converter os 55 cupons. A Shopify não aplica desconto de produto nos itens que liberam o brinde, então a influenciadora perderia a venda nos pedidos grandes. Os cupons temporários foram apagados e nada mudou nos cupons reais.
+- **Recomendação ao Vitor:** manter como está até 30/11 e decidir a comissão do #6990 (ISRAEL ou VICTORIA). A mensagem pronta ficou com o Pedro.
+
+### 2. Tema com preço já com desconto: "ESQUENTA PV — preço c/ desconto 03/11" (168270889192)
+- Duplicado do preto e vermelho publicado (168242708712), a pedido do Pedro.
+- Arquivos em `entregas/tema-pv-preco/` (snippets + prints + README).
+- **O que mudou (só durante o Esquenta):**
+  - **Página do produto:** ~~3x R$ 33,13~~ + selo "🔥 -8% Esquenta", **3x de R$ 30,48** grande em vermelho, "ou R$ 91,45 à vista no Esquenta" e "R$ 1,52 por dia".
+  - **Cards (home, coleções, busca):** parcela cheia riscada + -8%, parcela com desconto em vermelho.
+  - **Seletor de potes:** preço cheio riscado em todos os cartões.
+  - **Gaveta:**
+    - preço de cada linha com o % da escada (8/10/12) e a quantidade;
+    - "ou 3x de … sem juros" no subtotal;
+    - botões e selo de desconto em vermelho;
+    - vitrine "🔥 Aproveite no Esquenta" de volta, sem a escada antiga e com o preço no % que o carrinho terá;
+    - o "+ Adicionar" funciona.
+  - **Brilho vermelho pulsando** em volta de todos os cards de produto (parado para quem pede menos movimento).
+  - **Sem a contagem "10 avaliações"** na página de produto (topo, seletor de potes e resumo das avaliações). A nota 5,0 e as estrelas continuam. Motivo: muitos pedidos e poucas avaliações atrapalham a conversão.
+  - **Home preta e vermelha dos Mais Vendidos para baixo:**
+    - vídeos, depoimentos, autoridade médica, kits, categorias e lançamentos;
+    - os cards continuam brancos;
+    - sumiu a faixa branca depois dos produtos.
+  - **Sem o contador falso** "Os produtos são limitados, finalize a compra dentro de…" na gaveta e no carrinho.
+  - O selo "Magnésio 3 em 1" não fica mais em cima do selo do tema no card do Tri[Mg].
+- **Conferência com o checkout:**
+
+  | Carrinho | Gaveta | Checkout |
+  |---|---|---|
+  | 1 Hair | R$ 91,45 | R$ 91,45 |
+  | 2 Hair | -8%, R$ 182,90 | igual |
+  | 2 Hair + TetraVit | -10% | R$ 284,34 |
+  | 3 Hair | -10% | R$ 268,39 |
+
+  A soma das linhas pode diferir em 1 centavo. O subtotal mostrado é sempre o real.
+- **Publicado pelo Pedro em 03/11** e conferido ao vivo no iPhone. Tudo certo.
+  - Os erros do pixel do TikTok no teste são da rede do teste, não do site.
+
+### 3. Temas da loja
+- Os antigos foram marcados com "🗑️ APAGAR" e o de volta, com "✅ MANTER".
+- O Pedro apagou Semana Rosa, ESQUENTA azul e Tema Padrão OFICIAL 16/10.
+- **Ficam:**
+
+  | Tema | Papel |
+  |---|---|
+  | ESQUENTA PV — preço c/ desconto 03/11 | no ar |
+  | ESQUENTA PRETO E VERMELHO — cópia 02/11 | reserva |
+  | ✅ MANTER — OFICIAL c/ avaliações | volta em 01/12 |
+
+- **Falta apagar:** "🗑️ APAGAR — Dia D 10/10 e 11/10".
+
+### 4. Alliance (só leitura, nada marcado)
+- Nada do Pedro vence hoje.
+- **Atrasada:** "Selo do Reclame Aqui + conferir Judge.me" (prazo 20/10).
+  - A parte do Judge.me andou (contagem escondida).
+  - O selo **não dá para fazer: a Botanika ainda não tem conta no Reclame Aqui** (Pedro, 03/11). Avisar o Vitor.
+- "Criar o tema completo do Esquenta" está reaberta e o tema já foi publicado. Falta o OK do Pedro para marcar como feita, no nome do Vitor.
+
+### Pendências para amanhã
+- Aviso do tema novo no grupo.
+- Mensagem do cupom #6990 ao Vitor.
+- Apagar o tema Dia D.
+- OK para marcar a tarefa do tema do Esquenta no Alliance.
+- Avisar o Vitor que o Reclame Aqui depende de abrir conta.
+- **GitHub:** o push dá 403 desde 02/11. Os commits estão salvos só no container, e o Pedro precisa reconectar em https://claude.ai/connect-github.
+- **Próximos prazos (sem adiantar):**
+  - 05/11 18h: cashback do 11/11.
+  - 06/11: 11/11 (tema, oferta e frete, brindes, fechamento do site, 10 estáticos e 10 vídeos), 9 estáticos universais, 16 vídeos do 1º lote, "bem-estar por rotina" e nota fiscal.
