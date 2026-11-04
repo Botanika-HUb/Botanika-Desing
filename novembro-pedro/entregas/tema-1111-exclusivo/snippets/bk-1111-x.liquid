@@ -1,0 +1,121 @@
+{%- comment -%}
+  11/11 · camada visual do tema exclusivo (04/11, pedido do Pedro).
+  - Home: banner de imagem (celular e desktop) no lugar do slideshow; sai o bloco de texto antigo do bk-1111.
+  - Coleções: banner de imagem no topo.
+  - Tarja do topo maior, com a contagem em destaque.
+  - Página de produto: faixa preta com contagem e as 3 vantagens.
+  - Gaveta: caixa preta com frete grátis, quanto falta para a Q10 e o cashback.
+  - Some a vitrine e o "−10% só aqui" da gaveta (eram da escada antiga por produto).
+  Os percentuais do "até 40%" por produto entram quando o Vitor definir.
+{%- endcomment -%}
+{%- liquid
+  assign x_hm = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/onze-1111-hero-mobile.png?v=1'
+  assign x_hd = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/onze-1111-hero-desktop.png?v=1'
+  assign x_col = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/onze-1111-colecao.png?v=1'
+-%}
+{%- if template.name == 'index' -%}
+<template id="bk11x-hero">
+  <a class="bk11x-hero" href="/collections/mais-vendidos" aria-label="11/11 Botanika: até 40% OFF, só hoje">
+    <picture>
+      <source media="(min-width: 750px)" srcset="{{ x_hd }}&width=2400">
+      <img src="{{ x_hm }}&width=1080" alt="11/11 Botanika: até 40% OFF, frete grátis em tudo e Q10 de brinde acima de R$ 500" width="1080" height="1350" fetchpriority="high">
+    </picture>
+  </a>
+</template>
+{%- endif -%}
+{%- if template.name == 'collection' -%}
+<template id="bk11x-col">
+  <div class="bk11x-col"><img src="{{ x_col }}&width=2000" alt="11/11 Botanika: até 40% OFF e frete grátis em todos os pedidos" width="2000" height="857" loading="eager"></div>
+</template>
+{%- endif -%}
+<style>
+/* home: banner de imagem no lugar do slideshow e do bloco de texto */
+.bk11x-hero{display:block!important;position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;background:#0b0b0f;line-height:0}
+@media (min-width:750px){.bk11x-hero{aspect-ratio:21/9}}
+.bk11x-hero picture,.bk11x-hero img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover;display:block!important;transform:none!important;opacity:1!important}
+html.bk11x-on [id*="__slideshow"],html.bk11x-on .bk-onze-home{display:none!important}
+.bk11x-col{background:#0b0b0f}
+.bk11x-col img{display:block;width:100%;height:auto;aspect-ratio:21/9;object-fit:cover}
+@media (max-width:749px){.bk11x-col img{aspect-ratio:16/9;object-position:20% 50%}}
+html.bk11x-on.bk11x-hascol [id$="__banner"]{display:none!important}
+/* tarja do topo maior */
+.bk-onze-bar{font-size:14px!important;padding:10px 14px!important;gap:6px 14px!important;border-bottom:2px solid #e3132b}
+.bk-onze-bar__tag{font-size:13px;padding:3px 10px!important;letter-spacing:.04em}
+.bk-onze-bar__t{background:#1b1b22;border-radius:99px;padding:3px 12px}
+.bk-onze-bar__t b{font-size:15px}
+@media (max-width:749px){.bk-onze-bar{font-size:12.5px!important}.bk-onze-bar__t b{font-size:14px}}
+/* página de produto: faixa do 11/11 */
+.bk-onze-pdp{background:radial-gradient(120% 160% at 0% 0%,#3a0a10 0%,#0b0b0f 65%)!important;border:2px solid #e3132b!important;border-radius:16px!important;padding:14px 16px!important}
+.bk-onze-pdp__h{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:15px!important;font-weight:800}
+.bk-onze-pdp__h b{color:#fff!important;background:#e3132b;border-radius:6px;padding:2px 8px}
+.bk-onze-pdp__h b[data-bk-onze-count]{background:none;color:#ff5a6b!important;font-size:18px;font-variant-numeric:tabular-nums;padding:0}
+.bk-onze-pdp__p{font-size:13.5px!important;color:#e9e9ef;margin-top:6px}
+.bk-onze-pdp__p b{color:#fff}
+/* gaveta: caixa do 11/11 */
+.bk11x-cb{display:grid;gap:5px;background:#0b0b0f;color:#fff;border-radius:14px;padding:12px 14px;margin:0 0 14px;font:600 13px/1.35 'Instrument Sans',system-ui,sans-serif;border:2px solid #e3132b}
+.bk11x-cb__h{display:flex;justify-content:space-between;gap:8px;font-weight:800;font-size:14px}
+.bk11x-cb__h span:first-child{background:#e3132b;border-radius:6px;padding:1px 8px}
+.bk11x-cb__h b{color:#ff5a6b;font-variant-numeric:tabular-nums}
+.bk11x-cb__ok{color:#7ee2a0;font-weight:800}
+.bk11x-cb__n{color:#d6d6de}
+.bk11x-cb__n b{color:#ff5a6b}
+html.bk11x-on .bkg,html.bk11x-on .botanika-ob{display:none!important}
+/* gaveta: sem o contador falso e com os botões em vermelho */
+.cart-countdown-time{display:none!important}
+html.bk11x-on #minicart-form .discount-price{background:#e3132b!important;color:#fff!important}
+html.bk11x-on #minicart-form .btn-checkout{background:#e3132b!important;border-color:#e3132b!important;color:#fff!important}
+html.bk11x-on #minicart-form .viewcart{border-color:#141418!important;color:#141418!important}
+</style>
+<script>
+(function(){
+  if (window.__bk11x) return; window.__bk11x = true;
+  var END = 1794452399000, LAST = 1794430800000, MIN = 50000, shift = 0;
+  try { var pv = sessionStorage.getItem('bkOnze'); if (pv === '1') shift = (1794351600000 + 3600e3) - Date.now(); else if (pv === '2') shift = (1794394800000 + 3600e3) - Date.now(); } catch (e) {}
+  function now(){ return Date.now() + shift; }
+  if (now() > END) return;
+  document.documentElement.classList.add('bk11x-on');
+  function money(c){ return 'R$ ' + (c / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+  function fmt(ms){ var s = Math.max(0, Math.floor(ms / 1000)); return pad(Math.floor(s / 3600)) + 'h ' + pad(Math.floor(s % 3600 / 60)) + 'm ' + pad(s % 60) + 's'; }
+  function banners(){
+    var h = document.getElementById('bk11x-hero'), sl = document.querySelector('[id*="__slideshow"]');
+    if (h && sl && !document.querySelector('.bk11x-hero')) sl.parentNode.insertBefore(h.content.cloneNode(true), sl);
+    var c = document.getElementById('bk11x-col'), bn = document.querySelector('[id$="__banner"]'), main = document.getElementById('MainContent');
+    if (c && !document.querySelector('.bk11x-col')) {
+      if (bn) { bn.parentNode.insertBefore(c.content.cloneNode(true), bn); document.documentElement.classList.add('bk11x-hascol'); }
+      else if (main) main.insertBefore(c.content.cloneNode(true), main.firstChild);
+    }
+  }
+  /* caixa da gaveta */
+  var cart = null, loading = false;
+  function load(){
+    if (loading) return; loading = true;
+    fetch('/cart.js', { headers: { Accept: 'application/json' } }).then(function(r){ return r.json(); }).then(function(c){ cart = c; paint(); }).catch(function(){}).then(function(){ loading = false; });
+  }
+  function paint(){
+    var host = document.getElementById('minicart-form'); if (!host || !cart || !cart.item_count) { var o = host && host.querySelector('.bk11x-cb'); if (o) o.remove(); return; }
+    var paid = 0, gift = false;
+    (cart.items || []).forEach(function(it){ if (it.properties && it.properties._brinde) gift = true; else paid += it.final_line_price; });
+    var h = '<div class="bk11x-cb__h"><span>' + (now() >= LAST ? '11/11 · últimas horas' : '11/11 · só hoje') + '</span><span>termina em <b data-bk11x-count>' + fmt(END - now()) + '</b></span></div>';
+    h += '<div class="bk11x-cb__ok">✅ Frete grátis garantido em todos os pedidos</div>';
+    h += paid >= MIN || gift ? '<div class="bk11x-cb__ok">🎁 A Coenzima Q10 de brinde já está no seu pedido</div>' : '<div class="bk11x-cb__n">🎁 Faltam <b>' + money(MIN - paid) + '</b> para ganhar a Coenzima Q10</div>';
+    h += '<div class="bk11x-cb__n">💸 15% de cashback para a próxima compra nos 100 primeiros pedidos</div>';
+    var box = host.querySelector('.bk11x-cb');
+    if (!box) { box = document.createElement('div'); box.className = 'bk11x-cb'; host.insertBefore(box, host.firstChild); }
+    if (box.innerHTML !== h) box.innerHTML = h;
+  }
+  function tick(){ document.querySelectorAll('[data-bk11x-count]').forEach(function(el){ el.textContent = fmt(END - now()); }); if (now() < END) setTimeout(tick, 1000); }
+  var t = 0, last = '';
+  new MutationObserver(function(){
+    clearTimeout(t);
+    t = setTimeout(function(){
+      banners();
+      var host = document.getElementById('minicart-form');
+      var sig = host ? host.querySelectorAll('.cart-item').length + '|' + [].map.call(host.querySelectorAll('input.quantity-input'), function(i){ return i.value; }).join(',') : '';
+      if (sig !== last) { last = sig; load(); } else if (host && !host.querySelector('.bk11x-cb')) paint();
+    }, 120);
+  }).observe(document.documentElement, { childList: true, subtree: true });
+  function start(){ banners(); load(); tick(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>

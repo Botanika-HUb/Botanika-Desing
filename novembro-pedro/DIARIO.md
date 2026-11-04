@@ -439,3 +439,8 @@
   - o que falha: o site volta ao azul quando o Esquenta acaba; o seletor de potes mostra a escada antiga; aparece a barra "faltam R$ X"; os preços estão cheios; o link do grupo é o antigo; volta a faixa azul.
 - **Tema duplicado** "11/11 — preto e vermelho (prévia 04/11)" (168318206184). Itens 1, 3 e 6 resolvidos (preto e vermelho no 11/11, barra de frete e faixa azul escondidas). Detalhes em `entregas/tema-1111-pv/README.md`.
 - **Esperando:** Vitor (tabela do até 40% e comissões dos cupons) e Sarah (link do grupo VIP).
+- **Tema exclusivo do 11/11** (168318599400), duplicado da prévia a pedido do Pedro, que vai programar a publicação para 10/11 às 20h.
+  - Tudo do 11/11 fica sempre ligado e o Esquenta foi tirado.
+  - Banners de imagem aprovados (home celular e desktop, coleções) e aplicados.
+  - Também aplicados: tarja maior, faixa na página de produto e caixa da gaveta.
+  - Testado: home, coleção, página de produto, gaveta e site fechado (`onze=1`). Detalhes em `entregas/tema-1111-exclusivo/README.md`.

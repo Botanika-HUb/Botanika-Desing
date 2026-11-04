@@ -1,0 +1,84 @@
+{%- comment -%}
+  11/11 · mesma identidade preto e vermelho do Esquenta, valendo de 10/11 às 20h até 11/11 às 23h59 (04/11, pedido do Pedro).
+  O Esquenta termina às 20h de 10/11 e o bk-bf-pv deixa de valer. Este snippet coloca a classe bk-pv no <html> durante o 11/11
+  e repete só as cores: botões, selos, Mais Vendidos, home preta, brilho nos cards e menu e rodapé.
+  Nada de preço, escada ou brinde do Esquenta.
+  Também esconde, no 11/11:
+    - a faixa azul "3x sem juros";
+    - a barra "Faltam R$ X para o frete grátis" (no 11/11 o frete é grátis sem mínimo).
+  Prévia: ?onze=1 (madrugada) ou ?onze=2 (dia 11), a mesma do bk-1111.
+{%- endcomment -%}
+<script>
+(function(){
+  var EARLY = 1794351600000, END = 1794452399000, shift = 0;
+  try { var m = location.search.match(/[?&]onze=([012])\b/); if (m) { if (m[1] === '0') sessionStorage.removeItem('bkOnze'); else sessionStorage.setItem('bkOnze', m[1]); } } catch (e) {}
+  try { var pv = sessionStorage.getItem('bkOnze'); if (pv === '1') shift = (EARLY + 3600e3) - Date.now(); else if (pv === '2') shift = (1794394800000 + 3600e3) - Date.now(); } catch (e) {}
+  var n = Date.now() + shift;
+  /* tema exclusivo do 11/11: sempre ligado */ document.documentElement.classList.add('bk-pv');
+})();
+</script>
+<style>
+html.bk-pv{--bf-red:#e3132b;--bf-red2:#b80f22;--bf-black:#0b0b0f;--bf-ink:#141418;
+  --color-primary:#e3132b;--color-primary-rgb:227,19,43;--bk-azul:#e3132b;--bk-verde:#e3132b;
+  --btn-primary-bg-color:#e3132b;--btn-primary-hover-bg-color:#b80f22;--btn-primary-bg-graident-color:#e3132b;--btn-primary-hover-bg-color-graident:#b80f22;
+  --btn-link-color:#e3132b;--btn-link-hover-color:#b80f22;--btn-outline-color:#e3132b;--btn-outline-border-color:#e3132b;--color-link-hover:#e3132b}
+/* botões de compra: vermelho com texto branco */
+html.bk-pv .product-item .product__add-cart.morden-style,html.bk-pv .product-item .product__add-cart,html.bk-pv .product__add-cart,html.bk-pv .bkc__btn,html.bk-pv .btn.btn-primary,html.bk-pv .bkp__cta,html.bk-pv .product-form__submit,html.bk-pv .product_submit_button,html.bk-pv .bkm__wpp,html.bk-pv .bf__btn,html.bk-pv .bsn__copy{background:var(--bf-red)!important;border-color:var(--bf-red)!important;color:#fff!important;box-shadow:0 8px 20px -8px rgba(227,19,43,.6)!important}
+html.bk-pv .product__add-cart *,html.bk-pv .bkc__btn *,html.bk-pv .btn.btn-primary *,html.bk-pv .bkp__cta *{color:#fff!important}
+html.bk-pv .product-item .product__add-cart.morden-style:hover,html.bk-pv .product__add-cart:hover,html.bk-pv .bkc__btn:hover,html.bk-pv .btn.btn-primary:hover{background:var(--bf-red2)!important}
+/* tarja e caixa do carrinho: sem verde */
+/* selos: faixa preta */
+html.bk-pv .bks{background:var(--bf-black)!important}
+html.bk-pv .bks,html.bk-pv .bks *{color:#fff!important}
+html.bk-pv .bks [class*="sub"],html.bk-pv .bks small,html.bk-pv .bks p{color:#c9c9d3!important}
+html.bk-pv .bks__icone{background:rgba(227,19,43,.18)!important;color:#ff5a6b!important}
+html.bk-pv .bks [class*="sep"],html.bk-pv .bks__selo{border-color:rgba(255,255,255,.14)!important}
+/* Mais Vendidos: fundo preto, cards brancos */
+html.bk-pv [id$="__anchor_mais_vendidos"],html.bk-pv [id$="__featured_collection_TCP844"],html.bk-pv [id$="__mv_ver_todos"]{background:var(--bf-black)!important}
+html.bk-pv [id$="__anchor_mais_vendidos"] *,html.bk-pv [id$="__mv_ver_todos"] *{background-color:transparent}
+html.bk-pv [id$="__featured_collection_TCP844"] > .section,html.bk-pv [id$="__anchor_mais_vendidos"] > *,html.bk-pv [id$="__mv_ver_todos"] > *{background:transparent!important}
+html.bk-pv [id$="__featured_collection_TCP844"] .section__header-heading{color:#fff!important}
+html.bk-pv [id$="__featured_collection_TCP844"] .product-item__wrapper{background:#fff;border-radius:18px;padding:10px 10px 14px}
+html.bk-pv [id$="__mv_ver_todos"] a{color:#fff!important;border-color:#fff!important}
+/* selos dos cards em vermelho */
+html.bk-pv .card-benefit-badge{background:linear-gradient(100deg,var(--bf-red),var(--bf-red2))!important}
+html.bk-pv .menu_label{background:var(--bf-red)!important}
+/* bloco "Sua primeira compra" e rodapé/menu em preto */
+html.bk-pv .bsn__panel{background:radial-gradient(120% 140% at 12% 8%,#3a0a10 0%,#0b0b0f 70%)!important}
+html.bk-pv .submenu-horizontal,html.bk-pv nav.mobile,html.bk-pv footer.bf{background:var(--bf-black)!important}
+/* página de produto */
+html.bk-pv quantity-discount-cards.qty2{--q-blue:#e3132b;--q-blue2:#ff4b5f;--q-ink:#141418;--q-sel:#fff5f6;--q-gold:#e3132b;--q-gold-ink:#fff}
+html.bk-pv .qty2__ship-fill{background:linear-gradient(90deg,#b80f22,#e3132b)!important}
+html.bk-pv .bkp__qi,html.bk-pv .bkp__tick,html.bk-pv .bkp__stepn,html.bk-pv .bkab__ic{background:linear-gradient(160deg,#e3132b,#5a0610 72%)!important}
+html.bk-pv .bkp__media--video{background:var(--bf-black)!important}
+
+html.bk-pv .product-item__inner:has(.card-benefit-badge) .product__badges{top:42px!important}
+@keyframes bkpvGlow{0%,100%{box-shadow:0 0 0 1px rgba(227,19,43,.35),0 0 10px 0 rgba(227,19,43,.25)}50%{box-shadow:0 0 0 2px rgba(227,19,43,.85),0 0 26px 4px rgba(227,19,43,.55)}}
+html.bk-pv .product-item .product-item__wrapper{border-radius:18px;animation:bkpvGlow 2.4s ease-in-out infinite}
+html.bk-pv .product-item:hover .product-item__wrapper{animation-duration:1.2s}
+@media (prefers-reduced-motion:reduce){html.bk-pv .product-item .product-item__wrapper{animation:none;box-shadow:0 0 0 2px rgba(227,19,43,.7),0 0 18px 2px rgba(227,19,43,.4)}}
+
+html.bk-pv body.index,html.bk-pv body.index main{background:#0b0b0f!important}
+html.bk-pv body.index main > .shopify-section{background:#0b0b0f!important}
+html.bk-pv body.index main > .shopify-section > .gradient,html.bk-pv body.index .ugc-wrap,html.bk-pv body.index .sec__custom-liquid,html.bk-pv body.index .sec__products-carousel,html.bk-pv body.index .bt-medauth,html.bk-pv body.index [id$="__botanika_medical_authority"] > *{background:transparent!important}
+/* títulos e subtítulos das seções */
+html.bk-pv body.index :is(.ugc__title,.btcar__title,.btcol-title,.bt-medauth__title,.bkmed__h,.bk__h,.bkcat__h),html.bk-pv body.index [id$="__featured_collection_Pd7APa"] .section__header-heading{color:#fff!important}
+html.bk-pv body.index :is(.ugc__sub,.btcol-sub,.bk__sub,.bkcat__sub),html.bk-pv body.index [id$="__botanika_medical_authority"] .bkmed__head p,html.bk-pv body.index [id$="__featured_collection_Pd7APa"] .section__header-des{color:#c9c9d3!important}
+/* selinhos acima dos títulos (Depoimentos, Autoridade médica, Combos) */
+html.bk-pv body.index :is(.bkmed__eb,.btcol-tag,[class*="eyebrow"],[class*="__eb"],[class*="__kicker"]){color:#ff5a6b!important;border-color:rgba(255,90,107,.6)!important;background:transparent!important}
+/* médicos: depoimento em branco, nome em vermelho */
+html.bk-pv body.index .bkmed__quote{color:#fff!important}
+html.bk-pv body.index .bkmed__quote :is(b,strong,em){color:#ff5a6b!important}
+html.bk-pv body.index .bkmed__name{color:#ff5a6b!important}
+html.bk-pv body.index .bkmed__who :not(.bkmed__name){color:#c9c9d3!important}
+html.bk-pv body.index [id$="__botanika_medical_authority"] [class*="quote-mark"]{color:rgba(255,90,107,.45)!important}
+/* links "ver todos" e bolinhas dos carrosséis */
+html.bk-pv body.index .bk__all a,html.bk-pv body.index [id$="__mv_ver_todos"] a{color:#fff!important;border-color:#fff!important}
+html.bk-pv body.index .ugc__dots *{background:rgba(255,255,255,.3)}
+html.bk-pv body.index .ugc__dots [class*="on"],html.bk-pv body.index .ugc__dots [aria-current="true"]{background:#e3132b!important}
+/* Lançamentos igual aos Mais vendidos: card branco */
+html.bk-pv body.index [id$="__featured_collection_Pd7APa"] .product-item__wrapper{background:#fff;border-radius:18px;padding:10px 10px 14px}
+html.bk-pv body.index .bkmed__pill.is-active{background:#e3132b!important;border-color:#e3132b!important}
+/* 11/11: frete grátis sem mínimo, então some a barra de "faltam R$ X"; a faixa azul de vantagens também some */
+html.bk-pv [id$="__trust_bar"],html.bk-pv quantity-discount-cards .qty2__ship,html.bk-pv free-ship-progress-bar,html.bk-pv .bgc{display:none!important}
+</style>
