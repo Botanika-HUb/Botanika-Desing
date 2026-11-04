@@ -432,3 +432,10 @@
   - O upload direto pro Drive não dá daqui: são ~35 MB de imagem e o conector só aceita o arquivo dentro da mensagem.
   - Pasta sugerida: Drive › 2026-11 · Novembro › 03. Dia 11-11 › 01. Comunicação & Criativos.
 - Prazo para o Otávio: sex 06/11 às 12h.
+
+### 04/11 · site do 11/11
+- **Conferido com o relógio simulado em 11/11:**
+  - o que já está pronto: tarja, banner, aviso na página de produto, frete grátis e Q10 programados, estoque da Q10 de 1.604 e cashback;
+  - o que falha: o site volta ao azul quando o Esquenta acaba; o seletor de potes mostra a escada antiga; aparece a barra "faltam R$ X"; os preços estão cheios; o link do grupo é o antigo; volta a faixa azul.
+- **Tema duplicado** "11/11 — preto e vermelho (prévia 04/11)" (168318206184). Itens 1, 3 e 6 resolvidos (preto e vermelho no 11/11, barra de frete e faixa azul escondidas). Detalhes em `entregas/tema-1111-pv/README.md`.
+- **Esperando:** Vitor (tabela do até 40% e comissões dos cupons) e Sarah (link do grupo VIP).
