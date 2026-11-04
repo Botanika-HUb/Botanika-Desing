@@ -4,9 +4,9 @@
   Só vale quando o Esquenta está ligado (classe bk-bf no <html>).
 {%- endcomment -%}
 {%- liquid
-  assign pv_hm = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/esquenta-1111-preto-hero-mobile.png?v=1'
-  assign pv_hd = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/esquenta-1111-preto-hero-desktop.png?v=1'
-  assign pv_col = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/esquenta-1111-preto-colecao.png?v=1'
+  assign pv_hm = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/esquenta-week-preto-hero-mobile.png?v=1'
+  assign pv_hd = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/esquenta-week-preto-hero-desktop.png?v=1'
+  assign pv_col = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/esquenta-week-preto-colecao.png?v=1'
 -%}
 <style>
 html.bk-bf{--bf-red:#e3132b;--bf-red2:#b80f22;--bf-black:#0b0b0f;--bf-ink:#141418;
@@ -57,9 +57,9 @@ html.bk-bf .bkpv-pdp{display:flex;align-items:center;justify-content:space-betwe
   if (!document.documentElement.classList.contains('bk-bf') || window.__bkPv) return; window.__bkPv = true;
   /* banners preto e vermelho no lugar dos azuis (troca antes de o banner entrar na página) */
   function swap(id, from, to){ var t = document.getElementById(id); if (t) t.innerHTML = t.innerHTML.split(from).join(to); }
-  swap('bkbf-hero', 'esquenta-1111-hero-mobile.png?v=1', 'esquenta-1111-preto-hero-mobile.png?v=1');
-  swap('bkbf-hero', 'esquenta-1111-hero-desktop.png?v=1', 'esquenta-1111-preto-hero-desktop.png?v=1');
-  swap('bkbf-col', 'esquenta-1111-colecao.png?v=1', 'esquenta-1111-preto-colecao.png?v=1');
+  swap('bkbf-hero', 'esquenta-1111-hero-mobile.png?v=1', 'esquenta-week-preto-hero-mobile.png?v=1');
+  swap('bkbf-hero', 'esquenta-1111-hero-desktop.png?v=1', 'esquenta-week-preto-hero-desktop.png?v=1');
+  swap('bkbf-col', 'esquenta-1111-colecao.png?v=1', 'esquenta-week-preto-colecao.png?v=1');
   function copy(){
     /* Mais Vendidos com a chamada do Esquenta */
     var sec = document.querySelector('[id$="__featured_collection_TCP844"]');

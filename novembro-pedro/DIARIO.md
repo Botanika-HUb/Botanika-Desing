@@ -470,3 +470,8 @@
   - DRALUIZA e GABIFLORONUTRI (Creator Club, criados em 03/11) estão com 5%, e a ficha manda 2%;
   - RECUPERA5 (5%, régua de carrinho, criado em 04/11) vai contra "nenhum outro cupom no mês".
   - Nada foi alterado; fica para o Vitor e a Sarah decidirem.
+- **Esquenta Botanika Week (com OK do Pedro):**
+  - Banners aprovados e no tema.
+  - 6 descontos criados na Shopify (8% / +2% / +2%, frete acima de R$ 249, cranberry acima de R$ 400 e 2 cranberries para recorrentes), programados de 12/11 00h a 20/11 23h59.
+  - Testado com o relógio em 14/11: home, coleção e página de produto certas e sem "11/11".
+  - Falta o Pedro programar a publicação do tema para 11/11 às 23h59.
