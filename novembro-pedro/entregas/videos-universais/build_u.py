@@ -75,12 +75,17 @@ def build(k):
         acc += b - a
     main = round(acc, 3); dur = round(main + END, 2)
     def wt_(w): return next(x['t'] for x in words if x['w'].lower().startswith(w))
-    tri = wt_('tri-magnésio'); blk = next(x['t'] for x in words if x['w'] == 'Black')
+    hook_end = keeps[0][1] - keeps[0][0]
+    cuts = []; c = 0
+    for a_, b_ in keeps: c += b_ - a_; cuts.append(round(c, 3))
+    # cenas só no corpo (o gancho do 10 também fala "Black")
+    tri = next(x['t'] for x in words if x['t'] > hook_end and x['w'].lower().startswith('tri-magnésio'))
+    blk = next(x['t'] for x in words if x['t'] > hook_end and x['w'] == 'Black')
     scenes = [dict(kind='prod', a=round(tri - 0.1, 3), b=round(tri + 1.5, 3), name='TRI[MG]<br>COMPLEX', sub='magnésio 3 em 1', img='trimg.png'),
               dict(kind='black', a=round(blk - 0.15, 3), b=round(blk + 1.9, 3))]
     last = SEGS[-1][1]; cta_a = round(main - (last[1] - last[0]), 3)
     hk = dict(j['hook'], a=0.0, b=round(min(3.2, SEGS[0][1][1] - SEGS[0][1][0]), 2))
-    cfg = dict(hook=hk, words=words, scenes=scenes, hot=HOT, cta=dict(a=cta_a, b=main), end=main, dur=dur)
+    cfg = dict(hook=hk, words=words, cuts=cuts, scenes=scenes, hot=HOT, cta=dict(a=cta_a, b=main), end=main, dur=dur)
     json.dump(cfg, open(f'{W}/cfg_u{k}.json', 'w'), ensure_ascii=False)
     fr = f'{W}/frames_u{k}'
     if not os.path.exists(fr + '/f00000.png'): run(['node', D + '/render_u.js', f'{W}/cfg_u{k}.json', fr, W])

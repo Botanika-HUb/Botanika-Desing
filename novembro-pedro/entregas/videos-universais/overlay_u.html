@@ -59,7 +59,9 @@ function setup(cfg){C=cfg;
  const h=$('hook');cfg.hook.lines.forEach(l=>{const d=document.createElement('div');d.className='hl';l.split(' ').forEach(w=>{const s=document.createElement('span');s.textContent=w;if(cfg.hook.em.includes(w))s.className='em';d.appendChild(s)});h.appendChild(d)});
  let cur=[];cfg.words.forEach(w=>{cur.push(w);const txt=cur.map(x=>x.w).join(' ');
   if(/[.,!?:]$/.test(w.w)||cur.length>=3||txt.length>=13){chunks.push(cur);cur=[]}});if(cur.length)chunks.push(cur);
- chunks.forEach((c,i)=>{c.a=c[0].t;c.b=i+1<chunks.length?Math.min(chunks[i+1][0].t,c[c.length-1].t+0.9):c[c.length-1].t+0.9});}
+ chunks.forEach((c,i)=>{c.a=c[0].t;c.b=i+1<chunks.length?Math.min(chunks[i+1][0].t,c[c.length-1].t+0.9):c[c.length-1].t+0.9;
+  /* a legenda não atravessa o corte para o próximo trecho */
+  const cut=(cfg.cuts||[]).find(x=>x>c.a+0.01);if(cut!==undefined)c.b=Math.min(c.b,cut);});}
 function seek(t){
  let inScene=null;for(const s of C.scenes){if(t>=s.a&&t<s.b){inScene=s;break}}
  ['prod','black'].forEach(k=>$(k).style.display=(inScene&&inScene.kind==k)?'block':'none');
