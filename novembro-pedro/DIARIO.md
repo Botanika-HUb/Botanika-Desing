@@ -481,3 +481,11 @@
   - O tema da Week ficou com a entrega registrada mas **aberto**, porque falta programar a publicação para 11/11 às 23h59.
   - Achado ao reler a tarefa do tema: ela pede uma **versão "última chance" no último dia (20/11)**, e o tema ainda não tem.
 - **Último dia da Week:** banners aprovados pelo Pedro e aplicados no tema (snippet `bk-week-ultimo`). Trocam sozinhos em 20/11 às 00h e entra o selo "ÚLTIMO DIA" na tarja, na página de produto e no carrinho. Testado com o relógio em 19/11 (sem troca) e 20/11 (com troca); no celular, o selo da tarja ficou numa linha própria.
+
+### 04/11 · vídeos universais (1º lote)
+- O Pedro mandou 3 brutos. São do **1º lote de universais**, não do 11/11: o corpo do Tri[Mg] Complex e 16 ganchos.
+- Os brutos são HDR do iPhone, e a luz estourava. Agora passam por conversão (tone mapping) para SDR.
+- A transcrição veio pela análise de vídeo do Higgsfield. O Whisper não roda nesta sessão, porque o download do modelo é bloqueado, e o Drive ainda não tinha gerado a legenda.
+- Universal01 v1 (gancho "Nem café resolve?" + corpo, 37,6 s) foi enviado ao Pedro. **Ele pediu para não seguir com os outros antes dos ajustes dele.**
+- Script em `entregas/videos-universais/`.
+- Também ficou pronto o upload de arquivo grande para a Shopify (staged upload), que serve para hospedar vídeo e passar para a análise.
