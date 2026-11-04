@@ -490,3 +490,7 @@
 - Script em `entregas/videos-universais/`.
 - Também ficou pronto o upload de arquivo grande para a Shopify (staged upload), que serve para hospedar vídeo e passar para a análise.
 - **Universal01 v2:** o Pedro achou cortes ruins na v1. A causa eram duas tentativas que ficaram no corte ("Comecei a tomar…" e "Então esse é o melhor momento pra montar não…"), deixando palavras duplicadas. Na v2 elas saíram, as bordas de cada frase foram medidas na onda do áudio e o vídeo ficou com 33,9 s. Transcrito de novo e conferido sem repetição.
+- **Universais 1º lote: 15 vídeos prontos** (Universal01 a Universal16, sem o 05, porque o roteiro 5 não foi gravado). Todos usam o corpo aprovado do Tri[Mg], e cada um tem o seu gancho do IMG_9671.
+  - Revisão final: a cena da Black estava cobrindo o gancho do 10 (que também fala "Black") e passou a entrar só no corpo; a legenda não atravessa mais os cortes.
+  - Arquivos entregues ao Pedro pelo chat. O conector do Drive não aceita arquivos desse tamanho, então o Pedro sobe em Criativos Novembro › Editados.
+  - Para o Pedro checar: o 07 cita o Dr. William, e o 11 diz "última chance do ano".
