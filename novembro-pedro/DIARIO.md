@@ -388,3 +388,27 @@
   - apagar os temas "Dia D 10/10" e "ESQUENTA PRETO E VERMELHO — cópia 02/11".
 - **Amanhã (04/11):** nenhuma entrega do Pedro vence. Próximo prazo: 06/11.
 - **Recados enviados pelo Pedro (03/11, noite):** Vitor (cupom #6990, Reclame Aqui e cashback), Sarah (cashback) e grupo (5 potes). Aguardando a resposta do Vitor.
+
+### 04/11 (quarta) · plano do dia (9h)
+- **Fechamento de 03/11:** registrado no bloco "03/11 · fechamento do dia".
+  - Depois disso, às 16h59, o Vitor perguntou "Deu bom de vê isso aqui?" sobre o cupom #6990. Mandei ao Pedro uma resposta curta pronta para enviar. Ainda falta a resposta do Vitor sobre a comissão (ISRAEL ou VICTORIA) e sobre o Reclame Aqui.
+- **Alliance (leitura):**
+  - Pedro: nada vence hoje nem amanhã. Cashback concluído.
+  - Atrasada: Reclame Aqui (bloqueada, sem conta).
+- **Dependências que alimentam a sexta (06/11):**
+
+  | Quem | O quê | Prazo |
+  |---|---|---|
+  | Mafe | Gravar os 10 vídeos de venda do 11/11 (para o Pedro editar) | **hoje 04/11, 18h** |
+  | Mafe, Gabriel e Vitor | Gravar os 16 vídeos do 1º lote | qui 05/11, 18h |
+  | Sarah | Link do grupo VIP (para trocar no banner do site fechado do 11/11) | antes de 06/11 |
+  | Vitor | Brindes do acesso antecipado (está "a definir" na ficha) | antes de 06/11 |
+
+- **Rituais:** Daily às 9h20.
+- **Prazos do Pedro:**
+  - 06/11 12h: 10 estáticos e 10 vídeos do 11/11 (pro Otávio).
+  - 06/11 18h:
+    - 11/11: tema, oferta e frete, brindes e fechamento do site;
+    - 9 estáticos universais e 16 vídeos do 1º lote;
+    - "bem-estar por rotina";
+    - nota fiscal.
