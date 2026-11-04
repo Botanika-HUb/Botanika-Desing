@@ -451,3 +451,17 @@
   - 4 · some o contador "Os produtos são limitados" da página do carrinho.
   - Feito em `bk-1111-x.liquid` (função `offers()`). Dois ajustes depois do primeiro teste: a troca de texto não mexe mais dentro de scripts, e a conta do seletor é refeita algumas vezes depois que a página carrega (antes, às vezes voltava o preço com desconto).
   - Testado com o relógio em 11/11: Hair com 3 potes a 3x R$ 99,40 e 2 potes a 3x R$ 66,26, sem "economiza"; carrinho sem o contador.
+
+### 04/11 · varredura completa do Alliance OS (a pedido do Pedro)
+- Li as 22 tarefas abertas do Pedro até 13/11, inteiras: descrição, subtarefas, dependências, checklist, comentários, entregas e fichas. Também li as 17 tarefas de outras pessoas que citam o Pedro. Depois de 13/11 só há tarefas a partir de 18/11 (não adiantar).
+- **Vence 06/11:** 11/11 (tema, fechar site, oferta e frete, brindes, 10 estáticos, 10 vídeos), 16 vídeos e 9 estáticos do 1º lote, bem-estar por rotina e nota fiscal.
+- **Vence 09/11:** cupom do Recovery e **Esquenta Botanika Week (12 a 20/11): tema, oferta e brindes**.
+  - Oferta: 8% / 10% / 12% por quantidade (1, 3 e 5 itens).
+  - Frete grátis acima de R$ 249.
+  - Cranberry acima de R$ 400 (2 para clientes recorrentes).
+- **Achados:**
+  - (1) Não há tema para 12/11 em diante. O tema exclusivo do 11/11 cobre só o dia 11, e o "OFICIAL" não pode voltar antes do fim da Botanika Week e da Cyber Monday.
+  - (2) A Sarah pede cupons (Ex-fiéis e quiz), mas a ficha diz "nenhum outro cupom no mês".
+  - (3) As fichas do 11/11 e da Week estão na v3, mas só a v2 foi aprovada.
+  - (4) O 10 estáticos do 11/11 está pronto, mas no Alliance segue "a fazer": falta registrar a entrega.
+- O Pedro deu ok para começar o tema do Esquenta Botanika Week e para escrever as mensagens a quem trava as tarefas.
