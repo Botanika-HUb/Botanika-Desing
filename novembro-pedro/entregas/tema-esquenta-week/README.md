@@ -37,4 +37,11 @@ Não há sobreposição com o 11/11, que termina em 12/11 02:59:59Z. O estoque d
 - Coleção: banner novo.
 - Página de produto (Hair): 5 potes 12%, 3 potes 10% e 1 pote 8%, com a faixa da Week.
 
+## Último dia (20/11)
+O snippet `bk-week-ultimo` (renderizado no `botanika-campaign-css`) faz a troca sozinho na sexta 20/11 às 00h:
+- banners da home e das coleções passam a ser os de "ÚLTIMO DIA · ACABA HOJE 23H59" (esquenta-week-ultimo-*.png, aprovados pelo Pedro em 04/11);
+- entra o selo "⏳ ÚLTIMO DIA" na tarja do topo (no celular fica numa linha própria), na faixa da página de produto e na caixa do carrinho.
+
+Testado com o relógio em 19/11 (sem troca) e em 20/11 (com troca).
+
 Falta o Pedro programar a publicação deste tema para 11/11 às 23h59 (logo depois do tema exclusivo do 11/11).

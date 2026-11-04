@@ -1,0 +1,31 @@
+{%- comment -%}
+  Esquenta Botanika Week · ÚLTIMO DIA (sexta 20/11, 00h → 23h59 de Brasília). Pedido do Pedro em 04/11 (a tarefa do tema pede a versão "última chance").
+  - troca os banners da home e das coleções pelos de "ÚLTIMO DIA · ACABA HOJE 23H59"
+  - coloca o selo "ÚLTIMO DIA" na tarja do topo, na faixa da página de produto e na caixa do carrinho
+  Só age quando o Esquenta está ligado (classe bk-bf) e já é dia 20/11. Fica depois do bk-bf-skin e do bk-bf-pv.
+{%- endcomment -%}
+<style>
+html.bk-ultimo .bkbf-bar::before,html.bk-ultimo .bkpv-pdp::before,html.bk-ultimo .bkbf-cb::before{content:'⏳ ÚLTIMO DIA';background:#e3132b;color:#fff;font:800 11px/1 'Instrument Sans',system-ui,sans-serif;letter-spacing:.06em;border-radius:6px;padding:5px 8px;white-space:nowrap}
+html.bk-ultimo .bkpv-pdp{flex-wrap:wrap}
+html.bk-ultimo .bkbf-cb::before{justify-self:start}
+html.bk-ultimo .bkbf-bar{flex-wrap:wrap;row-gap:4px}
+@media (max-width:749px){html.bk-ultimo .bkbf-bar::before{flex-basis:100%;text-align:center;background:none;color:#ff5a6b;padding:0;font-size:12px}}
+</style>
+<script>
+(function(){
+  var LAST = 1795143600000;
+  if (!document.documentElement.classList.contains('bk-bf') || window.__bkUltimo) return;
+  var B = window.__bkBf; if (!B || Date.now() < LAST || Date.now() >= B.end) return;
+  window.__bkUltimo = true;
+  document.documentElement.classList.add('bk-ultimo');
+  var MAP = [['esquenta-week-preto-hero-mobile.png', 'esquenta-week-ultimo-hero-mobile.png'], ['esquenta-week-preto-hero-desktop.png', 'esquenta-week-ultimo-hero-desktop.png'], ['esquenta-week-preto-colecao.png', 'esquenta-week-ultimo-colecao.png']];
+  function fix(s){ MAP.forEach(function(m){ s = s.split(m[0]).join(m[1]); }); return s; }
+  ['bkbf-hero', 'bkbf-col'].forEach(function(id){ var t = document.getElementById(id); if (t) t.innerHTML = fix(t.innerHTML); });
+  function live(){
+    document.querySelectorAll('.bkbf-hero img, .bkbf-hero source, .bkbf-col img').forEach(function(el){
+      ['src', 'srcset'].forEach(function(a){ var v = el.getAttribute(a); if (v && v.indexOf('-preto-') > -1) el.setAttribute(a, fix(v)); });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', live); else live();
+})();
+</script>
