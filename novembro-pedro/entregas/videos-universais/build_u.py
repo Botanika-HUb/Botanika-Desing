@@ -87,7 +87,7 @@ def build(k):
     hk = dict(j['hook'], a=0.0, b=round(min(3.2, SEGS[0][1][1] - SEGS[0][1][0]), 2))
     cfg = dict(hook=hk, words=words, cuts=cuts, scenes=scenes, hot=HOT, cta=dict(a=cta_a, b=main), end=main, dur=dur)
     json.dump(cfg, open(f'{W}/cfg_u{k}.json', 'w'), ensure_ascii=False)
-    fr = f'{W}/frames_u{k}'
+    fr = f'{W}/frames_v3_u{k}'
     if not os.path.exists(fr + '/f00000.png'): run(['node', D + '/render_u.js', f'{W}/cfg_u{k}.json', fr, W])
     # zoom: alterna 0/7% a cada corte (esconde o pulo) + empurrão nas frases fortes
     terms = []; acc = 0
