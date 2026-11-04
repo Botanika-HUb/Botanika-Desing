@@ -1,0 +1,193 @@
+{%- comment -%}
+  Esquenta Botanika Week · versão PRETO E VERMELHO (pedido do Vitor e do Gabriel, 02/11).
+  Fica por cima do bk-bf-skin: não muda widget nenhum, só cor de fundo, texto e banner.
+  Só vale quando o Esquenta está ligado (classe bk-bf no <html>).
+{%- endcomment -%}
+{%- liquid
+  assign pv_hm = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/esquenta-1111-preto-hero-mobile.png?v=1'
+  assign pv_hd = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/esquenta-1111-preto-hero-desktop.png?v=1'
+  assign pv_col = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/esquenta-1111-preto-colecao.png?v=1'
+-%}
+<style>
+html.bk-bf{--bf-red:#e3132b;--bf-red2:#b80f22;--bf-black:#0b0b0f;--bf-ink:#141418;
+  --color-primary:#e3132b;--color-primary-rgb:227,19,43;--bk-azul:#e3132b;--bk-verde:#e3132b;
+  --btn-primary-bg-color:#e3132b;--btn-primary-hover-bg-color:#b80f22;--btn-primary-bg-graident-color:#e3132b;--btn-primary-hover-bg-color-graident:#b80f22;
+  --btn-link-color:#e3132b;--btn-link-hover-color:#b80f22;--btn-outline-color:#e3132b;--btn-outline-border-color:#e3132b;--color-link-hover:#e3132b}
+/* botões de compra: vermelho com texto branco */
+html.bk-bf .product-item .product__add-cart.morden-style,html.bk-bf .product-item .product__add-cart,html.bk-bf .product__add-cart,html.bk-bf .bkc__btn,html.bk-bf .btn.btn-primary,html.bk-bf .bkp__cta,html.bk-bf .product-form__submit,html.bk-bf .product_submit_button,html.bk-bf .bkm__wpp,html.bk-bf .bf__btn,html.bk-bf .bsn__copy{background:var(--bf-red)!important;border-color:var(--bf-red)!important;color:#fff!important;box-shadow:0 8px 20px -8px rgba(227,19,43,.6)!important}
+html.bk-bf .product__add-cart *,html.bk-bf .bkc__btn *,html.bk-bf .btn.btn-primary *,html.bk-bf .bkp__cta *{color:#fff!important}
+html.bk-bf .product-item .product__add-cart.morden-style:hover,html.bk-bf .product__add-cart:hover,html.bk-bf .bkc__btn:hover,html.bk-bf .btn.btn-primary:hover{background:var(--bf-red2)!important}
+/* tarja e caixa do carrinho: sem verde */
+html.bk-bf .bkbf-bar__msg em,html.bk-bf .bkbf-bar__t{color:#ff5a6b}
+html.bk-bf .bkbf-cb b,html.bk-bf .bkbf-cb__ok{color:#ff5a6b}
+/* selos: faixa preta */
+html.bk-bf .bks{background:var(--bf-black)!important}
+html.bk-bf .bks,html.bk-bf .bks *{color:#fff!important}
+html.bk-bf .bks [class*="sub"],html.bk-bf .bks small,html.bk-bf .bks p{color:#c9c9d3!important}
+html.bk-bf .bks__icone{background:rgba(227,19,43,.18)!important;color:#ff5a6b!important}
+html.bk-bf .bks [class*="sep"],html.bk-bf .bks__selo{border-color:rgba(255,255,255,.14)!important}
+/* Mais Vendidos: fundo preto, cards brancos */
+html.bk-bf [id$="__anchor_mais_vendidos"],html.bk-bf [id$="__featured_collection_TCP844"],html.bk-bf [id$="__mv_ver_todos"]{background:var(--bf-black)!important}
+html.bk-bf [id$="__anchor_mais_vendidos"] *,html.bk-bf [id$="__mv_ver_todos"] *{background-color:transparent}
+html.bk-bf [id$="__featured_collection_TCP844"] > .section,html.bk-bf [id$="__anchor_mais_vendidos"] > *,html.bk-bf [id$="__mv_ver_todos"] > *{background:transparent!important}
+html.bk-bf [id$="__featured_collection_TCP844"] .section__header-heading{color:#fff!important}
+html.bk-bf [id$="__featured_collection_TCP844"] .section__header *:not(.section__header-heading):not(.bkpv-tag){color:#c9c9d3!important}
+html.bk-bf [id$="__featured_collection_TCP844"] .product-item__wrapper{background:#fff;border-radius:18px;padding:10px 10px 14px}
+html.bk-bf [id$="__mv_ver_todos"] a{color:#fff!important;border-color:#fff!important}
+.bkpv-tag{display:none}
+html.bk-bf .bkpv-tag{display:inline-block;background:var(--bf-red);color:#fff!important;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;border-radius:99px;padding:6px 12px;margin:0 0 10px}
+/* selos dos cards em vermelho */
+html.bk-bf .card-benefit-badge{background:linear-gradient(100deg,var(--bf-red),var(--bf-red2))!important}
+html.bk-bf .menu_label{background:var(--bf-red)!important}
+/* bloco "Sua primeira compra" e rodapé/menu em preto */
+html.bk-bf .bsn__panel{background:radial-gradient(120% 140% at 12% 8%,#3a0a10 0%,#0b0b0f 70%)!important}
+html.bk-bf .submenu-horizontal,html.bk-bf nav.mobile,html.bk-bf footer.bf{background:var(--bf-black)!important}
+/* página de produto */
+html.bk-bf quantity-discount-cards.qty2{--q-blue:#e3132b;--q-blue2:#ff4b5f;--q-ink:#141418;--q-sel:#fff5f6;--q-gold:#e3132b;--q-gold-ink:#fff}
+html.bk-bf .qty2__ship-fill{background:linear-gradient(90deg,#b80f22,#e3132b)!important}
+html.bk-bf .bkp__qi,html.bk-bf .bkp__tick,html.bk-bf .bkp__stepn,html.bk-bf .bkab__ic{background:linear-gradient(160deg,#e3132b,#5a0610 72%)!important}
+html.bk-bf .bkp__media--video{background:var(--bf-black)!important}
+.bkpv-pdp{display:none}
+html.bk-bf .bkpv-pdp{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--bf-black);color:#fff;border-radius:14px;padding:11px 14px;margin:0 0 14px;font:700 13px/1.3 'Instrument Sans',system-ui,sans-serif}
+.bkpv-pdp b{color:#ff5a6b}
+.bkpv-pdp__t{color:#ff5a6b;white-space:nowrap;font-variant-numeric:tabular-nums}
+</style>
+<script>
+(function(){
+  if (!document.documentElement.classList.contains('bk-bf') || window.__bkPv) return; window.__bkPv = true;
+  /* banners preto e vermelho no lugar dos azuis (troca antes de o banner entrar na página) */
+  function swap(id, from, to){ var t = document.getElementById(id); if (t) t.innerHTML = t.innerHTML.split(from).join(to); }
+  swap('bkbf-hero', 'esquenta-1111-hero-mobile.png?v=1', 'esquenta-1111-preto-hero-mobile.png?v=1');
+  swap('bkbf-hero', 'esquenta-1111-hero-desktop.png?v=1', 'esquenta-1111-preto-hero-desktop.png?v=1');
+  swap('bkbf-col', 'esquenta-1111-colecao.png?v=1', 'esquenta-1111-preto-colecao.png?v=1');
+  function copy(){
+    /* Mais Vendidos com a chamada do Esquenta */
+    var sec = document.querySelector('[id$="__featured_collection_TCP844"]');
+    if (sec && !sec.querySelector('.bkpv-tag')) {
+      var h = sec.querySelector('.section__header-heading');
+      if (h) {
+        var tag = document.createElement('span'); tag.className = 'bkpv-tag'; tag.textContent = '🔥 Tá rolando o Esquenta Botanika Week';
+        h.parentNode.insertBefore(tag, h);
+        h.textContent = 'Mais vendidos com até 12% OFF';
+        var sub = h.nextElementSibling; if (sub && sub.textContent.trim()) sub.textContent = 'Quanto mais leva, mais esquenta: 1 un. 8% · 3 un. 10% · 5 un. 12%. Vale misturando.';
+      }
+    }
+    /* página de produto: faixa curta do Esquenta acima do seletor de potes */
+    var q = document.querySelector('quantity-discount-cards.qty2');
+    if (q && !document.querySelector('.bkpv-pdp')) {
+      var d = document.createElement('div'); d.className = 'bkpv-pdp';
+      d.innerHTML = '<span>🔥 <b>Esquenta Botanika Week:</b> até 12% OFF misturando os produtos</span><span class="bkpv-pdp__t" data-bkbf-count></span>';
+      q.parentNode.insertBefore(d, q);
+      var bt = document.querySelector('.bkbf-bar__t'); if (bt) d.querySelector('.bkpv-pdp__t').textContent = bt.textContent;
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', copy); else copy();
+})();
+</script>
+{%- comment -%}
+  03/11 · preço já com o desconto do Esquenta (pedido do Pedro).
+  - página de produto, cards e sticky: installment-price.liquid já imprime a versão com 8% (.ip-bf)
+  - seletor de potes: o preço cheio riscado aparece em todos os cartões
+  - gaveta: preço de cada item já com o % da escada (8/10/12 pelo total de unidades)
+    e a vitrine de produtos de volta, com o preço do Esquenta
+{%- endcomment -%}
+<style>
+/* seletor de potes: mostra o preço cheio riscado em todos os cartões */
+html.bk-bf .qty2k__cmp{display:block!important;font-size:1.25rem;color:#8a8a96;font-weight:600;margin:0 0 2px}
+/* selo do card (ex.: "Magnésio 3 em 1") não fica mais em cima do selo do tema */
+html.bk-bf .product-item__inner:has(.card-benefit-badge) .product__badges{top:42px!important}
+/* 03/11 · brilho vermelho pulsando em volta de cada card de produto (pedido do Pedro) */
+@keyframes bkpvGlow{0%,100%{box-shadow:0 0 0 1px rgba(227,19,43,.35),0 0 10px 0 rgba(227,19,43,.25)}50%{box-shadow:0 0 0 2px rgba(227,19,43,.85),0 0 26px 4px rgba(227,19,43,.55)}}
+html.bk-bf .product-item .product-item__wrapper{border-radius:18px;animation:bkpvGlow 2.4s ease-in-out infinite}
+html.bk-bf .product-item:hover .product-item__wrapper{animation-duration:1.2s}
+@media (prefers-reduced-motion:reduce){html.bk-bf .product-item .product-item__wrapper{animation:none;box-shadow:0 0 0 2px rgba(227,19,43,.7),0 0 18px 2px rgba(227,19,43,.4)}}
+/* gaveta: vitrine com preço do Esquenta */
+/* o skin esconde tudo que começa com "bkg"; aqui a vitrine volta, sem a barra da escada antiga */
+html.bk-bf div.bkg[data-bkg]{display:block!important}
+html.bk-bf .bkg .bkg__h{display:flex!important}
+html.bk-bf .bkg .bkg__row{display:flex!important}
+html.bk-bf .bkg .bkg__card{display:flex!important}
+html.bk-bf .bkg .bkg__img,html.bk-bf .bkg .bkg__strike,html.bk-bf .bkg .bkg__inst,html.bk-bf .bkg .bkg__cash{display:block!important}
+html.bk-bf .bkg .bkg__name{display:-webkit-box!important}
+html.bk-bf .bkg .bkg__tag,html.bk-bf .bkg .bkg__sj{display:inline-block!important}
+html.bk-bf .bkg .bkg__add{display:flex!important}
+html.bk-bf .bkg .bkg-bf{display:contents!important}
+html.bk-bf .bkg .bkg__prog,html.bk-bf .bkg .bkg-std,.bkg-bf{display:none!important}
+html.bk-bf .bkg .bkg-bf{display:contents!important}
+html.bk-bf .bkg__h h4{font-size:0}
+html.bk-bf .bkg__h h4::before{content:'🔥 Aproveite no Esquenta';font-size:1.6rem}
+html.bk-bf .bkg__tag--bf{background:#e3132b;color:#fff}
+html.bk-bf .bkg__card{border-color:#f3b7bb}
+html.bk-bf .bkg__inst b{color:#e3132b}
+html.bk-bf .bkg__cash{margin-bottom:.9rem}
+/* gaveta: preço de cada item */
+.bkpv-ip{display:none}
+html.bk-bf .bkpv-ip{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;width:100%;font:700 1.5rem/1.2 'Instrument Sans',system-ui,sans-serif}
+html.bk-bf .bkpv-ip s{color:#8a8a96;font-weight:500;font-size:1.25rem}
+html.bk-bf .bkpv-ip b{color:#e3132b;font-weight:800}
+html.bk-bf .bkpv-ip i{font-style:normal;background:#e3132b;color:#fff;border-radius:6px;padding:1px 6px;font-size:1.05rem;font-weight:800}
+html.bk-bf .bkpv-ip.is-gift b{color:#0b8a3a}
+html.bk-bf .bkpv-ip small{font-size:1.15rem;color:#8a8a96;font-weight:600}
+.bkpv-sub{display:none}
+html.bk-bf .bkpv-sub{display:block;text-align:right;margin:-2px 0 10px;font:800 1.45rem/1.2 'Instrument Sans',system-ui,sans-serif;color:#e3132b}
+html.bk-bf #minicart-form .discount-price{background:#e3132b!important;color:#fff!important}
+html.bk-bf #minicart-form .btn-checkout{background:#e3132b!important;border-color:#e3132b!important;color:#fff!important}
+html.bk-bf #minicart-form .viewcart{border-color:#141418!important;color:#141418!important}
+html.bk-bf .cart-item.bkpv-done .minicart__item-prices > .minicart__item-price,html.bk-bf .cart-item.bkpv-done .minicart__discounted-prices,html.bk-bf .cart-item.bkpv-done .minicart__item-prices > s.minicart__item-original-price{display:none!important}
+</style>
+<script>
+(function(){
+  if (!document.documentElement.classList.contains('bk-bf') || window.__bkPvPreco) return; window.__bkPvPreco = true;
+  /* mesma conta do checkout: 8% + 2% (3+ un.) + 2% (5+ un.), cada parte arredondada para baixo */
+  function disc(t, u){ return Math.floor(t * 8 / 100) + (u >= 3 ? Math.floor(t * 2 / 100) : 0) + (u >= 5 ? Math.floor(t * 2 / 100) : 0); }
+  function pct(u){ return u >= 5 ? 12 : (u >= 3 ? 10 : 8); }
+  function money(c){ return 'R$ ' + (c / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+  function cents(txt){ var m = String(txt || '').replace(/\s/g, '').match(/([\d.]+),(\d{2})/); return m ? parseInt(m[1].replace(/\./g, ''), 10) * 100 + parseInt(m[2], 10) : NaN; }
+  function paint(){
+    var host = document.getElementById('minicart-form'); if (!host) return;
+    var items = host.querySelectorAll('.cart-item'); if (!items.length) return;
+    var u = 0; items.forEach(function(it){ var q = it.querySelector('input.quantity-input'); u += q ? (parseInt(q.value, 10) || 0) : 1; });
+    var p = pct(u);
+    items.forEach(function(it){
+      var box = it.querySelector('.minicart__item-prices'); if (!box) return;
+      var reg = box.querySelector('.minicart__discounted-prices .minicart__item-price') || box.querySelector(':scope > .minicart__item-price');
+      var orig = box.querySelector('.minicart__item-original-price');
+      var unit = cents(reg && reg.textContent), full = orig ? cents(orig.textContent) : unit;
+      if (isNaN(unit)) return;
+      var qi = it.querySelector('input.quantity-input'), qn = qi ? (parseInt(qi.value, 10) || 1) : 1, line = unit * qn;
+      var html;
+      if (unit === 0) html = '<span class="bkpv-ip is-gift">' + (isNaN(full) ? '' : '<s>' + money(full) + '</s> ') + '<b>Grátis</b> <i>🎁 brinde</i></span>';
+      else html = '<span class="bkpv-ip"><s>' + money(line) + '</s> <b>' + money(line - disc(line, u)) + '</b> <i>-' + p + '%</i>' + (qn > 1 ? '<small>' + qn + ' un.</small>' : '') + '</span>';
+      var cur = box.querySelector('.bkpv-ip');
+      if (cur && cur.outerHTML === html) return;
+      if (cur) cur.remove();
+      box.insertAdjacentHTML('afterbegin', html);
+      it.classList.add('bkpv-done');
+    });
+    /* vitrine: o próximo item já entra com o % que o carrinho vai ter com ele */
+    var pn = pct(u + 1);
+    host.querySelectorAll('[data-bkpv-price]').forEach(function(c){
+      var pr = parseInt(c.getAttribute('data-bkpv-price'), 10); if (!pr) return;
+      var f = pr - disc(pr, u + 1);
+      var a = c.querySelector('[data-bkpv-parc]'), b = c.querySelector('[data-bkpv-cash]');
+      var ta = '3x de ' + money(Math.floor(f / 3)), tb = 'ou ' + money(f) + ' à vista';
+      if (a && a.textContent !== ta) a.textContent = ta;
+      if (b && b.textContent !== tb) b.textContent = tb;
+      var card = c.closest('.bkg__card'), t = card && card.querySelector('[data-bkpv-pct]');
+      if (t && t.textContent !== '−' + pn + '%') t.textContent = '−' + pn + '%';
+    });
+    /* subtotal: parcela em destaque */
+    var st = document.querySelector('#minicart-form [data-cart-subtotal]');
+    var sv = st && cents((st.querySelector('[data-cart-subtotal-price]') || {}).textContent);
+    if (st && sv > 0) {
+      var tx = 'ou 3x de ' + money(Math.floor(sv / 3)) + ' sem juros';
+      var el = st.parentNode.querySelector('.bkpv-sub');
+      if (!el) { el = document.createElement('div'); el.className = 'bkpv-sub'; st.insertAdjacentElement('afterend', el); }
+      if (el.textContent !== tx) el.textContent = tx;
+    }
+  }
+  var busy = false;
+  new MutationObserver(function(){ if (busy) return; busy = true; requestAnimationFrame(function(){ paint(); busy = false; }); }).observe(document.documentElement, { childList: true, subtree: true });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', paint); else paint();
+})();
+</script>

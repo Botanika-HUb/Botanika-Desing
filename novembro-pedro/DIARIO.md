@@ -465,3 +465,8 @@
   - (3) As fichas do 11/11 e da Week estão na v3, mas só a v2 foi aprovada.
   - (4) O 10 estáticos do 11/11 está pronto, mas no Alliance segue "a fazer": falta registrar a entrega.
 - O Pedro deu ok para começar o tema do Esquenta Botanika Week e para escrever as mensagens a quem trava as tarefas.
+- **Tema do Esquenta Botanika Week** (168321417448) duplicado do tema no ar. Datas e frete já ajustados para 12 a 20/11; o resumo do carrinho também. Os 3 banners novos foram gerados e aguardam aprovação; os textos "Esquenta Botanika Week" sobem junto com eles. Detalhes em `entregas/tema-esquenta-week/README.md`.
+- **Cupons fora da ficha (achado em 04/11):**
+  - DRALUIZA e GABIFLORONUTRI (Creator Club, criados em 03/11) estão com 5%, e a ficha manda 2%;
+  - RECUPERA5 (5%, régua de carrinho, criado em 04/11) vai contra "nenhum outro cupom no mês".
+  - Nada foi alterado; fica para o Vitor e a Sarah decidirem.
