@@ -424,3 +424,11 @@
   - (b) app de regra de checkout;
   - (c) cupom deixar de somar com o Esquenta.
   - Isso vai para a decisão do Vitor.
+
+### 04/11 · 10 estáticos de venda do 11/11
+- V1 a V10 já existiam (30/10 e 01/11). O Pedro aprovou todas em 04/11.
+- **V10 refeita** com o rótulo do Ômega corrigido (job 5388f8d4). A versão antiga foi para `descartadas/`.
+- Zip das 10 + texto do anúncio enviado ao Pedro.
+  - O upload direto pro Drive não dá daqui: são ~35 MB de imagem e o conector só aceita o arquivo dentro da mensagem.
+  - Pasta sugerida: Drive › 2026-11 · Novembro › 03. Dia 11-11 › 01. Comunicação & Criativos.
+- Prazo para o Otávio: sex 06/11 às 12h.

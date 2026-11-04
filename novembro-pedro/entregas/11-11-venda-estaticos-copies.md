@@ -48,4 +48,4 @@ Botão em todas: **Comprar agora**
 | V9 | prova social | **4,8★** · Os favoritos de quem já usa | Hair + Whey (pote) | 84385999-6440-4071-95c0-54142a86c482 |
 | V10 | histórico | **HISTÓRICO** · O maior desconto da história da Botanika | Ômega | 84b7547c-753d-42ce-86b3-29d8a54c0363 |
 
-Observação: no V10, o texto miúdo do rótulo do Ômega saiu com erro ("Fácilmente o ajudentar em cápsulas"). Só dá para ver com zoom. Refazer se o Pedro pedir.
+**V10 refeita em 04/11** (job 5388f8d4-79f9-4c2f-8074-411411cc752a). O rótulo foi corrigido: "SUPLEMENTO ALIMENTAR EM CÁPSULAS · 90 CÁPSULAS · PESO LÍQUIDO 144g". A versão antiga está em `descartadas/`. **V1–V10 aprovadas pelo Pedro em 04/11.**
