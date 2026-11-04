@@ -444,3 +444,4 @@
   - Banners de imagem aprovados (home celular e desktop, coleções) e aplicados.
   - Também aplicados: tarja maior, faixa na página de produto e caixa da gaveta.
   - Testado: home, coleção, página de produto, gaveta e site fechado (`onze=1`). Detalhes em `entregas/tema-1111-exclusivo/README.md`.
+- Banners "ÚLTIMAS HORAS" (celular e desktop) aplicados no tema exclusivo. Trocam às 18h do dia 11; testado.

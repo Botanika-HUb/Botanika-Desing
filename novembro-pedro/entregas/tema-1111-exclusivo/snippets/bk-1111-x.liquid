@@ -1,6 +1,7 @@
 {%- comment -%}
   11/11 · camada visual do tema exclusivo (04/11, pedido do Pedro).
   - Home: banner de imagem (celular e desktop) no lugar do slideshow; sai o bloco de texto antigo do bk-1111.
+    A partir das 18h do dia 11 o banner troca sozinho para a versão "ÚLTIMAS HORAS".
   - Coleções: banner de imagem no topo.
   - Tarja do topo maior, com a contagem em destaque.
   - Página de produto: faixa preta com contagem e as 3 vantagens.
@@ -12,13 +13,15 @@
   assign x_hm = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/onze-1111-hero-mobile.png?v=1'
   assign x_hd = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/onze-1111-hero-desktop.png?v=1'
   assign x_col = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/onze-1111-colecao.png?v=1'
+  assign x_lm = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/onze-1111-ultimas-mobile.png?v=1'
+  assign x_ld = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/onze-1111-ultimas-desktop.png?v=1'
 -%}
 {%- if template.name == 'index' -%}
 <template id="bk11x-hero">
   <a class="bk11x-hero" href="/collections/mais-vendidos" aria-label="11/11 Botanika: até 40% OFF, só hoje">
     <picture>
-      <source media="(min-width: 750px)" srcset="{{ x_hd }}&width=2400">
-      <img src="{{ x_hm }}&width=1080" alt="11/11 Botanika: até 40% OFF, frete grátis em tudo e Q10 de brinde acima de R$ 500" width="1080" height="1350" fetchpriority="high">
+      <source media="(min-width: 750px)" srcset="{{ x_hd }}&width=2400" data-last="{{ x_ld }}&width=2400">
+      <img src="{{ x_hm }}&width=1080" data-last="{{ x_lm }}&width=1080" alt="11/11 Botanika: até 40% OFF, frete grátis em tudo e Q10 de brinde acima de R$ 500" width="1080" height="1350" fetchpriority="high">
     </picture>
   </a>
 </template>
@@ -104,7 +107,14 @@ html.bk11x-on #minicart-form .viewcart{border-color:#141418!important;color:#141
     if (!box) { box = document.createElement('div'); box.className = 'bk11x-cb'; host.insertBefore(box, host.firstChild); }
     if (box.innerHTML !== h) box.innerHTML = h;
   }
-  function tick(){ document.querySelectorAll('[data-bk11x-count]').forEach(function(el){ el.textContent = fmt(END - now()); }); if (now() < END) setTimeout(tick, 1000); }
+  function lastHours(){
+    if (now() < LAST) return;
+    document.querySelectorAll('.bk11x-hero [data-last]').forEach(function(el){
+      var v = el.getAttribute('data-last');
+      if (el.tagName === 'SOURCE') { if (el.srcset !== v) el.srcset = v; } else if (el.getAttribute('src') !== v) el.src = v;
+    });
+  }
+  function tick(){ document.querySelectorAll('[data-bk11x-count]').forEach(function(el){ el.textContent = fmt(END - now()); }); lastHours(); if (now() < END) setTimeout(tick, 1000); }
   var t = 0, last = '';
   new MutationObserver(function(){
     clearTimeout(t);

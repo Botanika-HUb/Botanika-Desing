@@ -33,3 +33,7 @@ Referência da linha de produtos: media 5a1c90ea (a mesma dos banners do Esquent
 - Sarah: link do grupo VIP para a tela de site fechado.
 - Na página de produto, o bloco "Complete sua rotina" fala em "desconto por volume automático". Rever depois do % do Vitor.
 - A contagem mostra as horas até 11/11 às 23h59. Hoje aparece "180h"; no dia aparece o tempo certo.
+
+## Últimas horas (04/11)
+- Banners da home: `onze-1111-ultimas-mobile.png` (job bb0c22b1) e `onze-1111-ultimas-desktop.png` (job e62139ba). Trocam sozinhos às 18h do dia 11.
+- Testado com o relógio em 11/11 às 19h: banner "ÚLTIMAS HORAS", tarja "11/11 · últimas horas" e contagem de 04h59m.
