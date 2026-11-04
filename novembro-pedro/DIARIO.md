@@ -412,3 +412,15 @@
     - 9 estáticos universais e 16 vídeos do 1º lote;
     - "bem-estar por rotina";
     - nota fiscal.
+
+### 04/11 · cupom acumulado de novo (#7074, DRANAI + JOINGLE)
+- **Pedido #7074:** feito em 03/11 às 21h31, uma visita só, vinda do Google (sem link de influenciadora). A cliente digitou os 2 cupons no checkout. Custou 2% de R$ 60,47, cerca de R$ 1,21.
+- **Segundo caso em 2 dias:** os códigos circulam na internet.
+- **Teste novo (cupons temporários, já apagados):** brinde como "100% no Cranberry com mínimo de R$ 400" + cupons no formato de produto.
+  - 2 cupons: só 1 vale ✅.
+  - O brinde **não** aplica: no desconto por produto, a Shopify conta o mínimo de R$ 400 só sobre o Cranberry, e não sobre o carrinho. ❌
+- **Conclusão:** não existe trava nativa que bloqueie 2 cupons sem tirar o cupom de quem ganha o brinde. As saídas seriam:
+  - (a) manter como está;
+  - (b) app de regra de checkout;
+  - (c) cupom deixar de somar com o Esquenta.
+  - Isso vai para a decisão do Vitor.
