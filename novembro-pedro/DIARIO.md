@@ -489,3 +489,4 @@
 - Universal01 v1 (gancho "Nem café resolve?" + corpo, 37,6 s) foi enviado ao Pedro. **Ele pediu para não seguir com os outros antes dos ajustes dele.**
 - Script em `entregas/videos-universais/`.
 - Também ficou pronto o upload de arquivo grande para a Shopify (staged upload), que serve para hospedar vídeo e passar para a análise.
+- **Universal01 v2:** o Pedro achou cortes ruins na v1. A causa eram duas tentativas que ficaram no corte ("Comecei a tomar…" e "Então esse é o melhor momento pra montar não…"), deixando palavras duplicadas. Na v2 elas saíram, as bordas de cada frase foram medidas na onda do áudio e o vídeo ficou com 33,9 s. Transcrito de novo e conferido sem repetição.

@@ -12,16 +12,16 @@ def run(c): subprocess.run(c, check=True)
 OFF = 3.9  # body_mid.mp4 começa em 3,9 s do IMG_9667
 # (início, fim) no IMG_9667 · (início, fim) da fala · texto
 BODY = [
- ((4.40, 7.74),   [(4.50, 7.64)],   "Se nem café te levanta mais, não é de café que você tá precisando."),
- ((17.66, 22.43), [(17.76, 22.33)], "Eu tentei dormir mais cedo, tentei vitamina de farmácia, tentei cortar açúcar e nada resolveu."),
- ((28.02, 30.95), [(28.12, 30.85)], "O que me faltava não era descanso. Era magnésio."),
- ((40.33, 44.41), [(40.43, 44.31)], "Ele participa de várias reações no corpo, inclusive as que geram energia."),
- ((55.43, 56.50), [(55.53, 56.38)], None),
- ((57.08, 60.88), [(57.20, 60.78)], "Comecei a tomar o Tri-Magnésio da Botanika e ele virou parte fixa do meu dia."),
- ((78.37, 83.86), [(78.47, 83.76)], "E agora a Black da Botanika tá rolando, e não é só ele: o site inteiro tá com condição especial o mês todo."),
- ((91.36, 93.91), [(91.46, 93.79)], None),
- ((94.48, 99.31), [(94.60, 99.21)], "Então esse é o melhor momento pra você garantir não só o seu Tri-Magnésio, mas toda a sua suplementação."),
- ((116.13, 118.46), [(116.23, 118.36)], "Clica no botão aqui embaixo e garanta o seu."),
+ # v2 (04/11): bordas medidas na onda do áudio (fala -42 dB, 0,06 s antes e 0,10 s depois).
+ # Saíram as tentativas que duplicavam palavras: 55,4-56,6 ("Comecei a tomar...") e 91,4-93,9 ("Então esse é o melhor momento pra montar não...").
+ ((4.43, 7.75),   [(4.49, 7.65)],   "Se nem café te levanta mais, não é de café que você tá precisando."),
+ ((17.70, 22.51), [(17.76, 22.41)], "Eu tentei dormir mais cedo, tentei vitamina de farmácia, tentei cortar açúcar e nada resolveu."),
+ ((28.06, 31.05), [(28.12, 30.95)], "O que me faltava não era descanso. Era magnésio."),
+ ((40.37, 44.42), [(40.43, 44.32)], "Ele participa de várias reações no corpo, inclusive as que geram energia."),
+ ((57.14, 60.89), [(57.20, 60.79)], "Comecei a tomar o Tri-Magnésio da Botanika e ele virou parte fixa do meu dia."),
+ ((78.41, 83.90), [(78.47, 83.80)], "E agora a Black da Botanika tá rolando, e não é só ele: o site inteiro tá com condição especial o mês todo."),
+ ((94.53, 99.35), [(94.59, 99.25)], "Então esse é o melhor momento pra você garantir não só o seu Tri-Magnésio, mas toda a sua suplementação."),
+ ((116.16, 118.46), [(116.22, 118.36)], "Clica no botão aqui embaixo e garanta o seu."),
 ]
 JOBS = {
  '1': dict(hook=dict(lines=['Nem café', 'resolve?'], em=['café'])),
@@ -90,7 +90,7 @@ def build(k):
         idx = o + 1 + q; inp += ['-i', f'{W}/{nm}.wav']; ms = int(max(0, t) * 1000)
         fc.append(f"[{idx}:a]adelay={ms}|{ms},volume={0.22 if nm == 'pop' else 0.3}[s{q}];"); labs.append(f'[s{q}]')
     fc.append(f"[ac]loudnorm=I=-15:TP=-2:LRA=11,aresample=48000[voz];[voz]{''.join(labs)}amix=inputs={len(labs) + 1}:normalize=0:duration=first,alimiter=limit=0.89[aout]")
-    out = f'{W}/Universal{int(k):02d}-v1.mp4'
+    out = f'{W}/Universal{int(k):02d}-v2.mp4'
     run(['ffmpeg', '-v', 'error', '-y'] + inp + ['-filter_complex', ''.join(fc), '-map', '[vout]', '-map', '[aout]', '-r', '30', '-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', out])
     print(out, dur)
 

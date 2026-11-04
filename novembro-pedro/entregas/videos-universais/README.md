@@ -22,4 +22,8 @@ Cada vídeo é um gancho somado ao mesmo corpo.
   - cartão final "Black Botanika · o site inteiro no maior desconto da história da Botanika".
 - **Gerar:** `python3 build_u.py <n> <pasta de trabalho>`, com fontes, sons, logo e trimg.png na pasta de trabalho. `body_mid.mp4` fica em `<pasta>/../brutos`.
 
-Status: Universal01 (gancho "Nem café resolve?") v1 enviado ao Pedro em 04/11, aguardando ajustes antes dos outros 15.
+Status:
+- Universal01 v1 foi enviado em 04/11. O Pedro achou alguns cortes ruins: sobraram 2 tentativas, e palavras saíam duplicadas.
+- **v2:** as tentativas saíram e as bordas foram medidas na onda do áudio. Ficou com 33,9 s.
+- A v2 foi transcrita de novo e está limpa: as frases vêm uma vez só e na ordem.
+- Aguardando o Pedro antes dos outros 15.
