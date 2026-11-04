@@ -475,3 +475,8 @@
   - 6 descontos criados na Shopify (8% / +2% / +2%, frete acima de R$ 249, cranberry acima de R$ 400 e 2 cranberries para recorrentes), programados de 12/11 00h a 20/11 23h59.
   - Testado com o relógio em 14/11: home, coleção e página de produto certas e sem "11/11".
   - Falta o Pedro programar a publicação do tema para 11/11 às 23h59.
+- **Alliance OS (com OK do Pedro, registrado no nome do Vitor):**
+  - Entregas registradas em 4 tarefas.
+  - Concluídas: 10 estáticos do 11/11 (destinatário: Otávio), oferta e frete da Week, brindes da Week.
+  - O tema da Week ficou com a entrega registrada mas **aberto**, porque falta programar a publicação para 11/11 às 23h59.
+  - Achado ao reler a tarefa do tema: ela pede uma **versão "última chance" no último dia (20/11)**, e o tema ainda não tem.
