@@ -494,3 +494,4 @@
   - Revisão final: a cena da Black estava cobrindo o gancho do 10 (que também fala "Black") e passou a entrar só no corpo; a legenda não atravessa mais os cortes.
   - Arquivos entregues ao Pedro pelo chat. O conector do Drive não aceita arquivos desse tamanho, então o Pedro sobe em Criativos Novembro › Editados.
   - Para o Pedro checar: o 07 cita o Dr. William, e o 11 diz "última chance do ano".
+- **Alliance:** entrega dos 15 universais registrada na tarefa "Editar os 16 vídeos do 1º lote", no nome do Vitor e para o Otávio, com o link da pasta Editados. A tarefa ficou aberta porque falta o roteiro 5.
