@@ -445,3 +445,9 @@
   - Também aplicados: tarja maior, faixa na página de produto e caixa da gaveta.
   - Testado: home, coleção, página de produto, gaveta e site fechado (`onze=1`). Detalhes em `entregas/tema-1111-exclusivo/README.md`.
 - Banners "ÚLTIMAS HORAS" (celular e desktop) aplicados no tema exclusivo. Trocam às 18h do dia 11; testado.
+- **Auditoria da oferta × tema exclusivo.** Lacuna principal: o "até 40%" não existe como desconto na Shopify (decisão do Vitor). O Pedro mandou corrigir os itens 1, 3 e 4:
+  - 1 · seletor de potes: os cards de 2 e 3 potes saem do "5%/10% OFF / Você economiza" (escada antiga, acabou em 01/11) e passam a preço cheio, com o selo "🔥 11/11 · frete grátis". O card do kit ("10% OFF", pelo preço de comparação) continua, porque é verdadeiro.
+  - 3 · sai a frase do "desconto por volume automático", que vira "Leve junto e aproveite o frete grátis em todos os pedidos do 11/11."
+  - 4 · some o contador "Os produtos são limitados" da página do carrinho.
+  - Feito em `bk-1111-x.liquid` (função `offers()`). Dois ajustes depois do primeiro teste: a troca de texto não mexe mais dentro de scripts, e a conta do seletor é refeita algumas vezes depois que a página carrega (antes, às vezes voltava o preço com desconto).
+  - Testado com o relógio em 11/11: Hair com 3 potes a 3x R$ 99,40 e 2 potes a 3x R$ 66,26, sem "economiza"; carrinho sem o contador.

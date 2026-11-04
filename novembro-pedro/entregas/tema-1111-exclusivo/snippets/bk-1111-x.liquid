@@ -64,7 +64,7 @@ html.bk11x-on.bk11x-hascol [id$="__banner"]{display:none!important}
 .bk11x-cb__n b{color:#ff5a6b}
 html.bk11x-on .bkg,html.bk11x-on .botanika-ob{display:none!important}
 /* gaveta: sem o contador falso e com os botões em vermelho */
-.cart-countdown-time{display:none!important}
+.cart-countdown-time,html.bk11x-on countdown-timer,html.bk11x-on .bk11x-hide{display:none!important}
 html.bk11x-on #minicart-form .discount-price{background:#e3132b!important;color:#fff!important}
 html.bk11x-on #minicart-form .btn-checkout{background:#e3132b!important;border-color:#e3132b!important;color:#fff!important}
 html.bk11x-on #minicart-form .viewcart{border-color:#141418!important;color:#141418!important}
@@ -119,13 +119,42 @@ html.bk11x-on #minicart-form .viewcart{border-color:#141418!important;color:#141
   new MutationObserver(function(){
     clearTimeout(t);
     t = setTimeout(function(){
-      banners();
+      banners(); offers();
       var host = document.getElementById('minicart-form');
       var sig = host ? host.querySelectorAll('.cart-item').length + '|' + [].map.call(host.querySelectorAll('input.quantity-input'), function(i){ return i.value; }).join(',') : '';
       if (sig !== last) { last = sig; load(); } else if (host && !host.querySelector('.bk11x-cb')) paint();
     }, 120);
   }).observe(document.documentElement, { childList: true, subtree: true });
-  function start(){ banners(); load(); tick(); }
+  /* 04/11 · tirar promessas que não valem no 11/11:
+     - seletor de potes: "2 potes 5% OFF / 3 potes 10% OFF / Você economiza" era a escada antiga por produto, que acabou em 01/11.
+       Os cartões de 2 e 3 potes passam a preço cheio (só a quantidade), até o desconto do 11/11 entrar.
+     - "Complete sua rotina": sai a frase do "desconto por volume automático".
+     - página do carrinho: some o contador "Os produtos são limitados". */
+  function offers(force){
+    document.querySelectorAll('quantity-discount-cards').forEach(function(el){
+      var changed = false;
+      el.querySelectorAll('.qty2__opt.qty2__tier').forEach(function(card){
+        if (parseInt(card.dataset.quantity, 10) < 2) return;
+        if (parseInt(card.dataset.discount, 10) > 0) { card.dataset.discount = '0'; changed = true; }
+        var rib = card.querySelector('.qty2k__ribbon');
+        if (rib && !rib.__bk11) { rib.__bk11 = true; rib.textContent = '🔥 11/11 · frete grátis'; }
+        var cmp = card.querySelector('.qty2k__cmp'); if (cmp) cmp.classList.add('bk11x-hide');
+        var sv = card.querySelector('[data-savebox]'); if (sv) sv.classList.add('bk11x-hide');
+      });
+      if ((changed || force) && typeof el.reprice === 'function') { try { el.reprice(parseInt(el.dataset.unitPrice, 10)); } catch (e) {} }
+    });
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null), n, kill = [];
+    while ((n = w.nextNode())) {
+      var pe = n.parentElement; if (!pe || /^(SCRIPT|STYLE|TEMPLATE|NOSCRIPT)$/.test(pe.tagName)) continue;
+      var v = n.nodeValue;
+      if (v.indexOf('desconto por volume') > -1) n.nodeValue = 'Leve junto e aproveite o frete grátis em todos os pedidos do 11/11.';
+      else if (v.indexOf('produtos são limitados') > -1) kill.push(n.parentElement);
+    }
+    kill.forEach(function(e){ var b = e.closest('.cart-countdown-time, countdown-timer, [class*="countdown"]') || e.parentElement; if (b) b.classList.add('bk11x-hide'); });
+  }
+  /* o seletor de potes pode montar os preços depois do nosso script: refaz a conta mais algumas vezes */
+  function again(){ offers(true); }
+  function start(){ banners(); offers(); load(); tick(); [600, 1500, 3500, 7000].forEach(function(ms){ setTimeout(again, ms); }); window.addEventListener('load', again); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();
 </script>

@@ -29,7 +29,7 @@ Referência da linha de produtos: media 5a1c90ea (a mesma dos banners do Esquent
 - Arquivos na Shopify: `onze-1111-hero-mobile.png`, `onze-1111-hero-desktop.png` e `onze-1111-colecao.png`.
 
 ## Pendente
-- Vitor: o "até 40%" por produto. Com isso entram o desconto na Shopify, o selo "-X%" nos cards, os preços e o seletor de potes. Hoje o seletor ainda mostra a escada antiga (3 potes 10% / 2 potes 5%).
+- Vitor: o "até 40%" por produto. Com isso entram o desconto na Shopify, o selo "-X%" nos cards, os preços e o seletor de potes. Até lá (04/11), o seletor mostra 2 e 3 potes a preço cheio com o selo "🔥 11/11 · frete grátis" (função `offers()` do `bk-1111-x`), sem a frase do "desconto por volume" e sem o contador "produtos limitados" no carrinho.
 - Sarah: link do grupo VIP para a tela de site fechado.
 - Na página de produto, o bloco "Complete sua rotina" fala em "desconto por volume automático". Rever depois do % do Vitor.
 - A contagem mostra as horas até 11/11 às 23h59. Hoje aparece "180h"; no dia aparece o tempo certo.
