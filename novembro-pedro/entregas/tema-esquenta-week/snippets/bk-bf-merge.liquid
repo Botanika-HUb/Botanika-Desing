@@ -1,0 +1,27 @@
+{%- comment -%} Esquenta Botanika Week: no resumo do carrinho (gaveta e página), as linhas da escada 8% + 2% + 2% viram uma só ("Esquenta Botanika Week · 10% OFF"). Só muda a exibição; o desconto é o mesmo. {%- endcomment -%}
+<script>
+(function(){
+  if (window.__bkBfMerge) return; window.__bkBfMerge = true;
+  var RX = /Esquenta (11\/11|Botanika Week) · (8% OFF|\+2%)/;
+  function money(c){ var a = (c / 100).toFixed(2).split('.'); return 'R$ ' + a[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + a[1]; }
+  function merge(){
+    if (!document.documentElement.classList.contains('bk-bf')) return;
+    document.querySelectorAll('ul.cart-discounts').forEach(function(ul){
+      var lis = Array.prototype.filter.call(ul.children, function(li){ var l = li.querySelector('.discount-code'); return l && RX.test(l.textContent); });
+      if (lis.length < 2) return;
+      var total = 0;
+      lis.forEach(function(li){ var l = li.querySelector('.discount-code'), m = li.textContent.replace(l.textContent, '').match(/R\$\s?([\d.]+,\d{2})/); if (m) total += parseInt(m[1].replace(/\D/g, ''), 10); });
+      var first = lis[0], lab = first.querySelector('.discount-code'), pct = lis.length >= 3 ? 12 : 10;
+      var w = document.createTreeWalker(first, NodeFilter.SHOW_TEXT), n;
+      while ((n = w.nextNode())) {
+        if (lab.contains(n)) { if (/Esquenta /.test(n.nodeValue)) n.nodeValue = n.nodeValue.replace(/Esquenta (11\/11|Botanika Week) · .*/, 'Esquenta Botanika Week · ' + pct + '% OFF'); }
+        else if (/R\$/.test(n.nodeValue)) n.nodeValue = n.nodeValue.replace(/R\$\s?[\d.]+,\d{2}/, money(total));
+      }
+      for (var i = 1; i < lis.length; i++) lis[i].remove();
+    });
+  }
+  var t = null;
+  function start(){ merge(); new MutationObserver(function(){ clearTimeout(t); t = setTimeout(merge, 150); }).observe(document.body, { childList: true, subtree: true }); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
