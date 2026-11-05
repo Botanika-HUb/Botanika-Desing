@@ -627,3 +627,10 @@
     2. o Álvaro troca o item dos pedidos já feitos pelo 80.1.12 na nota.
     - Conferir com o Álvaro se o sistema aceita item de R$0 (ou se exige bonificação, CFOP 5.910/6.910).
 - **Passo 1 feito (com o ok do Pedro):** o SKU das variantes de brinde passou a ser **80.1.12** (Cranberry · Brinde) e **80.1.24** (Coenzima Q10 · Brinde). O tema identifica o brinde pelo ID da variante, então nada mais muda. Os 8 pedidos já feitos ficam para o Álvaro trocar manualmente.
+- **11/11, respostas do Pedro (05/11):**
+  - Link do grupo VIP: https://sndflw.com/i/botanika-vip
+  - Os grupos antigos **também entram** às 20h de 10/11.
+  - Plano para o tema 11/11, aguardando o ok:
+    - tela fechada "abre à meia-noite";
+    - link especial de acesso antecipado para o grupo VIP e os grupos antigos;
+    - botão para o grupo VIP no lugar do grupo antigo.
