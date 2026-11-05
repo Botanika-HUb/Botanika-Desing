@@ -567,3 +567,12 @@
   - **IMG_9674 (2ª apresentadora, 2,4 min, cenário com estante):** **16 chamadas finais**, uma por roteiro, com o roteiro 5 incluído ("a pressão do pincel"). Exemplo: "Toque no botão aqui embaixo e monte o seu".
   - **IMG_9673 (2ª apresentadora, 6,7 min):** a análise falhou por ser longa; dividido em 2 partes e enviado de novo.
   - **Nenhum dos três é dos 10 vídeos de venda do 11/11.**
+- **IMG_9673 (2ª apresentadora, transcrito em 2 partes):** são as **frases de identificação dos 16 roteiros**, a 2ª frase de cada um. Exemplos:
+  - r1 "Eu tentei dormir mais cedo…";
+  - r3 "Eu acordava, ficava calculando…";
+  - r5 "Gastei uma fortuna em ampola…";
+  - r7 "Se você acompanha o Dr. William…" (nenhuma tomada limpa);
+  - r10 "Sabe por quê? Não é compra por impulso…";
+  - r16 "Eu já esperei condição boa aparecer…".
+  - Com o IMG_9674 (as 16 chamadas finais dela), ela tem um conjunto inteiro de identificação e CTA para os 16 roteiros. **Falta o roteiro do Ítalo** para saber a montagem final: quem fala o quê e em que ordem.
+- **Novo bruto do Otávio (05/11):** "Creator Anna Luiza | Esquenta Botanika.mov", 28,5 s, 4K SDR, criadora com os produtos na mesa. Em edição.
