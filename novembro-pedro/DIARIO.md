@@ -626,3 +626,4 @@
     1. trocar na Shopify o SKU das variantes de brinde para 80.1.12 e 80.1.24, o que resolve os pedidos novos;
     2. o Álvaro troca o item dos pedidos já feitos pelo 80.1.12 na nota.
     - Conferir com o Álvaro se o sistema aceita item de R$0 (ou se exige bonificação, CFOP 5.910/6.910).
+- **Passo 1 feito (com o ok do Pedro):** o SKU das variantes de brinde passou a ser **80.1.12** (Cranberry · Brinde) e **80.1.24** (Coenzima Q10 · Brinde). O tema identifica o brinde pelo ID da variante, então nada mais muda. Os 8 pedidos já feitos ficam para o Álvaro trocar manualmente.
