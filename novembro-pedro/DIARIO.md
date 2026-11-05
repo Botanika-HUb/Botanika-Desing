@@ -585,3 +585,13 @@
   - A legenda foi refeita em português a partir da transcrição, que só veio traduzida em inglês. **O Pedro confere o texto.**
   - Script em `entregas/videos-esquenta/build_anna.py`. O overlay3 agora não deixa a legenda atravessar um corte.
   - Status: **aprovado pelo Pedro (05/11)**. O conector não sobe arquivo grande, então o Pedro sobe em Criativos Novembro › Editados.
+- **Correção:** não existe "2ª apresentadora". O IMG_9673 (identificações) e o IMG_9674 (chamadas finais, cenário roxo) também são da **Mafe**. A dúvida sobre o talento está encerrada.
+- **Roteiros completos montados** (o Pedro pediu "pode montar você mesmo"). A ordem de cada roteiro é:
+  - gancho (IMG_9671);
+  - identificação (IMG_9673);
+  - frase da Black (IMG_9667), sem o "e não é só ele";
+  - chamada final do roteiro (IMG_9674).
+  - O roteiro 2 é o **Sleep**, com o corpo inteiro do IMG_9668. O roteiro 5 abre na identificação, porque não tem gancho gravado.
+  - As tomadas foram conferidas por transcrição (em blocos, com etiqueta).
+  - Script em `entregas/videos-universais/build_r.py`. Saem 15 vídeos (Roteiro02 a Roteiro16), no visual aprovado dos universais.
+- **Link do criativo da Anna Luiza** (para o Otávio): https://cdn.shopify.com/s/files/1/0780/7238/1672/files/Creator-AnnaLuiza-Esquenta.mp4?v=1793899388
