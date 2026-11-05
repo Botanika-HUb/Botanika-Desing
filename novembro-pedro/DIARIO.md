@@ -634,3 +634,13 @@
     - tela fechada "abre à meia-noite";
     - link especial de acesso antecipado para o grupo VIP e os grupos antigos;
     - botão para o grupo VIP no lugar do grupo antigo.
+- **Roteiros v4 (o Pedro achou péssimo: aparecia ela ajeitando o cabelo, se ajeitando ou se inclinando para pegar o celular):**
+  - Causa: eu cortava só pelo áudio.
+  - Revisão quadro a quadro dos 62 trechos dos 15 vídeos: ganchos, identificações, Black, chamadas e Sleep.
+  - Problemas encontrados:
+    - identificações 5, 6 e 11 começavam com as mãos no cabelo → tomadas trocadas (97,6 s, 126,8 s e 310,5 s);
+    - identificação 14 tinha uma jogada de cabelo no meio da fala, e a outra tomada também → o Roteiro14 ficou sem a identificação;
+    - no Sleep, o fim do trecho 3 pegava ela se inclinando → fim fixo em 47,92 s;
+    - no Sleep, o começo do trecho 5 mostrava ela ajeitando a blusa → a cena do produto cobre esse começo.
+  - Os 10 vídeos restantes estavam limpos.
+  - Conferi o vídeo final dos 5 refeitos e troquei no Drive (Novos). O arquivo de links antigo foi para a lixeira.

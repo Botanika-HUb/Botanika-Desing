@@ -30,7 +30,7 @@ HOOK = {  # IMG_9671 (hooks_mid, mesmo tempo): fala, texto, gancho na tela
 IDENT = {  # IMG_9673 (textos conferidos pela transcrição de 05/11)
  '3': "Eu acordava, ficava calculando quantas horas faltavam e aí piorava.",
  '4': "Eu não lembrava a última vez que tinha tomado sol de verdade.",
- '5': "Gastei uma fortuna em ampola, salão, shampoo caro, sempre achando que o próximo ia ser o certo.",
+ '5': "Gastei uma fortuna em salão, ampola, shampoo caro, sempre achando que o próximo ia ser o certo.",  # v4: tomada de 97,6 s (a anterior começava ajeitando o cabelo)
  '6': "Se você toma suplemento ou tava pensando em começar, essa notícia é pra você.",
  '7': "Se você acompanha ele, já viu ele falando de magnésio, ômega ou vitamina D, ou falando sobre montar uma suplementação que faça sentido.",
  '8': "Você que já tem o seu favorito, já sabe o que funciona pra você e sempre repõe um de cada vez?",
@@ -85,21 +85,33 @@ def refine(path, a, b, lo=0.0):
         j += 1
     return s0 + i / 100 - 0.04, s0 + j / 100 + 0.06
 
+# v4 (05/11): revisão quadro a quadro. Tomadas trocadas: 5 (97,6 s), 6 (126,8 s) e 11 (310,5 s), porque as antigas começavam com ela ajeitando o cabelo.
+# O 14 fica sem identificação: as duas tomadas têm ela mexendo no cabelo no meio da fala.
+# Fins fixos no bruto: s3 termina em 47,92 s (logo depois ela se inclina para a câmera); i11 em 314,22 s (depois vem o "Roteiro doze").
+FIXEND = {'s3': 47.92, 'i11': 314.22}
+NO_IDENT = {'14'}
+
 def mid(key):  # trecho convertido: arquivo, onde começa a fala, onde termina
     src, a, b = CL[key]; s = max(0, a - 0.5)
     return f'{DU}/mids/{key}.mp4', a - s, b - s
 
+def cut(key):  # trecho com borda no silêncio; respeita o fim fixo
+    f, a, b = mid(key); ra, rb = refine(f, a, b)
+    if key in FIXEND: rb = FIXEND[key] - (CL[key][1] - a)
+    return f, (ra, rb)
+
 SEGS = []  # (arquivo, (corte_a, corte_b), texto)
 if k == '2':
     for key, tx in SLEEP:
-        f, a, b = mid(key); SEGS.append((f, refine(f, a, b), tx))
+        f, ab = cut(key); SEGS.append((f, ab, tx))
     hook = dict(lines=['A cabeça', 'não desliga?'], em=['desliga?'])
 else:
     if k in HOOK:
         a, b, tx, l, em = HOOK[k]; SEGS.append((f'{BR}/hooks_mid.mp4', refine(f'{BR}/hooks_mid.mp4', a, b), tx)); hook = dict(lines=l, em=em)
     else:
         hook = dict(lines=['Gastou uma fortuna', 'em ampola?'], em=['fortuna'])
-    f, a, b = mid('i' + k); SEGS.append((f, refine(f, a, b), IDENT[k]))
+    if k not in NO_IDENT:
+        f, ab = cut('i' + k); SEGS.append((f, ab, IDENT[k]))
 # fim fixo: logo depois de "o mês todo" vem um ruído curto (83,5 s no bruto) que o refino puxaria junto
 for (a, b), tx in BLACK: SEGS.append((f'{BR}/body_mid.mp4', (refine(f'{BR}/body_mid.mp4', a - OFF, b - OFF)[0], b - OFF + 0.03), tx))
 f, a, b = mid('c' + k); ca, cb, ctx = CTA[k]; SEGS.append((f, (refine(f, a + ca, a + cb)[0], a + cb + 0.04) if ca is not None else refine(f, a, b), ctx))  # com corte fixo, o fim não estica
@@ -130,7 +142,8 @@ blk = next(x['t'] for x in words if x['w'] == 'Black' and x['t'] >= cuts[-3] - 0
 scenes = [dict(kind='black', a=round(blk - 0.15, 3), b=round(blk + 1.9, 3))]
 if k == '2':
     sl = next(x['t'] for x in words if x['w'] == 'Sleep')
-    scenes.insert(0, dict(kind='prod', a=round(sl - 0.1, 3), b=round(sl + 1.5, 3), name='SLEEP<br>BOTANIKA', sub='pra desacelerar à noite', img='sleep.png'))
+    s5a = cuts[3]  # começo do trecho s5 (fim do s4): ela ajeita a blusa nos primeiros segundos, a cena do produto cobre
+    scenes.insert(0, dict(kind='prod', a=round(s5a, 3), b=round(sl + 1.5, 3), name='SLEEP<br>BOTANIKA', sub='pra desacelerar à noite', img='sleep.png'))
 cta_a = cuts[-2]
 hk = dict(hook, a=0.0, b=round(min(3.2, hook_end), 2))
 cfg = dict(hook=hk, words=words, cuts=cuts, scenes=scenes, hot=HOT, cta=dict(a=cta_a, b=main), end=main, dur=dur)
