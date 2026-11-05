@@ -584,4 +584,4 @@
   - botão "Toque em Comprar agora" e cartão final com as regras ("só até 10/11").
   - A legenda foi refeita em português a partir da transcrição, que só veio traduzida em inglês. **O Pedro confere o texto.**
   - Script em `entregas/videos-esquenta/build_anna.py`. O overlay3 agora não deixa a legenda atravessar um corte.
-  - Status: aguardando aprovação do Pedro.
+  - Status: **aprovado pelo Pedro (05/11)**. O conector não sobe arquivo grande, então o Pedro sobe em Criativos Novembro › Editados.
