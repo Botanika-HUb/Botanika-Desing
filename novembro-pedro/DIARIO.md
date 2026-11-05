@@ -599,3 +599,6 @@
   - Links (cópia de ~5 Mbps), no padrão https://cdn.shopify.com/s/files/1/0780/7238/1672/files/RoteiroNN.mp4. O 02 se chama Roteiro02-Sleep.mp4.
   - Os originais (crf 18) ficam em scratchpad/uni.
   - Texto a conferir: a chamada do roteiro 10 ("…e adianta o seu"), que só tive em inglês.
+- **Drive (pasta Editados › Novos):** o conector não sobe vídeo. Criei lá o arquivo "LINKS — Roteiros completos (Mafe) 05-11.txt", com os 15 links e o da Anna. O Pedro sobe os MP4 manualmente.
+- **Alliance:** entrega dos 15 roteiros registrada na tarefa "Editar os 16 vídeos do 1º lote", no nome do Vitor e para o Otávio.
+  - A tarefa não pôde ser concluída: o sistema bloqueia porque a tarefa "Gravar os 16 vídeos" (Mafe, Gabriel e Vitor) ainda está aberta.
