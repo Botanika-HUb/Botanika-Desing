@@ -554,3 +554,11 @@
   - Os temas antigos foram renomeados "🗑️ APAGAR": Dia D 10/10, Esquenta PV cópia 02/11, Esquenta PV preço 03/11, Esquenta 5 potes (brinde antigo) e 11/11 prévia 04/11.
   - Detalhes em `entregas/brinde-r0/README.md`.
   - Pendente: os cupons novos do Creator Club nascem no formato antigo.
+- **Alliance, 05/11 (OK do Pedro, no nome do Vitor):**
+  - **Concluída:** 9 estáticos universais do 1º lote (U16 a U24, para o Otávio).
+  - **Entrega parcial, tarefa aberta:**
+    - 2º lote de estáticos (U25 a U30, 6 de 8);
+    - tema do 11/11 (falta o "até 40%", o link VIP e a publicação programada);
+    - brindes do 11/11 (Q10 pronta, faltam os brindes do acesso antecipado);
+    - oferta e frete do 11/11 (frete e cupons prontos, falta o "até 40%").
+  - Já registradas antes: tema da Week (aberta até a publicação programada) e 15 vídeos universais (aberta, falta o roteiro 5).
