@@ -536,3 +536,14 @@
   - alerta no Flow contra abuso do brinde.
   - Atenção: os cupons novos do Creator Club nascem no formato antigo.
 - O Pedro perguntou a meta de novembro (está no PLANO.md).
+- **Cupons, execução (OK do Pedro):**
+  - criados "Cranberry · Brinde" (variante 68122684424424) e "Coenzima Q10 · Brinde" (68122684457192), a R$ 0, ocultos e publicados na loja;
+  - lógica do brinde reescrita nos 3 temas: qualquer linha do brinde conta como brinde, e o tema remove o brinde colocado à mão abaixo do mínimo;
+  - tema novo do Esquenta (168360411368, "brinde R$0 + cupom único") esperando o Pedro publicar;
+  - apagados os descontos de brinde do 11/11 e da Week.
+  - Testado na prévia: 5 Hair → brinde entra; 2 Hair → brinde sai; 3 brindes à mão → removidos.
+  - **Falta:** o Pedro publicar o tema; depois eu apago os 2 descontos de brinde do Esquenta e converto os 62 cupons.
+- **Metas × histórico (Shopify):**
+  - meses: jun 71k, jul 285k, ago 412k, set 520k, out 565k;
+  - melhores dias: Dia D 09/09 com R$ 100,8k e Dia D 10/10 com R$ 100,1k (+ R$ 59,5k no dia seguinte);
+  - Esquenta 02 a 04/11: R$ 52,4k (17,5k por dia, contra a meta de 25,9k por dia).

@@ -1,0 +1,308 @@
+{%- comment -%}
+  ============================================================
+  Esquenta Botanika Week · "site normal com a temática da Black" (pedido do Gabriel, 02/11).
+  Liga sozinho de 12/11 00h a 20/11 23h59 (Brasília). Fora disso não faz nada.
+  Não muda o layout do tema. Faz só isto:
+    - cores da Black: azul royal + verde-limão; preto e vermelho em preços e descontos
+    - tarja do topo com a oferta e a contagem (no lugar da faixa azul de confiança)
+    - banner do Esquenta no topo da home e nas coleções
+    - cartões de quantidade da página de produto com a escada real 8/10/12% e frete > R$ 249
+    - Cranberry de brinde entrando sozinho no carrinho acima de R$ 400 (2 para quem já comprou)
+  Prévia: o tema não publicado liga sozinho; ?esquenta=0 desliga, ?esquenta=1 liga.
+  ============================================================
+{%- endcomment -%}
+{%- liquid
+  assign esq_start = 1794452400
+  assign esq_end = 1795230000
+  assign esq_want = 1
+  if customer and customer.orders_count > 0
+    assign esq_want = 2
+  endif
+  assign hero_m = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/esquenta-week-preto-hero-mobile.png?v=1'
+  assign hero_d = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/esquenta-week-preto-hero-desktop.png?v=1'
+  assign col_b = 'https://cdn.shopify.com/s/files/1/0780/7238/1672/files/esquenta-week-preto-colecao.png?v=1'
+-%}
+<script>
+(function(){
+  var START = {{ esq_start }} * 1000, END = {{ esq_end }} * 1000;
+  var PREV = (function(){ try { var m = location.search.match(/[?&]esquenta=([01])\b/); if (m) sessionStorage.setItem('bkEsqPreview', m[1]); var v = sessionStorage.getItem('bkEsqPreview'); if (v) return v === '1'; } catch (e) {} return !!(window.Shopify && Shopify.theme && Shopify.theme.role === 'unpublished'); })();
+  var n = Date.now();
+  if (!((n >= START && n < END) || PREV)) return;
+  document.documentElement.classList.add('bk-bf');
+  window.__bkBf = { start: START, end: END, want: {{ esq_want }} };
+})();
+</script>
+<style>
+html.bk-bf{
+  --bf-blue:#1b2aa0; --bf-navy:#0c298d; --bf-deep:#091b5d; --bf-lime:#c8f14b; --bf-black:#0b0b0f; --bf-red:#e3132b;
+  --color-primary:#1b2aa0; --color-primary-rgb:27,42,160; --bk-azul:#1b2aa0; --bk-verde:#c8f14b;
+  --btn-primary-bg-color:#1b2aa0; --btn-primary-hover-bg-color:#0c298d; --btn-primary-bg-graident-color:#1b2aa0; --btn-primary-hover-bg-color-graident:#0c298d;
+  --btn-link-color:#1b2aa0; --btn-link-hover-color:#0c298d; --btn-outline-color:#1b2aa0; --btn-outline-border-color:#1b2aa0; --color-link-hover:#1b2aa0;
+  --bages-sale-bg-color:#e3132b;
+}
+/* tarja do topo (substitui a faixa azul de confiança) */
+html.bk-bf [id$="__trust_bar"]{display:none!important}
+.bkbf-bar{display:none}
+html.bk-bf .bkbf-bar{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--bf-black);color:#fff;font:700 13px/1.25 'Instrument Sans',system-ui,sans-serif;padding:9px 14px;text-align:center;position:relative;z-index:30}
+.bkbf-bar__msg{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center}
+.bkbf-bar__msg em{font-style:normal;color:var(--bf-lime)}
+.bkbf-bar__msg b{background:var(--bf-red);color:#fff;border-radius:6px;padding:1px 7px}
+.bkbf-bar__t{color:var(--bf-lime);font-variant-numeric:tabular-nums;white-space:nowrap;border-left:1px solid rgba(255,255,255,.25);padding-left:10px}
+@media (max-width:749px){html.bk-bf .bkbf-bar{font-size:12px;padding:8px 10px;gap:8px}.bkbf-bar__t{padding-left:8px}}
+/* banners */
+.bkbf-hero,.bkbf-col{display:none}
+html.bk-bf .bkbf-hero,html.bk-bf .bkbf-col{display:block;background:var(--bf-navy);line-height:0}
+html.bk-bf .bkbf-hero{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden}
+@media (min-width:750px){html.bk-bf .bkbf-hero{aspect-ratio:21/9}}
+html.bk-bf .bkbf-col{position:relative;width:100%;aspect-ratio:21/9;overflow:hidden}
+html.bk-bf .bkbf-hero picture,html.bk-bf .bkbf-hero img,html.bk-bf .bkbf-col img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover;display:block!important;transform:none!important;opacity:1!important}
+html.bk-bf .bkbf-col{background:#f4f1ea}
+/* botões de compra: verde-limão com texto azul */
+html.bk-bf .product-item .product__add-cart.morden-style,html.bk-bf .product-item .product__add-cart,html.bk-bf .product__add-cart,html.bk-bf .bkc__btn,html.bk-bf .btn.btn-primary,html.bk-bf .bkp__cta,html.bk-bf .product-form__submit,html.bk-bf .product_submit_button,html.bk-bf .bkm__wpp,html.bk-bf .bf__btn,html.bk-bf .bsn__copy{background:var(--bf-lime)!important;border-color:var(--bf-lime)!important;color:var(--bf-navy)!important;font-weight:800!important;box-shadow:0 6px 16px rgba(200,241,75,.35)}
+html.bk-bf .product__add-cart *,html.bk-bf .bkc__btn *,html.bk-bf .btn.btn-primary *,html.bk-bf .bkp__cta *{color:var(--bf-navy)!important}
+html.bk-bf .product-item .product__add-cart.morden-style:hover,html.bk-bf .product__add-cart:hover,html.bk-bf .bkc__btn:hover,html.bk-bf .btn.btn-primary:hover{background:#b5e02f!important}
+/* preços e descontos: preto e vermelho */
+html.bk-bf .installment-price__parc{color:var(--bf-red)!important;font-weight:800}
+html.bk-bf .installment-price__tag,html.bk-bf .qty2k__sj{background:var(--bf-black)!important;color:#fff!important}
+html.bk-bf .price .price__sale,html.bk-bf .price-regular .price{color:var(--bf-red)!important}
+html.bk-bf .bkc__off{background:var(--bf-red)!important;color:#fff!important}
+html.bk-bf .bkc__save{background:var(--bf-black)!important;color:#fff!important}
+html.bk-bf .card-benefit-badge{background:linear-gradient(100deg,var(--bf-blue),var(--bf-navy))!important}
+/* cartões de quantidade da página de produto */
+html.bk-bf quantity-discount-cards.qty2{--q-blue:#1b2aa0;--q-blue2:#3a49d6;--q-ink:#0c1a5c;--q-sel:#f2f5ff;--q-gold:#e3132b;--q-gold-ink:#fff}
+html.bk-bf .qty2k__ribbon{background:var(--bf-black)!important;color:#fff!important}
+html.bk-bf .qty2k__ribbon .bkbf-pct{color:var(--bf-red);background:#fff;border-radius:5px;padding:0 6px;margin-left:2px}
+html.bk-bf .qty2__opt.qty2__tier[data-tier="3"] .qty2k__ribbon{background:var(--bf-red)!important;color:#fff!important}
+html.bk-bf .qty2__opt.qty2__tier[data-tier="3"] .qty2k__ribbon .bkbf-pct{color:var(--bf-red)}
+html.bk-bf .qty2k__big,html.bk-bf .qty2k__big b{color:var(--bf-red)!important}
+html.bk-bf .qty2__ship-fill{background:linear-gradient(90deg,var(--bf-blue),var(--bf-lime))!important}
+html.bk-bf .qty2__ship [data-ship-msg] .amt{color:var(--bf-red)!important}
+/* cabeçalho do menu e rodapé no azul royal */
+html.bk-bf .submenu-horizontal,html.bk-bf nav.mobile,html.bk-bf footer.bf{background:var(--bf-navy)!important}
+html.bk-bf .menu_label{background:var(--bf-red)!important}
+html.bk-bf .bgc,html.bk-bf free-ship-progress-bar{display:none!important}
+/* ofertas do carrinho que não valem no Esquenta: "−10% só aqui" e a escada antiga por produto (5%/10%, acabou em 01/11) */
+html.bk-bf .botanika-ob,html.bk-bf [class^="bkg"],html.bk-bf [class*=" bkg"]{display:none!important}
+.bkbf-cb{display:none}
+html.bk-bf .bkbf-cb{display:grid;gap:4px;background:#0b0b0f;color:#fff;border-radius:14px;padding:12px 14px;margin:0 0 14px;font:600 13px/1.35 'Instrument Sans',system-ui,sans-serif}
+.bkbf-cb b{color:#c8f14b}
+.bkbf-cb__pct{background:#e3132b;color:#fff;border-radius:6px;padding:1px 7px;font-weight:800}
+.bkbf-cb__s{color:#c9c9d3;font-weight:600}
+.bkbf-cb__n{color:#d6d6de;font-size:12.5px}
+.bkbf-cb__ok{color:#c8f14b;font-size:12.5px;font-weight:800}
+html.bk-bf .bkbf-gift{margin:6px 16px 0;display:inline-block;background:#fff2f3;color:#b30f22;border:1px dashed #e3132b;border-radius:10px;padding:5px 10px;font-weight:800;font-size:12px}
+html.bk-bf .bkbf-kitpill{background:#0b0b0f;color:#fff}
+html.bk-bf .bkbf-img5 img{transform:scale(1.08)}
+</style>
+<template id="bkbf-bar">
+  <div class="bkbf-bar" role="region" aria-label="Esquenta Botanika Week">
+    <span class="bkbf-bar__msg" data-bkbf-msg>🔥 <em>Esquenta Botanika Week</em> <b>até 12% OFF</b> vale misturando</span>
+    <span class="bkbf-bar__t" data-bkbf-count></span>
+  </div>
+</template>
+{%- if template.name == 'index' -%}
+<template id="bkbf-hero">
+  <a class="bkbf-hero" href="/collections/all" aria-label="Esquenta Botanika Week: quanto mais leva, mais esquenta. Até 12% OFF">
+    <picture>
+      <source media="(min-width:750px)" srcset="{{ hero_d }}&width=1920 1920w, {{ hero_d }}&width=1440 1440w" sizes="100vw">
+      <img src="{{ hero_m }}&width=900" srcset="{{ hero_m }}&width=600 600w, {{ hero_m }}&width=900 900w, {{ hero_m }}&width=1200 1200w" sizes="100vw" width="1200" height="1500" alt="Esquenta Botanika Week: 1 un. 8%, 3 un. 10%, 5 un. 12%. Frete grátis acima de R$ 249" fetchpriority="high">
+    </picture>
+  </a>
+</template>
+{%- endif -%}
+{%- if template.name == 'collection' -%}
+<template id="bkbf-col">
+  <div class="bkbf-col"><img src="{{ col_b }}&width=1600" srcset="{{ col_b }}&width=800 800w, {{ col_b }}&width=1600 1600w, {{ col_b }}&width=2200 2200w" sizes="100vw" width="2200" height="943" alt="Esquenta Botanika Week: até 12% OFF, vale misturando os produtos" loading="eager"></div>
+</template>
+{%- endif -%}
+<script>
+(function(){
+  var B = window.__bkBf; if (!B || window.__bkBfRun) return; window.__bkBfRun = true;
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+  function money(c){ var a = (c / 100).toFixed(2).split('.'); return 'R$ ' + a[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + a[1]; }
+  function disc(t, u){ return Math.floor(t * 8 / 100) + (u >= 3 ? Math.floor(t * 2 / 100) : 0) + (u >= 5 ? Math.floor(t * 2 / 100) : 0); }
+  function pct(u){ return u >= 5 ? 12 : (u >= 3 ? 10 : 8); }
+
+  /* tarja, banner da home e banner das coleções */
+  var MSGS = ['🔥 <em>Esquenta Botanika Week</em> <b>até 12% OFF</b> vale misturando', '🚚 <em>Frete grátis</em> acima de R$ 249', '🎁 <em>Cranberry de brinde</em> acima de R$ 400'];
+  function place(){
+    var bar = document.getElementById('bkbf-bar');
+    if (bar && !document.querySelector('.bkbf-bar')) document.body.insertBefore(bar.content.cloneNode(true), document.body.firstChild);
+    var hero = document.getElementById('bkbf-hero'), slide = document.querySelector('[id*="__slideshow"]');
+    if (hero && slide && !document.querySelector('.bkbf-hero')) { slide.parentNode.insertBefore(hero.content.cloneNode(true), slide); slide.style.display = 'none'; }
+    var col = document.getElementById('bkbf-col'), cb = document.querySelector('[id$="__banner"]');
+    if (col && cb && !document.querySelector('.bkbf-col')) { cb.parentNode.insertBefore(col.content.cloneNode(true), cb); cb.style.display = 'none'; }
+    var i = 0, m = document.querySelector('[data-bkbf-msg]');
+    if (m) setInterval(function(){ i = (i + 1) % MSGS.length; m.innerHTML = MSGS[i]; }, 3500);
+    tick();
+  }
+  function tick(){
+    var s = Math.max(0, Math.floor((B.end - Date.now()) / 1000));
+    var t = 'termina em ' + Math.floor(s / 86400) + 'd ' + pad(Math.floor(s % 86400 / 3600)) + 'h ' + pad(Math.floor(s % 3600 / 60)) + 'm';
+    document.querySelectorAll('[data-bkbf-count]').forEach(function(el){ el.textContent = t; });
+    if (s > 0) setTimeout(tick, 30000);
+  }
+
+  /* cartões de quantidade: 5 potes 12%, 3 potes 10%, 1 pote 8% (a escada real) e frete grátis acima de R$ 249 depois do desconto */
+  function setCard(card, unit, self){
+    var q = parseInt(card.dataset.quantity), t = unit * q, d = disc(t, q), price = t - d, free = price >= self.freeShip;
+    var set = function(s, v){ var el = card.querySelector(s); if (el) el.textContent = v; };
+    var kit = !card.classList.contains('qty2__tier');
+    if (kit) { var kb = card.querySelector('.qty2k__big b'); if (kb) kb.textContent = money(Math.floor(price / self.installments)); }
+    set('[data-installment]', money(Math.floor(price / self.installments))); set('[data-total]', money(price));
+    if (!kit) { set('[data-compare]', money(t)); set('[data-perunit]', money(Math.floor(price / q)) + '/pote'); }
+    var sv = card.querySelector('[data-savebox]') || card.querySelector('.qty2k__save');
+    if (sv) { sv.hidden = false; sv.textContent = '✓ Você economiza ' + money(d + (kit ? (parseInt(card.dataset.kitSave || '0')) : 0)) + (free ? ' + frete grátis' : ''); }
+    var fs = card.querySelector('[data-freeship]'); if (fs) fs.hidden = !free;
+    var g = card.querySelector('.bkbf-gift');
+    if (t >= 40000) { if (!g) { g = document.createElement('div'); g.className = 'bkbf-gift'; var pr = card.querySelector('.qty2k__price'); if (pr) pr.parentNode.insertBefore(g, pr.nextSibling); } g.textContent = '🎁 + ' + (B.want > 1 ? '2 Cranberries' : 'Cranberry') + ' de brinde'; }
+    else if (g) g.remove();
+  }
+  function fixCards(C){
+    var P = C.prototype;
+    if (!P.__bkbf) {
+      P.__bkbf = true;
+      P.priceOf = function(card){ var q = parseInt(card.dataset.quantity), t = parseInt(this.dataset.unitPrice) * q; return t - disc(t, q); };
+      var rep = P.reprice;
+      P.reprice = function(unit){
+        var self = this; rep.call(this, unit);
+        this.cards.forEach(function(card){ setCard(card, unit, self); });
+        var a = this.querySelector('.qty2__opt.is-active'); if (a) this.updateShip(a);
+      };
+    }
+    document.querySelectorAll('quantity-discount-cards.qty2').forEach(function(el){
+      if (el.__bkbfDone || !el.cards) return; el.__bkbfDone = true;
+      el.freeShip = 24900;
+      var goal = el.querySelector('[data-ship-goal]'); if (goal) goal.textContent = 'Frete grátis · R$ 249,00';
+      var tiers = el.cards.filter(function(c){ return c.classList.contains('qty2__tier'); });
+      var kitc = el.cards.filter(function(c){ return !c.classList.contains('qty2__tier'); });
+      kitc.forEach(function(card){
+        var cmp = card.querySelector('.qty2k__cmp'), unit = parseInt(el.dataset.unitPrice);
+        if (cmp) { var v = parseInt(cmp.textContent.replace(/\D/g, '')); if (v > unit) card.dataset.kitSave = v - unit; }
+        var rib = card.querySelector('.qty2k__ribbon');
+        if (rib) rib.innerHTML = rib.innerHTML.replace(/\s*$/, '') + ' <span class="bkbf-pct">+8% Esquenta</span>';
+        var pill = card.querySelector('.qty2k__pill--off'); if (pill && !card.querySelector('.bkbf-kitpill')) { var x = document.createElement('span'); x.className = 'qty2k__pill bkbf-kitpill'; x.textContent = '+8% Esquenta'; pill.parentNode.insertBefore(x, pill.nextSibling); }
+      });
+      if (tiers.length >= 2) {
+        /* o cartão de 2 potes (mesmos 8% de 1 pote) vira 5 potes com 12% */
+        var by = {}; tiers.forEach(function(c){ by[c.dataset.quantity] = c; });
+        var c2 = by['2'], c3 = by['3'], c1 = by['1'];
+        if (c2 && !by['5']) {
+          c2.dataset.quantity = 5;
+          var nm = c2.querySelector('.qty2__q'); if (nm) nm.textContent = '5 potes';
+          var im = c2.querySelector('.qty2k__img'), im3 = c3 && c3.querySelector('.qty2k__img');
+          if (im && im3) { im.innerHTML = im3.innerHTML; im.classList.add('bkbf-img5'); }
+          var grid = c2.parentNode; if (grid) grid.insertBefore(c2, grid.firstChild);
+        }
+        var names = { '5': 'Maior desconto', '3': 'Mais vendido', '1': 'Esquenta' };
+        tiers.forEach(function(card){
+          var q = card.dataset.quantity, p = pct(parseInt(q));
+          card.dataset.discount = p;
+          var rib = card.querySelector('.qty2k__ribbon');
+          if (!rib) { rib = document.createElement('div'); rib.className = 'qty2k__ribbon'; card.insertBefore(rib, card.firstChild); }
+          rib.innerHTML = '🔥 ' + (names[q] || 'Esquenta') + ' · <span class="bkbf-pct">' + p + '% OFF</span>';
+          card.querySelectorAll('.qty2k__pill--reg, .qty2k__sub').forEach(function(x){ x.remove(); });
+          var pr = card.querySelector('.qty2k__price');
+          if (pr && !pr.querySelector('[data-compare]')) { var s = document.createElement('s'); s.className = 'qty2k__cmp'; s.setAttribute('data-compare', ''); pr.insertBefore(s, pr.firstChild); }
+          if (!pr.querySelector('[data-perunit]') && parseInt(q) > 1) { var inst = pr.querySelector('.qty2k__inst'); if (inst) { var sp = document.createElement('span'); sp.setAttribute('data-perunit', ''); inst.appendChild(document.createTextNode(' · ')); inst.appendChild(sp); } }
+        });
+        el.cards = Array.prototype.slice.call(el.querySelectorAll('.qty2__opt'));
+        var act = el.querySelector('.qty2__opt.is-active');
+        if (act) { el.apply(act); el.legend(act); }
+      }
+      el.reprice(parseInt(el.dataset.unitPrice));
+    });
+  }
+  function cards(){ if (window.customElements) customElements.whenDefined('quantity-discount-cards').then(function(){ fixCards(customElements.get('quantity-discount-cards')); }); }
+
+  /* carrinho (gaveta e página): uma caixa só com a faixa do Esquenta, o frete (depois do desconto) e o cranberry */
+  var cartFetch = window.fetch.bind(window), boxTimer = null, lastCart = null;
+  function boxHTML(cart){
+    var u = 0, paid = 0;
+    (cart.items || []).forEach(function(it){ u += it.quantity; if (!(it.properties && it.properties._brinde)) paid += it.final_line_price; }); /* o brinde também conta na escada, igual no checkout */
+    if (!u) return '';
+    var d = disc(paid, u), after = paid - d, p = pct(u), h = '';
+    h += '<div class="bkbf-cb__l">🔥 <b>Esquenta:</b> ' + u + (u > 1 ? ' itens' : ' item') + ' = <span class="bkbf-cb__pct">' + p + '% OFF</span> <span class="bkbf-cb__s">(− ' + money(d) + ')</span></div>';
+    if (u < 3) h += '<div class="bkbf-cb__n">Leve mais ' + (3 - u) + ' e ganhe <b>10%</b> · com 5, <b>12%</b></div>';
+    else if (u < 5) h += '<div class="bkbf-cb__n">Leve mais ' + (5 - u) + ' e ganhe <b>12%</b></div>';
+    h += after >= 24900 ? '<div class="bkbf-cb__ok">🚚 Frete grátis garantido</div>' : '<div class="bkbf-cb__n">🚚 Faltam <b>' + money(24900 - after) + '</b> para o frete grátis</div>';
+    h += paid >= 40000 ? '<div class="bkbf-cb__ok">🎁 ' + (B.want > 1 ? '2 Cranberries' : 'Cranberry') + ' de brinde no seu pedido</div>' : '<div class="bkbf-cb__n">🎁 Faltam <b>' + money(40000 - paid) + '</b> para ganhar ' + (B.want > 1 ? '2 Cranberries' : 'o Cranberry') + '</div>';
+    return h;
+  }
+  function paintBox(){
+    if (!lastCart) return;
+    var html = boxHTML(lastCart);
+    [document.getElementById('minicart-form'), document.querySelector('#main-cart-items cart-items')].forEach(function(host){
+      if (!host) return;
+      var box = host.querySelector('.bkbf-cb');
+      if (!html) { if (box) box.remove(); return; }
+      if (!box) { box = document.createElement('div'); box.className = 'bkbf-cb'; host.insertBefore(box, host.firstChild); }
+      if (box.innerHTML !== html) box.innerHTML = html;
+    });
+  }
+  function loadCart(){ cartFetch('/cart.js', { headers: { Accept: 'application/json' } }).then(function(r){ return r.json(); }).then(function(c){ lastCart = c; paintBox(); }).catch(function(){}); }
+  function watchCart(){
+    loadCart();
+    new MutationObserver(function(){ clearTimeout(boxTimer); boxTimer = setTimeout(function(){
+      var need = false; [document.getElementById('minicart-form'), document.querySelector('#main-cart-items cart-items')].forEach(function(h){ if (h && !h.querySelector('.bkbf-cb')) need = true; });
+      if (need) paintBox();
+    }, 250); }).observe(document.body, { childList: true, subtree: true });
+  }
+  /* textos fixos que prometem cupom de 1ª compra (não vale em novembro) */
+  function texts(){
+    var n = document.querySelector('.bf__note'); if (n) n.textContent = '🔥 Esquenta Botanika Week: até 12% OFF, vale misturando os produtos.';
+    var b = document.querySelector('.bsn__sub'); if (b) b.textContent = 'Escolha seus suplementos e receba em casa. No Esquenta Botanika Week: até 12% OFF misturando os produtos e frete grátis acima de R$ 249.';
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ place(); cards(); watchCart(); texts(); }); else { place(); cards(); watchCart(); texts(); }
+
+  /* Cranberry de brinde acima de R$ 400 (2 para quem já comprou) */
+  /* 05/11: o brinde é o produto "Cranberry · Brinde" a R$ 0 (oculto), e não mais um desconto "compre X, ganhe Y".
+     Assim o cupom de influenciadora vira desconto de produto e deixa de acumular 2 cupons. */
+  var GIFT = 68122684424424, MIN = 40000, WANT = B.want;
+  var of = window.fetch.bind(window), busy = false, timer = null;
+  function isCart(){ return document.body.classList.contains('template-cart') || /\/cart(\/|$|\?)/.test(location.pathname); }
+  function post(url, body){
+    if (!isCart()) { body.sections = ['minicart-form']; body.sections_url = location.pathname; }
+    return of(url, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(body) }).then(function(r){ return r.json(); });
+  }
+  function refresh(data){
+    if (isCart()) { location.reload(); return; }
+    var html = data && data.sections && data.sections['minicart-form'], target = document.getElementById('minicart-form');
+    if (html && target) {
+      var fresh = new DOMParser().parseFromString(html, 'text/html').querySelector('#minicart-form');
+      if (fresh) target.innerHTML = fresh.innerHTML;
+      var cn = document.querySelector('cart-notification'); if (cn && typeof cn.cartAction === 'function') { try { cn.cartAction(); } catch (e) {} }
+      if (typeof BlsLazyloadImg !== 'undefined' && BlsLazyloadImg.init) BlsLazyloadImg.init();
+    }
+    of('/cart.json').then(function(r){ return r.json(); }).then(function(cart){
+      document.querySelectorAll('.cart-count').forEach(function(el){ el.innerHTML = el.classList.contains('cart-count-drawer') ? '(' + cart.item_count + ')' : cart.item_count; });
+      var ht = document.querySelector('header-total-price'); if (ht && ht.updateTotal) ht.updateTotal(cart);
+      var fs = document.querySelector('free-ship-progress-bar'); if (fs && fs.init) fs.init(cart.items_subtotal_price);
+    }).catch(function(){});
+  }
+  function toast(msg){ try { if (window.CartUtils && CartUtils.showToast) { CartUtils.showToast(msg, 'success'); return; } if (typeof showToast === 'function') showToast(msg, 3000, 'modal-success'); } catch (e) {} }
+  function reconcile(){
+    if (busy) return; busy = true;
+    of('/cart.js', { headers: { Accept: 'application/json' } }).then(function(r){ return r.json(); }).then(function(cart){
+      var paid = 0, gifts = [], giftQty = 0;
+      (cart.items || []).forEach(function(it){
+        if (it.variant_id === GIFT) { gifts.push(it); giftQty += it.quantity; }
+        else paid += it.final_line_price;
+      });
+      var gift = gifts[0] || null, need = paid >= MIN ? WANT : 0;
+      if (need === giftQty && gifts.length <= 1) return;
+      var p;
+      if (gifts.length > 1) { var up = {}; gifts.forEach(function(g, i){ up[g.key] = i ? 0 : need; }); p = post('/cart/update.js', { updates: up }); }
+      else p = gift ? post('/cart/change.js', { id: gift.key, quantity: need }) : post('/cart/add.js', { items: [{ id: GIFT, quantity: need, properties: { _brinde: 'Esquenta Botanika Week' } }] });
+      return p.then(function(data){ if (data && data.status) return; if (need > giftQty) toast('🎁 Você ganhou Cranberry de brinde!'); refresh(data); setTimeout(reconcile, 900); });
+    }).catch(function(){}).then(function(){ busy = false; });
+  }
+  window.fetch = function(u){
+    var p = of.apply(window, arguments);
+    try { var url = typeof u === 'string' ? u : (u && u.url) || ''; if (/\/cart\/(add|change|update|clear)/.test(url)) p.then(function(){ clearTimeout(timer); timer = setTimeout(reconcile, 600); setTimeout(loadCart, 400); setTimeout(loadCart, 2200); }).catch(function(){}); } catch (e) {}
+    return p;
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', reconcile); else reconcile();
+})();
+</script>
