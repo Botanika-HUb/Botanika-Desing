@@ -606,3 +606,14 @@
   - Subiram os 15 roteiros e o vídeo da Anna em Editados › Novos; conferido no Drive (16 MP4).
   - **Pendente (Pedro):** a versão publicada ainda usa a senha provisória e tem a pasta Novos como padrão. O código novo (senha própria e Editados como padrão) não foi publicado: falta Implantar › Gerenciar implantações › lápis › **Nova versão**.
   - Por segurança, a senha não fica no repositório. Ela fica só nas variáveis DRIVE_UPLOAD_URL e DRIVE_UPLOAD_TOKEN do ambiente.
+- **Roteiros v3 (o Otávio reclamou de cortes no meio da fala):**
+  - Causa: o corte que tirava o "e não é só ele" ficava dentro da fala corrida, e as bordas usavam margem fixa.
+  - Correção: a frase da Black vai inteira; cada trecho começa e termina no silêncio real (-47 dB por 40 ms). A frase da Black e a chamada 14 têm fim fixo, porque logo depois vem ruído ou outra voz.
+  - Conferido medindo as bordas e transcrevendo o 07 e o 13: frases completas.
+  - Os 15 foram substituídos no Drive (Novos), com a versão antiga na lixeira.
+- **11/11 mudou (decisão do Gabriel, 05/11):**
+  - Às 20h de 10/11, o acesso antecipado vale para clientes **e grupo VIP**, com a mesma senha ou link.
+  - O site abre para todos às **00h de 11/11** (era 08h). Os anúncios de venda pausam às 20h e voltam às 00h.
+  - Os 100 pedidos de cashback devem acabar no antecipado; depois das 00h, citar o cashback só como "enquanto durar".
+  - A definir: os brindes do antecipado e se os grupos antigos também entram às 20h.
+  - **Impacto no tema 11/11:** a tela fechada diz "abre às 8h", deixa entrar só cliente logado e usa o link do grupo antigo. Tem que mudar para 00h, liberar a entrada do grupo VIP (senha ou link) e trocar o link. Aguardando o ok do Pedro.
