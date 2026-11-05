@@ -495,3 +495,25 @@
   - Arquivos entregues ao Pedro pelo chat. O conector do Drive não aceita arquivos desse tamanho, então o Pedro sobe em Criativos Novembro › Editados.
   - Para o Pedro checar: o 07 cita o Dr. William, e o 11 diz "última chance do ano".
 - **Alliance:** entrega dos 15 universais registrada na tarefa "Editar os 16 vídeos do 1º lote", no nome do Vitor e para o Otávio, com o link da pasta Editados. A tarefa ficou aberta porque falta o roteiro 5.
+
+### 04/11 · fechamento do dia
+- **Feito:**
+  - auditoria da oferta e correções 1, 3 e 4 no tema exclusivo do 11/11;
+  - varredura completa do Alliance;
+  - mensagens para Vitor, Sarah, Mafe e Otávio;
+  - Esquenta Botanika Week: tema, banners (incluindo os de último dia) e 6 descontos;
+  - 4 entregas registradas no Alliance;
+  - 15 vídeos universais editados e entregues (o Pedro subiu na pasta Editados com os nomes AD0xx);
+  - GitHub reconectado.
+- **Pendente:**
+  - programar a publicação dos dois temas (10/11 às 20h e 11/11 às 23h59);
+  - roteiro 5 dos ganchos;
+  - vídeos de venda do 11/11 (a gravação da Mafe venceu em 04/11 às 18h e segue "a fazer" no Alliance);
+  - 9 estáticos universais (falta o Otávio confirmar os U16 a U30);
+  - nota fiscal.
+- **Bloqueios:**
+  - Vitor: "até 40%", brindes do acesso antecipado, cupons fora da ficha, fichas v3 e SavePay;
+  - Sarah: link do grupo VIP;
+  - Gabriel: bem-estar por rotina.
+- **Respostas recebidas:** nenhuma registrada no chat até o fim do dia.
+- **Brutos novos no Drive** (IMG_9668, 9673 e 9674, cerca de 5 GB, subidos em 04/11 às 16h26) ainda não foram abertos.

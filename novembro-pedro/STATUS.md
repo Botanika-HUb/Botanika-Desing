@@ -3,9 +3,25 @@
 > 🔒 **REGRA FIXA (Pedro, 29/10):** este chat cuida **somente das tarefas da BOTANIKA**. Nunca fazer nada da **VermeFree** nem da **Revita** (nem da Shoty). Se o Pedro citar VermeFree ou Revita, **parar na hora e não executar nada**: só avisar e esperar.
 
 
-> Atualizado em: **04/11/2026, 9h** (tema 5 potes no ar, cashback pronto, GitHub ok)
+> Atualizado em: **05/11/2026, 9h** (temas do 11/11 e da Week prontos, 15 universais entregues)
 > Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito · `[!]` bloqueado
 > ID = id da tarefa no Alliance OS (`https://alliance-os-sooty.vercel.app/?task=<ID>#tasks`)
+
+## 📍 Onde estamos (05/11, 9h) ← COMECE POR AQUI
+- **No ar:** tema "ESQUENTA PV — imagem 5 potes" (168272953576), até 10/11.
+- **Temas prontos, falta o Pedro programar a publicação:**
+  - **11/11 exclusivo** (168318599400): publicar em **10/11 às 20h**;
+  - **Esquenta Botanika Week** (168321417448): publicar em **11/11 às 23h59**. Tem a versão de último dia (20/11), que troca sozinha.
+- **Descontos programados na Shopify:**
+  - 11/11: frete grátis sem mínimo e Q10 acima de R$ 500;
+  - Week (12 a 20/11): 8 / 10 / 12%, frete acima de R$ 249 e cranberry (1, ou 2 para recorrentes).
+- **11/11 sem desconto de produto:** o "até 40%" não existe na Shopify (é decisão do Vitor). Por enquanto o seletor de potes fica a preço cheio, com o selo "11/11 · frete grátis".
+- **Criativos:**
+  - 10 estáticos de venda do 11/11: feitos e registrados.
+  - **15 de 16 vídeos universais** do 1º lote: feitos, já na pasta Editados com os nomes AD0xx do Pedro e registrados no Alliance. **Falta o roteiro 5.**
+- **Cupons fora da ficha:** DRALUIZA e GABIFLORONUTRI com 5%, e RECUPERA5. Nada foi mexido; o Vitor decide.
+- **GitHub:** ok.
+- **Brutos novos no Drive (subiram em 04/11, ainda não abertos):** IMG_9668 (0,9 GB), IMG_9673 (3,1 GB) e IMG_9674 (1 GB). Podem ser os vídeos de venda do 11/11 e o roteiro 5.
 
 ## 🔄 MUDANÇA DO VITOR (30/10): Botanika SEM captação no 11/11
 - Não há grupo do 11/11, LP de captação, tráfego de captação nem criativos de captação.
@@ -17,7 +33,7 @@
 - **Decisão do Pedro (01/11):** a LP vip.botanikabrasil.com.br **fica no ar por enquanto** (nunca foi divulgada).
 - **Pendente:** trocar na tela fechada o link do grupo do 11/11 (sndflw.com/i/botanika11-11) pelo link do grupo VIP da Sarah; mudar o texto para "reabre quarta, 11/11, às 08h".
 
-## 📍 Onde estamos (03/11, noite) ← COMECE POR AQUI
+## 📍 Onde estamos (03/11, noite) — histórico
 - **Site no ar:** tema "ESQUENTA PV — imagem 5 potes" (168272953576), conferido ao vivo.
   - preço já com desconto em tudo (produto, cards, potes e gaveta);
   - cartão de 5 potes com a imagem de 5;
