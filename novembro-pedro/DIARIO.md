@@ -617,3 +617,12 @@
   - Os 100 pedidos de cashback devem acabar no antecipado; depois das 00h, citar o cashback só como "enquanto durar".
   - A definir: os brindes do antecipado e se os grupos antigos também entram às 20h.
   - **Impacto no tema 11/11:** a tela fechada diz "abre às 8h", deixa entrar só cliente logado e usa o link do grupo antigo. Tem que mudar para 00h, liberar a entrada do grupo VIP (senha ou link) e trocar o link. Aguardando o ok do Pedro.
+- **Nota fiscal travada pelo brinde (05/11, Vitor e Álvaro): investigado, nada alterado.**
+  - Causa: o brinde de R$0 é um produto separado na Shopify, com SKU **BRINDE-CRANBERRY** (o da Q10 é BRINDE-Q10). O sistema de notas não conhece esse SKU, então o item vem sem NCM e a nota é recusada.
+  - O cranberry de verdade é o SKU **80.1.12**; a Q10 é o **80.1.24**.
+  - Os outros produtos também não têm NCM na Shopify, então o sistema puxa o NCM pelo SKU do próprio cadastro.
+  - Pedidos afetados até 19h: #7168, #7169, #7171, #7175, #7178, #7181, #7182 e #7188, todos sem envio.
+  - Proposta (aguardando o ok do Pedro):
+    1. trocar na Shopify o SKU das variantes de brinde para 80.1.12 e 80.1.24, o que resolve os pedidos novos;
+    2. o Álvaro troca o item dos pedidos já feitos pelo 80.1.12 na nota.
+    - Conferir com o Álvaro se o sistema aceita item de R$0 (ou se exige bonificação, CFOP 5.910/6.910).
