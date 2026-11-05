@@ -595,3 +595,7 @@
   - As tomadas foram conferidas por transcrição (em blocos, com etiqueta).
   - Script em `entregas/videos-universais/build_r.py`. Saem 15 vídeos (Roteiro02 a Roteiro16), no visual aprovado dos universais.
 - **Link do criativo da Anna Luiza** (para o Otávio): https://cdn.shopify.com/s/files/1/0780/7238/1672/files/Creator-AnnaLuiza-Esquenta.mp4?v=1793899388
+- **15 roteiros completos prontos** (Roteiro02-Sleep a Roteiro16, de 14 a 29 s), aguardando aprovação do Pedro.
+  - Links (cópia de ~5 Mbps), no padrão https://cdn.shopify.com/s/files/1/0780/7238/1672/files/RoteiroNN.mp4. O 02 se chama Roteiro02-Sleep.mp4.
+  - Os originais (crf 18) ficam em scratchpad/uni.
+  - Texto a conferir: a chamada do roteiro 10 ("…e adianta o seu"), que só tive em inglês.
