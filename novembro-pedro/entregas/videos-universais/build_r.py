@@ -70,18 +70,18 @@ def speech(path, a, b):
     return m or [(a, b)]
 
 def refine(path, a, b, lo=0.0):
-    """leva o início e o fim até o silêncio de verdade (-50 dB por 80 ms), com no máximo 0,35 s a mais de cada lado"""
+    """leva o início e o fim até o silêncio de verdade (-47 dB por 40 ms), com no máximo 0,25 s a mais de cada lado"""
     s0 = max(lo, a - 0.4)
     raw = subprocess.run(['ffmpeg', '-v', 'error', '-ss', f'{s0:.3f}', '-t', f'{b - s0 + 0.5:.3f}', '-i', path, '-ac', '1', '-ar', '16000', '-f', 's16le', '-'], capture_output=True).stdout
     x = np.frombuffer(raw, dtype=np.int16).astype(float) / 32768; w = 160; n = len(x) // w
     e = 20 * np.log10(np.sqrt((x[:n * w].reshape(n, w) ** 2).mean(1)) + 1e-9)
     ia = int(round((a - s0) * 100)); ib = int(round((b - s0) * 100))
     i = ia
-    while i > 0 and ia - i < 35 and e[i - 1] > -50: i -= 1
+    while i > 0 and ia - i < 25 and e[i - 1] > -47: i -= 1
     j = ib; quiet = 0
-    while j < n and j - ib < 35:
-        quiet = quiet + 1 if e[j] < -50 else 0
-        if quiet >= 8: j -= 7; break
+    while j < n and j - ib < 25:
+        quiet = quiet + 1 if e[j] < -47 else 0
+        if quiet >= 4: j -= 3; break
         j += 1
     return s0 + i / 100 - 0.04, s0 + j / 100 + 0.06
 
@@ -96,13 +96,21 @@ if k == '2':
     hook = dict(lines=['A cabeça', 'não desliga?'], em=['desliga?'])
 else:
     if k in HOOK:
-        a, b, tx, l, em = HOOK[k]; SEGS.append((f'{BR}/hooks_mid.mp4', (a - 0.06, b + 0.10), tx)); hook = dict(lines=l, em=em)
+        a, b, tx, l, em = HOOK[k]; SEGS.append((f'{BR}/hooks_mid.mp4', refine(f'{BR}/hooks_mid.mp4', a, b), tx)); hook = dict(lines=l, em=em)
     else:
         hook = dict(lines=['Gastou uma fortuna', 'em ampola?'], em=['fortuna'])
     f, a, b = mid('i' + k); SEGS.append((f, refine(f, a, b), IDENT[k]))
-for (a, b), tx in BLACK: SEGS.append((f'{BR}/body_mid.mp4', refine(f'{BR}/body_mid.mp4', a - OFF, b - OFF), tx))
-f, a, b = mid('c' + k); ca, cb, ctx = CTA[k]; SEGS.append((f, refine(f, a + ca, a + cb) if ca is not None else refine(f, a, b), ctx))
+# fim fixo: logo depois de "o mês todo" vem um ruído curto (83,5 s no bruto) que o refino puxaria junto
+for (a, b), tx in BLACK: SEGS.append((f'{BR}/body_mid.mp4', (refine(f'{BR}/body_mid.mp4', a - OFF, b - OFF)[0], b - OFF + 0.03), tx))
+f, a, b = mid('c' + k); ca, cb, ctx = CTA[k]; SEGS.append((f, (refine(f, a + ca, a + cb)[0], a + cb + 0.04) if ca is not None else refine(f, a, b), ctx))  # com corte fixo, o fim não estica
 
+if os.environ.get('DRY'):  # só confere as bordas: energia nos 40 ms de dentro de cada borda
+    for f, (a, b), tx in SEGS:
+        r = subprocess.run(['ffmpeg', '-v', 'error', '-ss', f'{a:.3f}', '-t', f'{b - a:.3f}', '-i', f, '-ac', '1', '-ar', '16000', '-f', 's16le', '-'], capture_output=True).stdout
+        x = np.frombuffer(r, dtype=np.int16).astype(float) / 32768; w = 160; n = len(x) // w
+        e = 20 * np.log10(np.sqrt((x[:n * w].reshape(n, w) ** 2).mean(1)) + 1e-9)
+        print(k, os.path.basename(f), f'{a:.2f}-{b:.2f}', f'ini {e[:4].max():.0f} fim {e[-4:].max():.0f}', tx[:30])
+    sys.exit()
 words = []; acc = 0; cuts = []
 for f, (a, b), tx in SEGS:
     sp = [(max(p, a) - a + acc, min(q, b) - a + acc) for p, q in speech(f, a, b)]
