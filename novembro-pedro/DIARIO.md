@@ -562,3 +562,8 @@
     - brindes do 11/11 (Q10 pronta, faltam os brindes do acesso antecipado);
     - oferta e frete do 11/11 (frete e cupons prontos, falta o "até 40%").
   - Já registradas antes: tema da Week (aberta até a publicação programada) e 15 vídeos universais (aberta, falta o roteiro 5).
+- **Brutos novos (subidos em 04/11), transcritos em 05/11:**
+  - **IMG_9668 (Mafe, 2 min):** de 0:00 a 1:10 é o **corpo do roteiro do Sleep Inositol**, com várias tomadas ("Tá exausta e a cabeça continua ligada?" → "Chá, celular longe, horário fixo…" → "Desacelerar à noite…" → "Nenhum chá entrega isso" → "Comecei a usar o Sleep da Botanika…"). Não tem a parte da Black nem a chamada final. De 1:10 em diante é uma conversa com um homem sobre gravações da **ReVitta** (GHK-Cu), que **não pode ser usada**.
+  - **IMG_9674 (2ª apresentadora, 2,4 min, cenário com estante):** **16 chamadas finais**, uma por roteiro, com o roteiro 5 incluído ("a pressão do pincel"). Exemplo: "Toque no botão aqui embaixo e monte o seu".
+  - **IMG_9673 (2ª apresentadora, 6,7 min):** a análise falhou por ser longa; dividido em 2 partes e enviado de novo.
+  - **Nenhum dos três é dos 10 vídeos de venda do 11/11.**
