@@ -547,3 +547,10 @@
   - meses: jun 71k, jul 285k, ago 412k, set 520k, out 565k;
   - melhores dias: Dia D 09/09 com R$ 100,8k e Dia D 10/10 com R$ 100,1k (+ R$ 59,5k no dia seguinte);
   - Esquenta 02 a 04/11: R$ 52,4k (17,5k por dia, contra a meta de 25,9k por dia).
+- **Cupons: resolvido em 05/11.**
+  - O Pedro publicou o tema 168360411368.
+  - Apaguei os 2 brindes do Esquenta e converti 57 cupons para desconto de produto, sem combinar com outro desconto de produto.
+  - Testado: 2 cupons → só 1 aplica; o brinde e o Esquenta seguem certos.
+  - Os temas antigos foram renomeados "🗑️ APAGAR": Dia D 10/10, Esquenta PV cópia 02/11, Esquenta PV preço 03/11, Esquenta 5 potes (brinde antigo) e 11/11 prévia 04/11.
+  - Detalhes em `entregas/brinde-r0/README.md`.
+  - Pendente: os cupons novos do Creator Club nascem no formato antigo.
