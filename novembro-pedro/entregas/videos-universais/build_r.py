@@ -44,7 +44,8 @@ IDENT = {  # IMG_9673 (textos conferidos pela transcrição de 05/11)
  '16': "Eu já esperei condição boa aparecer e já deixei passar algumas que eu devia ter pego.",
 }
 CTA = json.load(open(DU + '/cta.json'))  # IMG_9674: texto da chamada de cada roteiro
-BLACK = [((78.36, 80.12), "E agora a Black da Botanika tá rolando,"), ((81.08, 83.50), "o site inteiro tá com condição especial o mês todo.")]
+# v2 (05/11): a frase vai inteira. Cortar o "e não é só ele" deixava o corte no meio da fala (o Otávio apontou).
+BLACK = [((78.42, 83.45), "E agora a Black da Botanika tá rolando, e não é só ele: o site inteiro tá com condição especial o mês todo.")]
 SLEEP = [('s1', "Tá exausta e a cabeça continua ligada?"), ('s2', "Celular longe, chá, horário fixo, fiz a lista toda da internet e nada funcionou."),
          ('s3', "Desacelerar à noite é algo que o seu corpo já faz, mas pra fazer isso com excelência, ele precisa de algo."),
          ('s4', "Nenhum chá entrega isso."), ('s5', "Comecei a usar o Sleep da Botanika e tem me ajudado muito nessa parte.")]
@@ -68,6 +69,22 @@ def speech(path, a, b):
     m = [(a + p / 100, a + q / 100) for p, q in m if q - p > 5]
     return m or [(a, b)]
 
+def refine(path, a, b, lo=0.0):
+    """leva o início e o fim até o silêncio de verdade (-50 dB por 80 ms), com no máximo 0,35 s a mais de cada lado"""
+    s0 = max(lo, a - 0.4)
+    raw = subprocess.run(['ffmpeg', '-v', 'error', '-ss', f'{s0:.3f}', '-t', f'{b - s0 + 0.5:.3f}', '-i', path, '-ac', '1', '-ar', '16000', '-f', 's16le', '-'], capture_output=True).stdout
+    x = np.frombuffer(raw, dtype=np.int16).astype(float) / 32768; w = 160; n = len(x) // w
+    e = 20 * np.log10(np.sqrt((x[:n * w].reshape(n, w) ** 2).mean(1)) + 1e-9)
+    ia = int(round((a - s0) * 100)); ib = int(round((b - s0) * 100))
+    i = ia
+    while i > 0 and ia - i < 35 and e[i - 1] > -50: i -= 1
+    j = ib; quiet = 0
+    while j < n and j - ib < 35:
+        quiet = quiet + 1 if e[j] < -50 else 0
+        if quiet >= 8: j -= 7; break
+        j += 1
+    return s0 + i / 100 - 0.04, s0 + j / 100 + 0.06
+
 def mid(key):  # trecho convertido: arquivo, onde começa a fala, onde termina
     src, a, b = CL[key]; s = max(0, a - 0.5)
     return f'{DU}/mids/{key}.mp4', a - s, b - s
@@ -75,16 +92,16 @@ def mid(key):  # trecho convertido: arquivo, onde começa a fala, onde termina
 SEGS = []  # (arquivo, (corte_a, corte_b), texto)
 if k == '2':
     for key, tx in SLEEP:
-        f, a, b = mid(key); SEGS.append((f, (a - 0.06, b + 0.10), tx))
+        f, a, b = mid(key); SEGS.append((f, refine(f, a, b), tx))
     hook = dict(lines=['A cabeça', 'não desliga?'], em=['desliga?'])
 else:
     if k in HOOK:
         a, b, tx, l, em = HOOK[k]; SEGS.append((f'{BR}/hooks_mid.mp4', (a - 0.06, b + 0.10), tx)); hook = dict(lines=l, em=em)
     else:
         hook = dict(lines=['Gastou uma fortuna', 'em ampola?'], em=['fortuna'])
-    f, a, b = mid('i' + k); SEGS.append((f, (a - 0.06, b + 0.10), IDENT[k]))
-for (a, b), tx in BLACK: SEGS.append((f'{BR}/body_mid.mp4', (a - OFF, b - OFF), tx))
-f, a, b = mid('c' + k); ca, cb, ctx = CTA[k]; SEGS.append((f, (a + ca - 0.06, a + cb + 0.10) if ca is not None else (a - 0.06, b + 0.10), ctx))
+    f, a, b = mid('i' + k); SEGS.append((f, refine(f, a, b), IDENT[k]))
+for (a, b), tx in BLACK: SEGS.append((f'{BR}/body_mid.mp4', refine(f'{BR}/body_mid.mp4', a - OFF, b - OFF), tx))
+f, a, b = mid('c' + k); ca, cb, ctx = CTA[k]; SEGS.append((f, refine(f, a + ca, a + cb) if ca is not None else refine(f, a, b), ctx))
 
 words = []; acc = 0; cuts = []
 for f, (a, b), tx in SEGS:
@@ -101,7 +118,7 @@ for f, (a, b), tx in SEGS:
     acc += b - a; cuts.append(round(acc, 3))
 main = round(acc, 3); dur = round(main + END, 2)
 first = SEGS[0][1]; hook_end = first[1] - first[0]
-blk = next(x['t'] for x in words if x['w'] == 'Black' and x['t'] >= cuts[-4] - 0.01)
+blk = next(x['t'] for x in words if x['w'] == 'Black' and x['t'] >= cuts[-3] - 0.01)
 scenes = [dict(kind='black', a=round(blk - 0.15, 3), b=round(blk + 1.9, 3))]
 if k == '2':
     sl = next(x['t'] for x in words if x['w'] == 'Sleep')
