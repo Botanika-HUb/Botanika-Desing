@@ -68,7 +68,9 @@ function setup(cfg){C=cfg;
  // chunk words: up to 3 words / 15 chars, break after punctuation
  let cur=[];cfg.words.forEach((w,i)=>{cur.push(w);const txt=cur.map(x=>x.w).join(' ');
   if(/[.,!?]$/.test(w.w)||cur.length>=3||txt.length>=13){chunks.push(cur);cur=[]}});if(cur.length)chunks.push(cur);
- chunks.forEach((c,i)=>{c.a=c[0].t;c.b=i+1<chunks.length?Math.min(chunks[i+1][0].t,c[c.length-1].t+0.9):c[c.length-1].t+0.9});}
+ chunks.forEach((c,i)=>{c.a=c[0].t;c.b=i+1<chunks.length?Math.min(chunks[i+1][0].t,c[c.length-1].t+0.9):c[c.length-1].t+0.9;
+  /* a legenda não atravessa o corte */
+  const cut=(cfg.cuts||[]).find(x=>x>c.a+0.01);if(cut!==undefined)c.b=Math.min(c.b,cut);});}
 function seek(t){
  // scenes (opaque cutaways)
  let inScene=null;

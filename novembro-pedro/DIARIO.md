@@ -576,3 +576,12 @@
   - r16 "Eu já esperei condição boa aparecer…".
   - Com o IMG_9674 (as 16 chamadas finais dela), ela tem um conjunto inteiro de identificação e CTA para os 16 roteiros. **Falta o roteiro do Ítalo** para saber a montagem final: quem fala o quê e em que ordem.
 - **Novo bruto do Otávio (05/11):** "Creator Anna Luiza | Esquenta Botanika.mov", 28,5 s, 4K SDR, criadora com os produtos na mesa. Em edição.
+- **Criativo da Anna Luiza editado** (Esquenta, 29 s), no estilo aprovado da v3 dos vídeos do Esquenta:
+  - pausas cortadas, com zoom alternado;
+  - gancho "12% OFF e sem pagar frete";
+  - legenda palavra a palavra;
+  - cena da escada 8/10/12% (1/3/5 unidades) e cena do cranberry de brinde acima de R$ 400;
+  - botão "Toque em Comprar agora" e cartão final com as regras ("só até 10/11").
+  - A legenda foi refeita em português a partir da transcrição, que só veio traduzida em inglês. **O Pedro confere o texto.**
+  - Script em `entregas/videos-esquenta/build_anna.py`. O overlay3 agora não deixa a legenda atravessar um corte.
+  - Status: aguardando aprovação do Pedro.
