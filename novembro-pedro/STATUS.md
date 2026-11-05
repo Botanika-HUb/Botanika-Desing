@@ -3,11 +3,28 @@
 > 🔒 **REGRA FIXA (Pedro, 29/10):** este chat cuida **somente das tarefas da BOTANIKA**. Nunca fazer nada da **VermeFree** nem da **Revita** (nem da Shoty). Se o Pedro citar VermeFree ou Revita, **parar na hora e não executar nada**: só avisar e esperar.
 
 
-> Atualizado em: **05/11/2026, 9h** (temas do 11/11 e da Week prontos, 15 universais entregues)
+> Atualizado em: **05/11/2026, 19h45** (roteiros v3 no Drive, SKU do brinde corrigido, 11/11 mudou)
 > Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito · `[!]` bloqueado
 > ID = id da tarefa no Alliance OS (`https://alliance-os-sooty.vercel.app/?task=<ID>#tasks`)
 
-## 📍 Onde estamos (05/11, 9h) ← COMECE POR AQUI
+## 📍 Onde estamos (05/11, 19h45) ← COMECE POR AQUI
+- **Vídeos:**
+  - **15 roteiros completos da Mafe** (Roteiro02-Sleep a Roteiro16): v3 com os cortes corrigidos, em Editados › Novos.
+  - Entrega registrada no Alliance para o Otávio. A tarefa de edição não fecha enquanto "Gravar os 16 vídeos" estiver aberta.
+  - Com eles, o 1º lote cobre os 16 roteiros (o roteiro 5 entrou).
+  - **Anna Luiza** (Esquenta): aprovada e na pasta Novos.
+- **Upload pro Drive:** o receptor do Apps Script funciona (`scripts/drive/sobe-drive.sh`). **Pendente (Pedro):** publicar a versão nova do código (Implantar › Gerenciar › lápis › Nova versão), porque a publicada ainda usa a senha provisória.
+- **Nota fiscal do brinde:**
+  - O SKU do brinde agora é 80.1.12 (cranberry) e 80.1.24 (Q10).
+  - Os 8 pedidos antigos (#7168, #7169, #7171, #7175, #7178, #7181, #7182 e #7188) ficam com o Álvaro, que troca o item na nota.
+  - Esperando o Álvaro confirmar: se o próximo pedido entra certo e se o item de R$0 passa ou precisa sair como bonificação.
+- **11/11 mudou (Gabriel, 05/11):**
+  - Acesso antecipado às 20h de 10/11 para clientes **e grupo VIP**, com senha ou link.
+  - O site abre para todos às **00h** de 11/11.
+  - **Tema 11/11 a ajustar:** a tela fechada ainda diz "abre às 8h", só libera cliente logado e usa o link antigo. Aguardando o Pedro dizer se é senha ou link e qual é o link do grupo VIP.
+- **Continua valendo:** programar a publicação do 11/11 (10/11 às 20h) e da Week (11/11 às 23h59); apagar os temas "🗑️ APAGAR"; nota fiscal (06/11).
+
+## 📍 Onde estamos (05/11, 9h) — histórico
 - **No ar:** tema "ESQUENTA PV — imagem 5 potes" (168272953576), até 10/11.
 - **Temas prontos, falta o Pedro programar a publicação:**
   - **11/11 exclusivo** (168318599400): publicar em **10/11 às 20h**;
