@@ -517,3 +517,22 @@
   - Gabriel: bem-estar por rotina.
 - **Respostas recebidas:** nenhuma registrada no chat até o fim do dia.
 - **Brutos novos no Drive** (IMG_9668, 9673 e 9674, cerca de 5 GB, subidos em 04/11 às 16h26) ainda não foram abertos.
+
+### 05/11 · cupons de influenciadora acumulando (3º dia seguido)
+- **Pedidos com 2 cupons:**
+  - #6990 (03/11);
+  - #7074 (DRANAI + JOINGLE, 03/11);
+  - #7127 (JULIACOLARES + VICTORIA, 04/11).
+- O Vitor mandou áudio pedindo uma solução de vez, como regra.
+- **Testes de hoje na Shopify** (descontos de teste criados e apagados):
+  - (a) todos os códigos dentro de um desconto só → **não trava**, os 2 códigos aplicam;
+  - (b) desconto de produto convivendo com o brinde → **o brinde (compre X, ganhe Y) bloqueia qualquer desconto de produto nos itens comprados**. Essa é a causa raiz de todas as travas falharem;
+  - (c) cupom como desconto de produto que não combina com outro desconto de produto → **trava**: com 2 códigos só 1 aplica, e ele soma com o Esquenta.
+- **Solução proposta ao Pedro (esperando o OK):**
+  - cupons como desconto de produto;
+  - brinde vira produto a R$ 0 oculto, colocado pelo tema;
+  - desativar os 5 descontos de brinde;
+  - trocar o código do brinde nos 3 temas;
+  - alerta no Flow contra abuso do brinde.
+  - Atenção: os cupons novos do Creator Club nascem no formato antigo.
+- O Pedro perguntou a meta de novembro (está no PLANO.md).
