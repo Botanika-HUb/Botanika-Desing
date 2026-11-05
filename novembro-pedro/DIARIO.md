@@ -602,3 +602,7 @@
 - **Drive (pasta Editados › Novos):** o conector não sobe vídeo. Criei lá o arquivo "LINKS — Roteiros completos (Mafe) 05-11.txt", com os 15 links e o da Anna. O Pedro sobe os MP4 manualmente.
 - **Alliance:** entrega dos 15 roteiros registrada na tarefa "Editar os 16 vídeos do 1º lote", no nome do Vitor e para o Otávio.
   - A tarefa não pôde ser concluída: o sistema bloqueia porque a tarefa "Gravar os 16 vídeos" (Mafe, Gabriel e Vitor) ainda está aberta.
+- **Upload pro Drive funcionando** (receptor do Apps Script, "Botanika Upload Claude", conta operacional.botanika). Script em `scripts/drive/sobe-drive.sh`.
+  - Subiram os 15 roteiros e o vídeo da Anna em Editados › Novos; conferido no Drive (16 MP4).
+  - **Pendente (Pedro):** a versão publicada ainda usa a senha provisória e tem a pasta Novos como padrão. O código novo (senha própria e Editados como padrão) não foi publicado: falta Implantar › Gerenciar implantações › lápis › **Nova versão**.
+  - Por segurança, a senha não fica no repositório. Ela fica só nas variáveis DRIVE_UPLOAD_URL e DRIVE_UPLOAD_TOKEN do ambiente.
