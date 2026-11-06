@@ -686,3 +686,10 @@
   - Para ativar: trocar a %, pôr as datas de 12/11 00h a 20/11 23h59 e testar.
   - O frete grátis sem mínimo e a Q10 acima de R$500 não cabem no mesmo código (a Shopify só permite um tipo de desconto por código). Precisariam de um segundo código, ou de uma decisão do Vitor.
   - A Revita foi ignorada (regra fixa).
+- **06/11 · Tema 11/11 ajustado à decisão do Gabriel** (com o ok do Pedro), no tema 168318599400, que não está publicado. O `bk-1111` foi conferido por md5 (48ea6f1e).
+  - O site fecha às 20h de 10/11 e **abre a todos à 00h** de 11/11. Antes abria às 08h.
+  - A tela fechada diz "abre à meia-noite", com contagem.
+  - O botão leva ao grupo VIP **sndflw.com/i/botanika-vip**.
+  - **Link de acesso antecipado:** https://botanikabrasil.com.br/?acesso=vip1111. Libera o site no aparelho da pessoa até a abertura. Cliente logado continua entrando como antes.
+  - Testado na prévia, no celular: visitante vê a tela fechada; com o link entra; em outra página continua liberado.
+  - Falta a Sarah receber o link e o Pedro programar a publicação para 10/11 às 20h.
