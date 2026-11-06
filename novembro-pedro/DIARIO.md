@@ -644,3 +644,37 @@
     - no Sleep, o começo do trecho 5 mostrava ela ajeitando a blusa → a cena do produto cobre esse começo.
   - Os 10 vídeos restantes estavam limpos.
   - Conferi o vídeo final dos 5 refeitos e troquei no Drive (Novos). O arquivo de links antigo foi para a lixeira.
+
+### 05/11 — fechamento
+- **Feito:**
+  - Anna Luiza aprovada, no Drive (Novos), com link para o Otávio.
+  - Receptor do Drive no Apps Script funcionando (`scripts/drive/sobe-drive.sh`).
+  - SKU do brinde corrigido para 80.1.12 e 80.1.24 (a nota fiscal travava no brinde).
+  - Mensagem para a Sarah pedindo o link do grupo VIP. O Pedro respondeu: https://sndflw.com/i/botanika-vip, e os grupos antigos também entram às 20h.
+- **Roteiros completos da Mafe: o Pedro reprovou de vez.**
+  - Motivos: frases sem ligação, todos repetem a mesma frase da Black, cartão em cima da fala, mistura de quatro gravações.
+  - Decisão do Pedro: editar "do jeito normal", com uma gravação por vídeo e sem narração por cima da cena.
+  - O material não fecha vídeos inteiros assim; só o Sleep (IMG_9668) e o Tri-Mg (Universal01).
+  - Proposta feita: fazer o Sleep sozinho e pedir à Mafe e ao Ítalo que regravem cada roteiro inteiro numa tomada. **Aguardando o ok do Pedro.**
+  - Pedido ao Pedro: avisar o Otávio para **não subir** os 15 da pasta Novos.
+- **11/11 mudou (Gabriel):** acesso antecipado às 20h de 10/11 para clientes e grupo VIP, com o mesmo link ou senha, e abertura para todos às 00h. A tarefa diz que o link ou a senha vai para a Sarah **até 06/11 às 12h**.
+- **Bloqueios:**
+  - GitHub dando 403 desde a tarde (2 commits locais);
+  - receptor do Drive ainda com a senha provisória (falta publicar a nova versão);
+  - o Álvaro ainda não respondeu sobre a nota do brinde (8 pedidos);
+  - a Mafe não gravou os 10 vídeos de venda do 11/11.
+- **Respostas recebidas:** Otávio (reclamou dos cortes), Vitor (nota do brinde, mudança do 11/11), Pedro (link do VIP). Nada da Mafe nem do Ítalo.
+
+### 06/11 (sexta) — plano
+- **12h:**
+  - 11/11: mandar à Sarah o link de acesso antecipado (precisa do ok do Pedro para o ajuste no tema).
+  - 11/11: 10 vídeos de venda, bloqueado porque a Mafe não gravou (cobrar).
+- **18h:**
+  - 11/11: fechar o site com o banner do VIP (ajuste do tema: 00h, link especial, botão do VIP);
+  - 11/11: tema completo, oferta e frete, e entrega dos brindes. Já estão prontos; falta o Pedro programar a publicação para 10/11 às 20h. O "até 40%" ainda depende do Vitor.
+  - 16 vídeos do 1º lote: os universais de ontem foram reprovados; ver com o Pedro o que fica.
+  - "Bem-estar por rotina", que depende do Gabriel e do rebranding.
+  - **Nota fiscal de outubro, enviar à Vanessa.**
+- **Segunda 09/11, 18h:** cupom privado do Recovery (12 a 20/11); tema da Week já pronto, falta programar para 11/11 às 23h59.
+- **Atrasada:** selo do Reclame Aqui (desde 20/10), que depende de abrir a conta.
+- **Rituais:** Daily às 9h20.
