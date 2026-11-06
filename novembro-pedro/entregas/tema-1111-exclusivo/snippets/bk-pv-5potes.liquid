@@ -1,0 +1,34 @@
+{%- comment -%}
+  04/11 · imagem do cartão "5 potes" (pedido do Gabriel no grupo, via Pedro).
+  O cartão de 5 potes usava a foto de 3 potes. Agora a imagem é montada aqui com a foto de 1 pote
+  do próprio produto: 3 potes atrás e 2 na frente. Vale para todos os produtos, sem precisar de foto nova.
+  Só roda com a classe bk-bf (Esquenta) ou bk-pv (tema do 11/11) no <html>.
+{%- endcomment -%}
+<style>
+.bkpv5{position:relative;width:100%;height:100%;aspect-ratio:1/1;overflow:visible}
+.bkpv5 img{position:absolute;height:auto;max-width:none;object-fit:contain;pointer-events:none}
+.bkpv5 .b{width:62%;top:-7%;filter:brightness(.82)}
+.bkpv5 .f{width:68%;top:13%}
+.bkpv5 .b1{left:-6%}.bkpv5 .b2{left:19%}.bkpv5 .b3{left:44%}
+.bkpv5 .f1{left:3.5%}.bkpv5 .f2{left:28.5%}
+</style>
+<script>
+(function(){
+  var H = document.documentElement.classList; if (!(H.contains('bk-bf') || H.contains('bk-pv')) || window.__bkPv5) return; window.__bkPv5 = true;
+  function build(){
+    document.querySelectorAll('quantity-discount-cards').forEach(function(q){
+      var five = q.querySelector('.qty2__opt[data-quantity="5"] .qty2k__img');
+      var one = q.querySelector('.qty2__opt[data-quantity="1"] .qty2k__img img');
+      if (!five || !one || five.querySelector('.bkpv5')) return;
+      var src = one.currentSrc || one.src; if (!src) return;
+      var alt = (one.getAttribute('alt') || '').replace(/1 pote/i, '5 potes') || '5 potes';
+      var cls = ['b b1', 'b b2', 'b b3', 'f f1', 'f f2'];
+      five.innerHTML = '<div class="bkpv5" role="img" aria-label="' + alt.replace(/"/g, '') + '">' +
+        cls.map(function(c){ return '<img class="' + c + '" src="' + src + '" alt="" loading="lazy" decoding="async">'; }).join('') + '</div>';
+    });
+  }
+  var t = 0;
+  new MutationObserver(function(){ clearTimeout(t); t = setTimeout(build, 60); }).observe(document.documentElement, { childList: true, subtree: true });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build); else build();
+})();
+</script>

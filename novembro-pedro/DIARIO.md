@@ -700,3 +700,12 @@
      - Os guias não existem como produto na Shopify, e não há entrega configurada.
   3. Na barra fixa do produto: enfatizar o desconto e deixar mais agressivo. Depende do "até 40%", que ainda não existe na Shopify.
   4. "Complete sua rotina": print sem comentário visível.
+- **06/11 · Revisão do Vitor aplicada no tema 11/11** (com o ok do Pedro), só no tema 168318599400, que não está publicado. Os 4 arquivos foram conferidos por md5.
+  1. O "Comprar" da tarja vai para `/#mais-vendidos` (a seção Mais Vendidos da home). Testado: rola até a seção.
+  2. Seletor de potes 1 / 3 / 5 em todos os produtos:
+     - 3 potes leva "+ Manual da Suplementação" (foto de 3 potes);
+     - 5 potes leva "+ Guia Saúde da Mulher" (imagem de 5 potes montada pelo bk-pv-5potes, agora renderizado no tema);
+     - testado no Hair e no Tri: clicar em 5 põe 5 no carrinho.
+     - Arquivos: blocks/_product-quantity-cards, bk-pv-5potes, botanika-campaign-css, bk-1111.
+  3. A barra fixa mais agressiva espera o desconto do Vitor.
+  - Pendências: os guias não existem na Shopify e a entrega precisa ser definida (Vitor); o "Complete sua rotina" está sem pedido claro.

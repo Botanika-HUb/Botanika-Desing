@@ -1,0 +1,501 @@
+{% liquid
+assign product = closest.product
+assign current_variant = product.selected_or_first_available_variant
+assign unit_price = current_variant.price
+assign bs = block.settings
+assign installments = bs.installments
+assign show_currency = settings.show_currency_code
+assign fst = bs.free_shipping_threshold | default: 349
+assign free_ship = fst | times: 100
+assign ptype = product.type | downcase
+assign legend_label = bs.legend_label
+if ptype == 'kit'
+  assign legend_label = 'Seu kit:'
+endif
+%}
+{%- capture sf_camp -%}{%- render 'botanika-campaign-flag', product: product -%}{%- endcapture -%}
+{%- assign sf_camp = sf_camp | strip -%}
+{%- assign sf_bonus = 0 -%}
+{%- if sf_camp == 'yes' and settings.camp_active -%}{%- assign sf_bonus = 8 -%}{%- endif -%}
+{%- assign t1_eff = bs.tier1_discount | plus: sf_bonus -%}
+{%- assign t2_eff = bs.tier2_discount | plus: sf_bonus -%}
+{%- assign t3_eff = bs.tier3_discount | plus: sf_bonus -%}
+{%- if sf_camp == 'yes' and settings.camp_active -%}
+{%- assign t1_sub = '🔥 Semana Fitness — 8%' -%}
+{%- assign t2_sub = '5% + 8% Semana Fitness' -%}
+{%- assign t3_sub = '10% + 8% Semana Fitness' -%}
+{%- else -%}
+{%- assign t1_sub = bs.tier1_subtitle -%}
+{%- assign t2_sub = bs.tier2_subtitle -%}
+{%- assign t3_sub = bs.tier3_subtitle -%}
+{%- endif -%}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
+<quantity-discount-cards
+class="qty2"
+data-unit-price="{{ unit_price }}"
+data-installments="{{ installments }}"
+data-money-format="{{ shop.money_format | escape }}"
+data-free-ship="{{ free_ship }}"
+{{ block.shopify_attributes }}
+>
+{%- comment -%} Prova social: só dado real do Judge.me (nota + nº de avaliações do produto). {%- endcomment -%}
+{%- assign r_count = product.metafields.reviews.rating_count.value | default: 0 -%}
+{%- if r_count > 0 -%}
+{%- assign r_val = product.metafields.reviews.rating.value.rating | round: 1 -%}
+<div class="qty2__sp"><span class="qty2__stars" aria-hidden="true">★★★★★</span><span class="qty2__rating">{{ r_val }}</span><span class="qty2__sptx">· {{ r_count }} {% if r_count == 1 %}avaliação{% else %}avaliações{% endif %} de clientes</span></div>
+{%- endif -%}
+{%- comment -%} ===== Barra real de frete grátis ===== {%- endcomment -%}
+<div class="qty2__ship" data-ship>
+<div class="qty2__ship-top"><span class="qty2__truck">🚚</span><span data-ship-msg></span></div>
+<div class="qty2__ship-track"><div class="qty2__ship-fill" data-ship-fill></div></div>
+<div class="qty2__ship-scale"><span>R$0</span><span class="qty2__ship-goal" data-ship-goal>Frete grátis · {% if show_currency %}{{ free_ship | money_with_currency }}{% else %}{{ free_ship | money }}{% endif %}</span></div>
+</div>
+<fieldset class="qty2__fs">
+<legend class="qty2__legend"><span>{{ legend_label }}</span> <b class="qty2__legend-val"></b></legend>
+<div class="qty2__grid">
+{%- if ptype == 'kit' -%}
+{%- liquid
+assign k_cmp = current_variant.compare_at_price | default: 0
+assign k_save = 0
+assign k_pct = 0
+if k_cmp > unit_price
+  assign k_save = k_cmp | minus: unit_price
+  assign k_pct = k_save | times: 100.0 | divided_by: k_cmp | round
+endif
+assign k_inst = unit_price | divided_by: installments
+assign k_free = false
+if unit_price >= free_ship
+  assign k_free = true
+endif
+assign k_img = product.metafields.custom.qty_tier1_image.value | default: product.featured_image
+assign k_name = product.metafields.custom.bk_nome.value | default: product.title
+assign k_sub = product.metafields.custom.qty_kit_subtitle.value
+-%}
+<div class="qty2__opt qty2__kit is-active" data-tier="1" data-quantity="1" data-discount="0" role="radio" aria-checked="true" tabindex="0">
+<div class="qty2k__ribbon">{% if k_pct > 0 %}🏷️ Oferta do kit · {{ k_pct }}% OFF{% else %}🏷️ Oferta do kit{% endif %}</div>
+<div class="qty2k__top">
+<div class="qty2k__img">{%- if k_img != blank -%}{{ k_img | image_url: width: 360 | image_tag: loading: 'lazy', class: 'qty2__img', alt: k_name }}{%- endif -%}</div>
+<div class="qty2k__head">
+<span class="qty2__q qty2k__name">{{ k_name }}</span>
+{%- if k_sub != blank -%}<span class="qty2k__sub">{{ k_sub }}</span>{%- endif -%}
+<div class="qty2k__pills">
+{%- if k_pct > 0 -%}<span class="qty2k__pill qty2k__pill--off">{{ k_pct }}% OFF</span>{%- endif -%}
+{%- if k_free -%}<span class="qty2k__pill qty2k__pill--free">🚚 Frete grátis</span>{%- endif -%}
+</div>
+</div>
+</div>
+{%- if product.variants.size > 1 and product.options.size == 1 -%}
+<div class="qty2k__flav" data-kopt="{{ product.options.first | escape }}">
+<span class="qty2k__flav-l">Escolha o sabor do whey:</span>
+<div class="qty2k__chips">
+{%- for v in product.variants -%}
+{%- liquid
+  assign fl = v.option1 | downcase
+  assign em = '🥛'
+  if fl contains 'choco'
+    assign em = '🍫'
+  elsif fl contains 'capp' or fl contains 'café' or fl contains 'cafe'
+    assign em = '☕'
+  endif
+-%}
+<button type="button" class="qty2k__chip{% if v.id == current_variant.id %} is-on{% endif %}" data-kvar="{{ v.id }}" data-kval="{{ v.option1 | escape }}" aria-pressed="{% if v.id == current_variant.id %}true{% else %}false{% endif %}"{% unless v.available %} disabled{% endunless %}>{{ em }} {{ v.option1 }}</button>
+{%- endfor -%}
+</div>
+</div>
+<style>.product-detail__variant-picker{display:none!important}</style>
+{%- endif -%}
+<div class="qty2k__price">
+{%- if k_save > 0 -%}<s class="qty2k__cmp">{{ k_cmp | money }}</s>{%- endif -%}
+<div class="qty2k__big"><span class="qty2k__x">{{ installments }}x de</span> <b>{{ k_inst | money }}</b> <span class="qty2k__sj">sem juros</span></div>
+<div class="qty2k__inst">ou <b data-total>{{ unit_price | money }}</b> à vista</div>
+</div>
+{%- if k_save > 0 -%}<div class="qty2k__save">✓ Você economiza {{ k_save | money }}{% if k_free %} + frete grátis{% endif %}</div>{%- elsif k_free -%}<div class="qty2k__save">✓ Frete grátis pra todo o Brasil</div>{%- endif -%}
+</div>
+{%- else -%}
+{%- assign order = '3,2,1' | split: ',' -%}
+{%- assign active_done = false -%}
+{%- for n in order -%}
+{%- liquid
+case n
+when '1'
+assign q = bs.tier1_quantity
+assign eff = t1_eff
+assign title = bs.tier1_title
+assign sub = t1_sub
+assign badge1 = bs.tier1_badge1
+assign msg = bs.tier1_message
+assign bonus = bs.tier1_bonus
+assign setimg = bs.tier1_image
+assign metaimg = product.metafields.custom.qty_tier1_image.value
+assign enabled = bs.tier1_enabled
+when '2'
+assign q = bs.tier2_quantity
+assign eff = t2_eff
+assign title = bs.tier2_title
+assign sub = t2_sub
+assign badge1 = bs.tier2_badge1
+assign msg = bs.tier2_message
+assign bonus = bs.tier2_bonus
+assign setimg = bs.tier2_image
+assign metaimg = product.metafields.custom.qty_tier2_image.value
+assign enabled = bs.tier2_enabled
+when '3'
+assign q = bs.tier3_quantity
+assign eff = t3_eff
+assign title = bs.tier3_title
+assign sub = t3_sub
+assign badge1 = bs.tier3_badge1
+assign msg = bs.tier3_message
+assign bonus = bs.tier3_bonus
+assign setimg = bs.tier3_image
+assign metaimg = product.metafields.custom.qty_tier3_image.value
+assign enabled = bs.tier3_enabled
+endcase
+comment
+  Kit ja vem com o desconto embutido no preco. Nao oferecemos 2 ou 3
+  kits pra empilhar porcentagem: em produto do tipo "Kit" so o tier 1
+  aparece, independente do que estiver marcado no template.
+endcomment
+comment
+  11/11 (06/11, revisão do Vitor): seletor 1 / 3 / 5 potes. O 3 ganha o Manual da Suplementação
+  e o 5 ganha o Guia Saúde da Mulher. Vale só neste tema exclusivo do 11/11, para todos os produtos.
+  A imagem de 3 potes vem do campo qty_tier3_image; a de 5 potes é montada pelo bk-pv-5potes.
+endcomment
+if n == '2'
+  assign q = 3
+  assign title = '3 potes'
+  assign sub = ''
+  assign bonus = '+ Manual da Suplementação'
+  assign setimg = bs.tier3_image
+  assign metaimg = product.metafields.custom.qty_tier3_image.value
+elsif n == '3'
+  assign q = 5
+  assign title = '5 potes'
+  assign sub = ''
+  assign bonus = '+ Guia Saúde da Mulher'
+  assign setimg = bs.tier1_image
+  assign metaimg = product.metafields.custom.qty_tier1_image.value
+endif
+if ptype == 'kit'
+  if n != '1'
+    assign enabled = false
+  else
+    assign title = '1 KIT'
+    assign sub = product.metafields.custom.qty_kit_subtitle.value | default: ''
+  endif
+endif
+-%}
+{%- if enabled -%}
+{%- liquid
+assign c_total = unit_price | times: q
+assign c_disc_amt = c_total | times: eff | divided_by: 100
+assign c_price = c_total | minus: c_disc_amt
+assign c_installment = c_price | divided_by: installments
+assign c_unit = c_price | divided_by: q
+assign c_free = false
+if c_price >= free_ship
+assign c_free = true
+endif
+assign is_active = false
+unless active_done
+assign is_active = true
+assign active_done = true
+endunless
+-%}
+{%- liquid
+assign c_savebox = false
+if c_disc_amt > 0 or c_free
+  assign c_savebox = true
+endif
+-%}
+<div class="qty2__opt qty2__kit qty2__tier{% if is_active %} is-active{% endif %}" data-tier="{{ n }}" data-quantity="{{ q }}" data-discount="{{ eff }}" role="radio" aria-checked="{% if is_active %}true{% else %}false{% endif %}" tabindex="0">
+{%- if badge1 != blank -%}<div class="qty2k__ribbon">🏷️ {{ badge1 }}{% if eff > 0 %} · {{ eff }}% OFF{% endif %}</div>{%- elsif eff > 0 -%}<div class="qty2k__ribbon">🏷️ {{ eff }}% OFF</div>{%- endif -%}
+<div class="qty2k__top">
+<div class="qty2k__img">
+{%- if metaimg != blank -%}{{ metaimg | image_url: width: 300 | image_tag: loading: 'lazy', class: 'qty2__img', alt: title }}
+{%- elsif setimg != blank -%}{{ setimg | image_url: width: 300 | image_tag: loading: 'lazy', class: 'qty2__img', alt: title }}
+{%- elsif product.featured_image -%}{{ product.featured_image | image_url: width: 300 | image_tag: loading: 'lazy', class: 'qty2__img', alt: title }}
+{%- else -%}{{ 'product-1' | placeholder_svg_tag: 'qty2__img' }}{%- endif -%}
+</div>
+<div class="qty2k__head">
+<span class="qty2__q qty2k__name">{{ title }}</span>
+{%- if sub != blank and eff == 0 -%}<span class="qty2k__sub">{{ sub }}</span>{%- endif -%}
+<div class="qty2k__pills">
+{%- if eff == 0 -%}<span class="qty2k__pill qty2k__pill--reg">preço regular</span>{%- endif -%}
+<span class="qty2k__pill qty2k__pill--free" data-freeship{% unless c_free %} hidden{% endunless %}>🚚 Frete grátis</span>
+</div>
+</div>
+<span class="qty2__check"></span>
+</div>
+<div class="qty2k__price">
+{%- if eff > 0 -%}<s class="qty2k__cmp" data-compare>{{ c_total | money }}</s>{%- endif -%}
+<div class="qty2k__big"><span class="qty2k__x">{{ installments }}x de</span> <b data-installment>{{ c_installment | money }}</b> <span class="qty2k__sj">sem juros</span></div>
+<div class="qty2k__inst">ou <b data-total>{{ c_price | money }}</b> à vista{% if q > 1 and q != installments %} · <span data-perunit>{{ c_unit | money }}/pote</span>{% endif %}</div>
+</div>
+<div class="qty2k__save" data-savebox{% unless c_savebox %} hidden{% endunless %}>{%- if c_disc_amt > 0 -%}✓ Você economiza {{ c_disc_amt | money }}{% if c_free %} + frete grátis{% endif %}{%- else -%}✓ Frete grátis pra todo o Brasil{%- endif -%}</div>
+{%- if bonus != blank -%}<div class="qty2__bonus">🎁 {{ bonus }}</div>{%- endif -%}
+{%- if msg != blank -%}<div class="qty2__msg">{{ msg }}</div>{%- endif -%}
+</div>
+{%- endif -%}
+{%- endfor -%}
+{%- endif -%}
+</div>
+</fieldset>
+</quantity-discount-cards>
+{% stylesheet %}
+quantity-discount-cards.qty2{
+--q-ink:#15265c; --q-blue:#323C91; --q-blue2:#5763d6; --q-muted:#7c84a8; --q-line:#e4e8f5;
+--q-sel:#f3f5fd; --q-gold:#f4b325; --q-gold-ink:#4a3708; --q-ok:#1a8f3c; --q-ok-tint:#eaf6ee;
+display:block;
+}
+.qty2__sp{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:0 0 12px;font-size:13px;color:var(--q-muted);}
+.qty2__stars{color:#f4b325;letter-spacing:1px;font-size:15px;line-height:1;}
+.qty2__rating{font-weight:800;color:var(--q-ink);}
+.qty2__ship{background:transparent;border:0;border-radius:0;padding:4px 0 6px;margin:0 0 18px;}
+.qty2__ship-top{font-family:'Fraunces',Georgia,serif;font-size:15.5px;font-weight:600;color:var(--q-ink);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.qty2__truck{font-size:17px;line-height:1;}
+.qty2__ship [data-ship-msg] .amt,.qty2__ship .amt{color:var(--q-blue);font-weight:800;}
+.qty2__ship.is-done .amt{color:var(--q-ok);}
+.qty2__ship-track{position:relative;height:11px;border-radius:99px;background:#e7ebf8;overflow:hidden;}
+.qty2__ship-fill{position:absolute;inset:0 auto 0 0;width:0;border-radius:99px;background:linear-gradient(90deg,var(--q-blue),var(--q-blue2));transition:width .5s cubic-bezier(.22,.61,.36,1);}
+.qty2__ship.is-done .qty2__ship-fill{background:linear-gradient(90deg,var(--q-ok),#37c26e);}
+.qty2__ship-scale{display:flex;justify-content:space-between;margin-top:8px;font-size:10.5px;color:var(--q-muted);font-weight:700;font-variant-numeric:tabular-nums;}
+.qty2__ship.is-done .qty2__ship-goal{color:var(--q-ok);}
+.qty2__fs{border:0;padding:0;margin:0 0 4px;}
+.qty2__legend{font-size:13px;color:var(--q-muted);margin:0 0 12px;display:block;}
+.qty2__legend-val{color:var(--q-ink);}
+.qty2__grid{display:flex;flex-direction:column;gap:12px;}
+.qty2__opt{position:relative;display:grid;grid-template-columns:26px 62px 1fr;gap:13px;align-items:center;background:#fff;border:2px solid var(--q-line);border-radius:18px;padding:15px 15px;cursor:pointer;transition:border-color .18s,background .18s,box-shadow .18s;}
+.qty2__opt:hover{border-color:var(--q-blue);}
+.qty2__opt.is-active{border-color:var(--q-blue);background:var(--q-sel);box-shadow:0 8px 22px rgba(50,60,145,.14);}
+.qty2__check{width:26px;height:26px;border-radius:50%;border:2px solid #cdd3e6;display:grid;place-items:center;transition:.18s;}
+.qty2__opt.is-active .qty2__check{border-color:var(--q-blue);background:var(--q-blue);}
+.qty2__check::after{content:"";width:6px;height:12px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg) scale(0);margin-top:-2px;transition:.18s;}
+.qty2__opt.is-active .qty2__check::after{transform:rotate(45deg) scale(1);}
+.qty2__jar{width:62px;height:62px;display:grid;place-items:center;}
+.qty2__img{width:100%;height:100%;object-fit:contain;}
+.qty2__b{min-width:0;}
+.qty2__t{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;}
+.qty2__q{font-family:'Fraunces',Georgia,serif;font-size:17px;font-weight:600;color:var(--q-ink);line-height:1.1;}
+.qty2__per{font-size:12px;color:var(--q-muted);font-weight:600;}
+.qty2__pills{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 6px;}
+.qty2__pill{font-size:11px;font-weight:800;padding:3px 10px;border-radius:99px;line-height:1.35;white-space:nowrap;}
+.qty2__pill--off{background:var(--q-blue);color:#fff;}
+.qty2__pill--free{background:var(--q-ok-tint);color:var(--q-ok);}
+.qty2__pill--reg{background:#eef1f9;color:var(--q-muted);}
+.qty2__sub{display:block;font-size:12px;color:var(--q-muted);margin-bottom:6px;}
+.qty2__price{font-size:12px;color:var(--q-muted);font-variant-numeric:tabular-nums;line-height:1.5;}
+.qty2__big{font-size:18px;font-weight:800;color:var(--q-blue);}
+.qty2__price b{color:var(--q-ink);font-weight:800;}
+.qty2__cmp{color:#aab0c8;text-decoration:line-through;margin-left:6px;}
+.qty2__save{display:inline-block;margin-top:4px;font-size:11.5px;font-weight:800;color:var(--q-ok);}
+.qty2__badge{position:absolute;top:-11px;right:16px;font-size:10.5px;font-weight:800;padding:4px 12px;border-radius:99px;letter-spacing:.02em;background:var(--q-blue);color:#fff;box-shadow:0 4px 10px rgba(50,60,145,.25);}
+.qty2__opt[data-tier="3"] .qty2__badge{background:var(--q-gold);color:var(--q-gold-ink);box-shadow:0 4px 10px rgba(200,150,20,.3);}
+.qty2__bonus{grid-column:1 / -1;display:flex;align-items:center;gap:8px;margin-top:4px;background:#fff8e6;border:1px dashed var(--q-gold);color:#7a5a12;font-weight:800;font-size:12px;padding:9px 12px;border-radius:12px;line-height:1.3;}
+.qty2__msg{grid-column:1 / -1;margin-top:4px;background:var(--q-blue);color:#fff;font-size:12px;font-weight:700;padding:6px 12px;border-radius:8px;text-align:center;}
+.qty2__opt.qty2__kit{display:block;padding:0;overflow:hidden;cursor:default;border-color:var(--q-blue);background:linear-gradient(180deg,#f3f5fd 0%,#fff 70%);box-shadow:0 10px 26px rgba(50,60,145,.16);}
+.qty2k__ribbon{display:flex;justify-content:center;align-items:center;gap:6px;background:var(--q-blue);color:#fff;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:7px 12px;}
+.qty2k__top{display:flex;gap:14px;align-items:center;padding:14px 16px 4px;}
+.qty2k__img{flex:0 0 96px;width:96px;height:96px;}
+.qty2k__img img{width:100%;height:100%;object-fit:contain;}
+.qty2k__head{min-width:0;display:flex;flex-direction:column;gap:5px;}
+.qty2__kit .qty2k__name{font-size:19px;}
+.qty2k__sub{font-size:12px;color:var(--q-muted);line-height:1.35;}
+.qty2k__pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:3px;}
+.qty2k__pill{display:inline-flex;align-items:center;font-size:12px;font-weight:800;padding:5px 11px;border-radius:99px;line-height:1.2;white-space:nowrap;}
+.qty2k__pill--off{background:var(--q-ok);color:#fff;}
+.qty2k__pill--free{background:var(--q-ok-tint);color:var(--q-ok);}
+.qty2k__price{display:flex;flex-direction:column;gap:3px;padding:8px 16px 0;font-variant-numeric:tabular-nums;}
+.qty2k__cmp{font-size:12px;color:#a3a9c2;}
+.qty2k__big{display:flex;align-items:baseline;gap:5px;flex-wrap:wrap;color:var(--q-blue);font-size:15px;font-weight:700;}
+.qty2k__big b{font-size:28px;font-weight:800;color:var(--q-blue);line-height:1.05;letter-spacing:-.01em;}
+.qty2k__sj{display:inline-flex;align-items:center;background:var(--q-ok-tint);color:var(--q-ok);font-size:11.5px;font-weight:800;padding:2px 8px;border-radius:999px;}
+.qty2k__inst{font-size:12.5px;color:var(--q-muted);margin-top:2px;}
+.qty2k__inst b{color:var(--q-muted);font-weight:700;}
+.qty2k__save{margin:6px 16px 12px;color:var(--q-ok);font-weight:700;font-size:12.5px;line-height:1.35;}
+.qty2k__pill--reg{background:#eef1f9;color:var(--q-muted);}
+.qty2k__flav{padding:10px 16px 2px;}
+.qty2k__flav-l{display:block;font-size:12.5px;font-weight:700;color:var(--q-ink);margin-bottom:8px;}
+.qty2k__chips{display:flex;flex-wrap:wrap;gap:8px;}
+.qty2k__chip{appearance:none;-webkit-appearance:none;font:inherit;font-size:13px;font-weight:700;color:var(--q-ink);background:#fff;border:2px solid var(--q-line);border-radius:99px;padding:7px 14px;line-height:1.2;cursor:pointer;transition:border-color .15s,background .15s,color .15s;white-space:nowrap;}
+.qty2k__chip:hover{border-color:var(--q-blue2);}
+.qty2k__chip.is-on{border-color:var(--q-blue);background:var(--q-blue);color:#fff;}
+.qty2k__chip:disabled{opacity:.45;cursor:not-allowed;text-decoration:line-through;}
+.qty2k__pill[hidden],.qty2k__save[hidden]{display:none;}
+.qty2__opt.qty2__tier{cursor:pointer;border-color:var(--q-line);background:#fff;box-shadow:none;}
+.qty2__opt.qty2__tier:hover{border-color:var(--q-blue2);}
+.qty2__opt.qty2__tier.is-active{border-color:var(--q-blue);background:linear-gradient(180deg,#f3f5fd 0%,#fff 70%);box-shadow:0 10px 26px rgba(50,60,145,.16);}
+.qty2__opt.qty2__tier[data-tier="3"] .qty2k__ribbon{background:var(--q-gold);color:var(--q-gold-ink);}
+.qty2__tier .qty2k__img{flex-basis:80px;width:80px;height:80px;}
+.qty2__tier .qty2k__head{flex:1 1 auto;}
+.qty2__tier .qty2__check{flex:0 0 26px;align-self:flex-start;margin-top:2px;}
+.qty2__tier:not(.is-active) .qty2k__cmp,.qty2__tier:not(.is-active) .qty2k__inst,.qty2__tier:not(.is-active) .qty2k__save,.qty2__tier:not(.is-active) .qty2k__sub{display:none;}
+.qty2__tier:not(.is-active) .qty2k__price{padding-bottom:14px;}
+.qty2__tier:not(.is-active) .qty2k__big b{font-size:20px;}
+.qty2__tier .qty2__bonus,.qty2__tier .qty2__msg{margin:0 16px 14px;}
+@media (max-width:749px){
+.qty2__opt{grid-template-columns:24px 52px 1fr;gap:11px;padding:14px 13px;}
+.qty2__jar{width:52px;height:52px;}
+.qty2__q{font-size:16px;}
+.qty2__opt.qty2__kit{padding:0;}
+.qty2k__top{gap:12px;padding:12px 14px 4px;}
+.qty2k__img{flex-basis:80px;width:80px;height:80px;}
+.qty2__kit .qty2k__name{font-size:17px;}
+.qty2k__price{padding:8px 14px 0;}
+.qty2k__big b{font-size:24px;}
+.qty2k__save{margin:6px 14px 12px;font-size:12px;}
+.qty2__tier .qty2k__img{flex-basis:64px;width:64px;height:64px;}
+.qty2__tier:not(.is-active) .qty2k__big b{font-size:19px;}
+.qty2__tier .qty2__bonus,.qty2__tier .qty2__msg{margin:0 14px 14px;}
+.qty2k__flav{padding:10px 14px 2px;}
+.qty2k__chip{font-size:12.5px;padding:7px 12px;}
+}
+@media (prefers-reduced-motion:reduce){.qty2__ship-fill,.qty2__check::after,.qty2__opt{transition:none;}}
+{% endstylesheet %}
+{% javascript %}
+class QuantityDiscountCards extends HTMLElement {
+connectedCallback(){
+this.cards = Array.prototype.slice.call(this.querySelectorAll('.qty2__opt'));
+this.installments = parseInt(this.dataset.installments) || 3;
+this.moneyFormat = this.dataset.moneyFormat || '';
+this.freeShip = parseInt(this.dataset.freeShip) || 34900;
+this.legendVal = this.querySelector('.qty2__legend-val');
+this.ship = this.querySelector('[data-ship]');
+this.shipFill = this.querySelector('[data-ship-fill]');
+this.shipMsg = this.querySelector('[data-ship-msg]');
+var self = this;
+this.cards.forEach(function(card){
+card.addEventListener('click', function(){ self.select(card); });
+card.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); self.select(card); } });
+});
+this.chips = Array.prototype.slice.call(this.querySelectorAll('[data-kvar]'));
+this.chips.forEach(function(b){ b.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); self.pickFlavor(b); }); });
+this.observeVariant();
+var active = this.querySelector('.qty2__opt.is-active') || this.cards[0];
+if(active){ this.apply(active); this.legend(active); this.updateShip(active); }
+}
+apply(card){
+var qty = parseInt(card.dataset.quantity);
+var section = this.closest('[id^="shopify-section-"]');
+var input = section ? section.querySelector('input.quantity-input') : document.querySelector('input.quantity-input');
+if(input){ input.value = qty; input.dispatchEvent(new Event('change',{bubbles:true})); }
+}
+select(card){
+this.cards.forEach(function(c){ c.classList.remove('is-active'); c.setAttribute('aria-checked','false'); });
+card.classList.add('is-active'); card.setAttribute('aria-checked','true');
+this.apply(card); this.legend(card); this.updateShip(card);
+}
+legend(card){ if(this.legendVal){ var t=card.querySelector('.qty2__q'); this.legendVal.textContent = t ? t.textContent.trim() : ''; } }
+priceOf(card){
+var qty=parseInt(card.dataset.quantity), disc=parseInt(card.dataset.discount), unit=parseInt(this.dataset.unitPrice);
+var total=unit*qty; return total - Math.floor(total*disc/100);
+}
+updateShip(card){
+if(!this.ship) return;
+var price=this.priceOf(card);
+var pct=Math.min(100, Math.round(price/this.freeShip*100));
+if(this.shipFill) this.shipFill.style.width = pct+'%';
+if(price>=this.freeShip){
+this.ship.classList.add('is-done');
+if(this.shipMsg) this.shipMsg.innerHTML='<span class="amt">Frete grátis desbloqueado!</span> 🎉';
+} else {
+this.ship.classList.remove('is-done');
+if(this.shipMsg) this.shipMsg.innerHTML='Faltam <span class="amt">'+this.money(this.freeShip-price)+'</span> para o frete grátis';
+}
+}
+observeVariant(){
+var self=this, section=this.closest('[id^="shopify-section-"]');
+var vinput = section ? section.querySelector('input.product-variant-id') : document.querySelector('input.product-variant-id');
+var pjson = section ? section.querySelector('.productJson') : document.querySelector('.productJson');
+if(!vinput||!pjson) return;
+var data; try{ data=JSON.parse(pjson.textContent); }catch(e){ return; }
+var upd=function(){ var id=parseInt(vinput.value); var v=data.variants.find(function(x){return x.id===id;}); if(v){ self.reprice(v.price); self.syncChips(id); } };
+new MutationObserver(upd).observe(vinput,{attributes:true,attributeFilter:['value']});
+vinput.addEventListener('change',upd);
+}
+syncChips(id){
+if(!this.chips||!this.chips.length) return;
+this.chips.forEach(function(c){ var on=parseInt(c.dataset.kvar)===id; c.classList.toggle('is-on',on); c.setAttribute('aria-pressed',on?'true':'false'); });
+}
+pickFlavor(b){
+var id=parseInt(b.dataset.kvar); this.syncChips(id);
+var section=this.closest('[id^="shopify-section-"]')||document;
+var wrap=b.closest('[data-kopt]'), opt=wrap?wrap.dataset.kopt:'', val=b.dataset.kval, radio=null;
+Array.prototype.forEach.call(section.querySelectorAll('input[type="radio"]'), function(r){ if(!radio && r.value===val && (!opt || r.name===opt)) radio=r; });
+if(radio){ if(!radio.checked) radio.click(); return; }
+var vinput=section.querySelector('input.product-variant-id');
+if(vinput){ vinput.value=id; vinput.setAttribute('value',id); vinput.dispatchEvent(new Event('change',{bubbles:true})); }
+try{ var u=new URL(window.location.href); u.searchParams.set('variant',id); history.replaceState(null,'',u.toString()); }catch(e){}
+}
+reprice(unit){
+var self=this; this.dataset.unitPrice=unit;
+this.cards.forEach(function(card){
+var qty=parseInt(card.dataset.quantity), disc=parseInt(card.dataset.discount);
+var total=unit*qty, damt=Math.floor(total*disc/100), price=total-damt;
+var per=Math.floor(price/qty), inst=Math.floor(price/self.installments), free=price>=self.freeShip;
+var set=function(s,v){var el=card.querySelector(s); if(el) el.textContent=v;};
+set('[data-installment]', self.money(inst)); set('[data-total]', self.money(price));
+set('[data-compare]', self.money(total)); set('[data-perunit]', self.money(per)+'/pote');
+var sv=card.querySelector('[data-savebox]'); if(sv){ sv.hidden=!(damt>0||free); sv.textContent = damt>0 ? '✓ Você economiza '+self.money(damt)+(free?' + frete grátis':'') : '✓ Frete grátis pra todo o Brasil'; }
+var fs=card.querySelector('[data-freeship]'); if(fs) fs.hidden=!free;
+});
+var active=this.querySelector('.qty2__opt.is-active'); if(active) this.updateShip(active);
+}
+money(cents){
+var a=(cents/100).toFixed(2), p=a.split('.'), ip=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,'.'), dp=p[1], f=this.moneyFormat;
+var m=function(k){return String.fromCharCode(123,123)+k+String.fromCharCode(125,125);};
+return f.replace(m('amount_with_comma_separator'),ip+','+dp).replace(m('amount_no_decimals_with_comma_separator'),ip).replace(m('amount_no_decimals'),p[0]).replace(m('amount'),a);
+}
+}
+customElements.define('quantity-discount-cards', QuantityDiscountCards);
+{% endjavascript %}
+{% schema %}
+{
+"name": "Quantity discount cards",
+"tag": null,
+"settings": [
+{ "type": "header", "content": "Prova social (desativada — só Judge.me)" },
+{ "type": "checkbox", "id": "sp_enabled", "label": "(sem uso) Mostrar avaliação/prova social", "default": false },
+{ "type": "text", "id": "sp_rating", "label": "(sem uso) Nota", "default": "4.9" },
+{ "type": "text", "id": "sp_text", "label": "(sem uso) Texto de prova social", "default": "+2 mil clientes recompraram" },
+{ "type": "header", "content": "Geral" },
+{ "type": "text", "id": "legend_label", "label": "Rótulo da legenda", "default": "Escolha sua opção:" },
+{ "type": "range", "id": "installments", "label": "Parcelas", "min": 1, "max": 12, "step": 1, "default": 3 },
+{ "type": "number", "id": "free_shipping_threshold", "label": "Piso do frete grátis (R$)", "default": 349 },
+{ "type": "color", "id": "color_active", "label": "Cor de destaque (legado, não usado)", "default": "#323C91" },
+{ "type": "color", "id": "color_badge1", "label": "Badge 1 (legado)", "default": "#323C91" },
+{ "type": "color", "id": "color_badge2", "label": "Badge 2 (legado)", "default": "#f4b325" },
+{ "type": "header", "content": "Tier 1" },
+{ "type": "checkbox", "id": "tier1_enabled", "label": "Ativar", "default": true },
+{ "type": "image_picker", "id": "tier1_image", "label": "Imagem" },
+{ "type": "text", "id": "tier1_title", "label": "Título", "default": "1 pote" },
+{ "type": "range", "id": "tier1_quantity", "label": "Quantidade no carrinho", "min": 1, "max": 20, "step": 1, "default": 1 },
+{ "type": "range", "id": "tier1_discount", "label": "Desconto %", "min": 0, "max": 50, "step": 1, "unit": "%", "default": 0 },
+{ "type": "text", "id": "tier1_subtitle", "label": "Subtítulo" },
+{ "type": "text", "id": "tier1_badge1", "label": "Badge" },
+{ "type": "text", "id": "tier1_message", "label": "Mensagem extra" },
+{ "type": "text", "id": "tier1_bonus", "label": "Selo de brinde" },
+{ "type": "header", "content": "Tier 2" },
+{ "type": "checkbox", "id": "tier2_enabled", "label": "Ativar", "default": true },
+{ "type": "image_picker", "id": "tier2_image", "label": "Imagem" },
+{ "type": "text", "id": "tier2_title", "label": "Título", "default": "2 potes" },
+{ "type": "range", "id": "tier2_quantity", "label": "Quantidade no carrinho", "min": 1, "max": 20, "step": 1, "default": 2 },
+{ "type": "range", "id": "tier2_discount", "label": "Desconto %", "min": 0, "max": 50, "step": 1, "unit": "%", "default": 5 },
+{ "type": "text", "id": "tier2_subtitle", "label": "Subtítulo", "default": "Leve 2 e economize" },
+{ "type": "text", "id": "tier2_badge1", "label": "Badge", "default": "Mais vendido" },
+{ "type": "text", "id": "tier2_message", "label": "Mensagem extra" },
+{ "type": "text", "id": "tier2_bonus", "label": "Selo de brinde" },
+{ "type": "header", "content": "Tier 3" },
+{ "type": "checkbox", "id": "tier3_enabled", "label": "Ativar", "default": true },
+{ "type": "image_picker", "id": "tier3_image", "label": "Imagem" },
+{ "type": "text", "id": "tier3_title", "label": "Título", "default": "3 potes" },
+{ "type": "range", "id": "tier3_quantity", "label": "Quantidade no carrinho", "min": 1, "max": 20, "step": 1, "default": 3 },
+{ "type": "range", "id": "tier3_discount", "label": "Desconto %", "min": 0, "max": 50, "step": 1, "unit": "%", "default": 10 },
+{ "type": "text", "id": "tier3_subtitle", "label": "Subtítulo", "default": "Leve 3 — melhor preço por pote" },
+{ "type": "text", "id": "tier3_badge1", "label": "Badge", "default": "Melhor valor" },
+{ "type": "text", "id": "tier3_message", "label": "Mensagem extra" },
+{ "type": "text", "id": "tier3_bonus", "label": "Selo de brinde", "default": "+ Manual da Suplementação" }
+],
+"presets": [ { "name": "Quantity discount cards" } ]
+}
+{% endschema %}
