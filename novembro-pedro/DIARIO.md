@@ -709,3 +709,4 @@
      - Arquivos: blocks/_product-quantity-cards, bk-pv-5potes, botanika-campaign-css, bk-1111.
   3. A barra fixa mais agressiva espera o desconto do Vitor.
   - Pendências: os guias não existem na Shopify e a entrega precisa ser definida (Vitor); o "Complete sua rotina" está sem pedido claro.
+- **06/11 · Guias (Manual da Suplementação e Guia Saúde da Mulher):** quem envia é a **Sarah, por automação** (resposta do Pedro). Pendência encerrada.
