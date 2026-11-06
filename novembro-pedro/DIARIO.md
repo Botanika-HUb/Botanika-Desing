@@ -693,3 +693,10 @@
   - **Link de acesso antecipado:** https://botanikabrasil.com.br/?acesso=vip1111. Libera o site no aparelho da pessoa até a abertura. Cliente logado continua entrando como antes.
   - Testado na prévia, no celular: visitante vê a tela fechada; com o link entra; em outra página continua liberado.
   - Falta a Sarah receber o link e o Pedro programar a publicação para 10/11 às 20h.
+- **06/11 · Revisão do Vitor no tema 11/11 (grupo IA & Tecnologia, 15h15)**, levantada e ainda sem execução:
+  1. O botão "Comprar" da tarja deve levar à âncora `#mais-vendidos` da home, e não à coleção. Simples: a âncora já existe na home.
+  2. O seletor de potes deve ter 1/3/5 no lugar de 1/2/3, com o Manual da Suplementação em 3 e o Guia Saúde da Mulher em 5.
+     - Os níveis ficam no bloco "Quantity discount cards" dos 10 templates de produto.
+     - Os guias não existem como produto na Shopify, e não há entrega configurada.
+  3. Na barra fixa do produto: enfatizar o desconto e deixar mais agressivo. Depende do "até 40%", que ainda não existe na Shopify.
+  4. "Complete sua rotina": print sem comentário visível.
