@@ -710,3 +710,9 @@
   3. A barra fixa mais agressiva espera o desconto do Vitor.
   - Pendências: os guias não existem na Shopify e a entrega precisa ser definida (Vitor); o "Complete sua rotina" está sem pedido claro.
 - **06/11 · Guias (Manual da Suplementação e Guia Saúde da Mulher):** quem envia é a **Sarah, por automação** (resposta do Pedro). Pendência encerrada.
+- **06/11 · Sleep da Mafe (edição normal, com o ok do Pedro):** feito só com o IMG_9668.
+  - Sem frase da Black, sem chamada de outra gravação e sem cena por cima da fala.
+  - Cada trecho começa e termina na fala de verdade: o começo do último trecho tinha 1,1 s de mão na blusa antes de ela falar, e saiu.
+  - Revisado quadro a quadro. O "Toque em Comprar agora" aparece nos 2,5 s finais; depois vem o cartão final.
+  - 21 s, enviado ao Drive (Novos): https://drive.google.com/file/d/1vWPye0sLsSPtapAfawv58jqJBM4cz-CP/view
+  - Mensagem para o Ítalo e a Mafe pedindo a regravação de cada roteiro inteiro numa tomada: escrita, o Pedro envia.

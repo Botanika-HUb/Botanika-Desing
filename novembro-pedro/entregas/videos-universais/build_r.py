@@ -91,6 +91,15 @@ def refine(path, a, b, lo=0.0):
 FIXEND = {'s3': 47.92, 'i11': 314.22}
 NO_IDENT = {'14'}
 
+def tighten(path, a, b):
+    """encosta o começo e o fim na fala de verdade (acima de -33 dB e 60 ms seguidos acima de -42): tira o pré e o pós com ruído de mão e roupa"""
+    raw = subprocess.run(['ffmpeg', '-v', 'error', '-ss', f'{a:.3f}', '-t', f'{b - a:.3f}', '-i', path, '-ac', '1', '-ar', '16000', '-f', 's16le', '-'], capture_output=True).stdout
+    x = np.frombuffer(raw, dtype=np.int16).astype(float) / 32768; w = 160; n = len(x) // w
+    e = 20 * np.log10(np.sqrt((x[:n * w].reshape(n, w) ** 2).mean(1)) + 1e-9)
+    loud = [i for i in range(n - 5) if e[i] > -33 and min(e[i + 1:i + 6]) > -42]  # 60 ms seguidos: estalo de mão/roupa não conta
+    if not loud: return a, b
+    return a + max(0, loud[0] / 100 - 0.10), a + min(n, loud[-1] + 3) / 100 + 0.12
+
 def mid(key):  # trecho convertido: arquivo, onde começa a fala, onde termina
     src, a, b = CL[key]; s = max(0, a - 0.5)
     return f'{DU}/mids/{key}.mp4', a - s, b - s
@@ -103,7 +112,9 @@ def cut(key):  # trecho com borda no silêncio; respeita o fim fixo
 SEGS = []  # (arquivo, (corte_a, corte_b), texto)
 if k == '2':
     for key, tx in SLEEP:
-        f, ab = cut(key); SEGS.append((f, ab, tx))
+        f, a, b = mid(key); ta, tb = tighten(f, a - 0.3, b + 0.3)
+        if key in FIXEND: tb = FIXEND[key] - (CL[key][1] - a)
+        SEGS.append((f, (ta, tb), tx))
     hook = dict(lines=['A cabeça', 'não desliga?'], em=['desliga?'])
 else:
     if k in HOOK:
@@ -113,8 +124,10 @@ else:
     if k not in NO_IDENT:
         f, ab = cut('i' + k); SEGS.append((f, ab, IDENT[k]))
 # fim fixo: logo depois de "o mês todo" vem um ruído curto (83,5 s no bruto) que o refino puxaria junto
-for (a, b), tx in BLACK: SEGS.append((f'{BR}/body_mid.mp4', (refine(f'{BR}/body_mid.mp4', a - OFF, b - OFF)[0], b - OFF + 0.03), tx))
-f, a, b = mid('c' + k); ca, cb, ctx = CTA[k]; SEGS.append((f, (refine(f, a + ca, a + cb)[0], a + cb + 0.04) if ca is not None else refine(f, a, b), ctx))  # com corte fixo, o fim não estica
+for (a, b), tx in ([] if k == '2' else BLACK): SEGS.append((f'{BR}/body_mid.mp4', (refine(f'{BR}/body_mid.mp4', a - OFF, b - OFF)[0], b - OFF + 0.03), tx))
+if k == '2': ca = None
+else:
+  f, a, b = mid('c' + k); ca, cb, ctx = CTA[k]; SEGS.append((f, (refine(f, a + ca, a + cb)[0], a + cb + 0.04) if ca is not None else refine(f, a, b), ctx))  # com corte fixo, o fim não estica
 
 if os.environ.get('DRY'):  # só confere as bordas: energia nos 40 ms de dentro de cada borda
     for f, (a, b), tx in SEGS:
@@ -138,13 +151,15 @@ for f, (a, b), tx in SEGS:
     acc += b - a; cuts.append(round(acc, 3))
 main = round(acc, 3); dur = round(main + END, 2)
 first = SEGS[0][1]; hook_end = first[1] - first[0]
-blk = next(x['t'] for x in words if x['w'] == 'Black' and x['t'] >= cuts[-3] - 0.01)
-scenes = [dict(kind='black', a=round(blk - 0.15, 3), b=round(blk + 1.9, 3))]
 if k == '2':
-    sl = next(x['t'] for x in words if x['w'] == 'Sleep')
-    s5a = cuts[3]  # começo do trecho s5 (fim do s4): ela ajeita a blusa nos primeiros segundos, a cena do produto cobre
-    scenes.insert(0, dict(kind='prod', a=round(s5a, 3), b=round(sl + 1.5, 3), name='SLEEP<br>BOTANIKA', sub='pra desacelerar à noite', img='sleep.png'))
-cta_a = cuts[-2]
+    # 06/11 (Pedro): edição "normal", só com a gravação do Sleep e sem cena por cima da fala.
+    # O botão "Toque em Comprar agora" aparece nos 2,5 s finais da última frase; depois vem o cartão final.
+    scenes = []; blk = None
+    cta_a = round(max(cuts[-2], main - 2.5), 3)
+else:
+    blk = next(x['t'] for x in words if x['w'] == 'Black' and x['t'] >= cuts[-3] - 0.01)
+    scenes = [dict(kind='black', a=round(blk - 0.15, 3), b=round(blk + 1.9, 3))]
+    cta_a = cuts[-2]
 hk = dict(hook, a=0.0, b=round(min(3.2, hook_end), 2))
 cfg = dict(hook=hk, words=words, cuts=cuts, scenes=scenes, hot=HOT, cta=dict(a=cta_a, b=main), end=main, dur=dur)
 json.dump(cfg, open(f'{W}/cfg_r{k}.json', 'w'), ensure_ascii=False)
@@ -154,7 +169,7 @@ terms = []; acc = 0
 for i, (f, (a, b), _) in enumerate(SEGS):
     if i % 2: terms.append(f"0.07*between(it,{acc:.3f},{acc + b - a:.3f})")
     acc += b - a
-for t0 in [0.3, blk - 0.1, cta_a + 0.1]:
+for t0 in [t for t in [0.3, (blk - 0.1) if blk else None, cta_a + 0.1] if t is not None]:
     terms.append(f"0.12*clip((it-{t0 - 0.12:.3f})/0.12,0,1)*clip(({t0 + 1.0:.3f}-it)/0.25,0,1)")
 z = '1+' + '+'.join(terms)
 inp = []; fc = []; n = len(SEGS)
