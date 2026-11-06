@@ -678,3 +678,11 @@
 - **Segunda 09/11, 18h:** cupom privado do Recovery (12 a 20/11); tema da Week já pronto, falta programar para 11/11 às 23h59.
 - **Atrasada:** selo do Reclame Aqui (desde 20/10), que depende de abrir a conta.
 - **Rituais:** Daily às 9h20.
+- **06/11 · Recovery 11/11 (Botanika), com o ok do Pedro:** cupom **RECOVERY11** criado e **desativado** (DiscountCodeNode 1595989917928).
+  - Configuração: 10% provisório em todo o site, um uso por cliente, não soma com desconto de produto nem de pedido, soma com frete.
+  - Falta o Vitor responder:
+    - o desconto do "até 40%";
+    - se o cupom substitui ou soma com a Week (12 a 20/11).
+  - Para ativar: trocar a %, pôr as datas de 12/11 00h a 20/11 23h59 e testar.
+  - O frete grátis sem mínimo e a Q10 acima de R$500 não cabem no mesmo código (a Shopify só permite um tipo de desconto por código). Precisariam de um segundo código, ou de uma decisão do Vitor.
+  - A Revita foi ignorada (regra fixa).
