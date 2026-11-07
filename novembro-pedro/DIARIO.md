@@ -716,3 +716,45 @@
   - Revisado quadro a quadro. O "Toque em Comprar agora" aparece nos 2,5 s finais; depois vem o cartão final.
   - 21 s, enviado ao Drive (Novos): https://drive.google.com/file/d/1vWPye0sLsSPtapAfawv58jqJBM4cz-CP/view
   - Mensagem para o Ítalo e a Mafe pedindo a regravação de cada roteiro inteiro numa tomada: escrita, o Pedro envia.
+
+### 06/11 — fechamento
+- **Feito:**
+  - Tema 11/11:
+    - abre às 00h;
+    - link de acesso antecipado `?acesso=vip1111`;
+    - botão do grupo VIP (sndflw.com/i/botanika-vip);
+    - seletor 1 / 3 / 5 com Manual e Guia;
+    - "Comprar" da tarja vai para os mais vendidos da home;
+    - tudo testado na prévia.
+  - Cupom RECOVERY11 criado e desativado.
+  - Sleep da Mafe só com a própria gravação, enviado ao Drive.
+  - Mensagens escritas para a Sarah (link do VIP), o Vitor (Recovery e "até 40%") e o Ítalo e a Mafe (regravação).
+- **Decisões do Pedro:** fazer o Sleep sozinho e pedir a regravação; os guias saem pela automação da Sarah; esperar o desconto para a barra fixa.
+- **Pendente:**
+  - "até 40%" e a regra do Recovery (Vitor);
+  - "Complete sua rotina" (Vitor);
+  - programar a publicação do tema 11/11 para 10/11 às 20h (Pedro);
+  - nota fiscal (Pedro, venceu em 06/11 e ainda está aberta no Alliance);
+  - vídeos de venda do 11/11 (a Mafe não gravou);
+  - Álvaro (nota do brinde).
+- **Bloqueios:** GitHub 403 (9 commits locais); receptor do Drive ainda com a senha provisória.
+- **Alliance (07/11, 9h):** abertas
+  - nota fiscal, **atrasada 1 dia**;
+  - 16 vídeos do 1º lote, **atrasada 1 dia**;
+  - cupom do Recovery (09/11, 18h);
+  - tema da Week (09/11, 18h);
+  - Pix 5% (10/11, 18h).
+  - As tarefas do 11/11 (tema, site fechado, oferta, brindes, criativos) não aparecem mais como "a fazer".
+
+### 07/11 (sábado) — plano
+- Hoje não vence nada novo. Atrasadas: **nota fiscal** e **16 vídeos do 1º lote** (Sleep entregue; o resto depende da regravação).
+- **Segunda 09/11, 18h:**
+  - cupom do Recovery (falta o Vitor);
+  - tema da Week (pronto; falta o Pedro programar para 11/11 às 23h59);
+  - início do aviso do acesso antecipado (Sarah).
+- **Terça 10/11:**
+  - Pix 5% (pesquisa de app, 18h);
+  - **tema 11/11 no ar às 20h**;
+  - Sarah manda o link do VIP às 20h;
+  - Reunião de CRO/Site às 13h.
+- **Cobrar:** Vitor ("até 40%", Recovery, Complete sua rotina), Mafe (vídeos de venda), Álvaro (nota do brinde).
