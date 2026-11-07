@@ -758,3 +758,9 @@
   - Sarah manda o link do VIP às 20h;
   - Reunião de CRO/Site às 13h.
 - **Cobrar:** Vitor ("até 40%", Recovery, Complete sua rotina), Mafe (vídeos de venda), Álvaro (nota do brinde).
+- **07/11 · Nova tarefa do Pedro: seção de ingredientes em cada página de produto.**
+  - Feita a partir do PDF do catálogo GSA (17 produtos), com o texto do rótulo no campo `custom.ingredientes`, em 21 produtos (inclusive os 4 kits).
+  - A seção fica abaixo do "O que diz o rótulo".
+  - Aplicada na cópia do tema no ar, no OFICIAL e no 11/11.
+  - Testada nos 21 produtos na cópia e por amostra no OFICIAL e no 11/11.
+  - O tema no ar e o da Week não foram alterados. Detalhes em `entregas/ingredientes/README.md`.
