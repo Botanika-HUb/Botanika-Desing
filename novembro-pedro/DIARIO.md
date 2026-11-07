@@ -764,3 +764,4 @@
   - Aplicada na cópia do tema no ar, no OFICIAL e no 11/11.
   - Testada nos 21 produtos na cópia e por amostra no OFICIAL e no 11/11.
   - O tema no ar e o da Week não foram alterados. Detalhes em `entregas/ingredientes/README.md`.
+- **07/11 · Publicação dos ingredientes:** a Shopify bloqueia editar o tema no ar por aqui. A cópia foi renomeada para "✅ NO AR — Esquenta + ingredientes (07/11)" (168436498664); o **Pedro publica pelo admin**. Depois disso, o tema antigo (168360411368) pode ser renomeado para 🗑️ APAGAR.
