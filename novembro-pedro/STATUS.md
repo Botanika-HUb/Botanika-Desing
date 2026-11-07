@@ -11,13 +11,15 @@
 - **Tema 11/11 pronto** (00h, link do VIP, 1/3/5, âncora). Falta o Pedro programar para **10/11 às 20h**. O "até 40%" e a barra fixa dependem do Vitor.
 - **Atrasadas:** nota fiscal (06/11) e 16 vídeos do 1º lote (Sleep entregue; o resto depende da regravação).
 - **Segunda 09/11, 18h:** cupom do Recovery (RECOVERY11 desativado, falta o Vitor) e programar o tema da Week.
+- **Tema no ar desde 07/11:** "✅ NO AR — Esquenta + ingredientes (07/11)" (168436498664).
 - **Bloqueios:** GitHub 403; receptor do Drive com a senha provisória.
 
 ## 📍 Onde estamos (06/11, 9h) — histórico
 - **Hoje, 12h:** link de acesso antecipado para a Sarah (precisa do ok do ajuste no tema 11/11) e os 10 vídeos de venda do 11/11 (a Mafe não gravou).
 - **Hoje, 18h:** fechar o site com o banner do VIP, programar a publicação do tema 11/11, 16 vídeos do 1º lote (reprovados, ver com o Pedro), "bem-estar por rotina" e **nota fiscal**.
 - **Roteiros da Mafe reprovados:** aguardando o ok para fazer o Sleep sozinho e pedir a regravação. O Otávio não deve subir os 15 da pasta Novos.
-- **Bloqueios:** GitHub 403; receptor do Drive com a senha provisória; Álvaro (nota do brinde); Mafe (vídeos de venda).
+- **Tema no ar desde 07/11:** "✅ NO AR — Esquenta + ingredientes (07/11)" (168436498664).
+- **Bloqueios:** GitHub 403; receptor do Drive com a senha provisória. Álvaro (nota do brinde); Mafe (vídeos de venda).
 
 ## 📍 Onde estamos (05/11, 19h45) — histórico
 - **Vídeos:**

@@ -765,3 +765,6 @@
   - Testada nos 21 produtos na cópia e por amostra no OFICIAL e no 11/11.
   - O tema no ar e o da Week não foram alterados. Detalhes em `entregas/ingredientes/README.md`.
 - **07/11 · Publicação dos ingredientes:** a Shopify bloqueia editar o tema no ar por aqui. A cópia foi renomeada para "✅ NO AR — Esquenta + ingredientes (07/11)" (168436498664); o **Pedro publica pelo admin**. Depois disso, o tema antigo (168360411368) pode ser renomeado para 🗑️ APAGAR.
+- **07/11 · Ingredientes no ar:** o Pedro publicou "✅ NO AR — Esquenta + ingredientes (07/11)" (168436498664), que é o **novo tema no ar**.
+  - Conferido ao vivo no celular (Hair, Kit Imunidade, Whey Chocolate e Q10): seção ok e Esquenta ok.
+  - O tema antigo (168360411368) foi renomeado para "🗑️ APAGAR — Esquenta sem ingredientes (07/11)".
