@@ -768,3 +768,38 @@
 - **07/11 · Ingredientes no ar:** o Pedro publicou "✅ NO AR — Esquenta + ingredientes (07/11)" (168436498664), que é o **novo tema no ar**.
   - Conferido ao vivo no celular (Hair, Kit Imunidade, Whey Chocolate e Q10): seção ok e Esquenta ok.
   - O tema antigo (168360411368) foi renomeado para "🗑️ APAGAR — Esquenta sem ingredientes (07/11)".
+
+### 07/11 — fechamento
+- **Feito:**
+  - Seção de **ingredientes** nas páginas de produto, a partir do PDF GSA (21 produtos, campo `custom.ingredientes`).
+  - Aplicada no OFICIAL e no 11/11.
+  - **No ar:** o Pedro publicou "✅ NO AR — Esquenta + ingredientes (07/11)" (168436498664). Conferido ao vivo.
+  - O tema antigo virou 🗑️ APAGAR.
+- **Pendente:**
+  - colocar a seção no tema da Week (o Pedro não respondeu);
+  - Vitor ("até 40%", Recovery, Complete sua rotina);
+  - Mafe (vídeos de venda e regravação);
+  - Álvaro (nota do brinde);
+  - nota fiscal do Pedro;
+  - programar a publicação dos temas 11/11 e Week.
+- **Bloqueios:**
+  - GitHub 403 (14 commits locais);
+  - receptor do Drive com a senha provisória;
+  - a Shopify bloqueia edição no tema publicado (só o Pedro publica).
+- **Alliance (08/11, 9h):** abertas
+  - nota fiscal e 16 vídeos (atrasadas);
+  - Recovery e tema da Week (09/11, 18h);
+  - Pix 5% (10/11, 18h).
+
+### 08/11 (domingo) — plano
+- **Hoje:** o Vitor pediu o cupom do Recovery até domingo, mas falta a resposta dele (% do "até 40%" e se soma com a Week).
+- **Segunda 09/11, 18h:**
+  - Recovery;
+  - programar o tema da Week para 11/11 às 23h59 (Pedro);
+  - Sarah começa o aviso do acesso antecipado.
+- **Terça 10/11:**
+  - Reunião de CRO/Site às 13h;
+  - Pix 5%, até 18h;
+  - **tema 11/11 no ar às 20h** (Pedro programa);
+  - Sarah manda o link do VIP às 20h.
+- **Atenção:** o tema da Week foi copiado do tema antigo, sem a seção de ingredientes. Se publicar assim, a seção some de 11 a 20/11.

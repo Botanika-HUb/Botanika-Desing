@@ -3,11 +3,17 @@
 > 🔒 **REGRA FIXA (Pedro, 29/10):** este chat cuida **somente das tarefas da BOTANIKA**. Nunca fazer nada da **VermeFree** nem da **Revita** (nem da Shoty). Se o Pedro citar VermeFree ou Revita, **parar na hora e não executar nada**: só avisar e esperar.
 
 
-> Atualizado em: **07/11/2026, 9h** (tema 11/11 pronto, Sleep entregue)
+> Atualizado em: **08/11/2026, 9h** (ingredientes no ar)
 > Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito · `[!]` bloqueado
 > ID = id da tarefa no Alliance OS (`https://alliance-os-sooty.vercel.app/?task=<ID>#tasks`)
 
-## 📍 Onde estamos (07/11, 9h) ← COMECE POR AQUI
+## 📍 Onde estamos (08/11, 9h) ← COMECE POR AQUI
+- **No ar:** "✅ NO AR — Esquenta + ingredientes (07/11)" (168436498664).
+- **Ingredientes:** no ar, no OFICIAL e no 11/11. **Falta no tema da Week** (esperando o ok do Pedro).
+- **Segunda 09/11, 18h:** Recovery (falta o Vitor) e programar o tema da Week. **Terça 10/11, 20h:** tema 11/11 no ar.
+- **Atrasadas:** nota fiscal e 16 vídeos (depende da regravação).
+
+## 📍 Onde estamos (07/11, 9h) — histórico
 - **Tema 11/11 pronto** (00h, link do VIP, 1/3/5, âncora). Falta o Pedro programar para **10/11 às 20h**. O "até 40%" e a barra fixa dependem do Vitor.
 - **Atrasadas:** nota fiscal (06/11) e 16 vídeos do 1º lote (Sleep entregue; o resto depende da regravação).
 - **Segunda 09/11, 18h:** cupom do Recovery (RECOVERY11 desativado, falta o Vitor) e programar o tema da Week.
