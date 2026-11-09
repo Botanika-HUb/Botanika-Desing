@@ -849,3 +849,14 @@
   - Testado na prévia.
   - Os 6 banners, incluindo os de último dia, foram aprovados e estão na Shopify.
   - Falta o Pedro programar a publicação para 20/11 às 23h59.
+- **Temas programados pelo Pedro (09/11):**
+  - 11/11 exclusivo: 10/11 às 20h;
+  - Esquenta Botanika Week: 11/11 às 23h59;
+  - Botanika Week: 20/11 às 23h59.
+- **Alliance (com o ok do Pedro, no nome do Vitor):**
+  - Concluídas:
+    - Esquenta BW, tema;
+    - Botanika Week, tema, com entrega e link da prévia;
+    - Botanika Week, oferta e frete, com entrega;
+    - Botanika Week, brindes, com entrega.
+  - Pix 5%: comentário com a pesquisa. A tarefa segue aberta até a aprovação do Vitor.
