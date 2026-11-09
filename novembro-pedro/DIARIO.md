@@ -803,3 +803,26 @@
   - **tema 11/11 no ar às 20h** (Pedro programa);
   - Sarah manda o link do VIP às 20h.
 - **Atenção:** o tema da Week foi copiado do tema antigo, sem a seção de ingredientes. Se publicar assim, a seção some de 11 a 20/11.
+
+### 08/11 — fechamento
+- Domingo sem interação do Pedro. Nada executado.
+- Pendente, sem resposta:
+  - seção de ingredientes no tema da Week;
+  - Vitor (Recovery, "até 40%", Complete sua rotina);
+  - Mafe (vídeos de venda e regravação);
+  - Álvaro (nota do brinde);
+  - nota fiscal.
+- Bloqueios: GitHub 403 (15 commits locais); receptor do Drive com a senha provisória.
+
+### 09/11 (segunda) — plano
+- **Hoje, 18h:**
+  - cupom do Recovery: RECOVERY11 desativado, falta o Vitor;
+  - tema da Week: pronto, falta o Pedro programar para 11/11 às 23h59 e decidir sobre a seção de ingredientes;
+  - a Sarah começa o aviso do acesso antecipado.
+- **Atrasadas:** nota fiscal (3 dias) e 16 vídeos.
+- **Terça 10/11:**
+  - 13h: Reunião de CRO/Site;
+  - 18h: Pix 5%;
+  - **20h: tema 11/11 no ar** (o Pedro programa) e link do VIP pela Sarah.
+- **Quarta 11/11:** 11/11 aberto às 00h; Week entra às 23h59.
+- **Daily às 9h20.**
