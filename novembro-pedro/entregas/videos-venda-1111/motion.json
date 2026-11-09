@@ -111,5 +111,415 @@
    "text": "MONTAR MEU KIT",
    "until": 12
   }
+ ],
+ "R6": [
+  {
+   "i": 0,
+   "type": "slam",
+   "text": "PARA TUDO!",
+   "size": 150,
+   "y": 1200
+  },
+  {
+   "i": 1,
+   "type": "side",
+   "s": "não ia deixar você",
+   "b": "DESCOBRIR<br>AMANHÃ"
+  },
+  {
+   "i": 2,
+   "type": "pct",
+   "full": true,
+   "bg": "red",
+   "to": 40,
+   "prods": [
+    {
+     "img": "coq10",
+     "p": 40,
+     "n": "Coenzima Q10"
+    },
+    {
+     "img": "cran",
+     "p": 35,
+     "n": "Cranberry"
+    },
+    {
+     "img": "msm",
+     "p": 30,
+     "n": "MSM"
+    }
+   ]
+  },
+  {
+   "i": 3,
+   "type": "gift",
+   "full": true,
+   "img": "coq10",
+   "de": "R$ 74,60"
+  },
+  {
+   "i": 4,
+   "type": "clock",
+   "full": true,
+   "eb": "tudo isso some à",
+   "time": "00:00",
+   "l1": "MEIA-NOITE"
+  },
+  {
+   "i": 5,
+   "type": "cta",
+   "text": "GARANTIR MEU KIT"
+  }
+ ],
+ "R7": [
+  {
+   "i": 0,
+   "type": "count",
+   "full": true,
+   "eb": "só os",
+   "to": 100,
+   "l1": "PRIMEIROS PEDIDOS",
+   "l2": "ganham cashback · enquanto durar"
+  },
+  {
+   "i": 1,
+   "type": "side",
+   "s": "depois disso",
+   "b": "ACABOU"
+  },
+  {
+   "i": 2,
+   "type": "side",
+   "s": "eu já fiz",
+   "b": "O MEU"
+  },
+  {
+   "i": 3,
+   "type": "count",
+   "full": true,
+   "eb": "cashback de",
+   "to": 15,
+   "suffix": "%",
+   "l1": "PRA PRÓXIMA COMPRA",
+   "l2": "100 primeiros pedidos · enquanto durar"
+  },
+  {
+   "i": 4,
+   "type": "clock",
+   "full": true,
+   "eb": "o 11/11 inteiro vale até",
+   "time": "23:59",
+   "l1": "HOJE"
+  },
+  {
+   "i": 5,
+   "type": "pct",
+   "full": true,
+   "bg": "red",
+   "to": 40,
+   "prods": [
+    {
+     "img": "coq10",
+     "p": 40,
+     "n": "Coenzima Q10"
+    },
+    {
+     "img": "cran",
+     "p": 35,
+     "n": "Cranberry"
+    },
+    {
+     "img": "msm",
+     "p": 30,
+     "n": "MSM"
+    }
+   ]
+  },
+  {
+   "i": 6,
+   "type": "gift",
+   "full": true,
+   "img": "coq10",
+   "de": "R$ 74,60"
+  },
+  {
+   "i": 7,
+   "type": "stamp",
+   "text": "TEM COTA!"
+  },
+  {
+   "i": 8,
+   "type": "cta",
+   "text": "GARANTIR O MEU"
+  }
+ ],
+ "R8": [
+  {
+   "i": 0,
+   "type": "slam",
+   "text": "PRESTA<br>ATENÇÃO!",
+   "size": 140,
+   "y": 1150
+  },
+  {
+   "i": 1,
+   "type": "side",
+   "s": "são só",
+   "b": "10 SEGUNDOS"
+  },
+  {
+   "i": 2,
+   "type": "side",
+   "s": "o depois",
+   "b": "É HOJE"
+  },
+  {
+   "i": 3,
+   "type": "stamp",
+   "text": "11/11 NO AR"
+  },
+  {
+   "i": 4,
+   "type": "pct",
+   "full": true,
+   "bg": "red",
+   "to": 40,
+   "prods": [
+    {
+     "img": "coq10",
+     "p": 40,
+     "n": "Coenzima Q10"
+    },
+    {
+     "img": "cran",
+     "p": 35,
+     "n": "Cranberry"
+    },
+    {
+     "img": "msm",
+     "p": 30,
+     "n": "MSM"
+    }
+   ]
+  },
+  {
+   "i": 5,
+   "type": "ship",
+   "full": true,
+   "img": "hair",
+   "l1": "em qualquer pedido"
+  },
+  {
+   "i": 6,
+   "type": "gift",
+   "full": true,
+   "img": "coq10",
+   "de": "R$ 74,60"
+  },
+  {
+   "i": 7,
+   "type": "count",
+   "full": true,
+   "eb": "cashback de",
+   "to": 15,
+   "suffix": "%",
+   "l1": "PRA PRÓXIMA COMPRA",
+   "l2": "100 primeiros pedidos · enquanto durar"
+  },
+  {
+   "i": 8,
+   "type": "clock",
+   "full": true,
+   "eb": "tudo isso só até",
+   "time": "23:59",
+   "l1": "HOJE"
+  },
+  {
+   "i": 9,
+   "type": "cta",
+   "text": "GARANTIR AGORA",
+   "until": 10
+  }
+ ],
+ "R9": [
+  {
+   "i": 0,
+   "type": "slam",
+   "text": "NÃO COMPRA<br>AINDA!",
+   "size": 130,
+   "y": 1150
+  },
+  {
+   "i": 1,
+   "type": "side",
+   "s": "não é que tenha",
+   "b": "NADA ERRADO"
+  },
+  {
+   "i": 2,
+   "type": "stamp",
+   "text": "VAI PAGAR MAIS"
+  },
+  {
+   "i": 3,
+   "type": "count",
+   "full": true,
+   "eb": "hoje no 11/11",
+   "to": 4,
+   "l1": "COISAS AO MESMO TEMPO"
+  },
+  {
+   "i": 4,
+   "type": "pct",
+   "full": true,
+   "bg": "red",
+   "to": 40,
+   "prods": [
+    {
+     "img": "coq10",
+     "p": 40,
+     "n": "Coenzima Q10"
+    },
+    {
+     "img": "cran",
+     "p": 35,
+     "n": "Cranberry"
+    },
+    {
+     "img": "msm",
+     "p": 30,
+     "n": "MSM"
+    }
+   ]
+  },
+  {
+   "i": 5,
+   "type": "ship",
+   "full": true,
+   "img": "hair",
+   "l1": "em qualquer pedido"
+  },
+  {
+   "i": 6,
+   "type": "gift",
+   "full": true,
+   "img": "coq10",
+   "de": "R$ 74,60"
+  },
+  {
+   "i": 7,
+   "type": "count",
+   "full": true,
+   "eb": "cashback de",
+   "to": 15,
+   "suffix": "%",
+   "l1": "PRA PRÓXIMA COMPRA",
+   "l2": "100 primeiros pedidos · enquanto durar"
+  },
+  {
+   "i": 8,
+   "type": "stamp",
+   "text": "AMANHÃ ACABA"
+  },
+  {
+   "i": 9,
+   "type": "side",
+   "s": "agora que você",
+   "b": "JÁ SABE"
+  },
+  {
+   "i": 10,
+   "type": "cta",
+   "text": "APROVEITAR AGORA"
+  }
+ ],
+ "R10": [
+  {
+   "i": 0,
+   "type": "slam",
+   "text": "ÚLTIMO<br>AVISO",
+   "size": 160,
+   "y": 1150
+  },
+  {
+   "i": 2,
+   "type": "side",
+   "s": "você viu",
+   "b": "DE MANHÃ"
+  },
+  {
+   "i": 3,
+   "type": "stamp",
+   "text": "O DEPOIS É AGORA"
+  },
+  {
+   "i": 4,
+   "type": "clock",
+   "full": true,
+   "eb": "o 11/11 fecha hoje às",
+   "time": "23:59",
+   "l1": "HOJE"
+  },
+  {
+   "i": 5,
+   "type": "side",
+   "s": "depois volta ao",
+   "b": "PREÇO<br>NORMAL"
+  },
+  {
+   "i": 6,
+   "type": "pct",
+   "full": true,
+   "bg": "red",
+   "to": 40,
+   "prods": [
+    {
+     "img": "coq10",
+     "p": 40,
+     "n": "Coenzima Q10"
+    },
+    {
+     "img": "cran",
+     "p": 35,
+     "n": "Cranberry"
+    },
+    {
+     "img": "msm",
+     "p": 30,
+     "n": "MSM"
+    }
+   ]
+  },
+  {
+   "i": 7,
+   "type": "ship",
+   "full": true,
+   "img": "hair",
+   "l1": "em qualquer pedido"
+  },
+  {
+   "i": 8,
+   "type": "gift",
+   "full": true,
+   "img": "coq10",
+   "de": "R$ 74,60"
+  },
+  {
+   "i": 9,
+   "type": "side",
+   "s": "amanhã",
+   "b": "MAIS CARO<br>+ FRETE"
+  },
+  {
+   "i": 10,
+   "type": "stamp",
+   "text": "MESMO PEDIDO"
+  },
+  {
+   "i": 11,
+   "type": "cta",
+   "text": "FINALIZAR AGORA",
+   "until": 12
+  }
  ]
 }

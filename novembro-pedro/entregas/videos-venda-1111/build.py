@@ -147,6 +147,8 @@ def build(spec, key, out_dir):
         lst.append("file '%s'" % f)
     open(os.path.join(tmp, 'list.txt'), 'w').write('\n'.join(lst) + '\n')
 
+    if os.environ.get('CUT_ONLY'):
+        return
     # 2) produtos citados: recorte entrando de baixo (0,3 s) e saindo com fade
     prods = v.get('prods', [])
     inputs = ['-f', 'concat', '-safe', '0', '-i', os.path.join(tmp, 'list.txt')]

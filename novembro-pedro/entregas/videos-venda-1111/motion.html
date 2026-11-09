@@ -59,6 +59,8 @@ const BUILD={
    <img src="${IMG}/${p.img}.png" style="position:absolute;left:50%;top:600px;height:600px;transform:translateX(-50%)"><div class="t mid" style="top:1230px;color:#ffd400">${p.l}</div></div>`).join('')},
  side(s,L){L.innerHTML=`<div class="side" style="top:${s.y||1240}px"><div class="s">${s.s}</div><div class="b">${s.b}</div></div>`},
  stamp(s,L){L.innerHTML=`<div class="stamp" style="top:${s.y||1420}px">${s.text}</div>`},
+ count(s,L){L.innerHTML=`<div class="t eb" style="top:300px">${s.eb}</div><div class="t huge" id="n" style="top:380px">0</div>
+   <div class="t mid" style="top:720px">${s.l1}</div><div class="t sm" style="top:850px;color:#ffd400">${s.l2||''}</div>`},
  end(s,L){L.innerHTML=`<div class="t eb" style="top:420px">só hoje · 11/11</div><div class="t big" style="top:510px">ATÉ 40% OFF</div>
    <div class="t mid" style="top:720px;color:#ffd400">FRETE GRÁTIS EM TUDO</div><div class="t sm" style="top:860px">Coenzima Q10 de brinde acima de R$ 500</div>
    <img src="${IMG}/${s.img}.png" style="position:absolute;left:50%;top:960px;height:430px;transform:translateX(-50%)">
@@ -80,6 +82,8 @@ const SEEK={
    const im=e.querySelector('img');im.style.transform=`translateX(-50%) scale(${.6+.4*back(pr(k,a,.45))}) rotate(${(1-eo(pr(k,a,.45)))*-10}deg)`})},
  side(s,L,t){const k=t-s.t0;const c=L.firstChild;c.style.transform=`translateX(${(1-eo(pr(k,0,.25)))*-120}px)`;c.children[1].style.transform=`scale(${back(pr(k,.08,.3))})`;c.children[1].style.transformOrigin='left center'},
  stamp(s,L,t){const k=t-s.t0;const c=L.firstChild;c.style.transform=`translateX(-50%) rotate(-7deg) scale(${k<.12?2.4-1.4*eo(k/.12):1})`},
+ count(s,L,t){const k=t-s.t0;const n=L.querySelector('#n');n.textContent=Math.round(s.to*eo(pr(k,.1,.7)))+(s.suffix||'');n.style.transform=`scale(${k<.8?1:1+.08*Math.sin((k-.8)*6)*Math.exp(-(k-.8)*2)})`;
+   L.children[2].style.opacity=pr(k,.7,.25);L.children[2].style.transform=`translateY(${(1-eo(pr(k,.7,.3)))*50}px)`;L.children[3].style.opacity=pr(k,1.0,.25)},
  end(s,L,t){const k=t-s.t0;[...L.children].forEach((c,i)=>{const p=back(pr(k,i*.09,.4));c.style.opacity=pr(k,i*.09,.12);c.style.translate=`0 ${(1-p)*80}px`})},
  cta(s,L,t){const k=t-s.t0;const b=L.firstChild;b.style.transform=`scale(${back(pr(k,0,.35))*(1+.04*Math.sin(k*7))})`;L.querySelector('#ar').style.transform=`translateY(${Math.abs(Math.sin(k*6))*18}px)`},
 };
