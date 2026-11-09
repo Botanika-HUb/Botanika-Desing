@@ -838,3 +838,8 @@
     - os pedidos de 10/11, das 20h às 23h59, entram?
     - conta 100 pedidos ou 100 clientes?
   - O commit desses arquivos foi bloqueado pela trava de segurança da sessão.
+- **Cashback: o que a ficha da oferta (v5) define.**
+  - Contam **100 pedidos**.
+  - A contagem **começa no acesso antecipado, em 10/11 às 20h**: segundo a ficha, "os 100 pedidos devem acabar no acesso antecipado".
+  - O README do cashback foi atualizado.
+  - Atenção: o comentário de 03/11 na tarefa fala em "00h a 23h59 de 11/11", e a ficha mais nova é que vale.
