@@ -1,0 +1,564 @@
+{
+ "R1": {
+  "name": "11-11_R1_ja-comecou",
+  "src": "/tmp/claude-0/-home-user-Botanika-Desing/939e42b8-9d13-56a4-bbfb-1c809580e4f3/scratchpad/b1111/v391F.mov",
+  "top": "11/11 BOTANIKA · SÓ HOJE",
+  "segs": [
+   [
+    2.38,
+    4.1
+   ],
+   [
+    7.45,
+    8.3
+   ],
+   [
+    10.05,
+    15.3
+   ],
+   [
+    17.2,
+    18.9
+   ],
+   [
+    22.0,
+    24.55
+   ],
+   [
+    28.35,
+    32.7
+   ],
+   [
+    35.1,
+    39.85
+   ],
+   [
+    42.35,
+    43.85
+   ],
+   [
+    45.85,
+    51.05
+   ],
+   [
+    52.75,
+    57.95
+   ],
+   [
+    60.15,
+    63.0
+   ],
+   [
+    63.65,
+    67.25
+   ],
+   [
+    69.35,
+    71.75
+   ]
+  ],
+  "tags": {
+   "1": "JÁ COMEÇOU!",
+   "3": "OLHA O QUE DÁ PRA LEVAR",
+   "5": "FRETE GRÁTIS SEM MÍNIMO",
+   "6": "COENZIMA Q10 DE BRINDE",
+   "8": "MONTE SEU KIT",
+   "11": "TOQUE NO BOTÃO ↓",
+   "12": "CORRE PRO SITE!"
+  },
+  "fx": [
+   {
+    "i": 2,
+    "type": "clock",
+    "label": "VALE SÓ ATÉ"
+   },
+   {
+    "i": 4,
+    "type": "pct",
+    "to": 40
+   },
+   {
+    "i": 6,
+    "type": "money",
+    "to": 500,
+    "delay": 0.6
+   },
+   {
+    "i": 10,
+    "type": "clock"
+   }
+  ],
+  "prods": [
+   {
+    "i": 9,
+    "img": "tri",
+    "x": 800,
+    "y": 520,
+    "h": 620,
+    "at": 0.1,
+    "dur": 2.3
+   },
+   {
+    "i": 9,
+    "img": "sleep",
+    "x": 800,
+    "y": 820,
+    "h": 480,
+    "at": 2.5
+   },
+   {
+    "i": 6,
+    "img": "coq10",
+    "x": 830,
+    "y": 420,
+    "h": 470,
+    "at": 0.3
+   }
+  ]
+ },
+ "R6": {
+  "name": "11-11_R6_para-tudo",
+  "src": "/tmp/claude-0/-home-user-Botanika-Desing/939e42b8-9d13-56a4-bbfb-1c809580e4f3/scratchpad/b1111/IMG_7311.mov",
+  "top": "11/11 BOTANIKA · SÓ HOJE",
+  "segs": [
+   [
+    19.25,
+    22.6
+   ],
+   [
+    26.95,
+    30.3
+   ],
+   [
+    36.25,
+    41.5
+   ],
+   [
+    51.15,
+    54.85
+   ],
+   [
+    59.3,
+    61.75
+   ],
+   [
+    64.95,
+    70.75
+   ]
+  ],
+  "tags": {
+   "0": "11/11 ACABOU DE ABRIR!",
+   "1": "NÃO DEIXA PRA AMANHÃ",
+   "2": "FRETE GRÁTIS SEM MÍNIMO",
+   "3": "COENZIMA Q10 DE BRINDE",
+   "5": "TOQUE NO BOTÃO ↓"
+  },
+  "fx": [
+   {
+    "i": 2,
+    "type": "pct",
+    "to": 40
+   },
+   {
+    "i": 3,
+    "type": "money",
+    "to": 500,
+    "delay": 0.5
+   },
+   {
+    "i": 4,
+    "type": "clock",
+    "time": "00:00",
+    "label": "ACABA À MEIA-NOITE"
+   }
+  ],
+  "prods": [
+   {
+    "i": 3,
+    "img": "coq10",
+    "x": 830,
+    "y": 420,
+    "h": 470,
+    "at": 0.3
+   }
+  ]
+ },
+ "R7": {
+  "name": "11-11_R7_so-100",
+  "src": "/tmp/claude-0/-home-user-Botanika-Desing/939e42b8-9d13-56a4-bbfb-1c809580e4f3/scratchpad/b1111/IMG_7312.mov",
+  "top": "11/11 BOTANIKA · SÓ HOJE",
+  "segs": [
+   [
+    10.4,
+    14.2
+   ],
+   [
+    21.6,
+    25.4
+   ],
+   [
+    28.85,
+    32.5
+   ],
+   [
+    36.95,
+    42.05
+   ],
+   [
+    48.55,
+    52.9
+   ],
+   [
+    56.55,
+    62.0
+   ],
+   [
+    65.95,
+    69.85
+   ],
+   [
+    80.25,
+    83.4
+   ],
+   [
+    89.3,
+    93.9
+   ]
+  ],
+  "tags": {
+   "1": "CASHBACK · ENQUANTO DURAR",
+   "2": "JÁ FIZ O MEU",
+   "3": "ENQUANTO DURAR",
+   "5": "FRETE GRÁTIS SEM MÍNIMO",
+   "6": "COENZIMA Q10 DE BRINDE",
+   "7": "TEM COTA!",
+   "8": "TOQUE NO BOTÃO ↓"
+  },
+  "fx": [
+   {
+    "i": 0,
+    "type": "num",
+    "to": 100,
+    "label": "SÓ OS",
+    "final": "100",
+    "sub": "PRIMEIROS PEDIDOS"
+   },
+   {
+    "i": 3,
+    "type": "pct",
+    "to": 15,
+    "label": "CASHBACK DE",
+    "final": "15%"
+   },
+   {
+    "i": 4,
+    "type": "clock"
+   },
+   {
+    "i": 5,
+    "type": "pct",
+    "to": 40
+   },
+   {
+    "i": 6,
+    "type": "money",
+    "to": 500,
+    "delay": 0.5
+   }
+  ],
+  "prods": [
+   {
+    "i": 6,
+    "img": "coq10",
+    "x": 830,
+    "y": 420,
+    "h": 470,
+    "at": 0.3
+   }
+  ]
+ },
+ "R8": {
+  "name": "11-11_R8_presta-atencao",
+  "src": "/tmp/claude-0/-home-user-Botanika-Desing/939e42b8-9d13-56a4-bbfb-1c809580e4f3/scratchpad/b1111/v12C6.mov",
+  "top": "11/11 BOTANIKA · SÓ HOJE",
+  "segs": [
+   [
+    7.05,
+    10.7
+   ],
+   [
+    24.6,
+    26.8
+   ],
+   [
+    28.45,
+    32.25
+   ],
+   [
+    34.2,
+    37.6
+   ],
+   [
+    39.25,
+    42.8
+   ],
+   [
+    46.45,
+    49.55
+   ],
+   [
+    52.7,
+    56.35
+   ],
+   [
+    64.75,
+    69.9
+   ],
+   [
+    72.8,
+    77.15
+   ],
+   [
+    82.3,
+    88.45
+   ],
+   [
+    92.55,
+    94.6
+   ]
+  ],
+  "tags": {
+   "0": "PRESTA ATENÇÃO!",
+   "1": "10 SEGUNDOS",
+   "2": "O DEPOIS É HOJE",
+   "3": "11/11 NO AR",
+   "5": "FRETE GRÁTIS SEM MÍNIMO",
+   "6": "COENZIMA Q10 DE BRINDE",
+   "7": "100 PRIMEIROS · ENQUANTO DURAR",
+   "9": "TOQUE NO BOTÃO ↓",
+   "10": "CORRE!"
+  },
+  "fx": [
+   {
+    "i": 4,
+    "type": "pct",
+    "to": 40
+   },
+   {
+    "i": 6,
+    "type": "money",
+    "to": 500,
+    "delay": 0.5
+   },
+   {
+    "i": 7,
+    "type": "pct",
+    "to": 15,
+    "label": "CASHBACK DE",
+    "final": "15%",
+    "delay": 0.8
+   },
+   {
+    "i": 8,
+    "type": "clock"
+   }
+  ],
+  "prods": [
+   {
+    "i": 6,
+    "img": "coq10",
+    "x": 830,
+    "y": 420,
+    "h": 470,
+    "at": 0.3
+   }
+  ]
+ },
+ "R9": {
+  "name": "11-11_R9_nao-compra-ainda",
+  "src": "/tmp/claude-0/-home-user-Botanika-Desing/939e42b8-9d13-56a4-bbfb-1c809580e4f3/scratchpad/b1111/IMG_7320.mov",
+  "top": "11/11 BOTANIKA · SÓ HOJE",
+  "segs": [
+   [
+    7.2,
+    12.75
+   ],
+   [
+    23.1,
+    24.45
+   ],
+   [
+    34.4,
+    37.8
+   ],
+   [
+    44.5,
+    48.95
+   ],
+   [
+    54.3,
+    57.45
+   ],
+   [
+    59.95,
+    62.75
+   ],
+   [
+    71.7,
+    74.9
+   ],
+   [
+    78.8,
+    81.9
+   ],
+   [
+    85.35,
+    88.3
+   ],
+   [
+    93.55,
+    96.0
+   ],
+   [
+    104.3,
+    111.3
+   ]
+  ],
+  "tags": {
+   "0": "NÃO COMPRA AINDA!",
+   "2": "VAI PAGAR MAIS À TOA",
+   "3": "4 COISAS AO MESMO TEMPO",
+   "5": "FRETE GRÁTIS SEM MÍNIMO",
+   "6": "COENZIMA Q10 DE BRINDE",
+   "7": "100 PRIMEIROS · ENQUANTO DURAR",
+   "8": "AMANHÃ ACABA TUDO",
+   "10": "TOQUE NO BOTÃO ↓"
+  },
+  "fx": [
+   {
+    "i": 4,
+    "type": "pct",
+    "to": 40
+   },
+   {
+    "i": 6,
+    "type": "money",
+    "to": 500,
+    "delay": 0.4
+   },
+   {
+    "i": 7,
+    "type": "pct",
+    "to": 15,
+    "label": "CASHBACK DE",
+    "final": "15%"
+   }
+  ],
+  "prods": [
+   {
+    "i": 6,
+    "img": "coq10",
+    "x": 830,
+    "y": 420,
+    "h": 470,
+    "at": 0.3
+   }
+  ]
+ },
+ "R10": {
+  "name": "11-11_R10_ultimo-aviso",
+  "src": "/tmp/claude-0/-home-user-Botanika-Desing/939e42b8-9d13-56a4-bbfb-1c809580e4f3/scratchpad/b1111/IMG_7325.mov",
+  "top": "11/11 BOTANIKA · SÓ HOJE",
+  "segs": [
+   [
+    2.55,
+    4.5
+   ],
+   [
+    6.55,
+    7.3
+   ],
+   [
+    8.05,
+    13.1
+   ],
+   [
+    16.4,
+    18.5
+   ],
+   [
+    22.2,
+    26.85
+   ],
+   [
+    30.1,
+    32.9
+   ],
+   [
+    38.55,
+    42.3
+   ],
+   [
+    47.65,
+    50.75
+   ],
+   [
+    53.55,
+    57.35
+   ],
+   [
+    63.5,
+    67.65
+   ],
+   [
+    70.8,
+    74.5
+   ],
+   [
+    79.65,
+    83.15
+   ],
+   [
+    88.25,
+    91.5
+   ]
+  ],
+  "tags": {
+   "0": "ÚLTIMO AVISO",
+   "3": "O DEPOIS É AGORA",
+   "5": "AMANHÃ VOLTA AO PREÇO NORMAL",
+   "7": "FRETE GRÁTIS SEM MÍNIMO",
+   "8": "COENZIMA Q10 DE BRINDE",
+   "9": "AMANHÃ: MAIS CARO + FRETE",
+   "11": "TOQUE NO BOTÃO ↓"
+  },
+  "fx": [
+   {
+    "i": 4,
+    "type": "clock",
+    "label": "FECHA HOJE ÀS"
+   },
+   {
+    "i": 6,
+    "type": "pct",
+    "to": 40
+   },
+   {
+    "i": 8,
+    "type": "money",
+    "to": 500,
+    "delay": 0.4
+   }
+  ],
+  "prods": [
+   {
+    "i": 8,
+    "img": "coq10",
+    "x": 830,
+    "y": 420,
+    "h": 470,
+    "at": 0.3
+   }
+  ]
+ }
+}
