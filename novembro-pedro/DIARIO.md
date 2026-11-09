@@ -847,4 +847,5 @@
   - Tema 168494792936, "BOTANIKA WEEK (publicar 20/11 23h59)": escada 10/12/15, de 21/11 a 26/11, com último dia em 26/11.
   - 4 descontos agendados.
   - Testado na prévia.
-  - Banners principais aprovados e na Shopify. Os de último dia aguardam aprovação.
+  - Os 6 banners, incluindo os de último dia, foram aprovados e estão na Shopify.
+  - Falta o Pedro programar a publicação para 20/11 às 23h59.

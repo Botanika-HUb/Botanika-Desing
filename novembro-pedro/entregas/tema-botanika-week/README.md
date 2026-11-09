@@ -48,8 +48,9 @@ Os descontos de verdade só começam em 21/11. Na prévia de hoje, o checkout ai
 - `bw-hero-mobile`, `bw-hero-desktop` e `bw-colecao`: aprovados pelo Pedro em 09/11.
   - Na Shopify como botanika-week-hero-mobile.png, botanika-week-hero-desktop.png e botanika-week-colecao.png.
   - Conferido na prévia.
-- `bw-ultimo-*`: os 3 banners do último dia foram gerados e aguardam aprovação. Depois sobem como botanika-week-ultimo-*.png.
+- `bw-ultimo-*`: aprovados pelo Pedro em 09/11.
+  - Na Shopify como botanika-week-ultimo-*.png.
+  - Conferido na prévia com o relógio em 26/11: entram o banner e o selo "ÚLTIMO DIA".
 
 ## Falta
-- aprovar os banners de último dia e subir para a Shopify;
 - o Pedro programar a publicação para 20/11 às 23h59 (logo depois do Esquenta Botanika Week).
