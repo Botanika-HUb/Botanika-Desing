@@ -875,3 +875,13 @@
   - **Alliance:**
     - tarefa do Recovery concluída, com a entrega do código para a Lissia;
     - tarefa "Friday · Fechar o site" arquivada, com um comentário explicando o motivo.
+- **Vídeos de venda do 11/11** (brutos da Mafe de 09/11, pasta "11.11 BOTANIKA"):
+  - **6 vídeos editados e no Drive** (pasta 1jNsZ89tLIFFtgCNSe7YaIg_sjSqCAy5w): R1, R6, R7, R8, R9 e R10.
+  - **Formato v4, aprovado pelo Pedro:**
+    - uma gravação por vídeo, com as pausas e o "Roteiro X" cortados;
+    - telas cheias animadas (relógio 23:59, contador de 40% com cards, carrinho com frete grátis, barra até R$ 500 com a Q10 grátis, produtos citados), com a Mafe numa janelinha;
+    - carimbos, textos laterais, botão de CTA e cartão final.
+  - Referências usadas: Prompt Motion (Talking-head clip edit e AjustaCV).
+  - Nos vídeos que falam do cashback (R7, R8 e R9), aparece "enquanto durar".
+  - **R2, R4 e R5 vão ser regravados:** a Mafe diz "40% no site inteiro", e o desconto é de 12% a 40% por produto. **O R3 não veio na pasta.**
+  - Scripts em `entregas/videos-venda-1111/`: `build.py` (cortes), `motion.html` e `compose.py` (telas e PiP).
