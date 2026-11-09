@@ -58,13 +58,12 @@
    ]
   ],
   "tags": {
-   "1": "JÁ COMEÇOU!",
-   "3": "OLHA O QUE DÁ PRA LEVAR",
-   "5": "FRETE GRÁTIS SEM MÍNIMO",
-   "6": "COENZIMA Q10 DE BRINDE",
-   "8": "MONTE SEU KIT",
-   "11": "TOQUE NO BOTÃO ↓",
-   "12": "CORRE PRO SITE!"
+   "3": "olha o que dá|PRA LEVAR",
+   "5": "frete grátis|SEM MÍNIMO",
+   "6": "acima de|R$ 500",
+   "8": "monte seu|KIT",
+   "11": "toca no|BOTÃO ↓",
+   "12": "corre pro|SITE!"
   },
   "fx": [
    {
@@ -76,12 +75,6 @@
     "i": 4,
     "type": "pct",
     "to": 40
-   },
-   {
-    "i": 6,
-    "type": "money",
-    "to": 500,
-    "delay": 0.6
    },
    {
     "i": 10,
@@ -113,6 +106,22 @@
     "y": 420,
     "h": 470,
     "at": 0.3
+   }
+  ],
+  "ky": 1420,
+  "stamps": {
+   "1": "JÁ COMEÇOU!",
+   "7": "NÃO DEIXA PASSAR"
+  },
+  "cards": [
+   {
+    "i": 6,
+    "name": "Coenzima Q10",
+    "de": "R$ 74,60",
+    "por": "GRÁTIS",
+    "x": 540,
+    "y": 1110,
+    "at": 1.2
    }
   ]
  },

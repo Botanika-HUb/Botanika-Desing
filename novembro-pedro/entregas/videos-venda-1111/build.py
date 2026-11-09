@@ -28,6 +28,11 @@ WrapStyle: 0
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Tag,DejaVu Sans,70,&H00FFFFFF,&H00FFFFFF,&H002B13E3,&H002B13E3,1,0,0,0,100,100,0,0,3,18,0,5,80,80,0,1
+Style: KS,DejaVu Sans,60,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,3,4,70,70,0,1
+Style: KB,DejaVu Sans,128,&H0000D4FF,&H00FFFFFF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,6,4,4,70,70,0,1
+Style: Stamp,DejaVu Sans,74,&H002B13E3,&H00FFFFFF,&H00FFFFFF,&H00FFFFFF,1,0,0,0,100,100,2,0,3,16,0,5,40,40,0,1
+Style: Card,DejaVu Sans,46,&H00141418,&H00FFFFFF,&H00FFFFFF,&H00FFFFFF,1,0,0,0,100,100,0,0,3,22,0,5,40,40,0,1
+Style: CardG,DejaVu Sans,84,&H003C8A0B,&H00FFFFFF,&H00FFFFFF,&H00FFFFFF,1,0,0,0,100,100,0,0,3,14,0,5,40,40,0,1
 Style: Top,DejaVu Sans,54,&H00FFFFFF,&H00FFFFFF,&H000F0B0B,&H000F0B0B,1,0,0,0,100,100,2,0,3,14,0,8,80,80,150,1
 Style: Big,DejaVu Sans,200,&H00FFFFFF,&H00FFFFFF,&H002B13E3,&H00000000,1,0,0,0,100,100,0,0,1,12,6,5,40,40,0,1
 Style: Lbl,DejaVu Sans,58,&H00FFFFFF,&H00FFFFFF,&H000F0B0B,&H000F0B0B,1,0,0,0,100,100,3,0,3,12,0,5,40,40,0,1
@@ -99,7 +104,18 @@ def build(spec, key, out_dir):
         ev.append((0, total, 'Top', v['top']))
     for i, txt in v.get('tags', {}).items():
         a, b = span(int(i))
-        ev.append((a + 0.05, b, 'Tag', (POP % (540, TAG_Y)) + txt))
+        small, big = (txt.split('|', 1) + [''])[:2] if '|' in txt else ('', txt)
+        y = v.get('ky', 1330)
+        if small:
+            ev.append((a + 0.05, b, 'KS', '{\\move(20,%d,70,%d,0,160)\\fad(80,120)}%s' % (y - 105, y - 105, small)))
+        ev.append((a + 0.15, b, 'KB', '{\\move(20,%d,70,%d,0,180)\\fad(80,120)\\fscx70\\fscy70\\t(0,180,\\fscx106\\fscy106)\\t(180,280,\\fscx100\\fscy100)}%s' % (y, y, big)))
+    for i, txt in v.get('stamps', {}).items():
+        a, b = span(int(i))
+        ev.append((a + 0.05, min(b, a + 2.2), 'Stamp', '{\\pos(%d,%d)\\frz8\\fad(40,160)\\fscx160\\fscy160\\t(0,120,\\fscx92\\fscy92)\\t(120,200,\\fscx100\\fscy100)}%s' % (560, v.get('stamp_y', 1480), txt)))
+    for c in v.get('cards', []):
+        a, b = span(c['i']); a += c.get('at', 0.4); x, y = c.get('x', 300), c.get('y', 980)
+        ev.append((a, b, 'Card', '{\\pos(%d,%d)\\fad(120,140)\\fscx80\\fscy80\\t(0,160,\\fscx100\\fscy100)}%s  {\\s1}%s{\\s0}' % (x, y, c['name'], c['de'])))
+        ev.append((a + 0.45, b, 'CardG', '{\\pos(%d,%d)\\frz-6\\fad(60,140)\\fscx150\\fscy150\\t(0,140,\\fscx100\\fscy100)}%s' % (x, y + 110, c['por'])))
     for fx in v.get('fx', []):
         a, b = span(fx['i'])
         ev += fx_events(fx, a, b)
@@ -125,7 +141,7 @@ def build(spec, key, out_dir):
         f = os.path.join(tmp, '%02d.mp4' % i)
         if not os.path.exists(f) or os.environ.get('RECUT'):
             subprocess.run(['ffmpeg', '-v', 'error', '-y', '-ss', '%.3f' % a, '-i', src, '-t', '%.3f' % (b - a),
-                            '-vf', 'scale=%d:%d,setsar=1,fps=%d' % (W, H, FPS),
+                            '-vf', ('scale=%d:%d,crop=%d:%d:(iw-%d)/2:(ih-%d)*0.35,setsar=1,fps=%d' % (int(W * 1.14) // 2 * 2, int(H * 1.14) // 2 * 2, W, H, W, H, FPS)) if (i % 2 == 1 and v.get('punch', True)) else 'scale=%d:%d,setsar=1,fps=%d' % (W, H, FPS),
                             '-af', 'afade=t=in:d=0.02,afade=t=out:st=%.3f:d=0.03,aresample=48000' % max(0, b - a - 0.03),
                             '-c:v', 'libx264', '-preset', 'fast', '-crf', '16', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '192k', f], check=True)
         lst.append("file '%s'" % f)
