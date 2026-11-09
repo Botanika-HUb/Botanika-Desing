@@ -1,0 +1,88 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:transparent;font-family:'Inter Display','Inter',sans-serif}
+  .L{position:absolute;inset:0;opacity:0}
+  .card{background:radial-gradient(130% 90% at 50% 20%,#3a0a10 0%,#0b0b0f 65%)}
+  .red{background:radial-gradient(120% 90% at 50% 25%,#ff2a3c 0%,#b80f22 70%)}
+  .t{position:absolute;left:0;right:0;text-align:center;color:#fff;font-weight:900;letter-spacing:-.02em}
+  .eb{font-size:46px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#ffd400}
+  .huge{font-size:300px;line-height:1}
+  .big{font-size:150px;line-height:1}
+  .mid{font-size:84px;line-height:1.05}
+  .sm{font-size:44px;font-weight:700;color:#e8e8ee}
+  .digit{display:inline-block;width:170px;height:250px;margin:0 8px;border-radius:26px;background:#141418;box-shadow:0 20px 60px rgba(0,0,0,.6),inset 0 -6px 0 rgba(255,255,255,.04);color:#fff;font-size:210px;line-height:250px;font-weight:900;overflow:hidden;position:relative}
+  .digit span{position:absolute;left:0;right:0}
+  .colon{display:inline-block;font-size:200px;font-weight:900;color:#ff2a3c;vertical-align:top;line-height:230px}
+  .pc{position:absolute;width:300px;height:400px;border-radius:30px;background:#fff;box-shadow:0 30px 70px rgba(0,0,0,.35)}
+  .pc img{position:absolute;left:50%;bottom:70px;transform:translateX(-50%);height:270px}
+  .pc b{position:absolute;top:18px;right:18px;background:#e3132b;color:#fff;font-size:44px;font-weight:900;border-radius:16px;padding:6px 14px}
+  .pc i{position:absolute;left:0;right:0;bottom:18px;text-align:center;font-style:normal;font-weight:800;font-size:30px;color:#141418}
+  .bar{position:absolute;left:110px;right:110px;height:56px;border-radius:30px;background:rgba(255,255,255,.12);overflow:hidden}
+  .bar div{height:100%;border-radius:30px;background:linear-gradient(90deg,#ffd400,#ff8a00)}
+  .badge{position:absolute;padding:14px 34px;border-radius:20px;background:#0bb34a;color:#fff;font-weight:900;font-size:84px}
+  .stamp{position:absolute;left:50%;padding:18px 40px;border:10px solid #e3132b;color:#e3132b;background:#fff;font-weight:900;font-size:96px;border-radius:14px;white-space:nowrap}
+  .side{position:absolute;left:70px;color:#fff;text-shadow:0 6px 24px rgba(0,0,0,.55)}
+  .side .s{font-size:58px;font-weight:800}
+  .side .b{font-size:132px;font-weight:900;color:#ffd400;line-height:1}
+  .btn{position:absolute;left:90px;right:90px;height:150px;border-radius:80px;background:#e3132b;color:#fff;font-weight:900;font-size:66px;display:flex;align-items:center;justify-content:center;gap:24px;box-shadow:0 20px 50px rgba(227,19,43,.55)}
+  .flash{position:absolute;inset:0;background:#fff;opacity:0}
+</style></head>
+<body>
+<div id="root"></div>
+<script>
+let S=[], IMG='';
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const eo=x=>1-Math.pow(1-clamp(x),3);              // ease out cubic
+const back=x=>{x=clamp(x);const c=1.9;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)}; // overshoot
+const pr=(t,a,d)=>clamp((t-a)/d);
+function el(html){const d=document.createElement('div');d.innerHTML=html.trim();return d.firstChild}
+function setup(cfg){S=cfg.scenes;IMG=cfg.img;const r=document.getElementById('root');
+  S.forEach((s,i)=>{const L=el(`<div class="L ${s.bg||''}" id="s${i}"></div>`);r.appendChild(L);s.el=L;BUILD[s.type](s,L)})}
+const BUILD={
+ slam(s,L){L.innerHTML=`<div class="t" style="top:${s.y||1180}px;font-size:${s.size||128}px;line-height:1.02;text-shadow:0 10px 40px rgba(0,0,0,.6)">${s.text}</div><div class="flash"></div>`},
+ clock(s,L){L.innerHTML=`<div class="t eb" style="top:330px">${s.eb}</div>
+   <div class="t" style="top:460px"><span class="digit"><span>0</span></span><span class="digit"><span>0</span></span><span class="colon">:</span><span class="digit"><span>0</span></span><span class="digit"><span>0</span></span></div>
+   <div class="t mid" style="top:800px">${s.l1}</div><div class="t sm" style="top:920px">${s.l2||''}</div>`},
+ pct(s,L){L.innerHTML=`<div class="t eb" style="top:250px;color:#fff">até</div><div class="t huge" id="n">0%</div><div class="t mid" style="top:640px">OFF NO 11/11</div>`+
+   s.prods.map((p,k)=>`<div class="pc" style="left:${[90,410,730][k%3]}px;top:${860+Math.floor(k/3)*0}px"><b>-${p.p}%</b><img src="${IMG}/${p.img}.png"><i>${p.n}</i></div>`).join('')},
+ ship(s,L){L.innerHTML=`<div class="t eb" style="top:300px">frete grátis</div><div class="t big" style="top:390px">SEM MÍNIMO</div>
+   <img id="jar" src="${IMG}/${s.img}.png" style="position:absolute;left:390px;height:330px">
+   <svg style="position:absolute;left:300px;top:900px" width="480" height="380" viewBox="0 0 480 380"><path d="M20 40h70l60 230h250l50-170H120" fill="none" stroke="#fff" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/><circle cx="180" cy="335" r="30" fill="#fff"/><circle cx="380" cy="335" r="30" fill="#fff"/></svg>
+   <div class="t mid" style="top:1240px;color:#ffd400" id="sl">${s.l1}</div>`},
+ gift(s,L){L.innerHTML=`<div class="t eb" style="top:300px">seu carrinho</div><div class="t big" id="v" style="top:380px">R$ 0</div>
+   <div class="bar" style="top:580px"><div id="f" style="width:0%"></div></div><div class="t sm" style="top:660px">acima de R$ 500 ganha</div>
+   <img id="q" src="${IMG}/${s.img}.png" style="position:absolute;left:50%;top:730px;height:430px;transform:translateX(-50%) scale(0)">
+   <div class="t" style="top:1170px;font-size:56px;font-weight:800;color:#aaa"><s>${s.de}</s></div>
+   <div class="badge" id="g" style="left:50%;top:1240px;transform:translateX(-50%) scale(0)">GRÁTIS</div>`},
+ prod(s,L){L.innerHTML=s.items.map((p,k)=>`<div id="p${k}" style="position:absolute;inset:0;opacity:0"><div class="t eb" style="top:320px">${p.eb}</div><div class="t big" style="top:400px;font-size:120px">${p.n}</div>
+   <img src="${IMG}/${p.img}.png" style="position:absolute;left:50%;top:600px;height:600px;transform:translateX(-50%)"><div class="t mid" style="top:1230px;color:#ffd400">${p.l}</div></div>`).join('')},
+ side(s,L){L.innerHTML=`<div class="side" style="top:${s.y||1240}px"><div class="s">${s.s}</div><div class="b">${s.b}</div></div>`},
+ stamp(s,L){L.innerHTML=`<div class="stamp" style="top:${s.y||1420}px">${s.text}</div>`},
+ end(s,L){L.innerHTML=`<div class="t eb" style="top:420px">só hoje · 11/11</div><div class="t big" style="top:510px">ATÉ 40% OFF</div>
+   <div class="t mid" style="top:720px;color:#ffd400">FRETE GRÁTIS EM TUDO</div><div class="t sm" style="top:860px">Coenzima Q10 de brinde acima de R$ 500</div>
+   <img src="${IMG}/${s.img}.png" style="position:absolute;left:50%;top:960px;height:430px;transform:translateX(-50%)">
+   <div class="btn" style="top:1480px">COMPRAR NO SITE ↓</div><div class="t sm" style="top:1680px;color:#ff5a6b">termina hoje às 23h59</div>`},
+ cta(s,L){L.innerHTML=`<div class="btn" style="top:1420px"><span>${s.text}</span><span id="ar">↓</span></div>`},
+};
+const SEEK={
+ slam(s,L,t){const p=pr(t,s.t0,.18);L.style.opacity=t<s.t1-.12?1:clamp((s.t1-t)/.12);const d=L.firstChild;d.style.transform=`scale(${2.2-1.2*eo(p)})`;d.style.opacity=p;L.querySelector('.flash').style.opacity=t-s.t0<.1?(.55*(1-(t-s.t0)/.1)):0},
+ clock(s,L,t){const k=t-s.t0;const tgt=s.time.replace(':','').split('');const ds=L.querySelectorAll('.digit span');
+   ds.forEach((sp,i)=>{const st=.15+i*.12, p=eo(pr(k,st,.45));const v=+tgt[i];const n=Math.round(v*p);sp.textContent=n;sp.style.transform=`translateY(${(1-p)*-40}px)`});
+   L.querySelector('.colon').style.opacity=(Math.floor(k*2)%2)?.25:1;L.children[2].style.transform=`translateY(${(1-eo(pr(k,.6,.4)))*60}px)`;L.children[2].style.opacity=pr(k,.6,.3)},
+ pct(s,L,t){const k=t-s.t0;const n=L.querySelector('#n');n.style.top='300px';n.textContent=Math.round(s.to*eo(pr(k,.1,.8)))+'%';n.style.transform=`scale(${k<.9?1:1+.08*Math.sin((k-.9)*6)*Math.exp(-(k-.9)*2)})`;
+   L.querySelectorAll('.pc').forEach((c,i)=>{const p=back(pr(k,1+i*.18,.45));c.style.transform=`translateY(${(1-p)*500}px) rotate(${(1-p)*(i%2?8:-8)}deg)`;c.style.opacity=pr(k,1+i*.18,.15)})},
+ ship(s,L,t){const k=t-s.t0;const j=L.querySelector('#jar');const p=pr(k,.35,.55);j.style.top=(560+eo(p)*430*(p<1?1:1))+'px';j.style.transform=`rotate(${(1-p)*-20}deg) scale(${1-.35*eo(p)})`;
+   L.children[1].style.transform=`scale(${back(pr(k,0,.35))})`;L.querySelector('#sl').style.opacity=pr(k,1.1,.3)},
+ gift(s,L,t){const k=t-s.t0;const p=eo(pr(k,.2,1.2));L.querySelector('#v').textContent='R$ '+Math.round(500*p);L.querySelector('#f').style.width=(100*p)+'%';
+   L.querySelector('#q').style.transform=`translateX(-50%) scale(${back(pr(k,1.45,.45))})`;L.querySelector('#g').style.transform=`translateX(-50%) rotate(-6deg) scale(${back(pr(k,1.9,.35))})`;L.children[5].style.opacity=pr(k,1.7,.2)},
+ prod(s,L,t){const k=t-s.t0;s.items.forEach((p,i)=>{const e=document.getElementById(L.id).querySelector('#p'+i);const a=p.at,b=(s.items[i+1]?s.items[i+1].at:1e9);const on=k>=a&&k<b;e.style.opacity=on?pr(k,a,.15):0;
+   const im=e.querySelector('img');im.style.transform=`translateX(-50%) scale(${.6+.4*back(pr(k,a,.45))}) rotate(${(1-eo(pr(k,a,.45)))*-10}deg)`})},
+ side(s,L,t){const k=t-s.t0;const c=L.firstChild;c.style.transform=`translateX(${(1-eo(pr(k,0,.25)))*-120}px)`;c.children[1].style.transform=`scale(${back(pr(k,.08,.3))})`;c.children[1].style.transformOrigin='left center'},
+ stamp(s,L,t){const k=t-s.t0;const c=L.firstChild;c.style.transform=`translateX(-50%) rotate(-7deg) scale(${k<.12?2.4-1.4*eo(k/.12):1})`},
+ end(s,L,t){const k=t-s.t0;[...L.children].forEach((c,i)=>{const p=back(pr(k,i*.09,.4));c.style.opacity=pr(k,i*.09,.12);c.style.translate=`0 ${(1-p)*80}px`})},
+ cta(s,L,t){const k=t-s.t0;const b=L.firstChild;b.style.transform=`scale(${back(pr(k,0,.35))*(1+.04*Math.sin(k*7))})`;L.querySelector('#ar').style.transform=`translateY(${Math.abs(Math.sin(k*6))*18}px)`},
+};
+function seek(t){S.forEach(s=>{const on=t>=s.t0&&t<s.t1;if(!on){s.el.style.opacity=0;return}
+  const fi=s.fade===false?1:Math.min(pr(t,s.t0,.12),clamp((s.t1-t)/.12));s.el.style.opacity=fi;SEEK[s.type](s,s.el,t)})}
+</script></body></html>

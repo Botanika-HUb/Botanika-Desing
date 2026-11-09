@@ -1,0 +1,115 @@
+{
+ "R1": [
+  {
+   "i": 0,
+   "type": "slam",
+   "text": "QUANDO COMEÇA<br>A BLACK?",
+   "size": 112,
+   "y": 1180
+  },
+  {
+   "i": 1,
+   "type": "stamp",
+   "text": "JÁ COMEÇOU!"
+  },
+  {
+   "i": 2,
+   "type": "clock",
+   "full": true,
+   "eb": "11/11 · tudo vale até",
+   "time": "23:59",
+   "l1": "SÓ HOJE",
+   "l2": "depois volta ao preço normal"
+  },
+  {
+   "i": 3,
+   "type": "side",
+   "s": "olha o que dá",
+   "b": "PRA LEVAR"
+  },
+  {
+   "i": 4,
+   "type": "pct",
+   "full": true,
+   "bg": "red",
+   "to": 40,
+   "prods": [
+    {
+     "img": "coq10",
+     "p": 40,
+     "n": "Coenzima Q10"
+    },
+    {
+     "img": "cran",
+     "p": 35,
+     "n": "Cranberry"
+    },
+    {
+     "img": "msm",
+     "p": 30,
+     "n": "MSM"
+    }
+   ]
+  },
+  {
+   "i": 5,
+   "type": "ship",
+   "full": true,
+   "img": "hair",
+   "l1": "pode levar 1 pote só"
+  },
+  {
+   "i": 6,
+   "type": "gift",
+   "full": true,
+   "img": "coq10",
+   "de": "R$ 74,60"
+  },
+  {
+   "i": 7,
+   "type": "stamp",
+   "text": "NÃO DEIXA PASSAR"
+  },
+  {
+   "i": 8,
+   "type": "side",
+   "s": "hoje é o dia de",
+   "b": "MONTAR<br>SEU KIT"
+  },
+  {
+   "i": 9,
+   "type": "prod",
+   "full": true,
+   "items": [
+    {
+     "at": 0,
+     "img": "tri",
+     "n": "Tri[Mg] Complex",
+     "eb": "pro cansaço do fim do dia",
+     "l": "-15% no 11/11"
+    },
+    {
+     "at": 2.4,
+     "img": "sleep",
+     "n": "Sleep Inositol",
+     "eb": "pra noite",
+     "l": "-25% no 11/11"
+    }
+   ]
+  },
+  {
+   "i": 10,
+   "type": "clock",
+   "full": true,
+   "eb": "tudo isso só até",
+   "time": "23:59",
+   "l1": "HOJE"
+  },
+  {
+   "i": 11,
+   "type": "cta",
+   "text": "MONTAR MEU KIT",
+   "until": 12
+  }
+ ]
+}
