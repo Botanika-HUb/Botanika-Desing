@@ -9,7 +9,7 @@
 
 ## 📍 Onde estamos (08/11, 9h) ← COMECE POR AQUI
 - **No ar:** "✅ NO AR — Esquenta + ingredientes (07/11)" (168436498664).
-- **Ingredientes:** no ar, no OFICIAL e no 11/11. **Falta no tema da Week** (esperando o ok do Pedro).
+- **Ingredientes:** no ar, no OFICIAL, no 11/11 e na Week (09/11).
 - **Segunda 09/11, 18h:** Recovery (falta o Vitor) e programar o tema da Week. **Terça 10/11, 20h:** tema 11/11 no ar.
 - **Atrasadas:** nota fiscal e 16 vídeos (depende da regravação).
 

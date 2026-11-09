@@ -12,6 +12,7 @@
   - Cópia do tema no ar (168436498664);
   - OFICIAL (168106000616), que volta em 01/12;
   - 11/11 (168318599400).
-  - O tema no ar (168360411368) e o da Week (168321417448) **não** foram alterados.
+  - Tema da Week (168321417448): seção aplicada em 09/11, com o ok do Pedro, e testada na prévia.
+  - O tema antigo do Esquenta (168360411368, agora 🗑️ APAGAR) não foi alterado.
 - **Fora do PDF:** Ômega 3 (60 cápsulas) e Vitamina B12+B9 estão no catálogo, mas não estão ativos na loja.
 - `ingredientes.py` gera os valores (`python3 ingredientes.py ids.json`).

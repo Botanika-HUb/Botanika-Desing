@@ -826,3 +826,4 @@
   - **20h: tema 11/11 no ar** (o Pedro programa) e link do VIP pela Sarah.
 - **Quarta 11/11:** 11/11 aberto às 00h; Week entra às 23h59.
 - **Daily às 9h20.**
+- **09/11 · Ingredientes no tema da Week** (com o ok do Pedro): mesmo bk-pdp (md5 fd887bdf), testado na prévia (Hair, Kit Imunidade, Whey). Agora a seção está em todos os temas: no ar, OFICIAL, 11/11 e Week.
