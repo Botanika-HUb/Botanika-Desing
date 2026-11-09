@@ -827,3 +827,14 @@
 - **Quarta 11/11:** 11/11 aberto às 00h; Week entra às 23h59.
 - **Daily às 9h20.**
 - **09/11 · Ingredientes no tema da Week** (com o ok do Pedro): mesmo bk-pdp (md5 fd887bdf), testado na prévia (Hair, Kit Imunidade, Whey). Agora a seção está em todos os temas: no ar, OFICIAL, 11/11 e Week.
+
+### 09/11 · Adiantados com o ok do Pedro: Pix 5% e lista do cashback
+- **Pix 5%** (`entregas/pix-5/`): a loja está no plano Grow, não no Plus, então o checkout não consegue dar desconto pela forma de pagamento.
+  - Recomendação: o app Scala (grátis, nota 5,0, funciona com o Mercado Pago). Fora do Plus, o desconto entra por botão ou cupom no carrinho.
+  - Antes de instalar: falar com o suporte, testar se soma com os cupons e ter a aprovação de custo do Vitor.
+  - Nada foi instalado.
+- **Cashback** (`entregas/cashback-1111/`): script da lista dos 100 pedidos pronto e testado com os pedidos de 08/11, só leitura.
+  - Pendente com o Pedro:
+    - os pedidos de 10/11, das 20h às 23h59, entram?
+    - conta 100 pedidos ou 100 clientes?
+  - O commit desses arquivos foi bloqueado pela trava de segurança da sessão.
