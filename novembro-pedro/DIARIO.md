@@ -867,3 +867,11 @@
   - O Esquenta 11/11 acaba às 20h de 10/11, sem sobrepor.
   - O cupom de influenciadora não soma com o 11/11.
   - Detalhes em `entregas/tema-1111-exclusivo/README.md`.
+- **Respostas do Vitor no WhatsApp (09/11, por volta das 14h50):**
+  - Recovery: 15% fixo em tudo, sem somar com o Esquenta da Week.
+  - Calendário: o site fecha só em 29/11, na preparação da Cyber.
+- **Feito (com ok do Pedro):**
+  - **RECOVERY11** na Shopify: 15% em tudo, de 12/11 00h a 20/11 23h59, uma vez por cliente. Não combina com descontos de pedido nem de produto; só com o frete. Status: agendado.
+  - **Alliance:**
+    - tarefa do Recovery concluída, com a entrega do código para a Lissia;
+    - tarefa "Friday · Fechar o site" arquivada, com um comentário explicando o motivo.
