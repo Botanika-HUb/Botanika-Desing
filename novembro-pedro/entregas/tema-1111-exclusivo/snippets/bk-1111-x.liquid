@@ -133,15 +133,32 @@ html.bk11x-on #minicart-form .viewcart{border-color:#141418!important;color:#141
   function offers(force){
     document.querySelectorAll('quantity-discount-cards').forEach(function(el){
       var changed = false;
+      /* 09/11 · desconto por produto do 11/11 (curva ABC do Vitor): todos os cartões de potes levam o % do produto */
+      var P = (window.BK11_PCT && Date.now() < 1794452400000) ? window.BK11_PCT() : 0;
       el.querySelectorAll('.qty2__opt.qty2__tier').forEach(function(card){
-        if (parseInt(card.dataset.quantity, 10) < 2) return;
-        if (parseInt(card.dataset.discount, 10) > 0) { card.dataset.discount = '0'; changed = true; }
+        var q = parseInt(card.dataset.quantity, 10);
+        if (!P && q < 2) return;
+        var want = String(P || 0);
+        if (card.dataset.discount !== want) { card.dataset.discount = want; changed = true; }
         var rib = card.querySelector('.qty2k__ribbon');
-        if (rib && !rib.__bk11) { rib.__bk11 = true; rib.textContent = '🔥 11/11 · frete grátis'; }
-        var cmp = card.querySelector('.qty2k__cmp'); if (cmp) cmp.classList.add('bk11x-hide');
-        var sv = card.querySelector('[data-savebox]'); if (sv) sv.classList.add('bk11x-hide');
+        if (P && !rib) { rib = document.createElement('div'); rib.className = 'qty2k__ribbon'; card.insertBefore(rib, card.firstChild); }
+        if (rib && !rib.__bk11) { rib.__bk11 = true; rib.textContent = P ? '🔥 11/11 · ' + P + '% OFF + frete grátis' : '🔥 11/11 · frete grátis'; }
+        var cmp = card.querySelector('.qty2k__cmp'); if (cmp) cmp.classList.toggle('bk11x-hide', !P);
+        var sv = card.querySelector('[data-savebox]'); if (sv) sv.classList.toggle('bk11x-hide', !P);
+        if (P) card.querySelectorAll('span, small, div, p').forEach(function(x){ if (!x.children.length && /^\s*pre[çc]o regular\s*$/i.test(x.textContent)) x.classList.add('bk11x-hide'); });
+      });
+      /* página de kit: o cartão do kit leva o % do 11/11 no lugar da "oferta do kit" */
+      if (P) el.querySelectorAll('.qty2__opt.qty2__kit:not(.qty2__tier)').forEach(function(card){
+        if (card.dataset.discount !== String(P)) { card.dataset.discount = String(P); changed = true; }
+        var rib = card.querySelector('.qty2k__ribbon'); if (rib) rib.textContent = '🔥 11/11 · ' + P + '% OFF + frete grátis';
+        var pill = card.querySelector('.qty2k__pill--off'); if (pill) pill.textContent = P + '% OFF';
       });
       if ((changed || force) && typeof el.reprice === 'function') { try { el.reprice(parseInt(el.dataset.unitPrice, 10)); } catch (e) {} }
+      if (P) el.querySelectorAll('.qty2__opt.qty2__kit:not(.qty2__tier)').forEach(function(card){
+        var u = parseInt(el.dataset.unitPrice, 10), f = u - Math.floor(u * P / 100), b = card.querySelector('.qty2k__big b');
+        var t = 'R$ ' + (Math.floor(f / 3) / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        if (b && b.textContent !== t) b.textContent = t;
+      });
     });
     var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null), n, kill = [];
     while ((n = w.nextNode())) {

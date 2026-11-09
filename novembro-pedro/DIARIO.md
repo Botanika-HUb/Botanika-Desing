@@ -860,3 +860,10 @@
     - Botanika Week, oferta e frete, com entrega;
     - Botanika Week, brindes, com entrega.
   - Pix 5%: comentário com a pesquisa. A tarefa segue aberta até a aprovação do Vitor.
+- **11/11 · desconto por produto** (PDF do Vitor com a curva ABC; ok do Pedro):
+  - 7 descontos automáticos de 12% a 40%, de 10/11 às 20h a 11/11 às 23h59.
+  - Tema do 11/11 mostrando o "de/por" com o % de cada produto. Testado na prévia: os preços batem com o PDF.
+  - Whey Chocolate vendendo sem estoque.
+  - O Esquenta 11/11 acaba às 20h de 10/11, sem sobrepor.
+  - O cupom de influenciadora não soma com o 11/11.
+  - Detalhes em `entregas/tema-1111-exclusivo/README.md`.
