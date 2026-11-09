@@ -843,3 +843,8 @@
   - A contagem **começa no acesso antecipado, em 10/11 às 20h**: segundo a ficha, "os 100 pedidos devem acabar no acesso antecipado".
   - O README do cashback foi atualizado.
   - Atenção: o comentário de 03/11 na tarefa fala em "00h a 23h59 de 11/11", e a ficha mais nova é que vale.
+- **Botanika Week: tema pronto** (com o ok do Pedro). Detalhes em `entregas/tema-botanika-week/`.
+  - Tema 168494792936, "BOTANIKA WEEK (publicar 20/11 23h59)": escada 10/12/15, de 21/11 a 26/11, com último dia em 26/11.
+  - 4 descontos agendados.
+  - Testado na prévia.
+  - Banners principais aprovados e na Shopify. Os de último dia aguardam aprovação.
