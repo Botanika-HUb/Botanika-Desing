@@ -88,5 +88,5 @@ const SEEK={
  cta(s,L,t){const k=t-s.t0;const b=L.firstChild;b.style.transform=`scale(${back(pr(k,0,.35))*(1+.04*Math.sin(k*7))})`;L.querySelector('#ar').style.transform=`translateY(${Math.abs(Math.sin(k*6))*18}px)`},
 };
 function seek(t){S.forEach(s=>{const on=t>=s.t0&&t<s.t1;if(!on){s.el.style.opacity=0;return}
-  const fi=s.fade===false?1:Math.min(pr(t,s.t0,.12),clamp((s.t1-t)/.12));s.el.style.opacity=fi;SEEK[s.type](s,s.el,t)})}
+  const fi=s.fade===false?1:Math.min(s.fin===false?1:pr(t,s.t0,.12),s.fout===false?1:clamp((s.t1-t)/.12));s.el.style.opacity=fi;SEEK[s.type](s,s.el,t)})}
 </script></body></html>
