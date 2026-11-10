@@ -389,7 +389,7 @@
   "top": "11/11 BOTANIKA · SÓ HOJE",
   "segs": [
    [
-    7.2,
+    9.1,
     12.75
    ],
    [
@@ -484,10 +484,6 @@
     4.5
    ],
    [
-    6.55,
-    7.3
-   ],
-   [
     8.05,
     13.1
    ],
@@ -534,26 +530,26 @@
   ],
   "tags": {
    "0": "ÚLTIMO AVISO",
-   "3": "O DEPOIS É AGORA",
-   "5": "AMANHÃ VOLTA AO PREÇO NORMAL",
-   "7": "FRETE GRÁTIS SEM MÍNIMO",
-   "8": "COENZIMA Q10 DE BRINDE",
-   "9": "AMANHÃ: MAIS CARO + FRETE",
-   "11": "TOQUE NO BOTÃO ↓"
+   "2": "O DEPOIS É AGORA",
+   "4": "AMANHÃ VOLTA AO PREÇO NORMAL",
+   "6": "FRETE GRÁTIS SEM MÍNIMO",
+   "7": "COENZIMA Q10 DE BRINDE",
+   "8": "AMANHÃ: MAIS CARO + FRETE",
+   "10": "TOQUE NO BOTÃO ↓"
   },
   "fx": [
    {
-    "i": 4,
+    "i": 3,
     "type": "clock",
     "label": "FECHA HOJE ÀS"
    },
    {
-    "i": 6,
+    "i": 5,
     "type": "pct",
     "to": 40
    },
    {
-    "i": 8,
+    "i": 7,
     "type": "money",
     "to": 500,
     "delay": 0.4
@@ -561,7 +557,7 @@
   ],
   "prods": [
    {
-    "i": 8,
+    "i": 7,
     "img": "coq10",
     "x": 830,
     "y": 420,
@@ -644,10 +640,6 @@
     38.1
    ],
    [
-    47.25,
-    48.7
-   ],
-   [
     49.65,
     55.1
    ],
@@ -706,14 +698,6 @@
    [
     51.5,
     54.9
-   ],
-   [
-    57.05,
-    58.6
-   ],
-   [
-    59.55,
-    61.05
    ],
    [
     61.9,

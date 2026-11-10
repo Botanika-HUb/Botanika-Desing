@@ -442,18 +442,18 @@
    "y": 1150
   },
   {
-   "i": 2,
+   "i": 1,
    "type": "side",
    "s": "você viu",
    "b": "DE MANHÃ"
   },
   {
-   "i": 3,
+   "i": 2,
    "type": "stamp",
    "text": "O DEPOIS É AGORA"
   },
   {
-   "i": 4,
+   "i": 3,
    "type": "clock",
    "full": true,
    "eb": "o 11/11 fecha hoje às",
@@ -461,13 +461,13 @@
    "l1": "HOJE"
   },
   {
-   "i": 5,
+   "i": 4,
    "type": "side",
    "s": "depois volta ao",
    "b": "PREÇO<br>NORMAL"
   },
   {
-   "i": 6,
+   "i": 5,
    "type": "pct",
    "full": true,
    "bg": "red",
@@ -491,35 +491,35 @@
    ]
   },
   {
-   "i": 7,
+   "i": 6,
    "type": "ship",
    "full": true,
    "img": "hair",
    "l1": "em qualquer pedido"
   },
   {
-   "i": 8,
+   "i": 7,
    "type": "gift",
    "full": true,
    "img": "coq10",
    "de": "R$ 74,60"
   },
   {
-   "i": 9,
+   "i": 8,
    "type": "side",
    "s": "amanhã",
    "b": "MAIS CARO<br>+ FRETE"
   },
   {
-   "i": 10,
+   "i": 9,
    "type": "stamp",
    "text": "MESMO PEDIDO"
   },
   {
-   "i": 11,
+   "i": 10,
    "type": "cta",
    "text": "FINALIZAR AGORA",
-   "until": 12
+   "until": 11
   }
  ],
  "R4": [
@@ -668,7 +668,6 @@
    "full": true,
    "bg": "red",
    "to": 40,
-   "until": 7,
    "prods": [
     {
      "img": "coq10",
@@ -688,7 +687,7 @@
    ]
   },
   {
-   "i": 8,
+   "i": 7,
    "type": "count",
    "full": true,
    "eb": "cashback de",
@@ -698,7 +697,7 @@
    "l2": "100 primeiros pedidos · enquanto durar"
   },
   {
-   "i": 9,
+   "i": 8,
    "type": "cta",
    "text": "GARANTIR MINHA Q10"
   }
@@ -783,11 +782,10 @@
    "type": "gift",
    "full": true,
    "img": "coq10",
-   "de": "R$ 74,60",
-   "until": 11
+   "de": "R$ 74,60"
   },
   {
-   "i": 13,
+   "i": 11,
    "type": "count",
    "full": true,
    "eb": "cashback de",
@@ -797,7 +795,7 @@
    "l2": "100 primeiros pedidos · enquanto durar"
   },
   {
-   "i": 14,
+   "i": 12,
    "type": "clock",
    "full": true,
    "eb": "só até hoje",
@@ -805,7 +803,7 @@
    "l1": "HOJE"
   },
   {
-   "i": 15,
+   "i": 13,
    "type": "cta",
    "text": "MONTAR MINHA ROTINA"
   }
