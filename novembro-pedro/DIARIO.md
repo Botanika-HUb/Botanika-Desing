@@ -987,3 +987,10 @@
   - A configuração do StreamYard das outras marcas pode ser feita junto com a da Botanika.
   - Motivo: a conta única foi criada no e-mail da Botanika.
   - Vale só para a configuração das lives. A regra "só Botanika" continua valendo para o resto.
+- **Correção pedida pelo Otávio (10/11):** cortei as falas repetidas de R2, R5, R9 e R10. Para achar as repetições, comparei o áudio.
+  - Os 4 corrigidos estão na raiz da pasta de vídeos:
+    - R2: 1nyaxD6XgRKcVj50iICOomKRKiM8J8UUf
+    - R5: 1Rp5-W4vEzCWmRBPAs6P614rvxk_MXpZO
+    - R9: 1k555_f6uj25WGFEn4EpqrlhKci5W2eAl
+    - R10: 1nC4c7FN_rwencMu_NpVu1vy8WEyJDcyB
+  - As versões antigas continuam na subpasta "Editados", que o Otávio organizou. Não mexi nela.
