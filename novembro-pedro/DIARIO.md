@@ -974,3 +974,12 @@
   - No Alliance:
     - saíram da entrega de estoque da Week as 2 frases sem base (os "135 pedidos" e o aviso abaixo de 300);
     - a entrega de "Fechar o site" passou a registrar a correção dos links.
+- **Regravações da Mafe editadas e no Drive (10/11), mesmo formato v4:**
+  - R2 "a marca que mudou" (11IQ36FTWc-ofw6NfIgr4v_NsFT78VMGT);
+  - R4 "monta o kit" (1mqsBdT2qBy-Kgh6xyBCf3v9zE2ikpAt8);
+  - R5 "Q10 grátis" (1hL8nRVvKxamns0MSwEVuAOi1VEABx_OF).
+  - O cashback aparece sempre com "enquanto durar".
+  - Ponto para o Pedro decidir: no R2 ela fala "o site inteiro tá com até 40%" e no R4 "até 40% em todos os suplementos".
+  - Falta o R3.
+- **Live 11/11:** no StreamYard da Botanika já estão os destinos @botanikabrasil e revitaderma.br.
+  - A Revita foge da regra "só Botanika". Pedi a confirmação do Pedro antes de configurar.
