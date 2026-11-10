@@ -953,3 +953,12 @@
   - brinde Q10 que fica no carrinho depois do dia 11;
   - Upsell.com soma com tudo; o volume dele está vazio, mas convém conferir as ofertas no painel;
   - grupo "Black Friday 11/11" sem o aviso de acesso antecipado.
+- **Conferência das tarefas do Pedro no Alliance (10/11, só leitura):**
+  - 50 tarefas; li as 24 já feitas ou vencendo.
+  - Shopify e temas estão certos.
+  - Lacunas de registro:
+    - entregas desatualizadas (40% "pendente", reabertura "às 08h", brinde "100% OFF");
+    - sem entrega em "Fechar o site", "10 vídeos de venda", "Nota fiscal" e "SEO";
+    - "Bem-estar" e "SEO" marcadas como feitas sem a execução.
+  - Divergência real: as entregas dizem que o cupom de influenciadora (2%) soma com Esquenta, 11/11 e Week, mas na Shopify ele não soma (`productDiscounts: false`).
+  - Vencem hoje: Pix (18h) e StreamYard (16h).
