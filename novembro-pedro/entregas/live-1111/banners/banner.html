@@ -1,0 +1,56 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden}
+body{font-family:'Inter Display','Inter',sans-serif;color:#fff;background:#0b0b0f;position:relative}
+.bg{position:absolute;inset:0;background:radial-gradient(90% 55% at 50% 30%,#5a0610 0%,#1a0306 55%,#0b0b0f 100%)}
+.wrap{position:absolute;left:0;right:0;top:0;height:1500px;display:flex;flex-direction:column;align-items:center;padding-top:150px;text-align:center}
+.live{display:inline-flex;align-items:center;gap:14px;background:#e3132b;border-radius:99px;padding:14px 34px;font-weight:900;font-size:40px;letter-spacing:.06em}
+.dot{width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 0 0 6px rgba(255,255,255,.25)}
+.eb{margin-top:46px;font-weight:800;font-size:40px;letter-spacing:.14em;color:#ffcf3a}
+.big{font-weight:900;line-height:.86;letter-spacing:-.04em;margin-top:10px}
+.big .a{font-size:120px;display:block}
+.big .p{font-size:330px;display:block;color:#fff;text-shadow:0 12px 60px rgba(227,19,43,.55)}
+.big .o{font-size:120px;display:block}
+.prods{display:flex;gap:26px;margin-top:56px}
+.card{width:250px;background:#fff;border-radius:28px;padding:20px 14px 18px;position:relative;color:#141418}
+.card img{height:210px;display:block;margin:0 auto}
+.card .t{position:absolute;top:-18px;right:-12px;background:#e3132b;color:#fff;font-weight:900;font-size:38px;border-radius:14px;padding:4px 14px}
+.card .n{font-weight:800;font-size:28px;margin-top:8px}
+.list{margin-top:60px;display:flex;flex-direction:column;gap:22px;width:860px}
+.it{display:flex;align-items:center;gap:22px;background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.14);border-radius:24px;padding:18px 28px;font-size:38px;font-weight:700;text-align:left}
+.it b{color:#ffcf3a}
+.ic{width:62px;height:62px;border-radius:16px;background:#e3132b;display:grid;place-items:center;font-size:36px;flex:none}
+.small{font-size:28px;font-weight:600;color:#c9c9d3}
+.end{margin-top:46px;font-size:44px;font-weight:800}
+.end b{color:#ff5a6b}
+.brand{position:absolute;top:60px;left:0;right:0;text-align:center;font-weight:900;font-size:44px;letter-spacing:.32em;color:#fff;opacity:.9}
+/* última chance */
+.uc .bg{background:radial-gradient(100% 60% at 50% 32%,#b80f22 0%,#4a0710 50%,#0b0b0f 100%)}
+.uc .p{font-size:250px}
+.clock{display:flex;gap:16px;margin-top:40px}
+.clock span{background:#0b0b0f;border:3px solid rgba(255,255,255,.2);border-radius:22px;font-weight:900;font-size:150px;padding:6px 26px;line-height:1.1}
+.clock i{font-style:normal;font-weight:900;font-size:150px;color:#e3132b;line-height:1.2}
+</style></head><body class="VAR">
+<div class="bg"></div>
+<div class="brand">BOTANIKA</div>
+<div class="wrap" id="w"></div>
+<script>
+const v=location.hash.slice(1)||'oferta';document.body.className=v==='uc'?'uc':'';
+const prods=`<div class="prods">
+<div class="card"><span class="t">-40%</span><img src="coq10.png"><div class="n">Coenzima Q10</div></div>
+<div class="card"><span class="t">-35%</span><img src="cran.png"><div class="n">Cranberry</div></div>
+<div class="card"><span class="t">-30%</span><img src="msm.png"><div class="n">MSM</div></div></div>`;
+const list=`<div class="list">
+<div class="it"><span class="ic">🚚</span><span><b>Frete grátis</b> em qualquer pedido, sem&nbsp;mínimo</span></div>
+<div class="it"><span class="ic">🎁</span><span><b>Coenzima Q10 de brinde</b> acima de R$&nbsp;500</span></div>
+<div class="it"><span class="ic">💰</span><span><b>15% de cashback</b> nos 100 primeiros pedidos<br><span class="small">enquanto durar</span></span></div></div>`;
+document.getElementById('w').innerHTML = v==='uc'
+ ? `<div class="live"><span class="dot"></span>AO VIVO</div>
+    <div class="eb">ÚLTIMA CHANCE · 11/11</div>
+    <div class="big"><span class="a">ATÉ</span><span class="p">40%</span><span class="o">OFF</span></div>
+    <div class="clock"><span>23</span><i>:</i><span>59</span></div>
+    <div class="end">O 11/11 <b>acaba hoje às 23h59</b></div>${list}`
+ : `<div class="live"><span class="dot"></span>AO VIVO</div>
+    <div class="eb">SÓ HOJE · 11/11 · ATÉ 23H59</div>
+    <div class="big"><span class="a">ATÉ</span><span class="p">40%</span><span class="o">OFF</span></div>${prods}${list}`;
+</script></body></html>
