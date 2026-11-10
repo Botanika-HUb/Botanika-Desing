@@ -3,11 +3,25 @@
 > 🔒 **REGRA FIXA (Pedro, 29/10):** este chat cuida **somente das tarefas da BOTANIKA**. Nunca fazer nada da **VermeFree** nem da **Revita** (nem da Shoty). Se o Pedro citar VermeFree ou Revita, **parar na hora e não executar nada**: só avisar e esperar.
 
 
-> Atualizado em: **09/11/2026, 9h** (vence hoje: Recovery e programar a Week)
+> Atualizado em: **10/11/2026, 9h** (vence hoje: StreamYard 16h, Pix 18h, tema 11/11 entra 20h)
 > Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito · `[!]` bloqueado
 > ID = id da tarefa no Alliance OS (`https://alliance-os-sooty.vercel.app/?task=<ID>#tasks`)
 
-## 📍 Onde estamos (08/11, 9h) ← COMECE POR AQUI
+## 📍 Onde estamos (10/11, 9h) ← COMECE POR AQUI
+- **Hoje:**
+  - CRO às 13h;
+  - link e teste do StreamYard até as 16h;
+  - Pix 18h (aguarda o Vitor);
+  - **às 20h entram o tema 11/11 e os descontos por produto** (conferir o carrinho).
+- **Programados no Supreme:**
+  - 11/11 em 10/11 às 20h;
+  - Esquenta BW em 11/11 às 23h59;
+  - Botanika Week em 20/11 às 23h59.
+- **Vídeos de venda do 11/11:** 6 no Drive (R1, R6 a R10). Faltam R2, R4 e R5 (regravar) e o R3.
+- **RECOVERY11:** 15%, de 12 a 20/11. **Friday:** falta a escada do "até 30%" (Vitor).
+- **Bloqueios:** GitHub 403 (6 commits locais); pasta cashback-1111 bloqueada pela trava de segurança.
+
+## 📍 Onde estamos (08/11, 9h) — histórico
 - **No ar:** "✅ NO AR — Esquenta + ingredientes (07/11)" (168436498664).
 - **Ingredientes:** no ar, no OFICIAL, no 11/11 e na Week (09/11).
 - **Segunda 09/11, 18h:** Recovery (falta o Vitor) e programar o tema da Week. **Terça 10/11, 20h:** tema 11/11 no ar.

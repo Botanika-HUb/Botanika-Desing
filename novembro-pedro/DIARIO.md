@@ -885,3 +885,49 @@
   - Nos vídeos que falam do cashback (R7, R8 e R9), aparece "enquanto durar".
   - **R2, R4 e R5 vão ser regravados:** a Mafe diz "40% no site inteiro", e o desconto é de 12% a 40% por produto. **O R3 não veio na pasta.**
   - Scripts em `entregas/videos-venda-1111/`: `build.py` (cortes), `motion.html` e `compose.py` (telas e PiP).
+
+### 09/11 · fechamento do dia
+- **Feito:**
+  - ingredientes no tema da Week;
+  - pesquisa do Pix 5% (Scala recomendado; aguarda o Vitor);
+  - script da lista do cashback (janela 10/11 20h → 11/11 23h59, 100 pedidos);
+  - **tema da Botanika Week** completo: 4 descontos e 6 banners;
+  - **descontos do 11/11 por produto** (7 faixas, de 12% a 40%) e o tema mostrando o "de/por";
+  - **RECOVERY11** a 15%, de 12 a 20/11, que não soma com o Esquenta da Week;
+  - **6 vídeos de venda do 11/11 no Drive:** R1, R6, R7, R8, R9 e R10.
+- **Pedro:** programou os 3 temas no Supreme:
+  - 11/11 em 10/11 às 20h;
+  - Esquenta BW em 11/11 às 23h59;
+  - Botanika Week em 20/11 às 23h59.
+- **Alliance (no nome do Vitor):**
+  - concluídas: Esquenta BW tema; Week tema, oferta e brindes; Recovery;
+  - "Friday · fechar site" arquivada;
+  - comentário no Pix.
+- **Respostas do Vitor:**
+  - PDF da curva ABC do 11/11;
+  - Recovery a 15% fixo, sem somar com a Week;
+  - calendário: o site fecha só em 29/11 (preparação da Cyber).
+- **Pendente:**
+  - escada do "até 30%" da Friday (Vitor);
+  - regravar R2, R4 e R5 e mandar o R3 (Mafe);
+  - nota fiscal;
+  - GitHub 403 (6 commits locais);
+  - pasta cashback-1111 sem commit (trava de segurança).
+
+## 10/11 · plano do dia (terça)
+- **Rituais:** Daily às 9h20 e **Reunião de CRO/Site às 13h** (montar a pauta antes, a pedido do Pedro).
+- **Vence hoje:**
+  - **16h:** link de convidado do StreamYard para o Vitor (que repassa à Larissa) e para a Mafe, e teste da transmissão (tarefa nova do Alliance: live do 11/11 das 08h às 00h, em 4 blocos de 4h). Conferir se o plano permite 3 transmissões ao mesmo tempo e avisar o Vitor hoje se não permitir;
+  - **18h:** Pix 5% (pesquisa feita; falta a aprovação do Vitor);
+  - **20h:** o tema 11/11 entra no ar sozinho, junto com os 7 descontos por produto e o frete sem mínimo. Conferir um carrinho real logo depois.
+- **Próximos 2 dias:**
+  - 11/11: Dia D (live das 08h às 00h; acompanhar o site); às 23h59 entra o Esquenta BW;
+  - 12/11 às 9h: lista dos 100 do cashback, com o OK do Pedro antes de aplicar as tags.
+- **Atrasadas:**
+  - nota fiscal (06/11);
+  - 16 vídeos do 1º lote (06/11);
+  - 10 vídeos de venda do 11/11 (6 entregues; R2, R3, R4 e R5 dependem da Mafe).
+- **Cobrar:**
+  - Mafe: regravação de R2, R4 e R5 e o R3;
+  - Vitor: escada do "até 30%" da Friday e a aprovação do Pix;
+  - Sarah: o link VIP (acesso=vip1111) nos disparos de hoje.
