@@ -983,3 +983,7 @@
   - Falta o R3.
 - **Live 11/11:** no StreamYard da Botanika já estão os destinos @botanikabrasil e revitaderma.br.
   - A Revita foge da regra "só Botanika". Pedi a confirmação do Pedro antes de configurar.
+- **Exceção autorizada pelo Pedro (10/11):**
+  - A configuração do StreamYard das outras marcas pode ser feita junto com a da Botanika.
+  - Motivo: a conta única foi criada no e-mail da Botanika.
+  - Vale só para a configuração das lives. A regra "só Botanika" continua valendo para o resto.
