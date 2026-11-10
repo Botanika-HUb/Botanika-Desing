@@ -931,3 +931,25 @@
   - Mafe: regravação de R2, R4 e R5 e o R3;
   - Vitor: escada do "até 30%" da Friday e a aprovação do Pix;
   - Sarah: o link VIP (acesso=vip1111) nos disparos de hoje.
+
+### 10/11: varredura completa antes do 11/11 (só leitura, nada alterado)
+- **Descontos:**
+  - os 7 descontos por produto do 11/11 cobrem os 21 produtos ativos, com os percentuais certos;
+  - o frete sem mínimo começa junto, 10/11 às 20h, e vai até 11/11 às 23h59;
+  - o Esquenta 11/11 (8/10/12% e frete acima de R$ 249) termina 10/11 às 20h, sem buraco nem sobreposição;
+  - Esquenta BW, Week e RECOVERY11 estão programados certos.
+- **Temas:**
+  - os arquivos dos temas Week e 11/11 batem com as cópias locais, exceto o `bk-pv-1111`: a versão da loja é mais nova e a cópia local está velha (sem impacto);
+  - o tema Esquenta BW tem o brinde a R$ 0 atualizado; a pasta local `tema-esquenta-week` está velha.
+- **Preview do 11/11 com o relógio simulado:**
+  - 20h30: portão fechado para quem não é VIP; com `?acesso=vip1111` o site abre e continua aberto nas outras páginas; a página do grupo VIP fica fora do portão;
+  - 12h: preços certos na PDP, na coleção e nos kits;
+  - 19h: aparece "últimas horas";
+  - 00h30 do dia 12: volta ao normal.
+- **Achado crítico:** os links VIP de 20h e 21h (`/d11/vip-1011-2000` e `-2100`) redirecionam para a home sem `acesso=vip1111`, então a VIP cai no portão fechado. Correção a aprovar: incluir `&acesso=vip1111` no destino dos dois redirecionamentos.
+- **Outros pontos para a pauta:**
+  - cupons de influenciadoras (2%) não somam com o 11/11 e se perdem, sem atribuição para a creator;
+  - centavo de diferença no parcelado (29,15 × 29,16);
+  - brinde Q10 que fica no carrinho depois do dia 11;
+  - Upsell.com soma com tudo; o volume dele está vazio, mas convém conferir as ofertas no painel;
+  - grupo "Black Friday 11/11" sem o aviso de acesso antecipado.
