@@ -998,3 +998,4 @@
   - A senha `vip1111` libera o site naquele aparelho, igual ao link `?acesso=vip1111`.
   - Subi o `bk-1111.liquid` no tema 11/11 (168318599400) e conferi o checksum (519b3c51).
   - Teste na prévia: com a senha errada aparece o aviso de erro; com a senha certa a tela some e o site navega com os preços do 11/11.
+- **Card de 5 potes (tema 11/11, 10/11, a pedido do Vitor e com o OK do Pedro):** o selo agora diz "+ Manual da Suplementação + Guia Saúde da Mulher". O checksum na loja confere (70ac54db).

@@ -158,7 +158,7 @@ comment
 endcomment
 comment
   11/11 (06/11, revisão do Vitor): seletor 1 / 3 / 5 potes. O 3 ganha o Manual da Suplementação
-  e o 5 ganha o Guia Saúde da Mulher. Vale só neste tema exclusivo do 11/11, para todos os produtos.
+  e o 5 ganha o Manual e o Guia Saúde da Mulher (10/11, feedback do Vitor). Vale só neste tema exclusivo do 11/11, para todos os produtos.
   A imagem de 3 potes vem do campo qty_tier3_image; a de 5 potes é montada pelo bk-pv-5potes.
 endcomment
 if n == '2'
@@ -172,7 +172,7 @@ elsif n == '3'
   assign q = 5
   assign title = '5 potes'
   assign sub = ''
-  assign bonus = '+ Guia Saúde da Mulher'
+  assign bonus = '+ Manual da Suplementação + Guia Saúde da Mulher'
   assign setimg = bs.tier1_image
   assign metaimg = product.metafields.custom.qty_tier1_image.value
 endif
