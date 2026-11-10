@@ -994,3 +994,7 @@
     - R9: 1k555_f6uj25WGFEn4EpqrlhKci5W2eAl
     - R10: 1nC4c7FN_rwencMu_NpVu1vy8WEyJDcyB
   - As versões antigas continuam na subpasta "Editados", que o Otávio organizou. Não mexi nela.
+- **Campo de senha na tela de site fechado (10/11, com o OK do Pedro):**
+  - A senha `vip1111` libera o site naquele aparelho, igual ao link `?acesso=vip1111`.
+  - Subi o `bk-1111.liquid` no tema 11/11 (168318599400) e conferi o checksum (519b3c51).
+  - Teste na prévia: com a senha errada aparece o aviso de erro; com a senha certa a tela some e o site navega com os preços do 11/11.
