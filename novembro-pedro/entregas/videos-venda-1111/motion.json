@@ -521,5 +521,186 @@
    "text": "FINALIZAR AGORA",
    "until": 12
   }
+ ],
+ "R4": [
+  {
+   "i": 0,
+   "type": "slam",
+   "text": "ATÉ 40%<br>OFF",
+   "size": 160,
+   "y": 1150
+  },
+  {
+   "i": 1,
+   "type": "side",
+   "s": "a rotina inteira",
+   "b": "DE UMA VEZ"
+  },
+  {
+   "i": 2,
+   "type": "stamp",
+   "text": "O MEU KIT"
+  },
+  {
+   "i": 3,
+   "type": "prod",
+   "full": true,
+   "items": [
+    {
+     "at": 0,
+     "img": "tri",
+     "n": "Tri[Mg] Complex",
+     "eb": "pro cansaço do fim do dia",
+     "l": "-15% no 11/11"
+    },
+    {
+     "at": 1.7,
+     "img": "sleep",
+     "n": "Sleep Inositol",
+     "eb": "pra noite",
+     "l": "-25% no 11/11"
+    }
+   ]
+  },
+  {
+   "i": 4,
+   "type": "prod",
+   "full": true,
+   "items": [
+    {
+     "at": 0,
+     "img": "hair",
+     "n": "Hair Botanika",
+     "eb": "cabelo de dentro pra fora",
+     "l": "-12% no 11/11"
+    }
+   ]
+  },
+  {
+   "i": 5,
+   "type": "ship",
+   "full": true,
+   "img": "hair",
+   "l1": "em qualquer pedido"
+  },
+  {
+   "i": 6,
+   "type": "gift",
+   "full": true,
+   "img": "coq10",
+   "de": "R$ 74,60"
+  },
+  {
+   "i": 7,
+   "type": "count",
+   "full": true,
+   "eb": "cashback de",
+   "to": 15,
+   "suffix": "%",
+   "l1": "PRA PRÓXIMA COMPRA",
+   "l2": "100 primeiros pedidos · enquanto durar"
+  },
+  {
+   "i": 8,
+   "type": "cta",
+   "text": "MONTAR MEU KIT"
+  }
+ ],
+ "R5": [
+  {
+   "i": 0,
+   "type": "slam",
+   "text": "NÃO PULA<br>ESSE VÍDEO",
+   "size": 130,
+   "y": 1150
+  },
+  {
+   "i": 1,
+   "type": "side",
+   "s": "como ganhar",
+   "b": "Q10 GRÁTIS"
+  },
+  {
+   "i": 2,
+   "type": "clock",
+   "full": true,
+   "eb": "só vale até",
+   "time": "23:59",
+   "l1": "HOJE"
+  },
+  {
+   "i": 3,
+   "type": "side",
+   "s": "é só tocar",
+   "b": "NO BOTÃO ↓"
+  },
+  {
+   "i": 4,
+   "type": "prod",
+   "full": true,
+   "items": [
+    {
+     "at": 0,
+     "img": "tri",
+     "n": "Tri[Mg] Complex",
+     "eb": "o magnésio da rotina",
+     "l": "-15% no 11/11"
+    },
+    {
+     "at": 2.2,
+     "img": "sleep",
+     "n": "Sleep Inositol",
+     "eb": "pra noite",
+     "l": "-25% no 11/11"
+    }
+   ]
+  },
+  {
+   "i": 5,
+   "type": "gift",
+   "full": true,
+   "img": "coq10",
+   "de": "R$ 74,60"
+  },
+  {
+   "i": 6,
+   "type": "pct",
+   "full": true,
+   "bg": "red",
+   "to": 40,
+   "until": 7,
+   "prods": [
+    {
+     "img": "coq10",
+     "p": 40,
+     "n": "Coenzima Q10"
+    },
+    {
+     "img": "cran",
+     "p": 35,
+     "n": "Cranberry"
+    },
+    {
+     "img": "msm",
+     "p": 30,
+     "n": "MSM"
+    }
+   ]
+  },
+  {
+   "i": 8,
+   "type": "count",
+   "full": true,
+   "eb": "cashback de",
+   "to": 15,
+   "suffix": "%",
+   "l1": "PRA PRÓXIMA COMPRA",
+   "l2": "100 primeiros pedidos · enquanto durar"
+  },
+  {
+   "i": 9,
+   "type": "cta",
+   "text": "GARANTIR MINHA Q10"
+  }
  ]
 }
