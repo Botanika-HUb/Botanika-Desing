@@ -968,3 +968,9 @@
   - Week, brindes: estoque de 1.033 unidades.
   - Recovery: código passado para a Lissia Caetano.
   - Nenhum status mudou.
+- **Correções (10/11, com o OK do Pedro):**
+  - Na Shopify, os redirecionamentos `/d11/vip-1011-2000` e `/d11/vip-1011-2100` agora mandam para `/?acesso=vip1111&utm…`.
+    - Teste com o relógio em 20h30: o site fica aberto na home e na página de produto.
+  - No Alliance:
+    - saíram da entrega de estoque da Week as 2 frases sem base (os "135 pedidos" e o aviso abaixo de 300);
+    - a entrega de "Fechar o site" passou a registrar a correção dos links.
