@@ -999,3 +999,9 @@
   - Subi o `bk-1111.liquid` no tema 11/11 (168318599400) e conferi o checksum (519b3c51).
   - Teste na prévia: com a senha errada aparece o aviso de erro; com a senha certa a tela some e o site navega com os preços do 11/11.
 - **Card de 5 potes (tema 11/11, 10/11, a pedido do Vitor e com o OK do Pedro):** o selo agora diz "+ Manual da Suplementação + Guia Saúde da Mulher". O checksum na loja confere (70ac54db).
+- **Tela de site fechado simplificada (10/11, pedido do Pedro):**
+  - a senha virou o foco; saíram o cadastro e o link de login;
+  - ficou um link "Ainda não tem a senha? Entre no Grupo VIP";
+  - o espaçamento do topo foi corrigido;
+  - o checksum na loja confere (30ce5bda);
+  - teste: com a senha errada aparece o aviso de erro e a tela continua; com a certa, o site abre.

@@ -37,35 +37,26 @@
     <h2 class="bk-onze-gate__h">O maior desconto da história da Botanika <em>abre à meia-noite.</em></h2>
     <p class="bk-onze-gate__p">Até <b>40% OFF</b> e <b>frete grátis em todos os pedidos</b>, só no dia 11/11.</p>
     <div class="bk-onze-gate__count">Abre em <b data-bk-onze-open>--</b></div>
-    <form class="bk-onze-gate__form" data-bk-onze-form novalidate>
-      <p class="bk-onze-gate__ft">Entre no Grupo VIP e compre antes de todo mundo. Deixe seus dados para liberar o link:</p>
-      <input name="fullname" type="text" autocomplete="name" placeholder="Seu nome" required>
-      <input name="email" type="email" autocomplete="email" inputmode="email" placeholder="Seu e-mail" required>
-      <input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Celular com DDD" required>
-      <p class="bk-onze-gate__err" data-bk-onze-err hidden>Confira o nome, o e-mail e o celular com DDD.</p>
-      <button type="submit" class="bk-onze-gate__cta">Liberar o link do Grupo VIP</button>
-    </form>
-    <div class="bk-onze-gate__ok" data-bk-onze-ok hidden>
-      <p class="bk-onze-gate__ft">Pronto! Agora é só entrar no grupo:</p>
-      <a class="bk-onze-gate__cta" href="https://sndflw.com/i/botanika-vip?utm_source=site&amp;utm_medium=tela_fechada&amp;utm_campaign=11-11" target="_blank" rel="noopener">Entrar no Grupo VIP</a>
-    </div>
     <form class="bk-onze-gate__pw" data-bk-onze-pw novalidate>
-      <p class="bk-onze-gate__pwt">Recebeu a senha do acesso antecipado? Digite aqui:</p>
-      <div class="bk-onze-gate__pwr"><input name="pw" type="text" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="Senha"><button type="submit">Entrar</button></div>
+      <p class="bk-onze-gate__pwt">Recebeu a senha do acesso antecipado?</p>
+      <div class="bk-onze-gate__pwr"><input name="pw" type="text" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="Digite a senha" aria-label="Senha do acesso antecipado"><button type="submit">Entrar</button></div>
       <p class="bk-onze-gate__err" data-bk-onze-pwerr hidden>Senha incorreta. Confira e tente de novo.</p>
     </form>
+    <a class="bk-onze-gate__vip" href="https://sndflw.com/i/botanika-vip?utm_source=site&amp;utm_medium=tela_fechada&amp;utm_campaign=11-11" target="_blank" rel="noopener">Ainda não tem a senha? <b>Entre no Grupo VIP</b></a>
     <style>
-      .bk-onze-gate__pw{margin:14px 0 4px;padding:14px;border:1.5px dashed rgba(255,255,255,.28);border-radius:14px;text-align:center}
-      .bk-onze-gate__pwt{margin:0 0 10px;font-size:14px;color:#fff;font-weight:600}
+      .bk-onze-gate{align-items:flex-start!important;padding-top:max(36px,env(safe-area-inset-top))!important;padding-bottom:36px!important}
+      .bk-onze-gate__box{margin:auto}
+      .bk-onze-gate__pw{margin:6px 0 0;padding:18px 16px;border:1.5px solid rgba(255,255,255,.22);border-radius:16px;background:#141419;text-align:center}
+      .bk-onze-gate__pwt{margin:0 0 12px;font-size:17px;color:#fff;font-weight:800}
       .bk-onze-gate__pwr{display:flex;gap:8px}
-      .bk-onze-gate__pwr input{flex:1;min-width:0;height:46px;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:#17171c;color:#fff;font-size:16px;padding:0 14px;text-transform:lowercase}
-      .bk-onze-gate__pwr button{height:46px;padding:0 20px;border:0;border-radius:10px;background:#fff;color:#0b0b0f;font-weight:800;font-size:15px;cursor:pointer}
+      .bk-onze-gate__pwr input{flex:1;min-width:0;height:52px;border-radius:12px;border:1px solid rgba(255,255,255,.3);background:#0b0b0f;color:#fff;font-size:17px;padding:0 16px;text-transform:lowercase;font-family:inherit}
+      .bk-onze-gate__pwr input:focus{outline:none;border-color:#e3132b}
+      .bk-onze-gate__pwr input::placeholder{color:#9a9aa6;text-transform:none;opacity:1}
+      .bk-onze-gate__pwr button{height:52px;padding:0 24px;border:0;border-radius:12px;background:#e3132b;color:#fff;font-weight:800;font-size:16px;cursor:pointer;font-family:inherit}
+      .bk-onze-gate__pw .bk-onze-gate__err{margin-top:10px}
+      .bk-onze-gate__vip{display:block;margin-top:16px;color:#d6d6de!important;font-size:14.5px;text-decoration:none}
+      .bk-onze-gate__vip b{color:#fff;text-decoration:underline}
     </style>
-    {%- if customer -%}
-      <p class="bk-onze-gate__s">O acesso antecipado é para quem já comprou na Botanika. Quem está no Grupo VIP já pode comprar agora; para todo mundo, o 11/11 abre à meia-noite.</p>
-    {%- else -%}
-      <a class="bk-onze-gate__login" href="/account/login?return_url={{ onze_page | url_encode }}">Já comprou com a gente? <b>Entre na sua conta</b> e compre agora</a>
-    {%- endif -%}
   </div>
 </div>
 </template>
