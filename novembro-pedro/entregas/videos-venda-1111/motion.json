@@ -702,5 +702,112 @@
    "type": "cta",
    "text": "GARANTIR MINHA Q10"
   }
+ ],
+ "R2": [
+  {
+   "i": 0,
+   "type": "clock",
+   "full": true,
+   "at": 2.6,
+   "eb": "oferta especial só até",
+   "time": "23:59",
+   "l1": "HOJE"
+  },
+  {
+   "i": 1,
+   "type": "side",
+   "s": "vem que eu",
+   "b": "TE CONTO"
+  },
+  {
+   "i": 2,
+   "type": "side",
+   "s": "fim do dia",
+   "b": "SEM ENERGIA"
+  },
+  {
+   "i": 3,
+   "type": "stamp",
+   "text": "CULPAVA TUDO"
+  },
+  {
+   "i": 5,
+   "type": "side",
+   "s": "até que eu",
+   "b": "CONHECI A BOTANIKA"
+  },
+  {
+   "i": 6,
+   "type": "stamp",
+   "text": "OUTRO DIA"
+  },
+  {
+   "i": 7,
+   "type": "side",
+   "s": "hoje é o melhor dia",
+   "b": "PRA COMEÇAR"
+  },
+  {
+   "i": 8,
+   "type": "pct",
+   "full": true,
+   "bg": "red",
+   "to": 40,
+   "prods": [
+    {
+     "img": "coq10",
+     "p": 40,
+     "n": "Coenzima Q10"
+    },
+    {
+     "img": "cran",
+     "p": 35,
+     "n": "Cranberry"
+    },
+    {
+     "img": "msm",
+     "p": 30,
+     "n": "MSM"
+    }
+   ]
+  },
+  {
+   "i": 9,
+   "type": "ship",
+   "full": true,
+   "img": "hair",
+   "l1": "em qualquer pedido"
+  },
+  {
+   "i": 10,
+   "type": "gift",
+   "full": true,
+   "img": "coq10",
+   "de": "R$ 74,60",
+   "until": 11
+  },
+  {
+   "i": 13,
+   "type": "count",
+   "full": true,
+   "eb": "cashback de",
+   "to": 15,
+   "suffix": "%",
+   "l1": "PRA PRÓXIMA COMPRA",
+   "l2": "100 primeiros pedidos · enquanto durar"
+  },
+  {
+   "i": 14,
+   "type": "clock",
+   "full": true,
+   "eb": "só até hoje",
+   "time": "23:59",
+   "l1": "HOJE"
+  },
+  {
+   "i": 15,
+   "type": "cta",
+   "text": "MONTAR MINHA ROTINA"
+  }
  ]
 }
