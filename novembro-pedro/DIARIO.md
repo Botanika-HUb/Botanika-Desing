@@ -962,3 +962,9 @@
     - "Bem-estar" e "SEO" marcadas como feitas sem a execução.
   - Divergência real: as entregas dizem que o cupom de influenciadora (2%) soma com Esquenta, 11/11 e Week, mas na Shopify ele não soma (`productDiscounts: false`).
   - Vencem hoje: Pix (18h) e StreamYard (16h).
+- **Alliance atualizado (10/11, com o OK do Pedro; registrado em nome do Vitor):** 9 entregas novas, todas com status "enviado".
+  - Tarefas do 11/11: oferta e frete, tema, fechar o site (com o teste e o alerta do link VIP), brindes e cashback.
+  - Tarefas do Esquenta BW: tema e brindes (Cranberry a R$ 0).
+  - Week, brindes: estoque de 1.033 unidades.
+  - Recovery: código passado para a Lissia Caetano.
+  - Nenhum status mudou.
