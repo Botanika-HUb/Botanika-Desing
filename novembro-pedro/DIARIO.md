@@ -1092,3 +1092,8 @@
     - corta o "Roteiro 4" e as falas repetidas;
     - escada 8/10/12%, frete acima de R$ 249, carrinho até R$ 400 com cranberry, "monte seu kit", CTA e cartão final "só até 20/11".
   - Scripts em `entregas/videos-esquenta-bw/`. Aguarda o ok para editar os outros.
+- **11/11, cranberry que faltou (pedido #7017 da Marcela, levantado pela Lissia):**
+  - **Causa:** o brinde é colocado no carrinho pelo tema (produto a R$ 0). Pedido que chega ao checkout sem passar pelo carrinho do tema fica sem o brinde.
+  - **Pedidos afetados:** de 01 a 10/11 (conferidos até as 13h34 de 10/11), 8 pedidos acima de R$ 400 ficaram sem cranberry: #6974, #6976, #6977, #6978, #6980, #6984, #7017 e #7022, todos de 01 a 03/11. De 03/11 até o 11/11 (Q10), nenhum outro.
+  - **A Vitamina C do #7017** foi paga (R$ 78,78). A etiqueta "Brinde Dia D: Pague 4, leve 5" veio de outra página. Não existe neste repositório nem no tema.
+  - **Prevenção proposta:** verificação automática de hora em hora, de 12 a 26/11. Ela inclui o "Cranberry · Brinde" (R$ 0) nos pedidos ainda não enviados que passaram de R$ 400 sem brinde, e põe a tag brinde-auto. A criação da tarefa agendada foi bloqueada pelo sistema e precisa do ok explícito do Pedro.
