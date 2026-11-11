@@ -1005,3 +1005,14 @@
   - o espaçamento do topo foi corrigido;
   - o checksum na loja confere (30ce5bda);
   - teste: com a senha errada aparece o aviso de erro e a tela continua; com a certa, o site abre.
+- **11/11 às 22h, correção urgente nos descontos (com o OK do Pedro):**
+  - Problema: os 7 descontos por produto estavam configurados para não combinar entre si. Num carrinho com produtos de faixas diferentes, só uma faixa era aplicada; uma cliente reclamou na live.
+  - Correção: liberei a combinação de descontos de produto (`productDiscounts: true`) nos 7.
+  - Teste depois da correção, num carrinho com 5 faixas, cada produto com o seu percentual:
+    - Hair 12%
+    - Tri 15%
+    - Sleep 25%
+    - Kit Completo 35%
+    - Q10 40%
+  - Os cupons de influenciadora continuam sem somar.
+  - Pendente: conferir no painel do Upsell.com se existe alguma oferta com desconto.
