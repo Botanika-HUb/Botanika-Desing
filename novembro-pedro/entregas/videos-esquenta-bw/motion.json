@@ -448,5 +448,33 @@
    "type": "cta",
    "text": "VER AS OFERTAS"
   }
+ ],
+ "E8": [
+  {
+   "i": 0,
+   "type": "slam",
+   "text": "POTE VAZIO<br>EM CASA?",
+   "size": 128,
+   "y": 1180
+  },
+  {
+   "i": 10,
+   "type": "cta",
+   "text": "REPOR MEUS SUPLEMENTOS"
+  }
+ ],
+ "E6": [
+  {
+   "i": 0,
+   "type": "slam",
+   "text": "JÁ É<br>DE CASA?",
+   "size": 140,
+   "y": 1180
+  },
+  {
+   "i": 15,
+   "type": "cta",
+   "text": "GARANTIR MEUS 2"
+  }
  ]
 }
