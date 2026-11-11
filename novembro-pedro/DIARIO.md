@@ -1074,3 +1074,8 @@
 - **11/11 às 10h, resolvido ("resolve tudo" do Pedro):**
   - Os cupons de 5% (GABIFLORONUTRI, DRALUIZA, FATINHA, VANESSA, ALICIA) foram para 2% de pedido, acumulando com a oferta e valendo 1 por pedido. Agora são 60 cupons de creator, todos iguais.
   - **Crédito para os 14 pedidos: bloqueado.** O conector da Shopify não tem permissão para lançar crédito de loja (falta o escopo write_store_credit_account_transactions). O #7552 expirou (Pix não pago) e saiu da lista.
+- **11/11, pendente (Pedro: "vamos ter que fazer isso"):**
+  - Fazer commit da pasta `entregas/cashback-1111/`. O sistema de segurança bloqueou, então precisa de liberação.
+  - Reconectar o GitHub (o push dá 403). Os ~25 commits deste ambiente ainda não foram para o remoto.
+  - Marcar no Alliance a tarefa "Operar a live de virada" como feita. A escrita foi bloqueada.
+- **11/11, nova tarefa:** deixar o link da bio (social.botanikabrasil.com.br) com o tema do 11/11.
