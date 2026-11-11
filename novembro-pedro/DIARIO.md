@@ -1079,3 +1079,7 @@
   - Reconectar o GitHub (o push dá 403). Os ~25 commits deste ambiente ainda não foram para o remoto.
   - Marcar no Alliance a tarefa "Operar a live de virada" como feita. A escrita foi bloqueada.
 - **11/11, nova tarefa:** deixar o link da bio (social.botanikabrasil.com.br) com o tema do 11/11.
+- **11/11 às 11h30, link da bio no tema 11/11:**
+  - **Página:** `entregas/linkbio-1111/index.html`, preto e vermelho do tema 11/11, com o banner do 11/11 e a contagem até 23h59. Às 18h troca para "Últimas horas". Depois de 23h59 volta sozinha para o texto padrão ("Fórmulas puras"), sem o banner e sem a live. Prévia de horário: `?t=2026-11-11T19:00:00-03:00`.
+  - **Vercel:** projeto botanika-social, time Alliance, já no ar em https://botanika-social-gestaoalliance.vercel.app. O domínio social.botanikabrasil.com.br foi adicionado ao projeto.
+  - **DNS (falta o Pedro):** hoje o social aponta para o Cloudflare Pages (botanika-social.pages.dev), e o DNS do domínio está na GoDaddy. Trocar o CNAME `social` para `b7aa93740095ec95.vercel-dns-016.com` (ou `cname.vercel-dns.com`).
