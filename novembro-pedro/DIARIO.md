@@ -1068,3 +1068,6 @@
   - Teste com LARILESSA, Hair e Q10: cada item com o seu 11/11 e +2% (R$ 3,54) no total.
   - **Para o Vitor decidir (não mexi):** GABIFLORONUTRI e DRALUIZA (5%, de produto, não somam); FATINHA, VANESSA e ALICIA (5%, de pedido, somam entre si).
   - **Falha minha:** a divergência entre a ficha ("acumulativo com tudo") e a Shopify apareceu na varredura de 10/11. Tratei como decisão pendente em vez de corrigir.
+- **11/11 às 9h50, conferência completa:**
+  - 7 cenários de carrinho no site no ar, todos certos: 1 produto, mistura de faixas, cupom, 2 cupons (só 1 vale), brinde Q10 acima de R$ 500, kits, RECOVERY11 ainda sem valer.
+  - Pedidos reais depois da correção: os 118 desde 22h15 estão com todos os itens com desconto. Nos 30 mais recentes que olhei um a um, o frete saiu R$ 0.
