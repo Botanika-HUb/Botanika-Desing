@@ -1016,3 +1016,12 @@
     - Q10 40%
   - Os cupons de influenciadora continuam sem somar.
   - Pendente: conferir no painel do Upsell.com se existe alguma oferta com desconto.
+- **Pedidos afetados pela falha de combinação** (de 10/11 20h até a correção, por volta de 22h10). Levantamento só leitura:
+  - 31 pedidos no período.
+  - **14 pedidos pagos** ficaram sem o desconto do 11/11 em parte dos itens. A diferença soma **R$ 570,25**:
+    - #7523, #7525, #7526, #7534, #7538, #7539, #7540
+    - #7541, #7543, #7545, #7547, #7548, #7550, #7551
+  - Mais o #7552, com Pix pendente, com diferença de R$ 14,05.
+  - O cálculo é o % de cada produto aplicado sobre os itens que ficaram sem desconto.
+  - Também encontrei "Cranberry · Brinde" (o brinde do Esquenta) nos pedidos #7526, #7550 e #7552: sobrou no carrinho de quem montou antes das 20h.
+  - Decisão sobre devolver a diferença: Vitor ou Pedro.
