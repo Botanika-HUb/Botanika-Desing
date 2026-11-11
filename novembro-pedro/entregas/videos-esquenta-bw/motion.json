@@ -1,0 +1,13 @@
+{"E4": [
+ {"i": 0, "type": "slam", "text": "COMO GANHAR<br>12% OFF?", "size": 128, "y": 1180},
+ {"i": 1, "type": "side", "s": "te mostro em", "b": "10<br>SEGUNDOS"},
+ {"i": 2, "type": "ladder", "full": true, "lvl": 1, "img": "hair"},
+ {"i": 3, "type": "ladder", "full": true, "lvl": 2, "img": "hair"},
+ {"i": 4, "type": "ladder", "full": true, "lvl": 3, "img": "hair"},
+ {"i": 5, "type": "ship", "full": true, "img": "crea", "eb": "frete grátis", "big": "ACIMA DE<br>R$ 249", "l1": "com 5 potes, já é seu"},
+ {"i": 6, "type": "gift", "full": true, "img": "cran", "min": 400, "de": "R$ 74,20"},
+ {"i": 7, "type": "stamp", "text": "PODE MISTURAR!"},
+ {"i": 8, "type": "kit", "full": true, "imgs": ["hair", "crea", "tetra", "vitc", "omega"], "eb": "do jeito que você quiser", "big": "MONTE SEU KIT", "l1": "vale misturando os produtos"},
+ {"i": 9, "type": "stamp", "text": "NÃO PERDE!"},
+ {"i": 10, "type": "cta", "text": "MONTAR MEU KIT"}
+]}

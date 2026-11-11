@@ -1085,3 +1085,10 @@
   - **DNS (falta o Pedro):** hoje o social aponta para o Cloudflare Pages (botanika-social.pages.dev), e o DNS do domínio está na GoDaddy. Trocar o CNAME `social` para `b7aa93740095ec95.vercel-dns-016.com` (ou `cname.vercel-dns.com`).
   - **Endereço mudou (Pedro):** o link da bio do 11/11 vai ficar em 11do11.botanikabrasil.com.br, já adicionado ao projeto botanika-social. Falta o Pedro criar o CNAME `11do11` apontando para `b7aa93740095ec95.vercel-dns-016.com`. O social.botanikabrasil.com.br continua na página antiga do Cloudflare Pages.
   - **DNS conferido às 11h50:** a Vercel lê o CNAME `11do11` certo, sem erro de configuração. O certificado foi liberado pela validação http-01. Não deu para abrir a página daqui, porque o proxy desta sessão bloqueia o domínio.
+- **11/11 à tarde, vídeos novos (pasta do Drive 1TWKkZaIw07rpgn-ZjznmO9iMcDsydanJ: 7 brutos IMG_7624–7637, mesma apresentadora):**
+  - Transcrição pelo Higgsfield: só o IMG_7631 saiu, os outros 6 estão parados na fila.
+  - O IMG_7631 é o "Roteiro 4: como ganhar 12%" do **Esquenta Botanika Week**: 8/10/12%, frete, cranberry acima de R$ 400. Conferido com os descontos programados na Shopify (12 a 20/11).
+  - **1ª versão (E4) enviada ao Pedro, 45 s, formato v4 em preto e vermelho:**
+    - corta o "Roteiro 4" e as falas repetidas;
+    - escada 8/10/12%, frete acima de R$ 249, carrinho até R$ 400 com cranberry, "monte seu kit", CTA e cartão final "só até 20/11".
+  - Scripts em `entregas/videos-esquenta-bw/`. Aguarda o ok para editar os outros.
