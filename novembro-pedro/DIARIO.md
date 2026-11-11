@@ -1072,5 +1072,5 @@
   - 7 cenários de carrinho no site no ar, todos certos: 1 produto, mistura de faixas, cupom, 2 cupons (só 1 vale), brinde Q10 acima de R$ 500, kits, RECOVERY11 ainda sem valer.
   - Pedidos reais depois da correção: os 118 desde 22h15 estão com todos os itens com desconto. Nos 30 mais recentes que olhei um a um, o frete saiu R$ 0.
 - **11/11 às 10h, resolvido ("resolve tudo" do Pedro):**
-  - Os cupons de 5% (GABIFLORONUTRI, DRALUIZA, FATINHA, VANESSA, ALICIA) foram para 2 0e pedido, acumulando com a oferta e valendo 1 por pedido. Agora são 60 cupons de creator, todos iguais.
+  - Os cupons de 5% (GABIFLORONUTRI, DRALUIZA, FATINHA, VANESSA, ALICIA) foram para 2% de pedido, acumulando com a oferta e valendo 1 por pedido. Agora são 60 cupons de creator, todos iguais.
   - **Crédito para os 14 pedidos: bloqueado.** O conector da Shopify não tem permissão para lançar crédito de loja (falta o escopo write_store_credit_account_transactions). O #7552 expirou (Pix não pago) e saiu da lista.
