@@ -87,5 +87,362 @@
    "type": "cta",
    "text": "MONTAR MEU KIT"
   }
+ ],
+ "E1": [
+  {
+   "i": 0,
+   "type": "slam",
+   "text": "AINDA DÁ PRA<br>APROVEITAR?",
+   "size": 118,
+   "y": 1180
+  },
+  {
+   "i": 0,
+   "type": "stamp",
+   "text": "DÁ SIM!",
+   "at": 2.3
+  },
+  {
+   "i": 1,
+   "type": "side",
+   "s": "acabou de começar o",
+   "b": "ESQUENTA!"
+  },
+  {
+   "i": 2,
+   "type": "side",
+   "s": "quanto mais leva",
+   "b": "MAIS<br>DESCONTO"
+  },
+  {
+   "i": 3,
+   "type": "ladder",
+   "full": true,
+   "lvl": 1,
+   "img": "hair"
+  },
+  {
+   "i": 4,
+   "type": "ladder",
+   "full": true,
+   "lvl": 2,
+   "img": "hair"
+  },
+  {
+   "i": 5,
+   "type": "ladder",
+   "full": true,
+   "lvl": 3,
+   "img": "hair"
+  },
+  {
+   "type": "ship",
+   "full": true,
+   "imgs": [
+    "hair",
+    "crea",
+    "tetra",
+    "vitc",
+    "omega"
+   ],
+   "eb": "frete grátis",
+   "big": "ACIMA DE<br>R$ 249",
+   "l1": "levando 5 potes, já passa",
+   "i": 6
+  },
+  {
+   "type": "gift",
+   "full": true,
+   "img": "cran",
+   "min": 400,
+   "de": "R$ 74,20",
+   "i": 7
+  },
+  {
+   "i": 8,
+   "type": "stamp",
+   "text": "NÃO PERDEU NADA!"
+  },
+  {
+   "i": 9,
+   "type": "kit",
+   "full": true,
+   "imgs": [
+    "hair",
+    "crea",
+    "tetra",
+    "vitc",
+    "omega"
+   ],
+   "eb": "é a hora de",
+   "big": "MONTAR SUA ROTINA",
+   "l1": "tudo de uma vez",
+   "until": 10
+  },
+  {
+   "i": 11,
+   "type": "cta",
+   "text": "GARANTIR OS MEUS"
+  }
+ ],
+ "E3": [
+  {
+   "i": 0,
+   "type": "slam",
+   "text": "O DESCONTO<br>NÃO É FIXO",
+   "size": 124,
+   "y": 1180
+  },
+  {
+   "i": 1,
+   "type": "side",
+   "s": "ele",
+   "b": "CRESCE"
+  },
+  {
+   "i": 2,
+   "type": "side",
+   "s": "eu comprava",
+   "b": "1 POTE<br>POR VEZ"
+  },
+  {
+   "i": 3,
+   "type": "stamp",
+   "text": "TUDO NUMA COMPRA SÓ"
+  },
+  {
+   "i": 5,
+   "type": "side",
+   "s": "funciona",
+   "b": "ASSIM"
+  },
+  {
+   "i": 6,
+   "type": "ladder",
+   "full": true,
+   "lvl": 1,
+   "img": "hair"
+  },
+  {
+   "i": 7,
+   "type": "ladder",
+   "full": true,
+   "lvl": 2,
+   "img": "hair"
+  },
+  {
+   "i": 8,
+   "type": "ladder",
+   "full": true,
+   "lvl": 3,
+   "img": "hair"
+  },
+  {
+   "type": "ship",
+   "full": true,
+   "imgs": [
+    "hair",
+    "crea",
+    "tetra",
+    "vitc",
+    "omega"
+   ],
+   "eb": "frete grátis",
+   "big": "ACIMA DE<br>R$ 249",
+   "l1": "levando 5 potes, já passa",
+   "i": 9
+  },
+  {
+   "type": "gift",
+   "full": true,
+   "img": "cran",
+   "min": 400,
+   "de": "R$ 74,20",
+   "i": 10
+  },
+  {
+   "i": 11,
+   "type": "kit",
+   "full": true,
+   "imgs": [
+    "sleep",
+    "hair",
+    "tri"
+   ],
+   "t": [
+    1.0,
+    2.0,
+    2.9
+   ],
+   "lat": 4.0,
+   "eb": "foi assim que eu montei",
+   "big": "O MEU KIT",
+   "l1": "e completei o resto",
+   "until": 12
+  },
+  {
+   "i": 13,
+   "type": "cta",
+   "text": "MONTAR O MEU"
+  }
+ ],
+ "E2": [
+  {
+   "i": 0,
+   "type": "slam",
+   "text": "PARA TUDO!",
+   "size": 150,
+   "y": 1200
+  },
+  {
+   "i": 1,
+   "type": "stamp",
+   "text": "COMEÇOU O ESQUENTA!"
+  },
+  {
+   "i": 2,
+   "type": "side",
+   "s": "não ia deixar você descobrir",
+   "b": "SÓ NO<br>DIA 20"
+  },
+  {
+   "i": 3,
+   "type": "side",
+   "s": "quanto mais leva",
+   "b": "MAIS<br>DESCONTO"
+  },
+  {
+   "i": 4,
+   "type": "ladder",
+   "full": true,
+   "lvl": 1,
+   "img": "hair"
+  },
+  {
+   "i": 5,
+   "type": "ladder",
+   "full": true,
+   "lvl": 2,
+   "img": "hair"
+  },
+  {
+   "i": 6,
+   "type": "ladder",
+   "full": true,
+   "lvl": 3,
+   "img": "hair"
+  },
+  {
+   "type": "ship",
+   "full": true,
+   "imgs": [
+    "hair",
+    "crea",
+    "tetra",
+    "vitc",
+    "omega"
+   ],
+   "eb": "frete grátis",
+   "big": "ACIMA DE<br>R$ 249",
+   "l1": "levando 5 potes, já passa",
+   "i": 7
+  },
+  {
+   "type": "gift",
+   "full": true,
+   "img": "cran",
+   "min": 400,
+   "de": "R$ 74,20",
+   "i": 8
+  },
+  {
+   "i": 9,
+   "type": "cta",
+   "text": "MONTAR MEU CARRINHO"
+  }
+ ],
+ "E7": [
+  {
+   "i": 0,
+   "type": "slam",
+   "text": "CHEGOU<br>NA HORA!",
+   "size": 140,
+   "y": 1180
+  },
+  {
+   "i": 1,
+   "type": "side",
+   "s": "vem rápido,",
+   "b": "VOCÊ VAI<br>QUERER SABER"
+  },
+  {
+   "i": 2,
+   "type": "side",
+   "s": "nunca comprou na Botanika?",
+   "b": "AGORA É<br>A HORA"
+  },
+  {
+   "i": 3,
+   "type": "stamp",
+   "text": "COMEÇOU O ESQUENTA!"
+  },
+  {
+   "i": 4,
+   "type": "ladder",
+   "full": true,
+   "lvl": 1,
+   "img": "hair"
+  },
+  {
+   "i": 5,
+   "type": "ladder",
+   "full": true,
+   "lvl": 2,
+   "img": "hair"
+  },
+  {
+   "i": 6,
+   "type": "ladder",
+   "full": true,
+   "lvl": 3,
+   "img": "hair"
+  },
+  {
+   "type": "ship",
+   "full": true,
+   "imgs": [
+    "hair",
+    "crea",
+    "tetra",
+    "vitc",
+    "omega"
+   ],
+   "eb": "frete grátis",
+   "big": "ACIMA DE<br>R$ 249",
+   "l1": "levando 5 potes, já passa",
+   "i": 7
+  },
+  {
+   "type": "gift",
+   "full": true,
+   "img": "cran",
+   "min": 400,
+   "de": "R$ 74,20",
+   "i": 8
+  },
+  {
+   "i": 9,
+   "type": "count",
+   "full": true,
+   "eb": "tudo isso vai só até",
+   "to": 20,
+   "suffix": "/11",
+   "l1": "DEPOIS ACABA"
+  },
+  {
+   "i": 10,
+   "type": "cta",
+   "text": "VER AS OFERTAS"
+  }
  ]
 }
