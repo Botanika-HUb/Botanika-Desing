@@ -269,3 +269,36 @@
 
 ## Semana 5 · 29/11 – 01/12
 - [ ] **01/12** Mãe: Cyber Monday · Site e Shopify (confirmar reversão no ar) · `mcp-1793218947745-13-983fb`
+
+## 12/11 · para amanhã (anotado em 11/11 à noite, a pedido do Pedro)
+**Esquenta Botanika Week (12 a 20/11): no ar à meia-noite**
+- Oferta conferida na Shopify: 8% em 1 un., 10% em 3, 12% em 5; frete grátis acima de R$ 249; cranberry acima de R$ 400 (2 para quem já é cliente). RECOVERY11 a 15%, de 12 a 20/11.
+- **Vídeos (7):** E1, E2, E3, E4, E6, E7 e E8, em Drive > Editados · Esquenta Botanika Week (1h6xCe-wUxJc1Q3qQ-bJKzWDmn1-GwH2D).
+  - Os arquivos AD049–AD053 são cópias de E1, E2, E3, E4 e E7. Falta: nome AD para o E6 e o E8 e apagar as cópias `esquenta-bw_*` (quem renomeia: Otávio?).
+  - O E8 ("pote vazio") tinha muitas regravações. Vale uma passada de ouvido.
+- **Estáticos (10):** EBW1 a EBW10, em Drive > Editados · Esquenta Botanika Week > Estáticos (1Jud83FldmZdnU_PQ5dgNAYcHtuVUZ8fy). Já foram renomeados para o padrão AD.
+- Scripts dos vídeos: `entregas/videos-esquenta-bw/`. Estáticos: `entregas/esquenta-bw-estaticos/`.
+
+**Verificação do brinde (tarefa agendada, de hora em hora, de 12 a 26/11, nesta sessão)**
+- Inclui o "Cranberry · Brinde" (R$ 0) nos pedidos pagos e não enviados acima de R$ 400 que estiverem sem ele, e põe a tag `brinde-auto`. Só avisa quando corrige algo.
+- Conferir de manhã se rodou e o que corrigiu: filtrar a tag brinde-auto no admin.
+
+**Cranberry que faltou no Esquenta 11/11 (8 pedidos de 01 a 03/11)**
+- Pedidos: #6974, #6976, #6977, #6978, #6980, #6984, #7017 (Marcela) e #7022.
+- A mensagem para a Lissia já foi passada ao Pedro: a cliente escolhe entre receber o cranberry junto no próximo pedido ou o envio separado.
+- Quando a Lissia responder: na opção 1, incluir o brinde no pedido novo; na opção 2, criar um pedido de R$ 0 com o cranberry e frete grátis.
+- Os outros 7 clientes ainda não foram avisados. Falta o ok do Pedro para mandar a mesma mensagem.
+- Investigar a origem da etiqueta "Brinde Dia D: Pague 4, leve 5": um link antigo que manda direto para o checkout.
+
+**Link da bio**
+- 11do11.botanikabrasil.com.br está no ar (Vercel, projeto botanika-social). Depois de 23h59 volta sozinho para o texto padrão.
+- Decidir qual link fica na bio durante o Esquenta BW. A página do 11/11 vira neutra, mas não fala do Esquenta. Opção: adaptar a página ao Esquenta BW.
+
+**Outros pendentes**
+- Crédito para os 14 pedidos com desconto a mais no 11/11 (R$ 570,25): o conector não tem permissão. O Pedro escolhe entre lançar à mão no admin ou usar a tag de cashback do Flow.
+- Cupons de creator: os 60 estão em 2% de pedido, acumulando. Avisar o Vitor que os 5 cupons que eram de 5% agora são de 2%.
+- Lista dos 100 do cashback do 11/11: às 9h, com ok do Pedro antes de aplicar as tags.
+- Alliance: marcar como feita a tarefa da live de virada (a escrita foi bloqueada).
+- Upload para o Drive: a senha do receptor do Apps Script está inválida; atualizar DRIVE_UPLOAD_TOKEN no ambiente. O conector do Drive só aceita até ~3 MB.
+- GitHub: o push dá 403 (cerca de 45 commits locais). Reconectar em claude.ai/connect-github.
+- Pasta `entregas/cashback-1111/` sem commit (trava de segurança): precisa do ok do Pedro.
