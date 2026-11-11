@@ -1097,3 +1097,7 @@
   - **Pedidos afetados:** de 01 a 10/11 (conferidos até as 13h34 de 10/11), 8 pedidos acima de R$ 400 ficaram sem cranberry: #6974, #6976, #6977, #6978, #6980, #6984, #7017 e #7022, todos de 01 a 03/11. De 03/11 até o 11/11 (Q10), nenhum outro.
   - **A Vitamina C do #7017** foi paga (R$ 78,78). A etiqueta "Brinde Dia D: Pague 4, leve 5" veio de outra página. Não existe neste repositório nem no tema.
   - **Prevenção proposta:** verificação automática de hora em hora, de 12 a 26/11. Ela inclui o "Cranberry · Brinde" (R$ 0) nos pedidos ainda não enviados que passaram de R$ 400 sem brinde, e põe a tag brinde-auto. A criação da tarefa agendada foi bloqueada pelo sistema e precisa do ok explícito do Pedro.
+- **11/11 à tarde, Esquenta BW:**
+  - **Estáticos:** os 10 aprovados do Esquenta 11/11 foram refeitos com "ESQUENTA BOTANIKA WEEK" e "SÓ ATÉ 20/11". Estão no Drive, em Editados · Esquenta Botanika Week > Estáticos.
+  - **Vídeos:** E1, E2, E3, E4 e E7 foram enviados ao Pedro. O upload para o Drive falhou: a senha do receptor está inválida e o conector só aceita até ~3 MB. O Pedro sobe à mão. O R8 e o R6 aguardam a transcrição.
+  - **Verificação do brinde:** criada, roda de hora em hora nesta sessão, de 12 a 26/11.
