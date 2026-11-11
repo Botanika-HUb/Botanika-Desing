@@ -3,11 +3,20 @@
 > 🔒 **REGRA FIXA (Pedro, 29/10):** este chat cuida **somente das tarefas da BOTANIKA**. Nunca fazer nada da **VermeFree** nem da **Revita** (nem da Shoty). Se o Pedro citar VermeFree ou Revita, **parar na hora e não executar nada**: só avisar e esperar.
 
 
-> Atualizado em: **10/11/2026, 9h** (vence hoje: StreamYard 16h, Pix 18h, tema 11/11 entra 20h)
+> Atualizado em: **11/11/2026, 9h** (DIA D: live o dia todo; 8 estáticos 18h; última chance 20h; Esquenta BW entra 23h59)
 > Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito · `[!]` bloqueado
 > ID = id da tarefa no Alliance OS (`https://alliance-os-sooty.vercel.app/?task=<ID>#tasks`)
 
-## 📍 Onde estamos (10/11, 9h) ← COMECE POR AQUI
+## 📍 Onde estamos (11/11, 9h, DIA D) ← COMECE POR AQUI
+- **No ar:** o tema 11/11 desde ontem às 20h. Às 00h abriu para todos. Está com a senha vip1111 e o link ?acesso=vip1111.
+- **Descontos:** as 7 faixas, de 12% a 40%, valem até 23h59 e **agora combinam entre si** (corrigido ontem às 22h10).
+- **Pendente de decisão:** crédito de loja para os **14 pedidos** que pagaram a mais (R$ 570,25). Opções: diferença exata, arredondada (~R$ 680) ou diferença menos o cashback (~R$ 485).
+- **Live:** StreamYard das 08h às 15h59 → Larissa às 16h direto no Instagram → StreamYard das 17h às 00h (às 20h entra o banner de última chance).
+- **Supreme:** Esquenta BW em 11/11 às 23h59; Week em 20/11 às 23h59.
+- **Vídeos:** 9 de 10 no Drive (R2, R4 e R5 regravados; R2, R5, R9 e R10 corrigidos). Falta o R3.
+- **Bloqueios:** GitHub 403; a pasta cashback-1111 está bloqueada pela trava de segurança.
+
+## 📍 Onde estamos (10/11, 9h) — histórico
 - **Hoje:**
   - CRO às 13h;
   - link e teste do StreamYard até as 16h;

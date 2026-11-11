@@ -1025,3 +1025,40 @@
   - O cálculo é o % de cada produto aplicado sobre os itens que ficaram sem desconto.
   - Também encontrei "Cranberry · Brinde" (o brinde do Esquenta) nos pedidos #7526, #7550 e #7552: sobrou no carrinho de quem montou antes das 20h.
   - Decisão sobre devolver a diferença: Vitor ou Pedro.
+
+### 10/11 · fechamento do dia
+- **Feito:**
+  - varredura completa e conferência das 24 tarefas do Pedro no Alliance;
+  - 9 entregas registradas (em nome do Vitor);
+  - links VIP corrigidos;
+  - campo de senha vip1111 e tela fechada focada na senha;
+  - 5 potes com Manual + Guia;
+  - vídeos R2, R4 e R5 regravados e editados; R2, R5, R9 e R10 corrigidos (falas repetidas);
+  - banners da live (os nossos e os do Ítalo separados);
+  - guia do StreamYard;
+  - live de virada no ar às 20h. Ela começou em "Prática" e foi corrigida para "Público";
+  - descontos do 11/11 corrigidos às 22h10 (combinação entre faixas) e levantamento dos 14 pedidos afetados.
+- **Decisões do Pedro:**
+  - exceção da Revita só para a configuração do StreamYard; o Recovery da Revita foi passado como briefing para o Claude pessoal dele;
+  - a Mafe sai do Instagram (vai para o TikTok);
+  - a Larissa entra direto pelo Instagram às 16h.
+- **Pendentes:**
+  - crédito para os 14 pedidos (esperando a escolha do valor);
+  - Pix 5% (atrasado, esperando o Vitor);
+  - marcar no Alliance a tarefa "Operar a live de virada" (precisa do OK);
+  - conferir o Upsell.com;
+  - 4 Cranberry · Brinde que sobraram nos pedidos #7526, #7550 e #7552.
+
+### 11/11 · plano do dia (Dia D)
+- **O dia todo:** live no StreamYard.
+  - 08h–12h e 12h–15h59: banner da oferta;
+  - às 15h45: banner 16h;
+  - às 15h59: encerrar o StreamYard, porque às 16h a Larissa entra direto pelo Instagram;
+  - 17h–21h: banner da oferta, trocando às 20h para "última chance";
+  - 21h–00h: última chance.
+- **Daily às 9h20.**
+- **Às 18h:** 8 estáticos do 2º lote (o prazo no Alliance foi para hoje).
+- **Às 23h59:** entram o Esquenta BW (Supreme) e os descontos; às 00h, RECOVERY11.
+- **Próximos 2 dias:**
+  - 12/11 às 9h: lista dos 100 do cashback (com o OK antes das tags);
+  - 13/11 às 18h: 8 vídeos do 2º lote e tarefa-mãe Growth/CRO.
