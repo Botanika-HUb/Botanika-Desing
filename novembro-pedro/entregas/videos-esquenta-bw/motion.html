@@ -59,7 +59,7 @@ const BUILD={
  prod(s,L){L.innerHTML=s.items.map((p,k)=>`<div id="p${k}" style="position:absolute;inset:0;opacity:0"><div class="t eb" style="top:320px">${p.eb}</div><div class="t big" style="top:400px;font-size:120px">${p.n}</div>
    <img src="${IMG}/${p.img}.png" style="position:absolute;left:50%;top:600px;height:600px;transform:translateX(-50%)"><div class="t mid" style="top:1230px;color:#ffd400">${p.l}</div></div>`).join('')},
  side(s,L){L.innerHTML=`<div class="side" style="top:${s.y||1240}px"><div class="s">${s.s}</div><div class="b">${s.b}</div></div>`},
- stamp(s,L){L.innerHTML=`<div class="stamp" style="top:${s.y||1420}px">${s.text}</div>`},
+ stamp(s,L){L.innerHTML=`<div class="stamp" style="top:${s.y||1420}px;font-size:${s.size||96}px">${s.text}</div>`},
  count(s,L){L.innerHTML=`<div class="t eb" style="top:300px">${s.eb}</div><div class="t huge" id="n" style="top:380px">0</div>
    <div class="t mid" style="top:720px">${s.l1}</div><div class="t sm" style="top:850px;color:#ffd400">${s.l2||''}</div>`},
  end(s,L){const e=s.e||{};L.innerHTML=`<div class="t eb" style="top:420px">${e.eb||'só hoje · 11/11'}</div><div class="t big" style="top:510px">${e.big||'ATÉ 40% OFF'}</div>

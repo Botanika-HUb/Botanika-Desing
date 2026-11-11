@@ -161,7 +161,8 @@
   {
    "i": 8,
    "type": "stamp",
-   "text": "NÃO PERDEU NADA!"
+   "text": "NÃO PERDEU NADA!",
+   "size": 66
   },
   {
    "i": 9,
@@ -208,7 +209,8 @@
   {
    "i": 3,
    "type": "stamp",
-   "text": "TUDO NUMA COMPRA SÓ"
+   "text": "TUDO NUMA COMPRA SÓ",
+   "size": 66
   },
   {
    "i": 5,
@@ -297,7 +299,8 @@
   {
    "i": 1,
    "type": "stamp",
-   "text": "COMEÇOU O ESQUENTA!"
+   "text": "COMEÇOU O ESQUENTA!",
+   "size": 66
   },
   {
    "i": 2,
@@ -384,7 +387,8 @@
   {
    "i": 3,
    "type": "stamp",
-   "text": "COMEÇOU O ESQUENTA!"
+   "text": "COMEÇOU O ESQUENTA!",
+   "size": 66
   },
   {
    "i": 4,
