@@ -1101,3 +1101,4 @@
   - **Estáticos:** os 10 aprovados do Esquenta 11/11 foram refeitos com "ESQUENTA BOTANIKA WEEK" e "SÓ ATÉ 20/11". Estão no Drive, em Editados · Esquenta Botanika Week > Estáticos.
   - **Vídeos:** E1, E2, E3, E4 e E7 foram enviados ao Pedro. O upload para o Drive falhou: a senha do receptor está inválida e o conector só aceita até ~3 MB. O Pedro sobe à mão. O R8 e o R6 aguardam a transcrição.
   - **Verificação do brinde:** criada, roda de hora em hora nesta sessão, de 12 a 26/11.
+  - **Vídeos E6 e E8 finais:** a transcrição revelou que eu tinha trocado os brutos. IMG_7634 é o R6 "já é de casa" (32 s) e IMG_7637 é o R8 "pote vazio" (52 s). Os rascunhos anteriores foram descartados. Os 7 vídeos do Esquenta BW estão prontos: E1, E2, E3, E4, E6, E7 e E8.
