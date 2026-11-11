@@ -458,9 +458,81 @@
    "y": 1180
   },
   {
+   "i": 1,
+   "type": "side",
+   "s": "não é falta de",
+   "b": "VONTADE"
+  },
+  {
+   "i": 2,
+   "type": "side",
+   "s": "acabou num",
+   "b": "DIA<br>CORRIDO"
+  },
+  {
+   "i": 5,
+   "type": "side",
+   "s": "agora é a hora de",
+   "b": "REPOR"
+  },
+  {
+   "i": 6,
+   "type": "stamp",
+   "text": "COMEÇOU O ESQUENTA!",
+   "size": 66
+  },
+  {
+   "i": 7,
+   "type": "ladder",
+   "full": true,
+   "lvl": 1,
+   "img": "hair",
+   "at": 0
+  },
+  {
+   "i": 8,
+   "type": "ladder",
+   "full": true,
+   "lvl": 2,
+   "img": "hair",
+   "at": 0
+  },
+  {
+   "i": 8,
+   "type": "ladder",
+   "full": true,
+   "lvl": 3,
+   "img": "hair",
+   "at": 2.0
+  },
+  {
+   "type": "ship",
+   "full": true,
+   "imgs": [
+    "hair",
+    "crea",
+    "tetra",
+    "vitc",
+    "omega"
+   ],
+   "eb": "frete grátis",
+   "big": "ACIMA DE<br>R$ 249",
+   "l1": "levando 5 potes, já passa",
+   "i": 9
+  },
+  {
    "i": 10,
+   "type": "gift",
+   "full": true,
+   "img": "cran",
+   "min": 400,
+   "de": "R$ 74,20"
+  },
+  {
+   "i": 11,
    "type": "cta",
-   "text": "REPOR MEUS SUPLEMENTOS"
+   "text": "REPOR MEUS SUPLEMENTOS",
+   "until": 12
   }
  ],
  "E6": [
@@ -472,7 +544,76 @@
    "y": 1180
   },
   {
-   "i": 15,
+   "i": 1,
+   "type": "side",
+   "s": "é só pra quem",
+   "b": "JÁ É<br>CLIENTE"
+  },
+  {
+   "i": 2,
+   "type": "gift",
+   "full": true,
+   "img": "cran",
+   "n": 2,
+   "min": 400,
+   "de": "R$ 148,40",
+   "badge": "2 GRÁTIS",
+   "at": 0.6
+  },
+  {
+   "i": 3,
+   "type": "stamp",
+   "text": "TUDO VALE PRA VOCÊ",
+   "size": 66
+  },
+  {
+   "i": 4,
+   "type": "side",
+   "s": "quanto mais leva",
+   "b": "MAIS<br>DESCONTO"
+  },
+  {
+   "i": 5,
+   "type": "ladder",
+   "full": true,
+   "lvl": 1,
+   "img": "hair",
+   "at": 0
+  },
+  {
+   "i": 5,
+   "type": "ladder",
+   "full": true,
+   "lvl": 2,
+   "img": "hair",
+   "at": 0.45,
+   "until": 6
+  },
+  {
+   "i": 6,
+   "type": "ladder",
+   "full": true,
+   "lvl": 3,
+   "img": "hair",
+   "at": 0
+  },
+  {
+   "type": "ship",
+   "full": true,
+   "imgs": [
+    "hair",
+    "crea",
+    "tetra",
+    "vitc",
+    "omega"
+   ],
+   "eb": "frete grátis",
+   "big": "ACIMA DE<br>R$ 249",
+   "l1": "levando 5 potes, já passa",
+   "i": 7
+  },
+  {
+   "i": 8,
    "type": "cta",
    "text": "GARANTIR MEUS 2"
   }

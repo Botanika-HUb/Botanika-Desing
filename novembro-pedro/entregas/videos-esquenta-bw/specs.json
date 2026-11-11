@@ -306,8 +306,8 @@
    "foot": "só até 20/11"
   }
  },
- "E8": {
-  "name": "esquenta-bw_E8_pote-vazio_RASCUNHO",
+ "E6": {
+  "name": "esquenta-bw_E6_ja-e-de-casa",
   "src": "/tmp/claude-0/-home-user-Botanika-Desing/939e42b8-9d13-56a4-bbfb-1c809580e4f3/scratchpad/v1111b/7634-1080.mp4",
   "segs": [
    [
@@ -317,10 +317,6 @@
    [
     21.59,
     24.98
-   ],
-   [
-    26.35,
-    29.64
    ],
    [
     45.78,
@@ -347,10 +343,6 @@
     70.01
    ],
    [
-    71.13,
-    73.57
-   ],
-   [
     81.5,
     86.53
    ]
@@ -361,12 +353,12 @@
    "big": "ATÉ 12% OFF",
    "mid": "1 UN. 8% · 3 UN. 10% · 5 UN. 12%",
    "ms": 64,
-   "sm": "frete grátis acima de R$ 249 · cranberry de brinde acima de R$ 400",
+   "sm": "já é cliente? 2 cranberries de brinde acima de R$ 400 · frete grátis acima de R$ 249",
    "foot": "só até 20/11"
   }
  },
- "E6": {
-  "name": "esquenta-bw_E6_ja-e-de-casa_RASCUNHO",
+ "E8": {
+  "name": "esquenta-bw_E8_pote-vazio",
   "src": "/tmp/claude-0/-home-user-Botanika-Desing/939e42b8-9d13-56a4-bbfb-1c809580e4f3/scratchpad/v1111b/7637-1080.mp4",
   "segs": [
    [
@@ -394,10 +386,6 @@
     30.64
    ],
    [
-    32.08,
-    33.28
-   ],
-   [
     34.27,
     38.32
    ],
@@ -418,14 +406,6 @@
     57.89
    ],
    [
-    59.05,
-    60.5
-   ],
-   [
-    62.45,
-    68.93
-   ],
-   [
     70.14,
     75.74
    ],
@@ -440,7 +420,7 @@
    "big": "ATÉ 12% OFF",
    "mid": "1 UN. 8% · 3 UN. 10% · 5 UN. 12%",
    "ms": 64,
-   "sm": "já é cliente? 2 cranberries de brinde acima de R$ 400 · frete grátis acima de R$ 249",
+   "sm": "frete grátis acima de R$ 249 · cranberry de brinde acima de R$ 400",
    "foot": "só até 20/11"
   }
  }
