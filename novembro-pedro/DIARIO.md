@@ -1062,3 +1062,9 @@
 - **Próximos 2 dias:**
   - 12/11 às 9h: lista dos 100 do cashback (com o OK antes das tags);
   - 13/11 às 18h: 8 vídeos do 2º lote e tarefa-mãe Growth/CRO.
+- **11/11 às 9h40: cupons de creator corrigidos (com o OK do Pedro; o Vitor confirmou que eles deviam acumular):**
+  - Os 55 cupons de 2% viraram desconto no valor do pedido, sobre todos os itens.
+  - Combinações: com produtos e frete, sim; com outros descontos de pedido, não (continua 1 cupom por pedido).
+  - Teste com LARILESSA, Hair e Q10: cada item com o seu 11/11 e +2% (R$ 3,54) no total.
+  - **Para o Vitor decidir (não mexi):** GABIFLORONUTRI e DRALUIZA (5%, de produto, não somam); FATINHA, VANESSA e ALICIA (5%, de pedido, somam entre si).
+  - **Falha minha:** a divergência entre a ficha ("acumulativo com tudo") e a Shopify apareceu na varredura de 10/11. Tratei como decisão pendente em vez de corrigir.
