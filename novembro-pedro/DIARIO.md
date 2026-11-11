@@ -1084,3 +1084,4 @@
   - **Vercel:** projeto botanika-social, time Alliance, já no ar em https://botanika-social-gestaoalliance.vercel.app. O domínio social.botanikabrasil.com.br foi adicionado ao projeto.
   - **DNS (falta o Pedro):** hoje o social aponta para o Cloudflare Pages (botanika-social.pages.dev), e o DNS do domínio está na GoDaddy. Trocar o CNAME `social` para `b7aa93740095ec95.vercel-dns-016.com` (ou `cname.vercel-dns.com`).
   - **Endereço mudou (Pedro):** o link da bio do 11/11 vai ficar em 11do11.botanikabrasil.com.br, já adicionado ao projeto botanika-social. Falta o Pedro criar o CNAME `11do11` apontando para `b7aa93740095ec95.vercel-dns-016.com`. O social.botanikabrasil.com.br continua na página antiga do Cloudflare Pages.
+  - **DNS conferido às 11h50:** a Vercel lê o CNAME `11do11` certo, sem erro de configuração. O certificado foi liberado pela validação http-01. Não deu para abrir a página daqui, porque o proxy desta sessão bloqueia o domínio.
