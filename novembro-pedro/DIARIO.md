@@ -1179,3 +1179,6 @@
 - **Publicado pelo Pedro:** tema "ESQUENTA BOTANIKA WEEK · entrega 1 a 7 (12/11)" (168613773544).
   - Conferido ao vivo no celular: selo novo na home, página de produto com "14–20 nov", 13 avaliações do Judge.me e RedTrack carregando.
   - O tema antigo foi renomeado para "🗑️ APAGAR — Esquenta BW antigo". O Pedro apaga esse e o "Esquenta sem ingredientes".
+
+### 12/11 16h09 BRT · checagem do brinde
+- #8152 (R$ 428,66, 3ª compra) tinha 1 cranberry. Incluí +1, total igual, e marquei a tag brinde-auto.
