@@ -1140,3 +1140,7 @@
   - Push com 403.
   - Commit do cashback-1111 travado.
   - Token do Drive inválido.
+
+### 12/11 10h09 BRT · checagem do brinde
+- #8123 (R$ 602,33, 5ª compra) e #8124 (R$ 503,85, 4ª compra) tinham 1 cranberry cada. Incluí +1 em cada um, total igual, sem avisar as clientes, e marquei a tag brinde-auto.
+- O padrão aparece de novo: desde 00h, das 4 clientes que já tinham comprado (#8106, #8108, #8123 e #8124), 3 receberam só 1 cranberry. O 2º cranberry do tema está falhando com frequência; investigar o bk (login ou orders_count).
