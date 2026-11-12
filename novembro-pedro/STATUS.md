@@ -334,9 +334,16 @@
 2. **Cashback 11/11:** lista pronta (96 clientes, R$ 6.104,05). Aguarda o OK para aplicar as tags.
 3. **Q10 do 11/11 sobrando no carrinho** (#8129): correção no bk-1111 pronta. Aguarda o OK. Decidir também se o Q10 do #8129 fica.
 4. **2º cranberry de quem já é cliente falhando** (#8108, #8123, #8124, #8125, corrigidos pela verificação). Investigar a regra do tema.
-5. **Crédito para os 14 pedidos com desconto a menos** em 10/11 entre 20h e 22h10 (R$ 570,25). Escolher entre lançar à mão ou usar a tag do Flow.
+5. ~~Crédito dos 14 pedidos~~: decisão do Pedro em 12/11: não aplicar; só se alguma cliente reclamar.
 6. **Cranberry que faltou** (8 pedidos de 01 a 03/11): esperar a resposta da Lissia (Marcela, #7017). Os outros 7 clientes precisam do OK para serem avisados.
 7. **Amanhã:** 8 vídeos do 2º lote (12h ou 18h, tarefa duplicada) e 8 estáticos universais (18h).
 8. **Atrasadas no Alliance:** app de 5% no Pix; marcar como feita a "Testar e operar a live 11/11".
 9. **Cobrar:** Otávio (AD do E6 e do E8), Vitor (cupons de 5% que viraram 2%).
 10. **Bloqueios:** push com 403, token do Drive, commit do cashback-1111.
+
+## 12/11 17h · feito hoje
+- Vitor: "erro de cupom" checado. Não é erro (é o frete grátis).
+- Entrega "1 a 7 dias": aplicado nos temas; o tema novo foi publicado e conferido.
+- RedTrack ligado nos temas BOTANIKA WEEK e OFICIAL.
+- Verificação do brinde: corrigidos #8108, #8123, #8124, #8125 e #8152.
+- Pedro apaga: "🗑️ APAGAR — Esquenta BW antigo" e "🗑️ APAGAR — Esquenta sem ingredientes".

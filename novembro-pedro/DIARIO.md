@@ -1182,3 +1182,8 @@
 
 ### 12/11 16h09 BRT · checagem do brinde
 - #8152 (R$ 428,66, 3ª compra) tinha 1 cranberry. Incluí +1, total igual, e marquei a tag brinde-auto.
+
+### 12/11 17h · decisões do Pedro
+- **Crédito dos 14 pedidos com desconto a menos** (10/11, das 20h às 22h10, R$ 570,25): **não aplicar**. Fica registrado; só agir se alguma cliente reclamar. A lista dos 14 está no DIARIO de 10/11.
+- **Cashback dos 100 (15%)** é outra coisa: é a promessa da oferta do 11/11 (ficha v5), não correção de erro. Continua aguardando o OK para aplicar as tags (96 clientes, R$ 6.104,05).
+- Voltar ao plano original de tarefas.
