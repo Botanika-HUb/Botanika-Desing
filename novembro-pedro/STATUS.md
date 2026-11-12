@@ -331,7 +331,7 @@
 
 ## 12/11 · lista do que fazer (salva a pedido do Pedro, ~10h)
 1. **Vitor: "erro de cupom" no #7668, #7829, #7947 e #8012.** Conferido: NÃO é erro. Os pedidos têm só o "11/11 · 40% OFF" nos produtos + "Frete grátis sem mínimo", e nenhum cupom. O % alto (55 a 65%) vem do frete grátis, que entra no "desconto total" de um pedido pequeno. Responder ao Vitor.
-2. **Cashback 11/11:** lista pronta (96 clientes, R$ 6.104,05). Aguarda o OK para aplicar as tags.
+2. ✅ **Cashback 11/11 aplicado** em 12/11 (96 clientes, R$ 6.104,05). Falta conferir no admin e mandar o texto para a Sarah.
 3. **Q10 do 11/11 sobrando no carrinho** (#8129): correção no bk-1111 pronta. Aguarda o OK. Decidir também se o Q10 do #8129 fica.
 4. **2º cranberry de quem já é cliente falhando** (#8108, #8123, #8124, #8125, corrigidos pela verificação). Investigar a regra do tema.
 5. ~~Crédito dos 14 pedidos~~: decisão do Pedro em 12/11: não aplicar; só se alguma cliente reclamar.

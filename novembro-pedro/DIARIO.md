@@ -1187,3 +1187,10 @@
 - **Crédito dos 14 pedidos com desconto a menos** (10/11, das 20h às 22h10, R$ 570,25): **não aplicar**. Fica registrado; só agir se alguma cliente reclamar. A lista dos 14 está no DIARIO de 10/11.
 - **Cashback dos 100 (15%)** é outra coisa: é a promessa da oferta do 11/11 (ficha v5), não correção de erro. Continua aguardando o OK para aplicar as tags (96 clientes, R$ 6.104,05).
 - Voltar ao plano original de tarefas.
+
+### 12/11 ~17h30 · cashback dos 100 APLICADO (OK do Pedro)
+- Tags `cashback-1111-<centavos>` aplicadas nas **96 clientes**, todas sem erro. Total: **R$ 6.104,05**. Pedidos do #7523 ao #7626, janela da ficha v5.
+- Primeiro foi 1 cliente (#7523, R$ 57,17), depois as outras 95 em 3 lotes.
+- O fluxo "Cashback 11/11" lança o crédito, válido até 30/11 23h59, e manda o e-mail.
+- Não consigo ler o saldo de crédito pela API (falta permissão). O Pedro confere no admin: Clientes > uma cliente com a tag > Crédito na loja.
+- Próximo: texto para a Sarah disparar no WhatsApp.
