@@ -1194,3 +1194,6 @@
 - O fluxo "Cashback 11/11" lança o crédito, válido até 30/11 23h59, e manda o e-mail.
 - Não consigo ler o saldo de crédito pela API (falta permissão). O Pedro confere no admin: Clientes > uma cliente com a tag > Crédito na loja.
 - Próximo: texto para a Sarah disparar no WhatsApp.
+
+### 12/11 20h09 BRT · checagem do brinde
+- #8163 (R$ 899,46, 3ª compra) tinha 1 cranberry. Incluí +1, total igual, e marquei a tag brinde-auto.
