@@ -1115,3 +1115,28 @@
 ### 12/11 07h09 BRT · checagem do brinde
 - #8108 (R$ 606,82, cliente com compra anterior) tinha 1 cranberry; o certo eram 2. Incluí +1 por edição de pedido (sem avisar a cliente, total igual R$ 606,82) e marquei a tag brinde-auto.
 - Provável causa: a cliente comprou sem estar logada, e aí o tema não reconhece que ela já é cliente.
+
+## Fechamento de 11/11 (rotina das 9h de 12/11)
+- **Feito:**
+  - Link da bio 11do11 no ar (Vercel).
+  - 7 vídeos do Esquenta BW editados e no Drive (E1, E2, E3, E4, E6, E7 e E8).
+  - 10 estáticos EBW refeitos e no Drive.
+  - Causa do cranberry que faltou encontrada; verificação de hora em hora criada.
+  - Virada à 00h: cupons voltaram a desconto de produto e Esquenta BW ativo, com o teste OK.
+- **Verificação do brinde (00h às 08h):** uma correção, no #8108. Os outros pedidos estavam certos.
+- **Cashback 11/11 (09h):** lista pronta, sem nada aplicado.
+  - 100 pedidos, do #7523 ao #7626; 96 clientes; R$ 6.104,05.
+  - 4 Pix expirados ficaram fora.
+  - Usei a janela da ficha v5 (desde 10/11 às 20h), porque o lembrete dizia 11/11 00h.
+  - Aguarda o OK do Pedro.
+- **Alliance (leitura):**
+  - "Live de virada" já está como feita.
+  - Seguem abertas: "Testar e operar a live 11/11" (prazo 11/11, atrasada) e "Avaliar app 5% Pix" (10/11, atrasada).
+- **Pendentes de outras pessoas:**
+  - Lissia: opção para a Marcela (#7017).
+  - Vitor: saber dos cupons de 5% que viraram 2%.
+  - Otávio: nome AD para o E6 e o E8.
+- **Bloqueios:**
+  - Push com 403.
+  - Commit do cashback-1111 travado.
+  - Token do Drive inválido.

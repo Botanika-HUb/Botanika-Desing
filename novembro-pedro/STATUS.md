@@ -302,3 +302,29 @@
 - Upload para o Drive: a senha do receptor do Apps Script está inválida; atualizar DRIVE_UPLOAD_TOKEN no ambiente. O conector do Drive só aceita até ~3 MB.
 - GitHub: o push dá 403 (cerca de 45 commits locais). Reconectar em claude.ai/connect-github.
 - Pasta `entregas/cashback-1111/` sem commit (trava de segurança): precisa do ok do Pedro.
+
+## 12/11 · plano do dia
+**Vence hoje**
+- 09h20: Daily. 09h30: Reunião de KPI. 17h30: lançar os indicadores.
+- OK do cashback 11/11: aplicar as tags, conferir o Flow e passar o texto para a Sarah.
+- "11/11 · Site e Shopify" vence 12h (já está como feita).
+
+**Amanhã (sex 13/11)**
+- 12h: editar os 8 vídeos do 2º lote (Mafe, Gabriel e Vitor gravam hoje).
+  - São vídeos universais: sem data, sem % e sem nome de campanha.
+  - No Alliance há duas tarefas para isso, uma às 12h e outra às 18h: duplicadas.
+- 18h:
+  - 8 estáticos universais do 2º lote;
+  - criativos do Esquenta BW rodando;
+  - tarefa mãe do Growth Site e CRO.
+- 14h: revisão da semana com a Vanessa.
+
+**Atrasadas no Alliance**
+- Avaliar app de 5% no Pix (10/11).
+- Testar e operar a live 11/11: marcar como feita, se rodou.
+
+**Cobrar**
+- Lissia: Marcela, #7017.
+- Otávio: AD do E6 e do E8.
+- Vitor: cupons de 5% que viraram 2%.
+- Gravação do 2º lote hoje, para ter o material.
