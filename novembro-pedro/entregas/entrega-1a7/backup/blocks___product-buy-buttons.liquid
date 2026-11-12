@@ -1,0 +1,152 @@
+{% liquid
+  assign block_st = block.settings
+  assign product = closest.product
+  assign products_group = product.metafields.custom.product_grouped
+  assign product_form_id = 'product-form-' | append: section.id
+%}
+{%- if product.metafields.custom.external_affiliate == blank -%}
+  {% if products_group == blank %}
+
+    {%- comment -%}
+      ============ BANNER 1ª COMPRA (roleta) ============
+      15/10: o BOTANIKA não dá mais 5% + frete grátis juntos. A roleta sorteia BOTANIKA (5%) OU BOTANIKAFRETE (frete grátis),
+      então o banner só anuncia a roleta, sem código para copiar.
+    {%- endcomment -%}
+    <div class="botanika-coupon-banner" id="botanika-coupon-banner-{{ section.id }}">
+      <div class="botanika-coupon-banner__icon">🎁</div>
+      <div class="botanika-coupon-banner__content">
+        <div class="botanika-coupon-banner__label">PRIMEIRA COMPRA</div>
+        <div class="botanika-coupon-banner__text">
+          Gire a roleta e ganhe <strong>frete grátis</strong> ou <strong>5% OFF</strong> na sua 1ª compra.
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .botanika-coupon-banner {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 20px;
+        margin: 0 0 20px 0;
+        background: #F8F0E8;
+        border: 1.5px dashed #303890;
+        border-radius: 14px;
+        font-family: inherit;
+        position: relative;
+        overflow: hidden;
+      }
+      .botanika-coupon-banner::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 6px;
+        background: #D0E088;
+      }
+      .botanika-coupon-banner__icon {
+        font-size: 28px;
+        line-height: 1;
+        flex-shrink: 0;
+      }
+      .botanika-coupon-banner__content {
+        flex: 1;
+        min-width: 0;
+      }
+      .botanika-coupon-banner__label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #303890;
+        opacity: 0.75;
+        margin-bottom: 4px;
+      }
+      .botanika-coupon-banner__text {
+        font-size: 15px;
+        line-height: 1.4;
+        color: #181010;
+      }
+      .botanika-coupon-banner__text strong {
+        color: #303890;
+        font-weight: 700;
+      }
+      @media (max-width: 600px) {
+        .botanika-coupon-banner {
+          padding: 14px 16px;
+        }
+        .botanika-coupon-banner__text {
+          font-size: 14px;
+        }
+      }
+    </style>
+    {%- comment -%} ============ FIM BANNER 1ª COMPRA ============ {%- endcomment -%}
+
+    <div
+      class="product-detail__buy-buttons button-trigger__sticky mb-20"
+      {{ block.shopify_attributes }}
+    >
+      {%- render 'buy-buttons',
+        block: block,
+        product: product,
+        product_form_id: product_form_id,
+        section_id: section.id,
+        show_wishlist: block_st.show_wishlist,
+        show_compare: block_st.show_compare,
+        formClass: 'feature-product-form',
+        type: 'main_product'
+      -%}
+    </div>
+  {% endif %}
+{%- else -%}
+  <a
+    href="{{ product.metafields.custom.external_affiliate.value.external_link }}"
+    rel="nofollow"
+    target="_blank"
+    class="btn product-form__submit relative text-center w-full whitespace-nowrap animation flash-move block btn-primary no-underline{% if enable_skeleton_loading %} skeleton-loading{% endif %}"
+  >
+    {{- product.metafields.custom.external_affiliate.value.button_text -}}
+  </a>
+{%- endif -%}
+{%- comment -%} Botanika: estimativa de entrega + formas de pagamento logo abaixo do botão. {%- endcomment -%}
+{%- render 'bk-pdp-afterbuy', product: product, ship: 1, min: 5, max: 7 -%}
+{% schema %}
+{
+  "name": "t:blocks.product.buy_buttons.name",
+  "tag": null,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_dynamic_checkout",
+      "default": true,
+      "label": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.label",
+      "info": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_gift_card_recipient",
+      "default": true,
+      "label": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.label",
+      "info": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wishlist",
+      "default": true,
+      "label": "t:sections.main-product.blocks.buy_buttons.settings.show_wishlist"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_compare",
+      "default": true,
+      "label": "t:sections.main-product.blocks.buy_buttons.settings.show_compare"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:blocks.product.buy_buttons.name"
+    }
+  ]
+}
+{% endschema %}

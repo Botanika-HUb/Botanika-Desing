@@ -1166,3 +1166,9 @@
 4. **Cashback dos 100:** lista pronta, aguarda o OK.
 5. **Live de virada:** foi ao ar às 20h e começou em "Prática"; corrigida para "Público".
 6. **Virada para o Esquenta BW à 00h:** OK (cupons e descontos conferidos).
+
+### 12/11 · prazo de entrega "1 a 7 dias" (pedido do Gabriel, OK do Pedro)
+- Home: "Entrega rápida em todo Brasil / 1 a 7 dias após o envio". Página de produto: a linha do tempo passou a contar de 1 a 7 dias depois do envio.
+- Aplicado na cópia do tema ao vivo (168613773544) e nos 4 temas não publicados. O "APAGAR — Esquenta sem ingredientes" ficou de fora. Conferido por checksum e na prévia, no celular.
+- Falta o Pedro publicar a cópia. Depois, apagar o tema antigo (168321417448), que vou renomear para "🗑️ APAGAR".
+- Detalhes e backups em `entregas/entrega-1a7/`.

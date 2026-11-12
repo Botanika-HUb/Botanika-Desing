@@ -1,0 +1,16 @@
+# Prazo de entrega "1 a 7 dias" (pedido do Gabriel, 12/11)
+- **Home, selo de entrega** (`templates/index.json`, bloco `botanika_selos/selo_entrega`):
+  - antes: "Entrega em 5 a 7 dias" / "Após o envio";
+  - agora: **"Entrega rápida em todo Brasil" / "1 a 7 dias após o envio"**.
+- **Página de produto, linha do tempo embaixo do Comprar:**
+  - `blocks/_product-buy-buttons.liquid`: `min: 5` → `min: 1`;
+  - `snippets/bk-pdp-afterbuy.liquid`: padrões 5 → 1.
+  - Exemplo: um pedido feito em 12/11 mostra a entrega entre 14 e 20/11.
+- **Aplicado em:**
+  - cópia do tema ao vivo, "ESQUENTA BOTANIKA WEEK · entrega 1 a 7 (12/11)" (168613773544);
+  - BOTANIKA WEEK (168494792936);
+  - OFICIAL c/ avaliações (168106000616);
+  - 11/11 exclusivo (168318599400);
+  - Esquenta + ingredientes (168436498664).
+  - NÃO aplicado no tema ao vivo (168321417448), que vai ser substituído pela cópia, nem no "APAGAR — Esquenta sem ingredientes".
+- **Backup dos arquivos originais:** `backup/`. Os originais eram iguais em todos os temas.
