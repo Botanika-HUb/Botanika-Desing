@@ -328,3 +328,15 @@
 - Otávio: AD do E6 e do E8.
 - Vitor: cupons de 5% que viraram 2%.
 - Gravação do 2º lote hoje, para ter o material.
+
+## 12/11 · lista do que fazer (salva a pedido do Pedro, ~10h)
+1. **Vitor: "erro de cupom" no #7668, #7829, #7947 e #8012.** Conferido: NÃO é erro. Os pedidos têm só o "11/11 · 40% OFF" nos produtos + "Frete grátis sem mínimo", e nenhum cupom. O % alto (55 a 65%) vem do frete grátis, que entra no "desconto total" de um pedido pequeno. Responder ao Vitor.
+2. **Cashback 11/11:** lista pronta (96 clientes, R$ 6.104,05). Aguarda o OK para aplicar as tags.
+3. **Q10 do 11/11 sobrando no carrinho** (#8129): correção no bk-1111 pronta. Aguarda o OK. Decidir também se o Q10 do #8129 fica.
+4. **2º cranberry de quem já é cliente falhando** (#8108, #8123, #8124, #8125, corrigidos pela verificação). Investigar a regra do tema.
+5. **Crédito para os 14 pedidos com desconto a menos** em 10/11 entre 20h e 22h10 (R$ 570,25). Escolher entre lançar à mão ou usar a tag do Flow.
+6. **Cranberry que faltou** (8 pedidos de 01 a 03/11): esperar a resposta da Lissia (Marcela, #7017). Os outros 7 clientes precisam do OK para serem avisados.
+7. **Amanhã:** 8 vídeos do 2º lote (12h ou 18h, tarefa duplicada) e 8 estáticos universais (18h).
+8. **Atrasadas no Alliance:** app de 5% no Pix; marcar como feita a "Testar e operar a live 11/11".
+9. **Cobrar:** Otávio (AD do E6 e do E8), Vitor (cupons de 5% que viraram 2%).
+10. **Bloqueios:** push com 403, token do Drive, commit do cashback-1111.

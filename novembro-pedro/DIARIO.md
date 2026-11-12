@@ -1150,3 +1150,19 @@
 - ⚠️ O #8129 (12/11 10h18) saiu com a **Coenzima Q10 · Brinde** do 11/11 (_brinde=11/11), além dos 2 cranberries. Não tirei nada.
   - Causa provável: o bk-1111 só mexe no carrinho até o fim do 11/11 (`if (!on()) return`). Um Q10 que entrou no carrinho no dia 11 fica lá depois do fim.
   - Correção proposta, aguardando o OK do Pedro: depois do fim, o bk-1111 tira do carrinho o Q10 com _brinde=11/11.
+
+## 11/11 · o que aconteceu (levantado em 12/11 a pedido do Pedro)
+**Números (Shopify Analytics, 10/11 20h → 11/11 23h59 BRT)**
+- 581 pedidos, R$ 255,2 mil brutos, **R$ 207,3 mil líquidos**, ticket de R$ 357.
+- Meta do site no Alliance: R$ 407 mil, atingida em ~51%.
+- Acesso antecipado (20h às 00h): 41 pedidos, R$ 16,5 mil.
+- Últimas 3 horas (21h às 23h59): 166 pedidos, R$ 60,5 mil. O maior pico do dia foi às 21h, com 58 pedidos.
+- Picos durante o dia: 09h (39 pedidos) e 15h (31).
+
+**Problemas e o que foi feito**
+1. **Descontos não combinavam entre as faixas** de 20h até ~22h10 de 10/11: corrigido às 22h10. Ficaram 14 pedidos pagos com R$ 570,25 a menos de desconto. Crédito pendente da decisão do Pedro.
+2. **Cranberry do Esquenta sobrando no carrinho** (#7526, #7550, #7552) e **Q10 do 11/11 sobrando hoje** (#8129). É o mesmo padrão: o brinde não sai do carrinho quando a campanha muda. A correção do Q10 aguarda o OK.
+3. **"Erro de cupom" do Vitor** (#7668, #7829, #7947, #8012): não é erro. É só o 40% + frete grátis sem mínimo. O % alto vem do frete, que entra no desconto total de um pedido pequeno.
+4. **Cashback dos 100:** lista pronta, aguarda o OK.
+5. **Live de virada:** foi ao ar às 20h e começou em "Prática"; corrigida para "Público".
+6. **Virada para o Esquenta BW à 00h:** OK (cupons e descontos conferidos).
