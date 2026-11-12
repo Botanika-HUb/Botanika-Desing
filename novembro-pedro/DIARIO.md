@@ -1106,3 +1106,8 @@
     - os 7 vídeos esquenta-bw_E1 a E8, que o Pedro subiu, batem byte a byte com os arquivos finais;
     - também estão lá AD049–AD053 (subidos às 15h11 e já renomeados no padrão de anúncio), que são cópias idênticas de E1, E2, E3, E4 e E7;
     - os estáticos foram renomeados para o padrão AD (AD057–AD063 e outros).
+
+## 12/11 · virada (00h)
+- **Cupons de creator:** os 60 voltaram a desconto de PRODUTO, com a coleção [CUPONS] Todos os Produtos, 2%, combinando com pedido e frete e não com outro desconto de produto. A troca deu zero erros e foi conferida por query. O RECUPERA5 ficou como estava.
+- **Esquenta Botanika Week ACTIVE:** 8%, +2%, +2% e frete acima de R$ 249. Os descontos do 11/11 encerraram.
+- **Teste (draftOrderCalculate, sem criar pedido):** 5 Hair (R$ 497) + LARILESSA. Resultado: Esquenta 12% (R$ 58,44) + cupom 2% (R$ 9,90) = R$ 428,66. Cupom e Esquenta somam ✅
