@@ -1172,3 +1172,7 @@
 - Aplicado na cópia do tema ao vivo (168613773544) e nos 4 temas não publicados. O "APAGAR — Esquenta sem ingredientes" ficou de fora. Conferido por checksum e na prévia, no celular.
 - Falta o Pedro publicar a cópia. Depois, apagar o tema antigo (168321417448), que vou renomear para "🗑️ APAGAR".
 - Detalhes e backups em `entregas/entrega-1a7/`.
+
+### 12/11 · Judge.me e RedTrack nos temas
+- Judge.me: a cópia "entrega 1 a 7" está igual ao tema ao vivo (app, seções e templates idênticos; 13 avaliações carregadas no Hair e no Tri[Mg]).
+- RedTrack: faltava nos temas BOTANIKA WEEK e OFICIAL. Liguei nos dois com a mesma configuração do tema ao vivo (OK do Pedro) e conferi na prévia. Detalhes em `entregas/redtrack-temas/`.
