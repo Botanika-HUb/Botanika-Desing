@@ -1201,3 +1201,6 @@
 ### 13/11 07h09 BRT · checagem do brinde
 - Cranberry: tudo certo.
 - ⚠️ O #8174 (13/11, R$ 458,08) saiu de novo com a **Coenzima Q10 · Brinde** do 11/11. É o 2º caso, depois do #8129. A correção do bk-1111 continua aguardando o OK do Pedro.
+
+### 13/11 08h08 BRT · checagem do brinde
+- #8178 (R$ 483,57, 9ª compra) tinha 1 cranberry. Incluí +1, total igual, e marquei a tag brinde-auto.
