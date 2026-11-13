@@ -1204,3 +1204,28 @@
 
 ### 13/11 08h08 BRT · checagem do brinde
 - #8178 (R$ 483,57, 9ª compra) tinha 1 cranberry. Incluí +1, total igual, e marquei a tag brinde-auto.
+
+## Fechamento de 12/11 (rotina das 9h de 13/11)
+- **Feito:**
+  - Vitor: o "erro de cupom" no #7668, #7829, #7947 e #8012 não é erro (é o frete grátis). A resposta está pronta.
+  - Entrega "1 a 7 dias" (pedido do Gabriel): home e página de produto em 5 temas. O tema novo foi publicado pelo Pedro e conferido ao vivo.
+  - Judge.me conferido (igual); RedTrack ligado nos temas BOTANIKA WEEK e OFICIAL.
+  - **Cashback dos 100 aplicado:** 96 clientes, R$ 6.104,05.
+  - Resumo do 11/11: R$ 207,3 mil líquidos, 581 pedidos.
+  - Verificação do brinde: corrigidos #8108, #8123, #8124, #8125, #8152, #8163 e #8178 (o #8178 já em 13/11).
+- **Decisões do Pedro:**
+  - crédito dos 14 pedidos: só se alguma cliente reclamar;
+  - cashback dos 100: entregar.
+- **Pendentes:**
+  - correção do Q10 sobrando no carrinho: 2 casos, #8129 e #8174; espera o OK;
+  - texto do cashback para a Sarah;
+  - conferir 1 crédito no admin;
+  - apagar 2 temas;
+  - responder o Vitor;
+  - Lissia: Marcela, #7017;
+  - Pix 5%.
+- **Alliance:**
+  - "Esquenta BW — 8 vídeos", "8 estáticos" e "Criativos" estão como **feito**;
+  - segue aberta a "BLACK FRIDAY — Editar os 8 vídeos do 2º lote do mês" (13/11 18h), que parece duplicada;
+  - nova: "Revisar o dash e corrigir os canais que puxam errado" (14/11 18h), que saiu da reunião de KPI.
+- **Bloqueios:** push com 403; commit do cashback-1111 travado; token do Drive.

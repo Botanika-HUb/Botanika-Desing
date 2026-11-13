@@ -347,3 +347,15 @@
 - RedTrack ligado nos temas BOTANIKA WEEK e OFICIAL.
 - Verificação do brinde: corrigidos #8108, #8123, #8124, #8125 e #8152.
 - Pedro apaga: "🗑️ APAGAR — Esquenta BW antigo" e "🗑️ APAGAR — Esquenta sem ingredientes".
+
+## 13/11 · plano do dia (sexta)
+| Hora | O quê |
+|---|---|
+| 09h20 | Daily |
+| 14h | Revisão da semana com a Vanessa |
+| 17h30 | Lançar os indicadores |
+| 18h | "BLACK FRIDAY — Editar os 8 vídeos do 2º lote do mês": confirmar se é duplicada da que já está feita |
+| 18h | Tarefa mãe Growth Site e CRO (prazo de hoje) |
+| sáb 14/11 18h | **Dash do AllianceOS: corrigir a atribuição de canal** (saiu da reunião de KPI) |
+| atrasada | App de 5% no Pix (espera o Vitor) |
+| espera OK | Correção do Q10 sobrando no carrinho (#8129, #8174) |
