@@ -1233,3 +1233,8 @@
 
 ### 13/11 · correção do Q10 (OK do Pedro)
 - O Shopify não conectou nesta sessão (conexão expirou por tempo). A correção ficou pronta em `entregas/q10-limpeza/README.md` e será aplicada assim que o Shopify voltar.
+
+### 13/11 ~10h30 · conectores fora nesta sessão
+- O Pedro reconectou a Shopify, mas nesta sessão todos os conectores (Shopify, Alliance, Drive, Gmail etc.) seguem falhando por tempo esgotado ou erro 503.
+- Pendente: correção do Q10 (`entregas/q10-limpeza/`). Orientei o Pedro a passar o "Coenzima Q10 · Brinde" para Rascunho no admin enquanto isso.
+- A checagem do brinde de hora em hora não está rodando enquanto o Shopify estiver fora.
