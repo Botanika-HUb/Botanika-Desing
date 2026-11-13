@@ -1229,3 +1229,4 @@
   - segue aberta a "BLACK FRIDAY — Editar os 8 vídeos do 2º lote do mês" (13/11 18h), que parece duplicada;
   - nova: "Revisar o dash e corrigir os canais que puxam errado" (14/11 18h), que saiu da reunião de KPI.
 - **Bloqueios:** push com 403; commit do cashback-1111 travado; token do Drive.
+- 13/11 09h09 · checagem do brinde: cranberry OK. ⚠️ O #8180 (R$ 1.076,59) saiu com o Q10 do 11/11: é o 3º caso (#8129, #8174, #8180).
