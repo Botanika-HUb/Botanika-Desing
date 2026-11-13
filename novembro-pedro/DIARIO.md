@@ -1230,3 +1230,6 @@
   - nova: "Revisar o dash e corrigir os canais que puxam errado" (14/11 18h), que saiu da reunião de KPI.
 - **Bloqueios:** push com 403; commit do cashback-1111 travado; token do Drive.
 - 13/11 09h09 · checagem do brinde: cranberry OK. ⚠️ O #8180 (R$ 1.076,59) saiu com o Q10 do 11/11: é o 3º caso (#8129, #8174, #8180).
+
+### 13/11 · correção do Q10 (OK do Pedro)
+- O Shopify não conectou nesta sessão (conexão expirou por tempo). A correção ficou pronta em `entregas/q10-limpeza/README.md` e será aplicada assim que o Shopify voltar.
