@@ -1238,3 +1238,4 @@
 - O Pedro reconectou a Shopify, mas nesta sessão todos os conectores (Shopify, Alliance, Drive, Gmail etc.) seguem falhando por tempo esgotado ou erro 503.
 - Pendente: correção do Q10 (`entregas/q10-limpeza/`). Orientei o Pedro a passar o "Coenzima Q10 · Brinde" para Rascunho no admin enquanto isso.
 - A checagem do brinde de hora em hora não está rodando enquanto o Shopify estiver fora.
+- **13/11 ~11h20:** o Pedro passou a "Coenzima Q10 · Brinde" para Rascunho no admin, então o Q10 do 11/11 não sai mais em pedidos novos. A correção do bk-1111 (`entregas/q10-limpeza/`) fica como reforço para quando o Shopify reconectar.
