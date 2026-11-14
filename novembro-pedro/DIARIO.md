@@ -1239,3 +1239,12 @@
 - Pendente: correção do Q10 (`entregas/q10-limpeza/`). Orientei o Pedro a passar o "Coenzima Q10 · Brinde" para Rascunho no admin enquanto isso.
 - A checagem do brinde de hora em hora não está rodando enquanto o Shopify estiver fora.
 - **13/11 ~11h20:** o Pedro passou a "Coenzima Q10 · Brinde" para Rascunho no admin, então o Q10 do 11/11 não sai mais em pedidos novos. A correção do bk-1111 (`entregas/q10-limpeza/`) fica como reforço para quando o Shopify reconectar.
+
+## Fechamento de 13/11 (rotina das 9h de 14/11)
+- **Feito:**
+  - Q10 do 11/11 sobrando no carrinho: o Pedro passou o produto para Rascunho (3 casos: #8129, #8174, #8180). A correção do bk-1111 ficou pronta em `entregas/q10-limpeza/`.
+  - Verificação do brinde corrigiu o #8178 de manhã.
+  - Lista das 27 tarefas abertas do Pedro no Alliance.
+  - GitHub reconectado: push de todos os commits, cashback-1111 incluído.
+- **Bloqueio:** desde ~10h de 13/11, a ferramenta de pedidos do Shopify não carrega nesta sessão. A **checagem do brinde de hora em hora não roda** e precisa ser recriada numa sessão nova.
+- **Alliance:** seguem abertas e atrasadas "Editar os 8 vídeos do 2º lote do mês" (13/11 18h, provável duplicada), "GROWTH · SITE E CRO" (13/11) e "Pix 5%" (10/11).

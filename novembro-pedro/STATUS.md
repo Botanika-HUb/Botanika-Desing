@@ -359,3 +359,13 @@
 | sáb 14/11 18h | **Dash do AllianceOS: corrigir a atribuição de canal** (saiu da reunião de KPI) |
 | atrasada | App de 5% no Pix (espera o Vitor) |
 | espera OK | Correção do Q10 sobrando no carrinho (#8129, #8174) |
+
+## 14/11 · plano do dia (sábado)
+| Prazo | O quê |
+|---|---|
+| **hoje 18h** | Reunião de KPI: revisar o dash e corrigir os canais que puxam errado |
+| atrasada | "8 vídeos do 2º lote do mês": confirmar com o Vitor se é duplicada e fechar |
+| atrasada | Tarefa mãe Growth Site e CRO; Pix 5% |
+| qui 19/11 12h | Botanika Friday (10 estáticos e 10 vídeos de venda) e 3º lote (8 vídeos e 8 estáticos) |
+| qui 19/11 18h | Pesquisa da Revita (tarefa no nome do Pedro, mas é da Revita: pedir ao Vitor para trocar o responsável) |
+| bloqueio | Shopify fora nesta sessão: abrir uma sessão nova para religar a checagem do brinde e aplicar o Q10 no tema |
