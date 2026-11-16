@@ -1289,3 +1289,5 @@
 - **8 estáticos universais do 3º lote (U31–U38), estilo pôster:** gerados e no Drive, em [10] Biblioteca de Criativos › Estáticos.
 - **Estilo novo (estúdio escuro + letreiro luminoso):** o Pedro mandou a referência e aprovou os testes. São 14 peças universais (U39–U52), na mesma pasta. Detalhes em `entregas/black-neon-teste/README.md`.
 - Pendente: registrar a entrega da tarefa "8 estáticos universais do 3º lote" (aguarda o OK do Pedro).
+- **Estilo novo para a Week e a Friday:** 6 peças de cada, com a oferta da ficha. Cada campanha ficou na sua pasta (pedido do Pedro). Detalhes em `entregas/neon-week-friday/README.md`.
+- Mensagem de WhatsApp para o Vitor redigida: Pix 5%, tarefa duplicada dos vídeos e aprovação da ficha v4 da Friday.
