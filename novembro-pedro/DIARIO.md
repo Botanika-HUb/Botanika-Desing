@@ -1292,3 +1292,11 @@
 - **Estilo novo para a Week e a Friday:** 6 peças de cada, com a oferta da ficha. Cada campanha ficou na sua pasta (pedido do Pedro). Detalhes em `entregas/neon-week-friday/README.md`.
 - Mensagem de WhatsApp para o Vitor redigida: Pix 5%, tarefa duplicada dos vídeos e aprovação da ficha v4 da Friday.
 - **Cyber Monday:** 10 estáticos de venda no estilo novo, com a oferta da ficha (até 20% OFF só em 30/11, frete grátis sem mínimo, vitamina C acima de R$ 500). Estão na pasta da Cyber no Drive. Entrega registrada no Alliance para o Otavio Saldanha (OK do Pedro); tarefa marcada como feita. Detalhes em `entregas/cyber-estaticos/README.md`.
+
+### 16/11 ~11h20 BRT · checagem do brinde (Shopify reconectado, desde 12/11)
+- **Corrigidos (+1 cranberry, total igual, tag brinde-auto):** #8191, #8193, #8203, #8205, #8208, #8215, #8216, #8224, #8233, #8235, #8247, #8259 e #8277.
+  - Todos são de cliente recorrente que tinha só 1 cranberry, menos o #8224, que é primeira compra (R$ 540,44) e estava sem nenhum.
+- **Aguardando o Pedro:** #8185 (R$ 360,86), #8209 (R$ 384,88), #8246 (R$ 389,74) e #8269 (R$ 376,86).
+  - Os produtos somam mais de R$ 400, mas o total pago, depois do desconto no carrinho, fica abaixo. O site deu 1 cranberry a todos eles.
+  - Edição aberta e não confirmada; nada mudou nesses pedidos.
+- Padrão: o site dá 1 cranberry também para quem já é cliente. O segundo, para recorrentes, depende desta checagem.
