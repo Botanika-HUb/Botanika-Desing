@@ -1283,3 +1283,9 @@
   - Atrasadas: Pix 5% (10/11), GROWTH · SITE E CRO (13/11), 8 vídeos do 2º lote (13/11, provável duplicada), Revisar o dash (14/11, com o outro agente).
   - Qui 19/11 12h: 10 estáticos da Friday (prontos e no Drive, falta registrar a entrega), 10 vídeos da Friday, 8 vídeos do 3º lote, 8 estáticos universais do 3º lote e a tarefa mãe de criativos da Friday.
   - Qui 19/11 18h: pesquisa da Revita (fora do escopo deste chat; o Pedro pede para passar para outra pessoa).
+
+### 16/11 · entregas e estáticos
+- **10 estáticos da Friday:** entrega registrada no Alliance para o Otavio Saldanha, em nome do Vitor. Tarefa marcada como feita.
+- **8 estáticos universais do 3º lote (U31–U38), estilo pôster:** gerados e no Drive, em [10] Biblioteca de Criativos › Estáticos.
+- **Estilo novo (estúdio escuro + letreiro luminoso):** o Pedro mandou a referência e aprovou os testes. São 14 peças universais (U39–U52), na mesma pasta. Detalhes em `entregas/black-neon-teste/README.md`.
+- Pendente: registrar a entrega da tarefa "8 estáticos universais do 3º lote" (aguarda o OK do Pedro).
