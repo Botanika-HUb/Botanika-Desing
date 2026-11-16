@@ -1248,3 +1248,38 @@
   - GitHub reconectado: push de todos os commits, cashback-1111 incluído.
 - **Bloqueio:** desde ~10h de 13/11, a ferramenta de pedidos do Shopify não carrega nesta sessão. A **checagem do brinde de hora em hora não roda** e precisa ser recriada numa sessão nova.
 - **Alliance:** seguem abertas e atrasadas "Editar os 8 vídeos do 2º lote do mês" (13/11 18h, provável duplicada), "GROWTH · SITE E CRO" (13/11) e "Pix 5%" (10/11).
+
+### 14/11 · estáticos da Botanika Friday no Drive (OK do Pedro)
+- 10 estáticos aprovados ("aprovado, pode subir"). BF01–BF10 (PNG 4:5, ~1,1 MB cada, tamanhos conferidos) em:
+  Drive › [07] Botanika Friday (27/11 a 28/11) › [2] Comunicação & Criativos › Estáticos de venda (Pedro) — 10 peças
+  https://drive.google.com/drive/folders/1qbRQjYKk3FtXZ_Ru6aqU69P5TVUHaycb
+- Briefing do dash de canais entregue ao agente do AllianceOS (`entregas/dash-canais/BRIEFING.md`).
+
+### 14/11 18h → 15/11 11h BRT · checagem do brinde fora
+- O Shopify reconectou várias vezes, mas cai pedindo login a cada consulta. Nenhuma checagem rodou de 14/11 15h a 15/11 08h BRT (18 horas). Nenhum pedido foi lido ou alterado.
+- Quando o Shopify voltar, conferir desde 12/11 00h, e não só as últimas 72 h, para não perder pedidos.
+
+## Fechamento de 14/11 (rotina das 9h de 15/11)
+- **Feito:**
+  - 10 estáticos de venda da Botanika Friday: gerados, corrigidos (datas, selos e textos conforme a ficha v4), aprovados e no Drive.
+  - Briefing do dash de canais entregue ao outro agente, que é o dono da tarefa.
+- **Pendentes:**
+  - 8 estáticos universais do 3º lote (sem data, sem % e sem nome de campanha), até qui 19/11 12h;
+  - vídeos da Friday (10) e do 3º lote (8): faltam os brutos;
+  - texto do cashback para a Sarah;
+  - responder o Vitor sobre o "erro de cupom";
+  - apagar 2 temas;
+  - aprovação da ficha v4 pelo Vitor;
+  - confirmar a tarefa duplicada dos vídeos;
+  - Pix 5%.
+- **Bloqueios:** Shopify cai a cada consulta (checagem do brinde parada); commit e push bloqueados pela permissão do ambiente desde 14/11 à tarde.
+- **Alliance (leitura, até 18/11):** 4 abertas e atrasadas: Pix 5% (10/11), GROWTH · SITE E CRO (13/11), Editar os 8 vídeos do 2º lote (13/11, provável duplicada) e Revisar o dash (14/11, com o outro agente).
+
+## Fechamento de 15/11 (rotina das 9h de 16/11)
+- Domingo sem atividade do Pedro.
+- **Bloqueio:** o Shopify continua caindo e pedindo login. A checagem do brinde não roda desde 14/11 15h (42 h). Ao voltar, conferir desde 12/11.
+- **Bloqueio:** commit e push continuam bloqueados pela permissão do ambiente.
+- **Alliance (leitura, até 19/11):** 10 abertas.
+  - Atrasadas: Pix 5% (10/11), GROWTH · SITE E CRO (13/11), 8 vídeos do 2º lote (13/11, provável duplicada), Revisar o dash (14/11, com o outro agente).
+  - Qui 19/11 12h: 10 estáticos da Friday (prontos e no Drive, falta registrar a entrega), 10 vídeos da Friday, 8 vídeos do 3º lote, 8 estáticos universais do 3º lote e a tarefa mãe de criativos da Friday.
+  - Qui 19/11 18h: pesquisa da Revita (fora do escopo deste chat; o Pedro pede para passar para outra pessoa).

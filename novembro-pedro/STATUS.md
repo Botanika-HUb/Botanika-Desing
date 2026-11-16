@@ -3,9 +3,24 @@
 > 🔒 **REGRA FIXA (Pedro, 29/10):** este chat cuida **somente das tarefas da BOTANIKA**. Nunca fazer nada da **VermeFree** nem da **Revita** (nem da Shoty). Se o Pedro citar VermeFree ou Revita, **parar na hora e não executar nada**: só avisar e esperar.
 
 
-> Atualizado em: **11/11/2026, 9h** (DIA D: live o dia todo; 8 estáticos 18h; última chance 20h; Esquenta BW entra 23h59)
+> Atualizado em: **16/11/2026, 9h**
 > Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito · `[!]` bloqueado
 > ID = id da tarefa no Alliance OS (`https://alliance-os-sooty.vercel.app/?task=<ID>#tasks`)
+
+## 📍 Onde estamos (16/11, 9h) ← COMECE POR AQUI
+- **Hoje:** Daily 9h20. Amanhã (ter 17/11) 13h: Reunião de CRO/Site.
+- **Qui 19/11 12h (feriado na sexta):** 8 estáticos universais do 3º lote, 10 vídeos da Friday, 8 vídeos do 3º lote. Os 10 estáticos da Friday estão prontos: falta registrar a entrega no Alliance.
+- **Bloqueios:** Shopify cai a cada consulta (checagem do brinde parada desde 14/11 15h); commit e push bloqueados.
+- **Brutos dos vídeos:** faltam para os 10 da Friday e os 8 do 3º lote.
+
+## 📍 Onde estamos (15/11, 9h) — histórico
+- **No ar:** Esquenta Botanika Week (entrega 1 a 7), até 20/11. A Week entra em 20/11 às 23h59 (Supreme).
+- **Feito em 14/11:** 10 estáticos da Botanika Friday no Drive; briefing do dash de canais com o outro agente.
+- **Próximo prazo:** 8 estáticos universais do 3º lote até **qui 19/11 12h**.
+- **Bloqueios:**
+  - o Shopify cai a cada consulta, então a checagem do brinde está parada desde 14/11 15h; ao voltar, conferir desde 12/11;
+  - commit e push bloqueados pela permissão do ambiente.
+- **Atrasadas no Alliance:** Pix 5% (10/11), GROWTH · SITE E CRO (13/11), 8 vídeos do 2º lote (13/11, provável duplicada), Revisar o dash (14/11, com o outro agente).
 
 ## 📍 Onde estamos (11/11, 9h, DIA D) ← COMECE POR AQUI
 - **No ar:** o tema 11/11 desde ontem às 20h. Às 00h abriu para todos. Está com a senha vip1111 e o link ?acesso=vip1111.
