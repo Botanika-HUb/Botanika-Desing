@@ -1291,4 +1291,4 @@
 - Pendente: registrar a entrega da tarefa "8 estáticos universais do 3º lote" (aguarda o OK do Pedro).
 - **Estilo novo para a Week e a Friday:** 6 peças de cada, com a oferta da ficha. Cada campanha ficou na sua pasta (pedido do Pedro). Detalhes em `entregas/neon-week-friday/README.md`.
 - Mensagem de WhatsApp para o Vitor redigida: Pix 5%, tarefa duplicada dos vídeos e aprovação da ficha v4 da Friday.
-- **Cyber Monday:** 10 estáticos de venda no estilo novo, com a oferta da ficha (até 20% OFF só em 30/11, frete grátis sem mínimo, vitamina C acima de R$ 500). Estão na pasta da Cyber no Drive. A entrega no Alliance aguarda o OK do Pedro. Detalhes em `entregas/cyber-estaticos/README.md`.
+- **Cyber Monday:** 10 estáticos de venda no estilo novo, com a oferta da ficha (até 20% OFF só em 30/11, frete grátis sem mínimo, vitamina C acima de R$ 500). Estão na pasta da Cyber no Drive. Entrega registrada no Alliance para o Otavio Saldanha (OK do Pedro); tarefa marcada como feita. Detalhes em `entregas/cyber-estaticos/README.md`.
