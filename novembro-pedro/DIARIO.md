@@ -1305,3 +1305,13 @@
   - Renomeados pela ordem de entrada: 1 no ar, 2 Week, 3 Friday, 9 Oficial, e o resto como arquivo.
   - **Sem trava:** no tema da Week saíram as checagens de data (a Week aparece sempre na prévia; `?ultimo=1` mostra o último dia).
   - Tema da Friday duplicado do 11/11 (168751628520). Falta o mapa de % do Vitor. Plano em `entregas/tema-botanika-friday/README.md`.
+- **Tema da Friday adiantado (OK do Pedro):**
+  - sem trava;
+  - textos e banners da Friday;
+  - produto "Vitamina C · Brinde" criado (R$ 0, SKU 80.1.2);
+  - limpeza dos brindes antigos no carrinho;
+  - % provisório: o mapa do 11/11 com teto de 30%.
+- **Correção de rótulo:** em 5 peças de hoje (BF-N01, CM01, CM10, BW-N06 e U50), o pote do Sleep saiu com "+ MELATONINA", que o produto não tem.
+  - Refeitas sem o Sleep e trocadas no Drive. As erradas foram para a lixeira.
+  - Os banners da Friday também foram refeitos sem o Sleep.
+- ⚠️ **Estoque da Super Vitamina C: 86 unidades** (16/11). Ela é brinde da Friday e da Cyber acima de R$ 500 e também é vendida. Avisar o Vitor.
