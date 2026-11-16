@@ -1300,3 +1300,8 @@
   - Os produtos somam mais de R$ 400, mas o total pago, depois do desconto no carrinho, fica abaixo. O site deu 1 cranberry a todos eles.
   - Edição aberta e não confirmada; nada mudou nesses pedidos.
 - Padrão: o site dá 1 cranberry também para quem já é cliente. O segundo, para recorrentes, depende desta checagem.
+- **16/11 ~11h40:** o Pedro autorizou o 2º cranberry nos 4 pedidos que estavam esperando (#8185, #8209, #8246 e #8269). Feito, com o total igual e a tag brinde-auto.
+- **Temas (pedido do Pedro):**
+  - Renomeados pela ordem de entrada: 1 no ar, 2 Week, 3 Friday, 9 Oficial, e o resto como arquivo.
+  - **Sem trava:** no tema da Week saíram as checagens de data (a Week aparece sempre na prévia; `?ultimo=1` mostra o último dia).
+  - Tema da Friday duplicado do 11/11 (168751628520). Falta o mapa de % do Vitor. Plano em `entregas/tema-botanika-friday/README.md`.
